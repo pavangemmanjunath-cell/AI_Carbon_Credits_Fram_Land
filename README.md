@@ -176,6 +176,19 @@ Everything is indexed in [docs/README.md](docs/README.md). Good places to start:
 [Developer setup](docs/developer-guide/setup.md) ·
 [Carbon credit vs estimate](docs/concepts/carbon-credit-vs-estimate.md).
 
+## Research impact and adoption
+
+Facts only, added as they happen: independent forks and stars, outside pull requests and issues, organisations using
+the project, citations of the software, linked papers and preprints, benchmark reproductions. Nothing is counted
+that the maintainers generated themselves. Current state: early release (v0.2.0), no external adoption recorded yet.
+
+## Cite
+
+See [CITATION.cff](CITATION.cff). A DOI will be added after the first archived release
+([how](docs/community/zenodo-doi.md)). Reproducible checks: [benchmarks/](benchmarks/README.md).
+Method: [docs/methodology.md](docs/methodology.md) · What is different: [docs/novelty.md](docs/novelty.md) ·
+Use cases: [docs/use-cases.md](docs/use-cases.md) · Architecture: [docs/architecture.md](docs/architecture.md).
+
 ## Contributing, licence and citation
 
 Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md), the [code of conduct](CODE_OF_CONDUCT.md) and the

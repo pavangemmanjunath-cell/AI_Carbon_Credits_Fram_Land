@@ -1,0 +1,37 @@
+{
+  "e1_cases": 66,
+  "e1_all_uncertified": true,
+  "e1_all_ordered": true,
+  "e1_species": 11,
+  "e2_hand_full_increment_tco2e_yr": 23.034,
+  "e2_headline_definition": "horizon-mean annual removal (tier 1)",
+  "e2_headline_range": [
+    7.71,
+    11.02,
+    14.32
+  ],
+  "e2_years_compared": 31,
+  "e2_max_abs_diff_tco2e": 0.0002,
+  "e2_year_2026": {
+    "year": 2026,
+    "age": 3,
+    "engine_central": 11.517,
+    "hand_central": 11.517,
+    "abs_diff": 0.0001
+  },
+  "e3_girth_case_engine_stock": 57.657,
+  "e3_girth_case_hand_stock": 57.656,
+  "e3_girth_rel_diff": 9.568137054324645e-06,
+  "e3_t2_over_t1_range": [
+    0.045,
+    9.036
+  ],
+  "e4_verification_census": {
+    "verified": 28,
+    "pending": 20,
+    "assumption": 64
+  },
+  "e4_production_gate_blocks_pending": true,
+  "e5_cases": 13,
+  "e5_matches": 13
+}

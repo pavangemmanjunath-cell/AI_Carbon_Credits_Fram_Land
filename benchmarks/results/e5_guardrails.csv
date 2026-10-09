@@ -1,0 +1,14 @@
+case,guardrail,expected,observed,match
+claims an issued credit,not-a-credit,fail,fail,True
+promises guaranteed income,not-a-credit,fail,fail,True
+run flagged certified,not-a-credit,fail,fail,True
+disclaimer missing,not-a-credit,fail,fail,True
+negated claim is allowed,not-a-credit,pass,pass,True
+coordinates in text,no-coordinates,fail,fail,True
+polygon in facts,no-coordinates,fail,fail,True
+clean message,no-coordinates,pass,pass,True
+values summed in text,values-separated,fail,fail,True
+combined fact key,values-separated,fail,fail,True
+values kept separate,values-separated,pass,pass,True
+pending parameter flagged,pending-parameters,warn,warn,True
+verified parameter,pending-parameters,pass,pass,True
