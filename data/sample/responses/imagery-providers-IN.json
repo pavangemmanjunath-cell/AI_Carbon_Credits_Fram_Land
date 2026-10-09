@@ -1,0 +1,267 @@
+{
+  "recommended": "eox-s2cloudless-2016",
+  "providers": [
+    {
+      "id": "esri-world-imagery",
+      "name": "Esri World Imagery",
+      "kind": "xyz",
+      "tile_size": 256,
+      "max_zoom": 19,
+      "coverage": {
+        "type": "global"
+      },
+      "resolution": "15 m TerraColor worldwide; Vantor Vivid Standard 1.2 m to 30 cm; Vivid Advanced 30 cm in 1,000+ metros; Vivid Premium 15 cm in select metros; community imagery 30 cm to 3 cm. Varies by place; Esri describes high-resolution areas as typically within 3-5 years of currency.",
+      "license": "Esri Master License Agreement (proprietary; ArcGIS account and API key plus Esri terms of use apply)",
+      "license_url": "https://www.esri.com/content/dam/arcgisonline/docs/tou_summary.pdf",
+      "attribution": "Esri, Vantor, Earthstar Geographics, and the GIS User Community",
+      "requires_key": true,
+      "commercial_use": "review-terms",
+      "analysis_allowed": false,
+      "open_data": false,
+      "verification_status": "verified",
+      "notes": "Display only, and only with a deployer-supplied key (ESRI_API_KEY, from the environment, never committed). Esri's MapLibre tutorial uses this host and says an ArcGIS Location Platform account and an API key credential are required. The keyless server.arcgisonline.com tile host answers requests but is not the third-party path Esri documents, so do not rely on it. Esri's blog (11 Feb 2025) says World Imagery 'cannot be used as direct input to automated information extraction' and that derived data is 'strictly for non-commercial use within ArcGIS', hence analysis_allowed: false. The ArcGIS Online terms summary (updated 21 Apr 2025) lists as prohibited: systematically harvesting basemap tiles, redistributing basemap tiles, downloading or self-hosting Esri-hosted content, and using ArcGIS Living Atlas content commercially in your own application or product; it also requires attribution to Esri and its data providers. Attribution drift: the live service reports 'Source: Esri, Vantor, Earthstar Geographics, and the GIS User Community' while Esri's tutorial still says Maxar; use the live text. The tile scheme has levels 0-23 but high-resolution availability above z19 varies by area and could not be inspected, so max_zoom is set conservatively. NOT confirmed: the full Master License Agreement text, and whether a free open-source deployment counts as commercial use; keep review-terms until the deployer has read Esri's terms.",
+      "sources": [
+        "https://developers.arcgis.com/maplibre-gl-js/maps/raster-tile-basemaps/display-multiple-basemap-layers/",
+        "https://developers.arcgis.com/esri-leaflet/faq/",
+        "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer?f=pjson",
+        "https://www.arcgis.com/sharing/rest/content/items/10df2279f9684e4a9f6a7f08febac2a9?f=json",
+        "https://www.esri.com/content/dam/arcgisonline/docs/tou_summary.pdf",
+        "https://www.esri.com/arcgis-blog/products/arcgis-living-atlas/imagery/learn-to-use-ai-to-extract-information-from-world-imagery"
+      ],
+      "url": null,
+      "available": false,
+      "unavailable_reason": "Set ESRI_API_KEY to enable",
+      "covers_country": true
+    },
+    {
+      "id": "eox-s2cloudless-2016",
+      "name": "EOX Sentinel-2 cloudless 2016",
+      "kind": "xyz",
+      "tile_size": 256,
+      "max_zoom": 14,
+      "coverage": {
+        "type": "global"
+      },
+      "resolution": "10 m (Sentinel-2 cloudless mosaic from 2016 acquisitions); about 9.5 m per pixel at z14 on the equator.",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "EOxCloudless https://cloudless.eox.at by EOX IT Services GmbH (Contains modified Copernicus Sentinel data 2016) released under Creative Commons Attribution 4.0 International License.",
+      "requires_key": false,
+      "commercial_use": "allowed",
+      "analysis_allowed": true,
+      "open_data": true,
+      "verification_status": "verified",
+      "notes": "Layer-id quirk: the 2016 layer is advertised as s2cloudless-2016_3857 but its ResourceURL, and the only path that returned a tile, is s2cloudless_3857; s2cloudless-2016_3857 in the path returned 404. The licence text and attribution are copied from the live capabilities abstract; the CC BY 4.0 deed (opened) permits commercial use and adaptation with credit. An EOX post of March 2017 described the downloadable original tiles as CC BY-SA 4.0, which differs from the live WMTS text, so re-check with EOX before self-hosting or redistributing the tiles. Native resolution is 10 m: z14 is about 9.5 m per pixel at the equator; tiles are served deeper (images came back at z15 to z18) but are expected to be up-sampled and their content was not inspected. maps.eox.at says the free service is provided 'as is', is under heavy load with rate limiting, and recommends a dedicated service under an SLA, so production traffic should use a self-hosted copy (for example PMTiles built from Sentinel-2) or an SLA. The imagery shows 2016: label the date in the UI because land cover has changed since.",
+      "sources": [
+        "https://tiles.maps.eox.at/wmts/1.0.0/WMTSCapabilities.xml",
+        "https://maps.eox.at/",
+        "https://creativecommons.org/licenses/by/4.0/",
+        "https://eox.at/2017/03/sentinel-2-cloudless-original-tiles-available/"
+      ],
+      "url": "https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless_3857/default/g/{z}/{y}/{x}.jpg",
+      "available": true,
+      "unavailable_reason": null,
+      "covers_country": true
+    },
+    {
+      "id": "eox-s2cloudless-2017",
+      "name": "EOX Sentinel-2 cloudless 2017",
+      "kind": "xyz",
+      "tile_size": 256,
+      "max_zoom": 14,
+      "coverage": {
+        "type": "global"
+      },
+      "resolution": "10 m (Sentinel-2 cloudless mosaic from 2017 acquisitions).",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "attribution": "EOxCloudless https://cloudless.eox.at by EOX IT Services GmbH (Contains modified Copernicus Sentinel data 2017) released under Creative Commons Attribution 4.0 International License.",
+      "requires_key": false,
+      "commercial_use": "allowed",
+      "analysis_allowed": true,
+      "open_data": true,
+      "verification_status": "verified",
+      "notes": "Same terms, caveats and rate-limit warning as eox-s2cloudless-2016; the capabilities give the 2017 layer the same CC BY 4.0 text. The only other CC BY year is 2016; every later year is CC BY-NC-SA 4.0 (see eox-s2cloudless-2025). A tile request at z10 returned an image; deeper zooms were only checked for the 2016 layer.",
+      "sources": [
+        "https://tiles.maps.eox.at/wmts/1.0.0/WMTSCapabilities.xml",
+        "https://creativecommons.org/licenses/by/4.0/"
+      ],
+      "url": "https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2017_3857/default/g/{z}/{y}/{x}.jpg",
+      "available": true,
+      "unavailable_reason": null,
+      "covers_country": true
+    },
+    {
+      "id": "eox-s2cloudless-2025",
+      "name": "EOX Sentinel-2 cloudless 2025",
+      "kind": "xyz",
+      "tile_size": 256,
+      "max_zoom": 14,
+      "coverage": {
+        "type": "global"
+      },
+      "resolution": "10 m (Sentinel-2 cloudless mosaic from 2025 acquisitions).",
+      "license": "CC BY-NC-SA 4.0 (non-commercial; commercial use needs a licence from EOX)",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "attribution": "EOxCloudless https://cloudless.eox.at by EOX IT Services GmbH (Contains modified Copernicus Sentinel data 2025) released under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. For commercial usage please see https://cloudless.eox.at",
+      "requires_key": false,
+      "commercial_use": "not-allowed",
+      "analysis_allowed": "review-terms",
+      "open_data": false,
+      "verification_status": "verified",
+      "notes": "Newest mosaic, but NOT open data: the capabilities abstract says CC BY-NC-SA 4.0 and points commercial users to cloudless.eox.at; the licence deed (opened) forbids commercial use and requires derivatives to be shared under the same licence. Layers 2018 to 2024 follow the same pattern (ids s2cloudless-YYYY_3857, same URL shape, CC BY-NC-SA 4.0; the 2018 layer says 'Contains modified Copernicus Sentinel data 2017 & 2018'). Use only in a clearly non-commercial deployment, never as the default of an open build. EOX's explicit permission to use its 2016-2025 layers as background for manual, non-commercial OpenStreetMap editing is limited to that purpose. analysis_allowed is review-terms because ShareAlike would attach to derived data. A tile request at z10 returned an image.",
+      "sources": [
+        "https://tiles.maps.eox.at/wmts/1.0.0/WMTSCapabilities.xml",
+        "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+        "https://maps.eox.at/"
+      ],
+      "url": "https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2025_3857/default/g/{z}/{y}/{x}.jpg",
+      "available": true,
+      "unavailable_reason": null,
+      "covers_country": true
+    },
+    {
+      "id": "usgs-imagery-only",
+      "name": "USGS The National Map - USGS Imagery Only",
+      "kind": "xyz",
+      "tile_size": 256,
+      "max_zoom": 16,
+      "coverage": {
+        "type": "countries",
+        "countries": [
+          "US"
+        ]
+      },
+      "resolution": "NAIP aerial imagery at larger scales: 1 m ground sample distance 2003-2017, 0.6 m since 2018 (0.3 m option in some coastal states); USGS describes the service as 'from 6 inches to 1 meter'. Smaller scales use NASA Blue Marble (world view), a Landsat GLS2000 subset (1:1,150,000 to 1:289,000) and NAIP (larger than 1:289,000).",
+      "license": "Public domain (USGS: 'Most U.S. Geological Survey (USGS) information resides in the Public Domain and may be used without restriction'; USGS EROS NAIP page: 'Sources/Usage: Public Domain')",
+      "license_url": "https://www.usgs.gov/information-policies-and-instructions/acknowledging-or-crediting-usgs",
+      "attribution": "USDA, USGS The National Map: Orthoimagery",
+      "requires_key": false,
+      "commercial_use": "allowed",
+      "analysis_allowed": true,
+      "open_data": true,
+      "verification_status": "verified",
+      "notes": "The service text is 'USDA, USGS The National Map: Orthoimagery. Data refreshed June, 2024.v1.2' (the refresh marker changes, so the stable part is used as the attribution); USGS also asks that credit be given, for example 'courtesy of the U.S. Geological Survey'. The tile cache stops at level 16 ('visible to the 1:9,028 zoom scale'): a tile request at z16 returned an image and z17 returned 404 at the one location tried, so max_zoom is 16 and MapLibre over-zooms beyond it (about 1.6-2.2 m per pixel at z16 across the contiguous US, so sub-metre NAIP detail is not visible). The licence follows the public-domain status of USGS information and NAIP; note that FSA notice AP-26 (27 Nov 2017) said the agency was considering a licensed data model for future NAIP, so re-check before relying on this for new imagery. Not confirmed: coverage in Alaska, Hawaii and US territories, the individual non-NAIP sources, and any service-level fair-use or rate-limit policy (none was found). For bulk analysis obtain NAIP source data instead of harvesting tiles.",
+      "sources": [
+        "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer?f=pjson",
+        "https://www.usgs.gov/information-policies-and-instructions/acknowledging-or-crediting-usgs",
+        "https://www.usgs.gov/centers/eros/science/usgs-eros-archive-aerial-photography-national-agriculture-imagery-program-naip",
+        "https://www.usgs.gov/faqs/what-sources-were-used-imagery-national-map-services",
+        "https://www.usgs.gov/index.php/faqs/what-are-base-map-services-or-urls-used-national-map",
+        "https://www.fsa.usda.gov/Internet/FSA_Notice/ap_26.pdf"
+      ],
+      "url": "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}",
+      "available": true,
+      "unavailable_reason": null,
+      "covers_country": false
+    },
+    {
+      "id": "ign-france-orthophotos",
+      "name": "IGN Géoplateforme - Photographies aériennes (BD ORTHO)",
+      "kind": "xyz",
+      "tile_size": 256,
+      "max_zoom": 19,
+      "coverage": {
+        "type": "countries",
+        "countries": [
+          "FR"
+        ]
+      },
+      "resolution": "BD ORTHO 20 cm (data.gouv.fr). A mosaic of aerial surveys of different dates; the capture dates are in a PDF linked from the layer abstract.",
+      "license": "Licence Ouverte / Open Licence 2.0 (Etalab)",
+      "license_url": "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0",
+      "attribution": "Source : IGN - Institut national de l'information géographique et forestière - Licence Ouverte 2.0",
+      "requires_key": false,
+      "commercial_use": "allowed",
+      "analysis_allowed": true,
+      "open_data": true,
+      "verification_status": "verified",
+      "notes": "Licence chain (no licence text sits in the layer's capabilities): the Géoplateforme terms (cartes.gouv.fr/cgu, version of 15 Oct 2024) say the Licence Ouverte applies by default; the layer's metadata id is IGNF_BD-ORTHO; the data.gouv.fr dataset BD ORTHO states Licence Ouverte / Open Licence 2.0, which allows reuse including commercial use ('l'exploiter à titre commercial') and requires naming the source (at minimum the licensor) and the date of last update. No verbatim attribution text is mandated: the layer's own attribution is 'Institut national de l'information géographique et forestière', and the text above is composed from the licence requirement; add the survey date shown for the area when known. Capabilities list tile matrix set PM_0_19 (z19 returned an image, z20 returned 404). The WMTS service is free ('Fees: none'), and the Géoplateforme usage-limits page says the rate-limiting mechanism covers most APIs 'à l'exception notable de l'API « Diffusion d'images tuilées WMTS »', so no per-IP limit is documented for tiles (the CGU, version of 15 Oct 2024, list limits for other APIs). Not confirmed: the layer's own cartes.gouv.fr dataset page (needs JavaScript, not readable), tile size 256 (standard for PM, not re-read), and coverage of the overseas departments.",
+      "sources": [
+        "https://data.geopf.fr/annexes/ressources/wmts/ortho.xml",
+        "https://data.geopf.fr/annexes/ressources/wms-r/ortho.xml",
+        "https://cartes.gouv.fr/cgu",
+        "https://cartes.gouv.fr/aide/fr/guides-utilisateur/utiliser-les-services-de-la-geoplateforme/limites-d-usage/",
+        "https://www.data.gouv.fr/datasets/bd-ortho-r",
+        "https://www.data.gouv.fr/pages/legal/licences/etalab-2.0"
+      ],
+      "url": "https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=ORTHOIMAGERY.ORTHOPHOTOS&STYLE=normal&FORMAT=image/jpeg&TILEMATRIXSET=PM&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}",
+      "available": true,
+      "unavailable_reason": null,
+      "covers_country": false
+    },
+    {
+      "id": "ign-spain-pnoa",
+      "name": "IGN España - Ortoimágenes de España (PNOA máxima actualidad y Sentinel-2)",
+      "kind": "xyz",
+      "tile_size": 256,
+      "max_zoom": 19,
+      "coverage": {
+        "type": "countries",
+        "countries": [
+          "ES"
+        ]
+      },
+      "resolution": "PNOA orthophotos 25 cm and 50 cm; Sentinel-2 10 m at scales smaller than 1:70,000; true orthoimages in identified urban centres.",
+      "license": "CC BY 4.0 scne.es (Sistema Cartográfico Nacional; Orden FOM/2807/2015)",
+      "license_url": "https://www.ign.es/resources/licencia/Condiciones_licenciaUso_IGN.pdf",
+      "attribution": "PNOA CC-BY 4.0 scne.es",
+      "requires_key": false,
+      "commercial_use": "allowed",
+      "analysis_allowed": true,
+      "open_data": true,
+      "verification_status": "verified",
+      "notes": "The capabilities give AccessConstraints 'CC BY 4.0 scne.es' and Fees 'No se aplican condiciones'. The licence document requires the credit in the form '<product identifier> <date> CC-BY 4.0 <producer attribution>', visible at the foot of the map, and 'Obra derivada de' on derived works; the IDEE record for PNOA 2025 uses 'PNOA 2025 CC-BY 4.0 scne.es', so the text above is composed from that pattern and omits the date because this layer is a rolling most-current mosaic (add the product year when it is known). The WMS layer attribution is 'Sistema Cartográfico Nacional' (www.scne.es). The abstract says tiles are pre-generated in JPEG to level 19 (about 1:1,000); the matrix set lists level 20 and both z19 and z20 returned an image, but z19 is the documented level. At small scales the layer shows Sentinel-2 (Copernicus) rather than aerial photography. Alternative tile endpoint documented by IDEE: https://tms-pnoa-ma.idee.es/1.0.0/pnoa-ma/{z}/{x}/{-y}.jpeg (TMS, so the raster source needs scheme: tms). Not confirmed: coverage of the Canary Islands, Ceuta and Melilla, and tile size 256 (standard for GoogleMapsCompatible, not re-read).",
+      "sources": [
+        "https://www.ign.es/wmts/pnoa-ma?request=GetCapabilities&service=WMTS",
+        "https://www.ign.es/resources/licencia/Condiciones_licenciaUso_IGN.pdf",
+        "https://www.scne.es/productos_info.html",
+        "https://www.idee.es/csw-codsi-idee/srv/api/records/spaignwmts_pnoa-ma",
+        "https://www.idee.es/csw-codsi-idee/srv/api/records/spaignPNOA2025?language=eng",
+        "https://www.ign.es/wms-inspire/pnoa-ma?request=GetCapabilities&service=WMS",
+        "https://blog-idee.blogspot.com/2022/12/como-cargar-el-tms-del-pnoa-ma-en_7.html"
+      ],
+      "url": "https://www.ign.es/wmts/pnoa-ma?service=WMTS&request=GetTile&version=1.0.0&layer=OI.OrthoimageCoverage&style=default&tilematrixset=GoogleMapsCompatible&TileMatrix={z}&TileRow={y}&TileCol={x}&format=image/jpeg",
+      "available": true,
+      "unavailable_reason": null,
+      "covers_country": false
+    },
+    {
+      "id": "pdok-luchtfoto",
+      "name": "PDOK Luchtfoto RGB (Beeldmateriaal Nederland, actueel ortho HR)",
+      "kind": "xyz",
+      "tile_size": 256,
+      "max_zoom": 21,
+      "coverage": {
+        "type": "countries",
+        "countries": [
+          "NL"
+        ]
+      },
+      "resolution": "8 cm (5 cm in some areas) for the Actueel_orthoHR layer; 25 cm layers (Actueel_ortho25) and yearly layers also exist.",
+      "license": "CC BY 4.0",
+      "license_url": "https://www.beeldmateriaal.nl/dataroom",
+      "attribution": "Beeldmateriaal Nederland (beeldmateriaal.nl), CC BY 4.0, via PDOK",
+      "requires_key": false,
+      "commercial_use": "allowed",
+      "analysis_allowed": true,
+      "open_data": true,
+      "verification_status": "verified",
+      "notes": "Three sources agree: PDOK says the aerial photo services are 'kosteloos en vrij beschikbaar voor alle toepassingen' under 'het CC BY 4.0 gebruiksrecht'; beeldmateriaal.nl says the images are available under a CC BY 4.0 licence, may be used or adapted by anyone without obligations and asks only that publications refer to beeldmateriaal.nl; data.overheid.nl lists CC-BY (4.0) with the Dienst voor het kadaster en de openbare registers as owner. The attribution text above is composed from that request plus the CC BY requirement to credit the licensor; no verbatim string is mandated. The capabilities report Fees and AccessConstraints as 'none', the layer's tile matrix goes to level 21 (scale denominator 266.59) and z19, z20 and z21 each returned an image. The REST template is {TileMatrixSet}/{TileMatrix}/{TileCol}/{TileRow}.jpeg, which equals {z}/{x}/{y} in XYZ terms. Acquisition for the 2026 set is 1 Jan to 1 Jun 2026 (data.overheid.nl). Not confirmed: coverage of the Caribbean Netherlands and any PDOK fair-use policy.",
+      "sources": [
+        "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0?request=GetCapabilities&service=wmts",
+        "https://www.pdok.nl/-/nu-hoge-resolutie-luchtfoto-2024-bij-pdok",
+        "https://www.beeldmateriaal.nl/dataroom",
+        "https://data.overheid.nl/dataset/83048-luchtfoto-beeldmateriaal-2026-5cm---8cm-rgb-open-data"
+      ],
+      "url": "https://service.pdok.nl/hwh/luchtfotorgb/wmts/v1_0/Actueel_orthoHR/EPSG:3857/{z}/{x}/{y}.jpeg",
+      "available": true,
+      "unavailable_reason": null,
+      "covers_country": false
+    }
+  ],
+  "notes": "Display imagery is for viewing. Automated analysis (segmentation/ML) runs only on imagery whose licence allows it (analysis_allowed: true) or on the user's own imagery.",
+  "country": "IN",
+  "version": "0.1.0",
+  "updated": "2026-10-05"
+}

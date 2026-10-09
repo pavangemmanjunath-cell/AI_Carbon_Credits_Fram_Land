@@ -1,0 +1,108 @@
+name: QGIS plugin
+
+# Tests the QGIS plugin and packages it as an installable ZIP (an artifact of the run).
+#
+# The plugin lives in integrations/qgis-plugin and is GPL-2.0-or-later, because it runs
+# inside QGIS and links to its GPL-licensed Python API. The rest of the repository is
+# Apache-2.0. See docs/licensing/THIRD_PARTY.md for why the two stay separate.
+#
+# Nothing is published from here. To release, download the artifact, check the version
+# and attach it to the GitHub release by hand (docs/developer-guide/release-process.md).
+#
+# The plugin tests need only pytest and no QGIS (they use fakes). Python 3.9 is tested
+# because QGIS 3.28 on Windows embeds Python 3.9 (see integrations/qgis-plugin/ruff.toml).
+# The full CI (ci.yml) runs the same tests as part of its single pytest run.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "integrations/qgis-plugin/**"
+      - ".github/workflows/qgis-plugin.yml"
+  pull_request:
+    paths:
+      - "integrations/qgis-plugin/**"
+      - ".github/workflows/qgis-plugin.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: qgis-plugin-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Plugin tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.12"]
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install pytest
+        run: python -m pip install pytest
+
+      # Run from the repository root so that pyproject.toml supplies the pytest settings.
+      - name: Pytest (integrations/qgis-plugin/tests)
+        run: python -m pytest -q integrations/qgis-plugin/tests
+
+  package:
+    name: Package the plugin ZIP
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [test]
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # scripts/package.py checks metadata.txt against version.py and __init__.py before it
+      # builds. SOURCE_DATE_EPOCH makes the archive byte-identical for the same sources.
+      - name: Build the ZIP (twice, to prove the build is reproducible)
+        run: |
+          export SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
+          python integrations/qgis-plugin/scripts/package.py --out "$RUNNER_TEMP/plugin-a"
+          python integrations/qgis-plugin/scripts/package.py --out "$RUNNER_TEMP/plugin-b"
+          mkdir -p dist
+          cp "$RUNNER_TEMP"/plugin-a/*.zip dist/
+          cmp "$RUNNER_TEMP"/plugin-a/*.zip "$RUNNER_TEMP"/plugin-b/*.zip
+          sha256sum dist/*.zip | tee "$GITHUB_STEP_SUMMARY"
+
+      - name: Check the archive layout
+        run: |
+          python - <<'PY'
+          import glob
+          import zipfile
+
+          (path,) = glob.glob("dist/*.zip")
+          names = zipfile.ZipFile(path).namelist()
+          assert {n.split("/")[0] for n in names} == {"agricarbon_atlas_qgis"}, "one top-level folder"
+          for required in ("metadata.txt", "__init__.py", "LICENSE", "README.md"):
+              assert f"agricarbon_atlas_qgis/{required}" in names, f"{required} is missing"
+          bad = [n for n in names if "__pycache__" in n or n.endswith((".pyc", ".pyo"))]
+          assert not bad, f"bytecode in the archive: {bad}"
+          print(f"{path}: {len(names)} files, layout OK")
+          PY
+
+      - name: Upload the plugin ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: agricarbon-atlas-qgis-plugin
+          path: dist/*.zip
+          if-no-files-found: error
+          retention-days: 30

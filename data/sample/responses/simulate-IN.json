@@ -1,0 +1,690 @@
+{
+  "inputs": {
+    "country": "IN",
+    "region": "IN",
+    "species_id": "mango",
+    "tree_count": 420,
+    "planting_year": 2023,
+    "horizon_years": 30,
+    "survival_rate": null,
+    "area_hectares": 2.13,
+    "density_per_ha": 197.2
+  },
+  "region_name": "India",
+  "currency": "INR",
+  "currency_symbol": "₹",
+  "area_unit": "hectare",
+  "climate_zone": "tropical_dry",
+  "climate_zone_label": "Tropical dry",
+  "climate_zone_source": "region-default",
+  "annual": {
+    "low": 7.71,
+    "central": 11.02,
+    "high": 14.32,
+    "unit": "tCO2e/yr"
+  },
+  "stock_now": {
+    "low": 16.12,
+    "central": 23.03,
+    "high": 29.95,
+    "unit": "tCO2e"
+  },
+  "series": [
+    {
+      "year": 2023,
+      "age": 0,
+      "low": 0.0,
+      "central": 0.0,
+      "high": 0.0,
+      "cum_low": 0.0,
+      "cum_central": 0.0,
+      "cum_high": 0.0
+    },
+    {
+      "year": 2024,
+      "age": 1,
+      "low": 2.687,
+      "central": 3.839,
+      "high": 4.991,
+      "cum_low": 2.687,
+      "cum_central": 3.839,
+      "cum_high": 4.991
+    },
+    {
+      "year": 2025,
+      "age": 2,
+      "low": 5.375,
+      "central": 7.678,
+      "high": 9.982,
+      "cum_low": 8.062,
+      "cum_central": 11.517,
+      "cum_high": 14.972
+    },
+    {
+      "year": 2026,
+      "age": 3,
+      "low": 8.062,
+      "central": 11.517,
+      "high": 14.972,
+      "cum_low": 16.124,
+      "cum_central": 23.034,
+      "cum_high": 29.945
+    },
+    {
+      "year": 2027,
+      "age": 4,
+      "low": 10.749,
+      "central": 15.356,
+      "high": 19.963,
+      "cum_low": 26.873,
+      "cum_central": 38.391,
+      "cum_high": 49.908
+    },
+    {
+      "year": 2028,
+      "age": 5,
+      "low": 13.437,
+      "central": 19.195,
+      "high": 24.954,
+      "cum_low": 40.31,
+      "cum_central": 57.586,
+      "cum_high": 74.862
+    },
+    {
+      "year": 2029,
+      "age": 6,
+      "low": 16.124,
+      "central": 23.034,
+      "high": 29.945,
+      "cum_low": 56.434,
+      "cum_central": 80.62,
+      "cum_high": 104.807
+    },
+    {
+      "year": 2030,
+      "age": 7,
+      "low": 16.124,
+      "central": 23.034,
+      "high": 29.945,
+      "cum_low": 72.558,
+      "cum_central": 103.655,
+      "cum_high": 134.751
+    },
+    {
+      "year": 2031,
+      "age": 8,
+      "low": 13.23,
+      "central": 18.9,
+      "high": 24.57,
+      "cum_low": 85.788,
+      "cum_central": 122.555,
+      "cum_high": 159.321
+    },
+    {
+      "year": 2032,
+      "age": 9,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 92.403,
+      "cum_central": 132.005,
+      "cum_high": 171.606
+    },
+    {
+      "year": 2033,
+      "age": 10,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 99.018,
+      "cum_central": 141.455,
+      "cum_high": 183.891
+    },
+    {
+      "year": 2034,
+      "age": 11,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 105.633,
+      "cum_central": 150.905,
+      "cum_high": 196.176
+    },
+    {
+      "year": 2035,
+      "age": 12,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 112.249,
+      "cum_central": 160.355,
+      "cum_high": 208.462
+    },
+    {
+      "year": 2036,
+      "age": 13,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 118.864,
+      "cum_central": 169.805,
+      "cum_high": 220.747
+    },
+    {
+      "year": 2037,
+      "age": 14,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 125.479,
+      "cum_central": 179.255,
+      "cum_high": 233.032
+    },
+    {
+      "year": 2038,
+      "age": 15,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 132.094,
+      "cum_central": 188.705,
+      "cum_high": 245.317
+    },
+    {
+      "year": 2039,
+      "age": 16,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 138.709,
+      "cum_central": 198.155,
+      "cum_high": 257.602
+    },
+    {
+      "year": 2040,
+      "age": 17,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 145.324,
+      "cum_central": 207.605,
+      "cum_high": 269.887
+    },
+    {
+      "year": 2041,
+      "age": 18,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 151.939,
+      "cum_central": 217.055,
+      "cum_high": 282.172
+    },
+    {
+      "year": 2042,
+      "age": 19,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 158.554,
+      "cum_central": 226.505,
+      "cum_high": 294.457
+    },
+    {
+      "year": 2043,
+      "age": 20,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 165.169,
+      "cum_central": 235.955,
+      "cum_high": 306.742
+    },
+    {
+      "year": 2044,
+      "age": 21,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 171.784,
+      "cum_central": 245.405,
+      "cum_high": 319.027
+    },
+    {
+      "year": 2045,
+      "age": 22,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 178.399,
+      "cum_central": 254.855,
+      "cum_high": 331.312
+    },
+    {
+      "year": 2046,
+      "age": 23,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 185.014,
+      "cum_central": 264.305,
+      "cum_high": 343.597
+    },
+    {
+      "year": 2047,
+      "age": 24,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 191.629,
+      "cum_central": 273.755,
+      "cum_high": 355.882
+    },
+    {
+      "year": 2048,
+      "age": 25,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 198.244,
+      "cum_central": 283.205,
+      "cum_high": 368.167
+    },
+    {
+      "year": 2049,
+      "age": 26,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 204.859,
+      "cum_central": 292.655,
+      "cum_high": 380.452
+    },
+    {
+      "year": 2050,
+      "age": 27,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 211.474,
+      "cum_central": 302.105,
+      "cum_high": 392.737
+    },
+    {
+      "year": 2051,
+      "age": 28,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 218.089,
+      "cum_central": 311.555,
+      "cum_high": 405.022
+    },
+    {
+      "year": 2052,
+      "age": 29,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 224.704,
+      "cum_central": 321.005,
+      "cum_high": 417.307
+    },
+    {
+      "year": 2053,
+      "age": 30,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 231.319,
+      "cum_central": 330.455,
+      "cum_high": 429.592
+    }
+  ],
+  "value_scenarios": [
+    {
+      "id": "low",
+      "label": "Low",
+      "price_per_tco2e": 480.0,
+      "value_per_year": {
+        "low": 3701.0,
+        "central": 5290.0,
+        "high": 6874.0
+      },
+      "currency": "INR",
+      "currency_symbol": "₹"
+    },
+    {
+      "id": "reference",
+      "label": "Reference",
+      "price_per_tco2e": 1100.0,
+      "value_per_year": {
+        "low": 8481.0,
+        "central": 12122.0,
+        "high": 15752.0
+      },
+      "currency": "INR",
+      "currency_symbol": "₹"
+    },
+    {
+      "id": "high",
+      "label": "High",
+      "price_per_tco2e": 2100.0,
+      "value_per_year": {
+        "low": 16191.0,
+        "central": 23142.0,
+        "high": 30072.0
+      },
+      "currency": "INR",
+      "currency_symbol": "₹"
+    }
+  ],
+  "market_disclaimer": "Market-value scenario — not guaranteed revenue. Issuance depends on methodology, additionality, verification, permanence and market conditions.",
+  "programmes": [
+    {
+      "id": "in-gcp",
+      "name": "Green Credit Programme",
+      "url": "https://moef.gov.in/",
+      "status": "requires_assessment",
+      "kind": "government_programme"
+    },
+    {
+      "id": "in-ccts",
+      "name": "Carbon Credit Trading Scheme (offset mechanism)",
+      "url": "https://beeindia.gov.in/",
+      "status": "requires_methodology_assessment",
+      "kind": "compliance_market"
+    },
+    {
+      "id": "in-state-agroforestry",
+      "name": "State agroforestry / horticulture missions (incentives)",
+      "url": "https://aranya.gov.in/",
+      "status": "potentially_applicable",
+      "kind": "incentive_programme"
+    }
+  ],
+  "comparison": [
+    {
+      "country": "IN",
+      "name": "India",
+      "climate_zone": "tropical_dry",
+      "climate_zone_label": "Tropical dry",
+      "annual": {
+        "low": 7.71,
+        "central": 11.02,
+        "high": 14.32,
+        "unit": "tCO2e/yr"
+      },
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "reference_price_per_tco2e": 1100.0,
+      "reference_value_per_year": 12122.0,
+      "programme_summary": "Green Credit Programme · CCTS offset mechanism (separate mechanisms)",
+      "url": "https://moef.gov.in/",
+      "programmes": [
+        {
+          "id": "in-gcp",
+          "name": "Green Credit Programme",
+          "url": "https://moef.gov.in/",
+          "status": "requires_assessment",
+          "kind": "government_programme"
+        },
+        {
+          "id": "in-ccts",
+          "name": "Carbon Credit Trading Scheme (offset mechanism)",
+          "url": "https://beeindia.gov.in/",
+          "status": "requires_methodology_assessment",
+          "kind": "compliance_market"
+        },
+        {
+          "id": "in-state-agroforestry",
+          "name": "State agroforestry / horticulture missions (incentives)",
+          "url": "https://aranya.gov.in/",
+          "status": "potentially_applicable",
+          "kind": "incentive_programme"
+        }
+      ]
+    },
+    {
+      "country": "US",
+      "name": "United States",
+      "climate_zone": "warm_temperate_moist",
+      "climate_zone_label": "Warm temperate moist",
+      "annual": {
+        "low": 13.69,
+        "central": 19.56,
+        "high": 25.43,
+        "unit": "tCO2e/yr"
+      },
+      "currency": "USD",
+      "currency_symbol": "$",
+      "reference_price_per_tco2e": 15.0,
+      "reference_value_per_year": 293.0,
+      "programme_summary": "COMET-Farm methodology reference · voluntary ARR methodologies · NRCS incentives",
+      "url": "https://comet-farm.com/",
+      "programmes": [
+        {
+          "id": "us-comet-farm",
+          "name": "USDA COMET-Farm (methodology reference)",
+          "url": "https://comet-farm.com/",
+          "status": "potentially_applicable",
+          "kind": "methodology_tool"
+        },
+        {
+          "id": "us-voluntary-arr",
+          "name": "Voluntary market afforestation/reforestation methodologies",
+          "url": "https://verra.org/",
+          "status": "requires_methodology_assessment",
+          "kind": "voluntary_standard"
+        },
+        {
+          "id": "us-nrcs-conservation",
+          "name": "USDA NRCS conservation programmes (EQIP, CSP)",
+          "url": "https://www.nrcs.usda.gov/",
+          "status": "potentially_applicable",
+          "kind": "incentive_programme"
+        }
+      ]
+    },
+    {
+      "country": "EU",
+      "name": "European Union",
+      "climate_zone": "cool_temperate_moist",
+      "climate_zone_label": "Cool temperate moist",
+      "annual": {
+        "low": 8.3,
+        "central": 11.86,
+        "high": 15.41,
+        "unit": "tCO2e/yr"
+      },
+      "currency": "EUR",
+      "currency_symbol": "€",
+      "reference_price_per_tco2e": 25.0,
+      "reference_value_per_year": 296.0,
+      "programme_summary": "CRCF certification framework (Regulation (EU) 2024/3012) · CAP eco-schemes",
+      "url": "https://climate.ec.europa.eu/eu-action/carbon-removals-and-carbon-farming_en",
+      "programmes": [
+        {
+          "id": "eu-crcf",
+          "name": "Carbon Removals and Carbon Farming Certification Framework (CRCF)",
+          "url": "https://climate.ec.europa.eu/eu-action/carbon-removals-and-carbon-farming_en",
+          "status": "requires_certification",
+          "kind": "certification_framework"
+        },
+        {
+          "id": "eu-cap-eco-schemes",
+          "name": "CAP eco-schemes and agri-environment-climate measures",
+          "url": "https://agriculture.ec.europa.eu/",
+          "status": "potentially_applicable",
+          "kind": "incentive_programme"
+        },
+        {
+          "id": "eu-voluntary",
+          "name": "Voluntary carbon-farming standards and national labels",
+          "url": "https://verra.org/",
+          "status": "requires_methodology_assessment",
+          "kind": "voluntary_standard"
+        }
+      ]
+    }
+  ],
+  "parameters_used": [
+    {
+      "name": "survival_rate",
+      "value": 0.85,
+      "unit": "fraction of planted trees surviving",
+      "source": "project assumption v0.1",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "above_ground_biomass_growth",
+      "value": 4.0,
+      "unit": "t d.m. / ha / yr",
+      "source": "IPCC 2006 Vol.4 Ch.4 Tables 4.10/4.12 (working values; verify cell by cell) [zone: tropical_dry; age class: le_20_years]",
+      "verification_status": "pending"
+    },
+    {
+      "name": "increment_multiplier",
+      "value": 0.9,
+      "unit": "dimensionless",
+      "source": "fruit orchards pruned/managed below natural stand increment; project assumption v0.1 [species: mango]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "reference_density_per_ha",
+      "value": 150,
+      "unit": "trees/ha",
+      "source": "typical 8 m × 8 m orchard spacing; project assumption v0.1 [species: mango]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "maturity_years",
+      "value": 8,
+      "unit": "years",
+      "source": "config/species/species.yaml v0.1.0 [species: mango]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "carbon_fraction",
+      "value": 0.47,
+      "unit": "t C / t d.m.",
+      "source": "IPCC 2006 Vol.4 Ch.4 Table 4.3 (default for all tree parts)",
+      "verification_status": "verified"
+    },
+    {
+      "name": "co2_per_c",
+      "value": 3.6667,
+      "unit": "t CO2 / t C",
+      "source": "molecular mass ratio 44/12",
+      "verification_status": "verified"
+    },
+    {
+      "name": "density_scaling_clamp",
+      "value": [
+        0.2,
+        1.5
+      ],
+      "unit": "ratio to reference density",
+      "source": "project assumption v0.1",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "years_to_full_increment_default",
+      "value": 6,
+      "unit": "years",
+      "source": "project assumption v0.1 — linear ramp from planting to full Tier 1 increment",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "post_maturity_increment_factor",
+      "value": 0.5,
+      "unit": "fraction of full increment",
+      "source": "project assumption v0.1 — after species maturity_years the annual increment is held at 50% of the full Tier 1 increment (slower net growth of mature orchards/stands; replace with age-class increments when IPCC 2019 Refinement Table 4.9 values are verified)",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "uncertainty_fraction_tier1_low",
+      "value": 0.3,
+      "unit": "fraction of central",
+      "source": "project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "uncertainty_fraction_tier1_high",
+      "value": 0.3,
+      "unit": "fraction of central",
+      "source": "project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "density_factor_applied",
+      "value": 1.3146,
+      "unit": "ratio to reference density",
+      "source": "planted density 197.2 trees/ha ÷ reference 150 trees/ha, clamped to [0.2, 1.5]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "root_to_shoot_ratio",
+      "value": 0.56,
+      "unit": "dimensionless",
+      "source": "IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: tropical_dry; class: agb_lt_20]",
+      "verification_status": "pending"
+    },
+    {
+      "name": "root_to_shoot_ratio",
+      "value": 0.28,
+      "unit": "dimensionless",
+      "source": "IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: tropical_dry; class: agb_ge_20]",
+      "verification_status": "pending"
+    }
+  ],
+  "confidence": "medium",
+  "certified": false,
+  "disclaimer": "Scenario estimate; not an issued carbon credit. Market-value scenarios are not guaranteed revenue.",
+  "share_params": {
+    "country": "IN",
+    "species": "mango",
+    "trees": 420,
+    "year": 2023,
+    "horizon": 30
+  },
+  "provenance": {
+    "generated_at": "2026-10-05T19:53:49Z",
+    "api_version": "1",
+    "app_version": "0.2.0",
+    "mode": "demo",
+    "sources": [],
+    "notes": [
+      "Root-to-shoot ratio follows the above-ground biomass stock class: 0.56 → 0.28 (IPCC 2006 Table 4.4).",
+      "Headline estimate: mean annual removal over the horizon (sum of annual series ÷ number of years with age ≥ 1).",
+      "Climate zone 'tropical_dry' from region-default."
+    ],
+    "model": {
+      "id": "tree-biomass",
+      "version": "0.1.0"
+    },
+    "parameter_set": {
+      "id": "ipcc-2006-tier1",
+      "version": "0.1.0",
+      "verification_status": "pending"
+    },
+    "parameter_sources": [
+      {
+        "id": "ipcc-2006-vol4-ch4",
+        "name": "2006 IPCC Guidelines for National GHG Inventories, Vol. 4 Ch. 4",
+        "version": "2006",
+        "license": "IPCC publication — citation required",
+        "attribution": "IPCC (2006). 2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 4: Agriculture, Forestry and Other Land Use. IGES, Japan.",
+        "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html"
+      },
+      {
+        "id": "species-table",
+        "name": "AgriCarbon Atlas species table",
+        "version": "0.1.0",
+        "license": "Apache-2.0 (project configuration)",
+        "attribution": "AgriCarbon Atlas contributors; wood density working values after Zanne et al. (2009) Global Wood Density Database (Dryad, CC0)",
+        "url": "https://doi.org/10.5061/dryad.234"
+      }
+    ]
+  }
+}

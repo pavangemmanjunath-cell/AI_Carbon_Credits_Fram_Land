@@ -1,0 +1,48 @@
+{
+  "plot_id": "PLT-DEMOEU",
+  "name": "Demo olive grove (synthetic)",
+  "country": "ES",
+  "note": "Synthetic polygon near Sevilla, Andaluc\u00eda, Spain (EU rules). NOT a real farm boundary.",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -4.818786,
+          37.609141
+        ],
+        [
+          -4.820311,
+          37.608819
+        ],
+        [
+          -4.821546,
+          37.609597
+        ],
+        [
+          -4.821136,
+          37.610804
+        ],
+        [
+          -4.819668,
+          37.611263
+        ],
+        [
+          -4.818554,
+          37.610377
+        ],
+        [
+          -4.818786,
+          37.609141
+        ]
+      ]
+    ]
+  },
+  "inventory": {
+    "species_id": "olive",
+    "tree_count": 900,
+    "plantation_year": 2020,
+    "survival_rate": 0.9,
+    "measurement_source": "user-reported"
+  }
+}

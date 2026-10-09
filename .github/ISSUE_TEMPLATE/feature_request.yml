@@ -1,0 +1,56 @@
+name: Feature request
+description: Propose a new capability or an improvement to an existing one.
+title: "[feature]: "
+labels: ["type/feature", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before proposing, check `ROADMAP.md`, `docs/community/starter-issues.md` and
+        `docs/community/roadmap-ideas.md`. Proposals for a new dataset, a policy rule,
+        a carbon equation or parameter, a parameter verification or a whole new region
+        have their own templates.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Who has the problem and when? ("A farmer in Karnataka cannot ...", "A reviewer needs ...")
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What should change? Which layer - config, engine, adapter, UI, docs?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: dropdown
+    id: regions
+    attributes:
+      label: Regions affected
+      multiple: true
+      options: [IN, US, EU, all, none]
+  - type: checkboxes
+    id: principles
+    attributes:
+      label: Principle check (CLAUDE.md)
+      options:
+        - label: The feature does not present an estimate as a carbon credit.
+          required: true
+        - label: Any carbon number is computed deterministically (no LLM arithmetic).
+          required: true
+        - label: Environmental benefit, indicative carbon value and other farm income stay separate and are never summed.
+          required: true
+        - label: Any new data source has a documentable license and attribution.
+          required: true
+        - label: The feature does not require sharing exact farm geometry with a third party by default.
+          required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Links, screenshots, references.

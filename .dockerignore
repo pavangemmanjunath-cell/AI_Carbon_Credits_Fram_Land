@@ -1,0 +1,20 @@
+# Keep build contexts small and free of local state and secrets.
+.git
+.github
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/node_modules
+apps/web/dist
+apps/web/test-results
+apps/web/playwright-report
+.cache
+.reports
+.env
+.env.*
+!.env.example
+docs/images/screenshots
+# The QGIS plugin is GPL-2.0-or-later desktop software; it is not part of the API image.
+integrations/qgis-plugin

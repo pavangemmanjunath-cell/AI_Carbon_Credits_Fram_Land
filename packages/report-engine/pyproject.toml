@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agricarbon-report-engine"
+version = "0.2.0"
+description = "HTML / Markdown / JSON (optional PDF) report rendering for AgriCarbon Atlas"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "Apache-2.0"}
+dependencies = ["Jinja2>=3.1"]
+
+[project.optional-dependencies]
+pdf = ["weasyprint>=60"]
+
+[tool.setuptools.packages.find]
+include = ["report_engine*"]
+
+[tool.setuptools.package-data]
+report_engine = ["templates/*.j2"]

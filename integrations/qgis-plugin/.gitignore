@@ -1,0 +1,7 @@
+# Build output and caches. The ZIP built by scripts/package.py must not be committed.
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/

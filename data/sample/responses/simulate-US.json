@@ -1,0 +1,691 @@
+{
+  "inputs": {
+    "country": "US",
+    "region": "US",
+    "species_id": "pecan",
+    "tree_count": 420,
+    "planting_year": 2023,
+    "horizon_years": 30,
+    "survival_rate": null,
+    "area_hectares": 2.13,
+    "density_per_ha": 197.2
+  },
+  "region_name": "United States",
+  "currency": "USD",
+  "currency_symbol": "$",
+  "area_unit": "acre",
+  "climate_zone": "warm_temperate_moist",
+  "climate_zone_label": "Warm temperate moist",
+  "climate_zone_source": "region-default",
+  "annual": {
+    "low": 17.0,
+    "central": 24.29,
+    "high": 31.57,
+    "unit": "tCO2e/yr"
+  },
+  "stock_now": {
+    "low": 30.13,
+    "central": 43.05,
+    "high": 55.96,
+    "unit": "tCO2e"
+  },
+  "series": [
+    {
+      "year": 2023,
+      "age": 0,
+      "low": 0.0,
+      "central": 0.0,
+      "high": 0.0,
+      "cum_low": 0.0,
+      "cum_central": 0.0,
+      "cum_high": 0.0
+    },
+    {
+      "year": 2024,
+      "age": 1,
+      "low": 5.022,
+      "central": 7.175,
+      "high": 9.327,
+      "cum_low": 5.022,
+      "cum_central": 7.175,
+      "cum_high": 9.327
+    },
+    {
+      "year": 2025,
+      "age": 2,
+      "low": 10.045,
+      "central": 14.349,
+      "high": 18.654,
+      "cum_low": 15.067,
+      "cum_central": 21.524,
+      "cum_high": 27.981
+    },
+    {
+      "year": 2026,
+      "age": 3,
+      "low": 15.067,
+      "central": 21.524,
+      "high": 27.981,
+      "cum_low": 30.134,
+      "cum_central": 43.048,
+      "cum_high": 55.963
+    },
+    {
+      "year": 2027,
+      "age": 4,
+      "low": 20.089,
+      "central": 28.699,
+      "high": 37.309,
+      "cum_low": 50.223,
+      "cum_central": 71.747,
+      "cum_high": 93.271
+    },
+    {
+      "year": 2028,
+      "age": 5,
+      "low": 25.112,
+      "central": 35.874,
+      "high": 46.636,
+      "cum_low": 75.335,
+      "cum_central": 107.621,
+      "cum_high": 139.907
+    },
+    {
+      "year": 2029,
+      "age": 6,
+      "low": 30.134,
+      "central": 43.048,
+      "high": 55.963,
+      "cum_low": 105.468,
+      "cum_central": 150.669,
+      "cum_high": 195.87
+    },
+    {
+      "year": 2030,
+      "age": 7,
+      "low": 30.134,
+      "central": 43.048,
+      "high": 55.963,
+      "cum_low": 135.602,
+      "cum_central": 193.718,
+      "cum_high": 251.833
+    },
+    {
+      "year": 2031,
+      "age": 8,
+      "low": 30.134,
+      "central": 43.048,
+      "high": 55.963,
+      "cum_low": 165.736,
+      "cum_central": 236.766,
+      "cum_high": 307.796
+    },
+    {
+      "year": 2032,
+      "age": 9,
+      "low": 30.134,
+      "central": 43.048,
+      "high": 55.963,
+      "cum_low": 195.87,
+      "cum_central": 279.814,
+      "cum_high": 363.758
+    },
+    {
+      "year": 2033,
+      "age": 10,
+      "low": 30.134,
+      "central": 43.048,
+      "high": 55.963,
+      "cum_low": 226.004,
+      "cum_central": 322.863,
+      "cum_high": 419.721
+    },
+    {
+      "year": 2034,
+      "age": 11,
+      "low": 30.134,
+      "central": 43.048,
+      "high": 55.963,
+      "cum_low": 256.138,
+      "cum_central": 365.911,
+      "cum_high": 475.684
+    },
+    {
+      "year": 2035,
+      "age": 12,
+      "low": 25.387,
+      "central": 36.267,
+      "high": 47.147,
+      "cum_low": 281.524,
+      "cum_central": 402.178,
+      "cum_high": 522.831
+    },
+    {
+      "year": 2036,
+      "age": 13,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 294.218,
+      "cum_central": 420.311,
+      "cum_high": 546.404
+    },
+    {
+      "year": 2037,
+      "age": 14,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 306.911,
+      "cum_central": 438.444,
+      "cum_high": 569.978
+    },
+    {
+      "year": 2038,
+      "age": 15,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 319.604,
+      "cum_central": 456.578,
+      "cum_high": 593.551
+    },
+    {
+      "year": 2039,
+      "age": 16,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 332.298,
+      "cum_central": 474.711,
+      "cum_high": 617.125
+    },
+    {
+      "year": 2040,
+      "age": 17,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 344.991,
+      "cum_central": 492.845,
+      "cum_high": 640.698
+    },
+    {
+      "year": 2041,
+      "age": 18,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 357.685,
+      "cum_central": 510.978,
+      "cum_high": 664.271
+    },
+    {
+      "year": 2042,
+      "age": 19,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 370.378,
+      "cum_central": 529.111,
+      "cum_high": 687.845
+    },
+    {
+      "year": 2043,
+      "age": 20,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 383.071,
+      "cum_central": 547.245,
+      "cum_high": 711.418
+    },
+    {
+      "year": 2044,
+      "age": 21,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 395.765,
+      "cum_central": 565.378,
+      "cum_high": 734.991
+    },
+    {
+      "year": 2045,
+      "age": 22,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 408.458,
+      "cum_central": 583.511,
+      "cum_high": 758.565
+    },
+    {
+      "year": 2046,
+      "age": 23,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 421.151,
+      "cum_central": 601.645,
+      "cum_high": 782.138
+    },
+    {
+      "year": 2047,
+      "age": 24,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 433.845,
+      "cum_central": 619.778,
+      "cum_high": 805.712
+    },
+    {
+      "year": 2048,
+      "age": 25,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 446.538,
+      "cum_central": 637.912,
+      "cum_high": 829.285
+    },
+    {
+      "year": 2049,
+      "age": 26,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 459.231,
+      "cum_central": 656.045,
+      "cum_high": 852.858
+    },
+    {
+      "year": 2050,
+      "age": 27,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 471.925,
+      "cum_central": 674.178,
+      "cum_high": 876.432
+    },
+    {
+      "year": 2051,
+      "age": 28,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 484.618,
+      "cum_central": 692.312,
+      "cum_high": 900.005
+    },
+    {
+      "year": 2052,
+      "age": 29,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 497.312,
+      "cum_central": 710.445,
+      "cum_high": 923.579
+    },
+    {
+      "year": 2053,
+      "age": 30,
+      "low": 12.693,
+      "central": 18.133,
+      "high": 23.573,
+      "cum_low": 510.005,
+      "cum_central": 728.578,
+      "cum_high": 947.152
+    }
+  ],
+  "value_scenarios": [
+    {
+      "id": "low",
+      "label": "Low",
+      "price_per_tco2e": 5.0,
+      "value_per_year": {
+        "low": 85.0,
+        "central": 121.0,
+        "high": 158.0
+      },
+      "currency": "USD",
+      "currency_symbol": "$"
+    },
+    {
+      "id": "reference",
+      "label": "Reference",
+      "price_per_tco2e": 15.0,
+      "value_per_year": {
+        "low": 255.0,
+        "central": 364.0,
+        "high": 474.0
+      },
+      "currency": "USD",
+      "currency_symbol": "$"
+    },
+    {
+      "id": "high",
+      "label": "High",
+      "price_per_tco2e": 30.0,
+      "value_per_year": {
+        "low": 510.0,
+        "central": 729.0,
+        "high": 947.0
+      },
+      "currency": "USD",
+      "currency_symbol": "$"
+    }
+  ],
+  "market_disclaimer": "Market-value scenario — not guaranteed revenue. Issuance depends on methodology, additionality, verification, permanence and market conditions.",
+  "programmes": [
+    {
+      "id": "us-comet-farm",
+      "name": "USDA COMET-Farm (methodology reference)",
+      "url": "https://comet-farm.com/",
+      "status": "potentially_applicable",
+      "kind": "methodology_tool"
+    },
+    {
+      "id": "us-voluntary-arr",
+      "name": "Voluntary market afforestation/reforestation methodologies",
+      "url": "https://verra.org/",
+      "status": "requires_methodology_assessment",
+      "kind": "voluntary_standard"
+    },
+    {
+      "id": "us-nrcs-conservation",
+      "name": "USDA NRCS conservation programmes (EQIP, CSP)",
+      "url": "https://www.nrcs.usda.gov/",
+      "status": "potentially_applicable",
+      "kind": "incentive_programme"
+    }
+  ],
+  "comparison": [
+    {
+      "country": "IN",
+      "name": "India",
+      "climate_zone": "tropical_dry",
+      "climate_zone_label": "Tropical dry",
+      "annual": {
+        "low": 9.69,
+        "central": 13.85,
+        "high": 18.0,
+        "unit": "tCO2e/yr"
+      },
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "reference_price_per_tco2e": 1100.0,
+      "reference_value_per_year": 15235.0,
+      "programme_summary": "Green Credit Programme · CCTS offset mechanism (separate mechanisms)",
+      "url": "https://moef.gov.in/",
+      "programmes": [
+        {
+          "id": "in-gcp",
+          "name": "Green Credit Programme",
+          "url": "https://moef.gov.in/",
+          "status": "requires_assessment",
+          "kind": "government_programme"
+        },
+        {
+          "id": "in-ccts",
+          "name": "Carbon Credit Trading Scheme (offset mechanism)",
+          "url": "https://beeindia.gov.in/",
+          "status": "requires_methodology_assessment",
+          "kind": "compliance_market"
+        },
+        {
+          "id": "in-state-agroforestry",
+          "name": "State agroforestry / horticulture missions (incentives)",
+          "url": "https://aranya.gov.in/",
+          "status": "potentially_applicable",
+          "kind": "incentive_programme"
+        }
+      ]
+    },
+    {
+      "country": "US",
+      "name": "United States",
+      "climate_zone": "warm_temperate_moist",
+      "climate_zone_label": "Warm temperate moist",
+      "annual": {
+        "low": 17.0,
+        "central": 24.29,
+        "high": 31.57,
+        "unit": "tCO2e/yr"
+      },
+      "currency": "USD",
+      "currency_symbol": "$",
+      "reference_price_per_tco2e": 15.0,
+      "reference_value_per_year": 364.0,
+      "programme_summary": "COMET-Farm methodology reference · voluntary ARR methodologies · NRCS incentives",
+      "url": "https://comet-farm.com/",
+      "programmes": [
+        {
+          "id": "us-comet-farm",
+          "name": "USDA COMET-Farm (methodology reference)",
+          "url": "https://comet-farm.com/",
+          "status": "potentially_applicable",
+          "kind": "methodology_tool"
+        },
+        {
+          "id": "us-voluntary-arr",
+          "name": "Voluntary market afforestation/reforestation methodologies",
+          "url": "https://verra.org/",
+          "status": "requires_methodology_assessment",
+          "kind": "voluntary_standard"
+        },
+        {
+          "id": "us-nrcs-conservation",
+          "name": "USDA NRCS conservation programmes (EQIP, CSP)",
+          "url": "https://www.nrcs.usda.gov/",
+          "status": "potentially_applicable",
+          "kind": "incentive_programme"
+        }
+      ]
+    },
+    {
+      "country": "EU",
+      "name": "European Union",
+      "climate_zone": "cool_temperate_moist",
+      "climate_zone_label": "Cool temperate moist",
+      "annual": {
+        "low": 10.39,
+        "central": 14.85,
+        "high": 19.3,
+        "unit": "tCO2e/yr"
+      },
+      "currency": "EUR",
+      "currency_symbol": "€",
+      "reference_price_per_tco2e": 25.0,
+      "reference_value_per_year": 371.0,
+      "programme_summary": "CRCF certification framework (Regulation (EU) 2024/3012) · CAP eco-schemes",
+      "url": "https://climate.ec.europa.eu/eu-action/carbon-removals-and-carbon-farming_en",
+      "programmes": [
+        {
+          "id": "eu-crcf",
+          "name": "Carbon Removals and Carbon Farming Certification Framework (CRCF)",
+          "url": "https://climate.ec.europa.eu/eu-action/carbon-removals-and-carbon-farming_en",
+          "status": "requires_certification",
+          "kind": "certification_framework"
+        },
+        {
+          "id": "eu-cap-eco-schemes",
+          "name": "CAP eco-schemes and agri-environment-climate measures",
+          "url": "https://agriculture.ec.europa.eu/",
+          "status": "potentially_applicable",
+          "kind": "incentive_programme"
+        },
+        {
+          "id": "eu-voluntary",
+          "name": "Voluntary carbon-farming standards and national labels",
+          "url": "https://verra.org/",
+          "status": "requires_methodology_assessment",
+          "kind": "voluntary_standard"
+        }
+      ]
+    }
+  ],
+  "parameters_used": [
+    {
+      "name": "survival_rate",
+      "value": 0.85,
+      "unit": "fraction of planted trees surviving",
+      "source": "project assumption v0.1",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "above_ground_biomass_growth",
+      "value": 7.0,
+      "unit": "t d.m. / ha / yr",
+      "source": "IPCC 2006 Vol.4 Ch.4 Tables 4.10/4.12 (working values; verify cell by cell) [zone: warm_temperate_moist; age class: le_20_years]",
+      "verification_status": "pending"
+    },
+    {
+      "name": "increment_multiplier",
+      "value": 0.9,
+      "unit": "dimensionless",
+      "source": "project assumption v0.1 [species: pecan]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "reference_density_per_ha",
+      "value": 70,
+      "unit": "trees/ha",
+      "source": "12 m × 12 m orchard spacing; project assumption v0.1 [species: pecan]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "maturity_years",
+      "value": 12,
+      "unit": "years",
+      "source": "config/species/species.yaml v0.1.0 [species: pecan]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "carbon_fraction",
+      "value": 0.47,
+      "unit": "t C / t d.m.",
+      "source": "IPCC 2006 Vol.4 Ch.4 Table 4.3 (default for all tree parts)",
+      "verification_status": "verified"
+    },
+    {
+      "name": "co2_per_c",
+      "value": 3.6667,
+      "unit": "t CO2 / t C",
+      "source": "molecular mass ratio 44/12",
+      "verification_status": "verified"
+    },
+    {
+      "name": "density_scaling_clamp",
+      "value": [
+        0.2,
+        1.5
+      ],
+      "unit": "ratio to reference density",
+      "source": "project assumption v0.1",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "years_to_full_increment_default",
+      "value": 6,
+      "unit": "years",
+      "source": "project assumption v0.1 — linear ramp from planting to full Tier 1 increment",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "post_maturity_increment_factor",
+      "value": 0.5,
+      "unit": "fraction of full increment",
+      "source": "project assumption v0.1 — after species maturity_years the annual increment is held at 50% of the full Tier 1 increment (slower net growth of mature orchards/stands; replace with age-class increments when IPCC 2019 Refinement Table 4.9 values are verified)",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "uncertainty_fraction_tier1_low",
+      "value": 0.3,
+      "unit": "fraction of central",
+      "source": "project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "uncertainty_fraction_tier1_high",
+      "value": 0.3,
+      "unit": "fraction of central",
+      "source": "project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "density_factor_applied",
+      "value": 1.5,
+      "unit": "ratio to reference density",
+      "source": "planted density 197.2 trees/ha ÷ reference 70 trees/ha, clamped to [0.2, 1.5]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "root_to_shoot_ratio",
+      "value": 0.46,
+      "unit": "dimensionless",
+      "source": "IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: warm_temperate_moist; class: agb_lt_75]",
+      "verification_status": "pending"
+    },
+    {
+      "name": "root_to_shoot_ratio",
+      "value": 0.23,
+      "unit": "dimensionless",
+      "source": "IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: warm_temperate_moist; class: agb_75_150]",
+      "verification_status": "pending"
+    }
+  ],
+  "confidence": "medium",
+  "certified": false,
+  "disclaimer": "Scenario estimate; not an issued carbon credit. Market-value scenarios are not guaranteed revenue.",
+  "share_params": {
+    "country": "US",
+    "species": "pecan",
+    "trees": 420,
+    "year": 2023,
+    "horizon": 30
+  },
+  "provenance": {
+    "generated_at": "2026-10-05T19:53:49Z",
+    "api_version": "1",
+    "app_version": "0.2.0",
+    "mode": "demo",
+    "sources": [],
+    "notes": [
+      "Stocking density ratio 2.82 clamped to 1.50.",
+      "Root-to-shoot ratio follows the above-ground biomass stock class: 0.46 → 0.23 (IPCC 2006 Table 4.4).",
+      "Headline estimate: mean annual removal over the horizon (sum of annual series ÷ number of years with age ≥ 1).",
+      "Climate zone 'warm_temperate_moist' from region-default."
+    ],
+    "model": {
+      "id": "tree-biomass",
+      "version": "0.1.0"
+    },
+    "parameter_set": {
+      "id": "ipcc-2006-tier1",
+      "version": "0.1.0",
+      "verification_status": "pending"
+    },
+    "parameter_sources": [
+      {
+        "id": "ipcc-2006-vol4-ch4",
+        "name": "2006 IPCC Guidelines for National GHG Inventories, Vol. 4 Ch. 4",
+        "version": "2006",
+        "license": "IPCC publication — citation required",
+        "attribution": "IPCC (2006). 2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 4: Agriculture, Forestry and Other Land Use. IGES, Japan.",
+        "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html"
+      },
+      {
+        "id": "species-table",
+        "name": "AgriCarbon Atlas species table",
+        "version": "0.1.0",
+        "license": "Apache-2.0 (project configuration)",
+        "attribution": "AgriCarbon Atlas contributors; wood density working values after Zanne et al. (2009) Global Wood Density Database (Dryad, CC0)",
+        "url": "https://doi.org/10.5061/dryad.234"
+      }
+    ]
+  }
+}

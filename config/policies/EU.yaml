@@ -1,0 +1,55 @@
+# Policy screening rules — European Union
+country: EU
+disclaimer: Initial screening only — not an eligibility determination. Under the CRCF a calculated estimate is never automatically certifiable; certification by a recognised scheme is required.
+programmes:
+  - id: eu-crcf
+    name: Carbon Removals and Carbon Farming Certification Framework (CRCF)
+    authority: European Commission — Regulation (EU) 2024/3012
+    kind: certification_framework
+    rules:
+      - when: {activity: [tree_plantation, agroforestry]}
+        status: requires_certification
+        reason: The CRCF establishes a voluntary EU certification framework for permanent removals, carbon farming and carbon storage in products; afforestation and agroforestry on mineral soils are addressed by Commission certification methodologies. Activities must meet quantification, additionality, long-term storage and sustainability (QU.A.L.ITY) criteria and be certified by a recognised scheme.
+      - when: {activity: [soil_carbon, cropland_practice]}
+        status: requires_certification
+        reason: Carbon farming on agricultural mineral soils is covered by a CRCF certification methodology; soil organic carbon measurement/modelling and MRV are required.
+      - default: unknown
+    requirements:
+      - Activity covered by an adopted CRCF certification methodology
+      - Baseline and additionality demonstration per the methodology
+      - Monitoring, reporting and verification by a certification body
+      - Liability mechanism for reversals and minimum monitoring period
+      - Registration in a recognised certification scheme registry
+    references:
+      - {title: "Regulation (EU) 2024/3012 (CRCF)", url: "https://eur-lex.europa.eu/eli/reg/2024/3012/oj"}
+      - {title: "European Commission — Carbon removals and carbon farming", url: "https://climate.ec.europa.eu/eu-action/carbon-removals-and-carbon-farming_en"}
+  - id: eu-cap-eco-schemes
+    name: CAP eco-schemes and agri-environment-climate measures
+    authority: Member-state paying agencies under the Common Agricultural Policy
+    kind: incentive_programme
+    rules:
+      - when: {activity: [tree_plantation, agroforestry, cropland_practice]}
+        status: potentially_applicable
+        reason: National CAP Strategic Plans include eco-schemes and investment support for agroforestry and afforestation; payments are incentives, not carbon credits.
+      - default: not_applicable
+    requirements:
+      - Active farmer status and CAP registration in the member state
+      - Compliance with the national eco-scheme conditions
+    references:
+      - {title: "European Commission — CAP Strategic Plans", url: "https://agriculture.ec.europa.eu/cap-my-country/cap-strategic-plans_en"}
+  - id: eu-voluntary
+    name: Voluntary carbon-farming standards and national labels
+    authority: Verra VCS · Gold Standard · Label Bas-Carbone (FR) · others
+    kind: voluntary_standard
+    rules:
+      - when: {activity: [tree_plantation, agroforestry, soil_carbon, cropland_practice]}
+        status: requires_methodology_assessment
+        reason: Voluntary standards require an approved methodology, baseline, additionality, permanence, monitoring and third-party verification.
+      - default: unknown
+    requirements:
+      - Approved methodology for the activity
+      - Baseline, additionality, leakage and permanence assessment
+      - Third-party verification and registry issuance
+    references:
+      - {title: "Verra VM0047 Afforestation, Reforestation and Revegetation", url: "https://verra.org/methodologies/vm0047-afforestation-reforestation-and-revegetation-v1-0/"}
+      - {title: "Label Bas-Carbone (France)", url: "https://www.ecologie.gouv.fr/label-bas-carbone"}

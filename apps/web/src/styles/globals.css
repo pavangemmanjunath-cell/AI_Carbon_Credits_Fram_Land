@@ -1,0 +1,198 @@
+@import 'tailwindcss';
+@import './tokens.css';
+@import 'maplibre-gl/dist/maplibre-gl.css';
+/* Self-hosted fonts (SIL Open Font License) — no third-party font requests. */
+@import '@fontsource/space-grotesk/latin-500.css';
+@import '@fontsource/space-grotesk/latin-600.css';
+@import '@fontsource/space-grotesk/latin-700.css';
+@import '@fontsource/ibm-plex-sans/latin-400.css';
+@import '@fontsource/ibm-plex-sans/latin-500.css';
+@import '@fontsource/ibm-plex-sans/latin-600.css';
+@import '@fontsource/ibm-plex-mono/latin-400.css';
+@import '@fontsource/ibm-plex-mono/latin-500.css';
+
+/* Map the design tokens into Tailwind utilities (bg-forest, text-muted, …). */
+@theme inline {
+  --color-ground: var(--ground);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-forest: var(--forest);
+  --color-forest-deep: var(--forest-deep);
+  --color-mint: var(--mint);
+  --color-amber-text: var(--amber-text);
+  --color-amber: var(--amber);
+  --color-amber-tint: var(--amber-tint);
+  --color-water: var(--water);
+  --color-blue-tint: var(--blue-tint);
+  --color-blue-text: var(--blue-text);
+  --color-panel-dark: var(--panel-dark);
+  --color-panel-dark-2: var(--panel-dark-2);
+  --color-mint-on-dark: var(--mint-on-dark);
+  --color-vegetation: var(--vegetation);
+  --color-plot-fill: var(--plot-fill);
+
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+
+  --shadow-float: var(--shadow-float);
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  code,
+  pre,
+  kbd,
+  .mono {
+    font-family: var(--font-mono);
+  }
+  :focus-visible {
+    outline: 2px solid var(--forest);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  ::selection {
+    background: var(--mint);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+  }
+  .card-dark {
+    background: var(--panel-dark);
+    color: #ffffff;
+    border: 1px solid var(--panel-dark-2);
+    border-radius: var(--radius-md);
+  }
+  .field-input {
+    width: 100%;
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--ink);
+  }
+  .field-input:focus {
+    border-color: var(--forest);
+    outline: none;
+    box-shadow: 0 0 0 3px var(--mint);
+  }
+  .field-input[readonly] {
+    background: var(--ground);
+    color: var(--ink-2);
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .big-number {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .float-control {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-float);
+  }
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background: var(--ground);
+    border-radius: 6px;
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: rgba(255, 255, 255, 0.6);
+    animation: shimmer 1.4s infinite;
+  }
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  .range-input {
+    width: 100%;
+    accent-color: var(--forest);
+    height: 24px;
+  }
+  .maplibregl-canvas:focus-visible {
+    outline-offset: -2px;
+  }
+  .atlas-popup .maplibregl-popup-content {
+    padding: 8px 28px 8px 12px;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: var(--ink);
+    box-shadow: var(--shadow-float);
+  }
+  .atlas-popup .maplibregl-popup-close-button {
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    color: var(--ink-2);
+  }
+}

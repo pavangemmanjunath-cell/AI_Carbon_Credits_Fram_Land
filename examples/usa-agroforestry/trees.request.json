@@ -1,0 +1,9 @@
+{
+  "species_id": "pecan",
+  "tree_count": 1200,
+  "plantation_year": 2021,
+  "average_dbh_cm": null,
+  "average_height_m": null,
+  "survival_rate": 0.9,
+  "measurement_source": "user-reported"
+}

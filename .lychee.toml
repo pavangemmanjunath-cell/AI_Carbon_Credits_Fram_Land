@@ -1,0 +1,45 @@
+# lychee link-checker configuration (used by .github/workflows/docs.yml)
+# https://github.com/lycheeverse/lychee
+
+# Be polite to the public services we document.
+max_concurrency = 4
+max_retries = 2
+timeout = 20
+user_agent = "agricarbon-atlas-docs-linkcheck/0.1 (+https://github.com/<org>/agricarbon-atlas)"
+
+# Accept the usual success codes plus 429 (rate limited) so that an upstream
+# throttle never fails documentation CI.
+accept = ["200..=204", "206", "301", "302", "303", "307", "308", "429"]
+
+# Ignore placeholder URLs and hosts that block automated clients.
+exclude = [
+  "^https://github.com/<org>/",
+  "^https://github.com/\\<org\\>/",
+  "^mailto:",
+  "^https://doi.org/",            # DOI resolver rate-limits bots; DOIs are checked by reviewers
+  "^https://www.linkedin.com/",
+  "^https://twitter.com/",
+  "^https://x.com/",
+  "^http://localhost",
+  "^http://127.0.0.1",
+  "^https://<bucket>",
+  "^https://example.org",
+  "^https://data.gov.in/",       # frequently 403 for non-browser clients
+  "^https://api.data.gov.in/",
+  "^https://quickstats.nass.usda.gov/",  # API host answers 4xx without a key
+  "^https://eur-lex.europa.eu/", # bot protection returns 4xx intermittently
+  "^https://moef.gov.in/",
+  "^https://beeindia.gov.in/",
+  "^https://icfre.gov.in/",
+  "^https://aranya.gov.in/",
+  "^https://www.moefcc-gcp.in/",
+]
+
+# Paths we never scan.
+exclude_path = ["node_modules", "apps/web/dist", ".cache", ".reports"]
+
+# Relative links are resolved against the repository root when they start with "/".
+base = "."
+
+# Do not check anchors in external pages (expensive and noisy); internal anchors are checked.
+include_fragments = true

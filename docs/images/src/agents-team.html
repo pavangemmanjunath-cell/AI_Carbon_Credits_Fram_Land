@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AgriCarbon Atlas: the agent team</title>
+<meta name="viewport" content="width=1200">
+<!-- README diagram, 1200 x 650 CSS px, rendered at 2x to docs/images/agents-team.png by render.mjs.
+     The "full-assessment" plan from apps/api/app/agents/plans.py, in run order 1 to 10: row 1 runs left to right,
+     row 2 comes back right to left, so the closing Coordinator step sits under the opening one. The dark band
+     between the rows is the blackboard: each column lists the keys that the agent above (row 1) or below (row 2)
+     writes (the `writes` of each agent class). Tool names are the real ones. The arrows in <svg class="wires">
+     use page coordinates; render.mjs checks that each one touches the two cards named in data-from / data-to. -->
+<style>
+/* Fonts: self-hosted @fontsource files (SIL Open Font License 1.1). The path is relative to this file. */
+@font-face { font-family: 'Space Grotesk'; font-weight: 500; src: url('../../../apps/web/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 600; src: url('../../../apps/web/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 700; src: url('../../../apps/web/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 400; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 500; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 600; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 400; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 500; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 600; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-600-normal.woff2') format('woff2'); }
+
+:root {
+  --ground: #F3F6F2; --surface: #FFFFFF; --ink: #14211A; --ink-2: #3C4A42; --muted: #6B7A71; --line: #DCE5DE;
+  --forest: #1E6B41; --forest-deep: #155232; --mint: #E6F2EA; --mint-on-dark: #BFE3CC; --plot-fill: #2FA85B;
+  --amber-text: #8A4B08; --amber-tint: #FFF1DC; --panel-dark: #14211A;
+  --heading: 'Space Grotesk', 'IBM Plex Sans', system-ui, sans-serif;
+  --body: 'IBM Plex Sans', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--ground); }
+body { position: relative; width: 1200px; height: 650px; overflow: hidden; color: var(--ink); font: 400 15px/1.3 var(--body); text-rendering: optimizeLegibility; }
+
+/* ---- title */
+.title { position: absolute; left: 30px; top: 14px; display: flex; align-items: center; gap: 10px; height: 28px; font: 500 20px/28px var(--heading); color: var(--ink-2); letter-spacing: -0.01em; }
+.title b { font-weight: 700; color: var(--ink); }
+.title i { width: 1px; height: 16px; background: var(--line); }
+.title .plan { margin-left: 8px; height: 26px; padding: 0 12px; border-radius: 13px; background: var(--forest); color: #FFFFFF; font: 500 14.5px/26px var(--body); letter-spacing: 0; }
+.tagline { position: absolute; right: 32px; top: 14px; height: 28px; display: flex; align-items: center; font: 500 14.5px/1 var(--body); color: var(--ink-2); }
+
+/* ---- agent cards */
+.ag { position: absolute; width: 200px; height: 126px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.ag.co { background: var(--mint); border-color: var(--mint-on-dark); }
+.ag .hd { display: flex; align-items: center; gap: 8px; height: 24px; }
+.ag .n { flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--forest); color: #FFFFFF; font: 700 14px/24px var(--heading); text-align: center; }
+.ag h3 { margin: 0; font: 600 17px/1.15 var(--heading); letter-spacing: -0.01em; color: var(--ink); white-space: nowrap; }
+.ag p { margin: 5px 0 0; font: 400 14px/1.3 var(--body); color: var(--ink-2); }
+.ag .tl { position: absolute; left: 12px; bottom: 6px; padding: 2px 6px 2px 8px; border-left: 2px solid var(--mint-on-dark); font: 500 14px/18px var(--mono); color: var(--forest-deep); }
+
+/* ---- blackboard */
+.bus { position: absolute; left: 30px; top: 196px; width: 1124px; height: 124px; background: var(--panel-dark); border-radius: 14px; }
+.bus .lbl { position: absolute; left: 10px; top: 14px; width: 200px; }
+.bus .lbl b { display: block; font: 600 17px/1.2 var(--heading); letter-spacing: -0.01em; color: #FFFFFF; }
+.bus .lbl span { display: block; margin-top: 2px; font: 400 14px/1.3 var(--body); color: var(--mint-on-dark); }
+.bus .kc { position: absolute; width: 200px; display: flex; flex-wrap: wrap; gap: 6px; align-content: flex-start; }
+.bus .kc.t1 { top: 12px; }
+.bus .kc.t2 { top: 88px; }
+.bus .k { display: flex; align-items: center; height: 26px; padding: 0 8px; border-radius: 7px; background: rgba(191, 227, 204, 0.14); border: 1px solid rgba(191, 227, 204, 0.32); color: var(--mint-on-dark); font: 500 14px/1 var(--mono); white-space: nowrap; }
+.bus .rule { position: absolute; left: 10px; right: 10px; top: 79px; height: 1px; background: rgba(191, 227, 204, 0.2); }
+
+/* ---- guardrails ribbon */
+.gr { position: absolute; left: 30px; top: 482px; width: 1124px; height: 56px; display: flex; align-items: center; gap: 8px; padding: 0 14px; background: var(--mint); border: 1px solid var(--mint-on-dark); border-radius: 14px; }
+.gr svg { flex: none; }
+.gr .who { flex: none; width: 160px; margin-left: 2px; }
+.gr .who b { display: block; font: 600 17px/1.2 var(--heading); letter-spacing: -0.01em; color: var(--forest-deep); }
+.gr .who span { display: block; font: 400 14px/1.3 var(--body); color: var(--ink-2); }
+.gr .g { display: flex; align-items: center; height: 30px; padding: 0 12px; border-radius: 9px; background: var(--surface); border: 1px solid var(--mint-on-dark); color: var(--forest-deep); font: 500 14.5px/1 var(--body); white-space: nowrap; }
+
+/* ---- shorter plans and the optional LLM note */
+.plans { position: absolute; left: 30px; top: 554px; display: flex; flex-direction: column; gap: 10px; }
+.pl { display: flex; align-items: center; height: 28px; font: 500 14.5px/1 var(--body); color: var(--ink-2); white-space: nowrap; }
+.pl .nm { flex: none; width: 164px; height: 28px; margin-right: 14px; display: flex; align-items: center; justify-content: center; border-radius: 14px; background: var(--mint); color: var(--forest-deep); }
+.pl svg { flex: none; margin: 0 8px; }
+.llm { position: absolute; left: 714px; top: 554px; width: 440px; height: 66px; display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 0 14px; background: var(--surface); border: 1.5px dashed var(--muted); border-radius: 12px; }
+.llm b { font: 600 15px/1.25 var(--heading); letter-spacing: -0.005em; color: var(--ink); }
+.llm .l2 { display: flex; align-items: center; gap: 8px; font: 400 14px/1.25 var(--body); color: var(--ink-2); }
+.llm .tag { flex: none; display: inline-flex; align-items: center; height: 20px; padding: 0 7px; border-radius: 6px; background: var(--amber-tint); color: var(--amber-text); font: 500 14px/1 var(--body); }
+
+svg.wires { position: absolute; left: 0; top: 0; width: 1200px; height: 650px; pointer-events: none; overflow: visible; }
+svg.wires > path { fill: none; stroke: #3C4A42; stroke-width: 2; stroke-linecap: butt; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+
+<div class="title"><b>AgriCarbon Atlas</b><i></i><span>The agent team</span><span class="plan">Full assessment plan</span></div>
+<div class="tagline">Agents explain, tools calculate</div>
+
+<!-- row 1, left to right: steps 1 to 5 -->
+<section class="ag co" id="a1" style="left:40px; top:56px">
+  <div class="hd"><span class="n">1</span><h3>Coordinator</h3></div>
+  <p>Opens the run: announces which agents work, and in what order.</p>
+</section>
+<section class="ag" id="a2" style="left:266px; top:56px">
+  <div class="hd"><span class="n">2</span><h3>Land agent</h3></div>
+  <p>Measures the plot, land cover and climate zone.</p>
+  <div class="tl">measure_plot<br>land_cover_shares</div>
+</section>
+<section class="ag" id="a3" style="left:492px; top:56px">
+  <div class="hd"><span class="n">3</span><h3>Imagery agent</h3></div>
+  <p>Reads satellite greenness and detected tree cover.</p>
+  <div class="tl">vegetation_summary<br>detect_tree_cover</div>
+</section>
+<section class="ag" id="a4" style="left:718px; top:56px">
+  <div class="hd"><span class="n">4</span><h3>Tree agent</h3></div>
+  <p>Reads species, number and age of your trees.</p>
+  <div class="tl">tree_inventory<br>imported_trees</div>
+</section>
+<section class="ag" id="a5" style="left:944px; top:56px">
+  <div class="hd"><span class="n">5</span><h3>Carbon agent</h3></div>
+  <p>Runs the carbon engine and answers what-ifs.</p>
+  <div class="tl">estimate_carbon<br>simulate_what_if</div>
+</section>
+
+<!-- the blackboard: keys written by the agents above (top tier) and below (bottom tier) -->
+<section class="bus" id="bus">
+  <div class="lbl"><b>Blackboard</b><span>who wrote what</span></div>
+  <div class="kc t1" style="left:236px"><span class="k">plot_summary</span><span class="k">landcover</span><span class="k">climate</span></div>
+  <div class="kc t1" style="left:462px"><span class="k">vegetation</span><span class="k">detection</span></div>
+  <div class="kc t1" style="left:688px"><span class="k">inventory</span><span class="k">imported_trees</span></div>
+  <div class="kc t1" style="left:914px"><span class="k">estimate</span><span class="k">what_if_result</span></div>
+  <div class="rule"></div>
+  <div class="kc t2" style="left:10px"><span class="k">summary</span></div>
+  <div class="kc t2" style="left:236px"><span class="k">report</span></div>
+  <div class="kc t2" style="left:462px"><span class="k">review</span></div>
+  <div class="kc t2" style="left:688px"><span class="k">market</span></div>
+  <div class="kc t2" style="left:914px"><span class="k">programmes</span><span class="k">tree_age</span></div>
+</section>
+
+<!-- row 2, right to left: steps 6 to 10 -->
+<section class="ag co" id="a10" style="left:40px; top:334px">
+  <div class="hd"><span class="n">10</span><h3>Coordinator</h3></div>
+  <p>Closes the run: writes the summary, or answers your question.</p>
+</section>
+<section class="ag" id="a9" style="left:266px; top:334px">
+  <div class="hd"><span class="n">9</span><h3>Report agent</h3></div>
+  <p>Collects everything into a shareable report.</p>
+  <div class="tl">create_report</div>
+</section>
+<section class="ag" id="a8" style="left:492px; top:334px">
+  <div class="hd"><span class="n">8</span><h3>Review agent</h3></div>
+  <p>Checks the estimate against the safety rules.</p>
+  <div class="tl">review_estimate</div>
+</section>
+<section class="ag" id="a7" style="left:718px; top:334px">
+  <div class="hd"><span class="n">7</span><h3>Market agent</h3></div>
+  <p>Scenario prices and other farm income.</p>
+  <div class="tl">market_scenarios</div>
+</section>
+<section class="ag" id="a6" style="left:944px; top:334px">
+  <div class="hd"><span class="n">6</span><h3>Policy agent</h3></div>
+  <p>Screens programmes and tree-age rules.</p>
+  <div class="tl">screen_programmes<br>assess_tree_age</div>
+</section>
+
+<!-- guardrails: deterministic checks over the finished run -->
+<section class="gr" id="gr">
+  <svg width="24" height="24" viewBox="0 0 22 22" aria-hidden="true"><path d="M11 2.2 18.4 5v5.6c0 4.4-3.1 7.7-7.4 9.2-4.3-1.5-7.4-4.8-7.4-9.2V5z" fill="#FFFFFF" stroke="#1E6B41" stroke-width="1.7" stroke-linejoin="round"/><path d="m7.6 11.1 2.5 2.5 4.4-4.9" fill="none" stroke="#1E6B41" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div class="who"><b>Guardrails</b><span>checked after each run</span></div>
+  <span class="g">Not a credit</span><span class="g">Uncertainty shown</span><span class="g">Sources recorded</span><span class="g">No coordinates shared</span><span class="g">Parameter check</span><span class="g">Values kept apart</span>
+</section>
+
+<!-- the two shorter plans use the same agents -->
+<div class="plans">
+  <div class="pl"><span class="nm">Quick estimate plan</span>Coordinator<svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="m3.5 2 5 5-5 5" fill="none" stroke="#3C4A42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Land<svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="m3.5 2 5 5-5 5" fill="none" stroke="#3C4A42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tree<svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="m3.5 2 5 5-5 5" fill="none" stroke="#3C4A42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Carbon<svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="m3.5 2 5 5-5 5" fill="none" stroke="#3C4A42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Review<svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="m3.5 2 5 5-5 5" fill="none" stroke="#3C4A42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Coordinator</div>
+  <div class="pl"><span class="nm">Tree-age check plan</span>Coordinator<svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="m3.5 2 5 5-5 5" fill="none" stroke="#3C4A42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Tree<svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="m3.5 2 5 5-5 5" fill="none" stroke="#3C4A42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Carbon<svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="m3.5 2 5 5-5 5" fill="none" stroke="#3C4A42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Policy<svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="m3.5 2 5 5-5 5" fill="none" stroke="#3C4A42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Review<svg width="12" height="14" viewBox="0 0 12 14" aria-hidden="true"><path d="m3.5 2 5 5-5 5" fill="none" stroke="#3C4A42" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Coordinator</div>
+</div>
+
+<div class="llm" id="llm">
+  <b>Deterministic templates by default</b>
+  <div class="l2"><span class="tag">optional</span>an LLM may only rephrase text from redacted facts</div>
+</div>
+
+<!-- arrows: render.mjs checks each path against data-from / data-to (the arrow tip is 3px past the path end) -->
+<svg class="wires" viewBox="0 0 1200 650" aria-hidden="true">
+  <defs>
+    <marker id="ah" viewBox="0 0 11 10" refX="8" refY="5" markerWidth="11" markerHeight="10" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 11 5 0 10z" style="fill:#3C4A42; stroke:none"/></marker>
+  </defs>
+  <path data-wire="a1-a2" data-from="#a1" data-to="#a2" d="M240 119H263" marker-end="url(#ah)"/>
+  <path data-wire="a2-a3" data-from="#a2" data-to="#a3" d="M466 119H489" marker-end="url(#ah)"/>
+  <path data-wire="a3-a4" data-from="#a3" data-to="#a4" d="M692 119H715" marker-end="url(#ah)"/>
+  <path data-wire="a4-a5" data-from="#a4" data-to="#a5" d="M918 119H941" marker-end="url(#ah)"/>
+  <path data-wire="a5-a6" data-from="#a5" data-to="#a6" d="M1144 119H1168V397H1147" marker-end="url(#ah)"/>
+  <path data-wire="a6-a7" data-from="#a6" data-to="#a7" d="M944 397H921" marker-end="url(#ah)"/>
+  <path data-wire="a7-a8" data-from="#a7" data-to="#a8" d="M718 397H695" marker-end="url(#ah)"/>
+  <path data-wire="a8-a9" data-from="#a8" data-to="#a9" d="M492 397H469" marker-end="url(#ah)"/>
+  <path data-wire="a9-a10" data-from="#a9" data-to="#a10" d="M266 397H243" marker-end="url(#ah)"/>
+  <path data-wire="a10-guardrails" data-from="#a10" data-to="#gr" d="M140 460V479" marker-end="url(#ah)"/>
+</svg>
+
+</body>
+</html>

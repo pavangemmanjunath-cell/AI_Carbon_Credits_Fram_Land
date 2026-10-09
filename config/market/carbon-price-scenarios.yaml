@@ -1,0 +1,40 @@
+# Carbon price scenarios — illustrative, configurable, never a quote.
+# IndicativeValue = EstimatedEligibleCarbon × ScenarioPrice.
+# Always shown with: "Market-value scenario — not guaranteed revenue."
+version: 0.1.0
+as_of: "2025"
+basis_note: >
+  Scenario ranges bracket recently reported voluntary-market prices for
+  nature-based removal (ARR) credits. They are placeholders for local price
+  discovery and must be reviewed each release against the World Bank
+  "State and Trends of Carbon Pricing" and Ecosystem Marketplace reports.
+references:
+  - title: World Bank — State and Trends of Carbon Pricing (annual)
+    url: https://www.worldbank.org/en/programs/pricing-carbon
+  - title: Ecosystem Marketplace — State of the Voluntary Carbon Market (annual)
+    url: https://www.ecosystemmarketplace.com/
+scenarios:
+  IN:
+    currency: INR
+    currency_symbol: "₹"
+    note: India's CCTS offset market and the Green Credit Programme have no public, liquid price for agroforestry removals yet; values are global voluntary ranges converted to INR.
+    verification_status: pending
+    low:       {price_per_tco2e: 480,  label: Low}
+    reference: {price_per_tco2e: 1100, label: Reference}
+    high:      {price_per_tco2e: 2100, label: High}
+  US:
+    currency: USD
+    currency_symbol: "$"
+    note: Voluntary ARR / improved forest management removal credits.
+    verification_status: pending
+    low:       {price_per_tco2e: 5,  label: Low}
+    reference: {price_per_tco2e: 15, label: Reference}
+    high:      {price_per_tco2e: 30, label: High}
+  EU:
+    currency: EUR
+    currency_symbol: "€"
+    note: Voluntary carbon-farming removals; CRCF units are not yet traded. EU ETS allowance prices do not apply to farm removals.
+    verification_status: pending
+    low:       {price_per_tco2e: 10, label: Low}
+    reference: {price_per_tco2e: 25, label: Reference}
+    high:      {price_per_tco2e: 50, label: High}

@@ -1,0 +1,55 @@
+# Policy screening rules — United States
+country: US
+disclaimer: Initial screening only — not an eligibility determination. Voluntary-market credits require an approved methodology, verification and registry issuance.
+programmes:
+  - id: us-comet-farm
+    name: USDA COMET-Farm (methodology reference)
+    authority: USDA / Colorado State University
+    kind: methodology_tool
+    rules:
+      - when: {activity: [tree_plantation, agroforestry, cropland_practice, grazing]}
+        status: potentially_applicable
+        reason: COMET-Farm evaluates farm/ranch GHG emissions and mitigation options across the contiguous United States; agroforestry assessments use tree numbers and sizes with FIA-based growth equations. Use it to cross-check this estimate.
+      - default: not_applicable
+    requirements:
+      - Field boundaries and management history entered in COMET-Farm
+      - Tree species, counts and sizes for agroforestry practices
+    references:
+      - {title: "USDA COMET-Farm", url: "https://comet-farm.com/"}
+      - {title: "USDA Forest Service — agroforestry carbon methods", url: "https://www.fs.usda.gov/"}
+  - id: us-voluntary-arr
+    name: Voluntary market afforestation/reforestation methodologies
+    authority: Verra VCS · American Carbon Registry · Climate Action Reserve
+    kind: voluntary_standard
+    rules:
+      - when: {activity: [tree_plantation, agroforestry]}
+        status: requires_methodology_assessment
+        reason: Methodologies such as Verra VM0047 (ARR) require baseline, additionality, leakage, permanence buffers, monitoring and third-party verification; minimum project sizes and costs apply.
+      - when: {activity: cropland_practice}
+        status: requires_methodology_assessment
+        reason: Improved agricultural land management (e.g. Verra VM0042) covers tillage, cover crops, fertiliser and residue practices.
+      - default: unknown
+    requirements:
+      - Project registration with a standard and registry
+      - Baseline scenario and additionality demonstration
+      - Monitoring (DBH, survival, remote sensing) and leakage assessment
+      - Permanence commitment and buffer pool contribution
+      - Third-party validation and verification
+    references:
+      - {title: "Verra VM0047 Afforestation, Reforestation and Revegetation", url: "https://verra.org/methodologies/vm0047-afforestation-reforestation-and-revegetation-v1-0/"}
+      - {title: "Verra VM0042 Improved Agricultural Land Management", url: "https://verra.org/methodologies/vm0042-methodology-for-improved-agricultural-land-management-v2-0/"}
+  - id: us-nrcs-conservation
+    name: USDA NRCS conservation programmes (EQIP, CSP)
+    authority: USDA Natural Resources Conservation Service
+    kind: incentive_programme
+    rules:
+      - when: {activity: [tree_plantation, agroforestry, cropland_practice]}
+        status: potentially_applicable
+        reason: Cost-share and stewardship payments exist for agroforestry practices (windbreaks, alley cropping, riparian buffers); payments are incentives, not carbon credits.
+      - default: not_applicable
+    requirements:
+      - Eligible land and producer status
+      - Conservation plan with NRCS
+    references:
+      - {title: "USDA NRCS — Environmental Quality Incentives Program", url: "https://www.nrcs.usda.gov/programs-initiatives/eqip-environmental-quality-incentives"}
+      - {title: "USDA NRCS — Conservation Stewardship Program", url: "https://www.nrcs.usda.gov/programs-initiatives/csp-conservation-stewardship-program"}

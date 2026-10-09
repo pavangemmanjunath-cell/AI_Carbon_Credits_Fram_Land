@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agricarbon-atlas.org/schemas/carbon-estimate.schema.json",
+  "title": "CarbonEstimate",
+  "description": "A modelled carbon removal scenario. Never a single number; never certified.",
+  "type": "object",
+  "required": ["estimate_id", "plot_id", "model", "methodology", "estimate", "confidence", "certified", "disclaimer", "provenance", "generated_at"],
+  "additionalProperties": true,
+  "properties": {
+    "estimate_id": {"type": "string"},
+    "plot_id": {"type": "string"},
+    "inventory_id": {"type": ["string", "null"]},
+    "model": {"type": "object", "required": ["id", "version"], "properties": {"id": {"type": "string"}, "version": {"type": "string"}, "tier": {"type": "string"}}},
+    "methodology": {"type": "object", "required": ["id", "name"], "properties": {"id": {"type": "string"}, "name": {"type": "string"}, "references": {"type": "array", "items": {"$ref": "#/$defs/reference"}}}},
+    "estimate": {"$ref": "#/$defs/range"},
+    "stock": {"$ref": "#/$defs/range"},
+    "components": {"type": "object", "additionalProperties": {"type": "number"}},
+    "annual_series": {"type": "array", "items": {"type": "object", "required": ["year", "age", "low", "central", "high"], "properties": {"year": {"type": "integer"}, "age": {"type": "integer"}, "low": {"type": "number"}, "central": {"type": "number"}, "high": {"type": "number"}, "cum_low": {"type": "number"}, "cum_central": {"type": "number"}, "cum_high": {"type": "number"}}}},
+    "parameters_used": {"type": "array", "items": {"type": "object", "required": ["name", "value", "unit", "source", "verification_status"], "properties": {"name": {"type": "string"}, "value": {}, "unit": {"type": "string"}, "source": {"type": "string"}, "verification_status": {"type": "string", "enum": ["verified", "pending", "assumption"]}}}},
+    "confidence": {"type": "string", "enum": ["low", "medium", "high"]},
+    "certified": {"const": false},
+    "disclaimer": {"type": "string"},
+    "readiness": {"type": "object", "required": ["score", "grade"], "properties": {"score": {"type": "integer", "minimum": 0, "maximum": 100}, "grade": {"type": "string", "enum": ["low", "medium", "high"]}, "present_evidence": {"type": "array"}, "missing_evidence": {"type": "array"}}},
+    "provenance": {"$ref": "provenance.schema.json"},
+    "generated_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "range": {
+      "type": "object",
+      "required": ["low", "central", "high", "unit"],
+      "properties": {"low": {"type": "number"}, "central": {"type": "number"}, "high": {"type": "number"}, "unit": {"type": "string"}}
+    },
+    "reference": {"type": "object", "required": ["title"], "properties": {"title": {"type": "string"}, "url": {"type": "string"}}}
+  }
+}

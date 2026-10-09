@@ -1,0 +1,153 @@
+# Species table v0.1 — parameters for the tree-biomass model
+#
+# Every numeric parameter carries source + verification_status (see CLAUDE.md).
+# wood density: Zanne et al. 2009 Global Wood Density Database (Dryad) — values
+# below are working values and MUST be verified against the database export.
+# growth_group selects the broad Tier 1 increment class; `increment_multiplier`
+# adjusts it for the species (assumption unless cited).
+version: 0.1.0
+species:
+  - id: mango
+    scientific_name: Mangifera indica
+    common_name: Mango
+    group: broadleaf_tropical_fruit
+    regions: [IN]
+    suitable_climate_zones: [tropical_dry, tropical_moist, tropical_wet, subtropical_humid, subtropical_dry]
+    reference_density_per_ha: {value: 150, source: "typical 8 m × 8 m orchard spacing; project assumption v0.1", verification_status: assumption}
+    max_density_per_ha: 600
+    maturity_years: 8
+    typical_height_m_at_maturity: {value: 10, source: project assumption v0.1, verification_status: assumption}
+    wood_density_g_cm3: {value: 0.55, source: "Zanne et al. 2009 GWDD (working value)", verification_status: pending}
+    increment_multiplier: {value: 0.9, source: "fruit orchards pruned/managed below natural stand increment; project assumption v0.1", verification_status: assumption}
+    allometry: pantropical_chave_2014_with_height
+    notes: Fruit income is reported separately; timber not applicable.
+  - id: teak
+    scientific_name: Tectona grandis
+    common_name: Teak
+    group: broadleaf_tropical_timber
+    regions: [IN]
+    suitable_climate_zones: [tropical_moist, tropical_wet, tropical_dry, subtropical_humid]
+    reference_density_per_ha: {value: 500, source: "2 m × 2 m to 3 m × 3 m plantation spacing; project assumption v0.1", verification_status: assumption}
+    max_density_per_ha: 2500
+    maturity_years: 20
+    typical_height_m_at_maturity: {value: 20, source: project assumption v0.1, verification_status: assumption}
+    wood_density_g_cm3: {value: 0.55, source: "Zanne et al. 2009 GWDD (working value)", verification_status: pending}
+    increment_multiplier: {value: 1.1, source: "IPCC 2006 Table 4.10 lists Tectona grandis plantations separately — verify and replace multiplier with the table value", verification_status: pending}
+    allometry: pantropical_chave_2014_with_height
+  - id: neem
+    scientific_name: Azadirachta indica
+    common_name: Neem
+    group: broadleaf_tropical_dry
+    regions: [IN]
+    suitable_climate_zones: [tropical_dry, subtropical_dry, tropical_moist]
+    reference_density_per_ha: {value: 400, source: project assumption v0.1, verification_status: assumption}
+    max_density_per_ha: 1600
+    maturity_years: 15
+    typical_height_m_at_maturity: {value: 15, source: project assumption v0.1, verification_status: assumption}
+    wood_density_g_cm3: {value: 0.68, source: "Zanne et al. 2009 GWDD (working value)", verification_status: pending}
+    increment_multiplier: {value: 0.9, source: project assumption v0.1, verification_status: assumption}
+    allometry: pantropical_chave_2014_with_height
+  - id: eucalyptus
+    scientific_name: Eucalyptus spp.
+    common_name: Eucalyptus
+    group: broadleaf_fast_growing
+    regions: [IN, EU, US]
+    suitable_climate_zones: [tropical_dry, tropical_moist, subtropical_humid, subtropical_dry, warm_temperate_moist, warm_temperate_dry]
+    reference_density_per_ha: {value: 1100, source: "3 m × 3 m short-rotation spacing; project assumption v0.1", verification_status: assumption}
+    max_density_per_ha: 2500
+    maturity_years: 8
+    typical_height_m_at_maturity: {value: 20, source: project assumption v0.1, verification_status: assumption}
+    wood_density_g_cm3: {value: 0.60, source: "Zanne et al. 2009 GWDD (working value)", verification_status: pending}
+    increment_multiplier: {value: 1.5, source: "IPCC 2006 Table 4.10 lists Eucalyptus plantations separately — verify and replace", verification_status: pending}
+    allometry: pantropical_chave_2014_with_height
+  - id: mixed_native_tropical
+    scientific_name: mixed native species (tropical/subtropical)
+    common_name: Mixed native species
+    group: broadleaf_tropical_mixed
+    regions: [IN]
+    suitable_climate_zones: [tropical_dry, tropical_moist, tropical_wet, tropical_mountain, subtropical_humid, subtropical_dry]
+    reference_density_per_ha: {value: 400, source: project assumption v0.1, verification_status: assumption}
+    max_density_per_ha: 2500
+    maturity_years: 20
+    typical_height_m_at_maturity: {value: 14, source: project assumption v0.1, verification_status: assumption}
+    wood_density_g_cm3: {value: 0.58, source: "pantropical mean (Chave et al. 2009) — working value", verification_status: pending}
+    increment_multiplier: {value: 1.0, source: Tier 1 broad category used directly, verification_status: verified}
+    allometry: pantropical_chave_2014_with_height
+  - id: black_walnut
+    scientific_name: Juglans nigra
+    common_name: Black walnut
+    group: broadleaf_temperate_timber
+    regions: [US]
+    suitable_climate_zones: [warm_temperate_moist, cool_temperate_moist]
+    reference_density_per_ha: {value: 300, source: project assumption v0.1, verification_status: assumption}
+    max_density_per_ha: 1200
+    maturity_years: 30
+    typical_height_m_at_maturity: {value: 22, source: project assumption v0.1, verification_status: assumption}
+    wood_density_g_cm3: {value: 0.51, source: "Zanne et al. 2009 GWDD (working value)", verification_status: pending}
+    increment_multiplier: {value: 1.0, source: Tier 1 broad category used directly, verification_status: verified}
+    allometry: temperate_generic
+  - id: pecan
+    scientific_name: Carya illinoinensis
+    common_name: Pecan
+    group: broadleaf_temperate_fruit
+    regions: [US]
+    suitable_climate_zones: [warm_temperate_moist, warm_temperate_dry, subtropical_humid]
+    reference_density_per_ha: {value: 70, source: "12 m × 12 m orchard spacing; project assumption v0.1", verification_status: assumption}
+    max_density_per_ha: 300
+    maturity_years: 12
+    typical_height_m_at_maturity: {value: 18, source: project assumption v0.1, verification_status: assumption}
+    wood_density_g_cm3: {value: 0.60, source: "Zanne et al. 2009 GWDD (working value)", verification_status: pending}
+    increment_multiplier: {value: 0.9, source: project assumption v0.1, verification_status: assumption}
+    allometry: temperate_generic
+  - id: oak
+    scientific_name: Quercus robur / Quercus petraea
+    common_name: Oak
+    group: broadleaf_temperate_timber
+    regions: [EU]
+    suitable_climate_zones: [cool_temperate_moist, warm_temperate_moist, cool_temperate_dry]
+    reference_density_per_ha: {value: 400, source: project assumption v0.1, verification_status: assumption}
+    max_density_per_ha: 2500
+    maturity_years: 40
+    typical_height_m_at_maturity: {value: 22, source: project assumption v0.1, verification_status: assumption}
+    wood_density_g_cm3: {value: 0.56, source: "Zanne et al. 2009 GWDD (working value)", verification_status: pending}
+    increment_multiplier: {value: 1.0, source: Tier 1 broad category used directly, verification_status: verified}
+    allometry: temperate_generic
+  - id: apple
+    scientific_name: Malus domestica
+    common_name: Apple
+    group: broadleaf_temperate_fruit
+    regions: [EU, US]
+    suitable_climate_zones: [cool_temperate_moist, warm_temperate_moist, cool_temperate_dry]
+    reference_density_per_ha: {value: 600, source: "semi-intensive orchard; project assumption v0.1", verification_status: assumption}
+    max_density_per_ha: 3000
+    maturity_years: 7
+    typical_height_m_at_maturity: {value: 4, source: project assumption v0.1, verification_status: assumption}
+    wood_density_g_cm3: {value: 0.61, source: "Zanne et al. 2009 GWDD (working value)", verification_status: pending}
+    increment_multiplier: {value: 0.6, source: "dwarfing rootstocks and pruning; project assumption v0.1", verification_status: assumption}
+    allometry: temperate_generic
+  - id: olive
+    scientific_name: Olea europaea
+    common_name: Olive
+    group: broadleaf_mediterranean_fruit
+    regions: [EU]
+    suitable_climate_zones: [warm_temperate_dry, warm_temperate_moist, subtropical_dry]
+    reference_density_per_ha: {value: 250, source: project assumption v0.1, verification_status: assumption}
+    max_density_per_ha: 1600
+    maturity_years: 12
+    typical_height_m_at_maturity: {value: 6, source: project assumption v0.1, verification_status: assumption}
+    wood_density_g_cm3: {value: 0.80, source: "Zanne et al. 2009 GWDD (working value)", verification_status: pending}
+    increment_multiplier: {value: 0.7, source: project assumption v0.1, verification_status: assumption}
+    allometry: temperate_generic
+  - id: poplar
+    scientific_name: Populus spp.
+    common_name: Poplar
+    group: broadleaf_fast_growing
+    regions: [EU, US, IN]
+    suitable_climate_zones: [cool_temperate_moist, warm_temperate_moist, subtropical_humid]
+    reference_density_per_ha: {value: 500, source: project assumption v0.1, verification_status: assumption}
+    max_density_per_ha: 2000
+    maturity_years: 10
+    typical_height_m_at_maturity: {value: 22, source: project assumption v0.1, verification_status: assumption}
+    wood_density_g_cm3: {value: 0.35, source: "Zanne et al. 2009 GWDD (working value)", verification_status: pending}
+    increment_multiplier: {value: 1.6, source: project assumption v0.1 pending IPCC Table 4.12 fast-growing plantation values, verification_status: pending}
+    allometry: temperate_generic

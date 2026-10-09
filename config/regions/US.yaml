@@ -1,0 +1,56 @@
+# Region configuration — United States
+id: US
+name: United States
+calling_code: "+1"
+currency: USD
+currency_symbol: "$"
+locale: en-US
+units:
+  area: acre
+  area_secondary: hectare
+languages: [en, es]
+default_center: {lat: 39.5, lon: -98.35}
+default_zoom: 3.8
+bbox: [-125.0, 24.4, -66.9, 49.4]
+admin_levels: [state, county]
+climate:
+  default_zone: warm_temperate_moist
+  default_zone_note: "Continental US default; derived per plot in live mode."
+data_sources:
+  crop_statistics: usda-nass
+  county_lookup: census-geocoder
+  land_cover: esa-worldcover
+  satellite: sentinel-2-l2a
+  climate: open-meteo
+  soil: soilgrids
+  geocoder: nominatim
+programmes:
+  - id: us-comet-farm
+    name: USDA COMET-Farm (methodology reference)
+    authority: USDA / Colorado State University
+    kind: methodology_tool
+    url: https://comet-farm.com/
+    policy_file: ../policies/US.yaml
+  - id: us-voluntary-arr
+    name: Voluntary market afforestation/reforestation methodologies
+    authority: Verra VCS · ACR · Climate Action Reserve
+    kind: voluntary_standard
+    url: https://verra.org/
+    policy_file: ../policies/US.yaml
+  - id: us-nrcs-conservation
+    name: USDA NRCS conservation programmes (EQIP, CSP)
+    authority: USDA Natural Resources Conservation Service
+    kind: incentive_programme
+    url: https://www.nrcs.usda.gov/
+    policy_file: ../policies/US.yaml
+market_scenarios: US
+other_income_sources:
+  - id: nut_fruit_yield
+    label: Nut / fruit yield (pecan, walnut, apple)
+    source: USDA NASS county statistics + farmer records
+  - id: timber
+    label: Timber potential
+    source: state extension stumpage reports + farmer records
+  - id: incentives
+    label: Conservation programme payments (EQIP, CSP)
+    source: programme screening

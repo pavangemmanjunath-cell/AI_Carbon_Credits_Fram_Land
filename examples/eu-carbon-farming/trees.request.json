@@ -1,0 +1,9 @@
+{
+  "species_id": "olive",
+  "tree_count": 900,
+  "plantation_year": 2020,
+  "average_dbh_cm": null,
+  "average_height_m": null,
+  "survival_rate": 0.92,
+  "measurement_source": "user-reported"
+}

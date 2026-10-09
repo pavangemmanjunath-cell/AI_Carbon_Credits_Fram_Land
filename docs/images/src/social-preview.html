@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AgriCarbon Atlas: social preview</title>
+<meta name="viewport" content="width=1280">
+<!-- docs/images/social-preview.png, 1280 x 640 px (the size GitHub asks for), rendered at 1x by render.mjs.
+     All text sits in the left 60 percent, so a link preview that crops the sides still reads. The shapes on the
+     right are a map fragment: a base map of parcels and one plot drawn over it, as in the app. -->
+<style>
+/* Fonts: self-hosted @fontsource files (SIL Open Font License 1.1). The path is relative to this file. */
+@font-face { font-family: 'Space Grotesk'; font-weight: 500; src: url('../../../apps/web/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 600; src: url('../../../apps/web/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 700; src: url('../../../apps/web/node_modules/@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 400; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 500; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Sans'; font-weight: 600; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 400; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 500; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-weight: 600; src: url('../../../apps/web/node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-600-normal.woff2') format('woff2'); }
+
+:root {
+  --ground: #F3F6F2; --surface: #FFFFFF; --ink: #14211A; --ink-2: #3C4A42; --muted: #6B7A71; --line: #DCE5DE;
+  --forest: #1E6B41; --forest-deep: #155232; --mint: #E6F2EA; --mint-on-dark: #BFE3CC; --plot-fill: #2FA85B;
+  --amber-text: #8A4B08; --amber-tint: #FFF1DC; --panel-dark: #14211A;
+  --heading: 'Space Grotesk', 'IBM Plex Sans', system-ui, sans-serif;
+  --body: 'IBM Plex Sans', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--ground); }
+body { position: relative; width: 1280px; height: 640px; overflow: hidden; color: var(--ink); font: 400 28px/1.4 var(--body); text-rendering: optimizeLegibility; }
+
+.map { position: absolute; left: 0; top: 0; width: 1280px; height: 640px; }
+
+.logo { position: absolute; left: 80px; top: 92px; width: 104px; height: 104px; display: block; }
+h1 { position: absolute; left: 76px; top: 226px; margin: 0; font: 700 76px/80px var(--heading); letter-spacing: -0.025em; color: var(--ink); white-space: nowrap; }
+.tag { position: absolute; left: 80px; top: 328px; width: 640px; margin: 0; font: 400 28px/39px var(--body); color: var(--ink-2); text-wrap: balance; }
+.note { position: absolute; left: 80px; top: 482px; height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 18px 0 14px; border-radius: 22px; background: var(--amber-tint); border: 1px solid rgba(138, 75, 8, 0.28); font: 600 20px/1 var(--body); color: var(--amber-text); }
+.note svg { flex: none; }
+</style>
+</head>
+<body>
+
+<!-- map fragment: base-map parcels (gutters are the ground colour), one plot drawn over them, a tree line below -->
+<svg class="map" viewBox="0 0 1280 640" aria-hidden="true">
+  <g stroke="#F3F6F2" stroke-width="7" stroke-linejoin="round">
+    <polygon points="790,-20 1010,-20 985,128 770,160" fill="#E6F2EA"/>
+    <polygon points="1010,-20 1300,-20 1300,110 985,128" fill="#DAEDE1"/>
+    <polygon points="770,160 985,128 1030,300 800,330" fill="#EEF6F0"/>
+    <polygon points="985,128 1300,110 1300,290 1030,300" fill="#E3F0E7"/>
+    <polygon points="800,330 1030,300 1070,470 820,520" fill="#DAEDE1"/>
+    <polygon points="1030,300 1300,290 1300,470 1070,470" fill="#EEF6F0"/>
+    <polygon points="820,520 1070,470 1090,660 800,660" fill="#E6F2EA"/>
+    <polygon points="1070,470 1300,470 1300,660 1090,660" fill="#E3F0E7"/>
+  </g>
+  <polygon points="905,215 1120,190 1175,355 1040,432 900,386" fill="#2FA85B" fill-opacity="0.3" stroke="#1E6B41" stroke-width="4" stroke-linejoin="round"/>
+  <g fill="#FFFFFF" stroke="#1E6B41" stroke-width="3.5">
+    <circle cx="905" cy="215" r="8"/><circle cx="1120" cy="190" r="8"/><circle cx="1175" cy="355" r="8"/><circle cx="1040" cy="432" r="8"/><circle cx="900" cy="386" r="8"/>
+  </g>
+  <path d="M884 540C940 516 1000 506 1060 510S1160 536 1196 552" fill="none" stroke="#1E6B41" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 11"/>
+  <g fill="#1E6B41" stroke="#F3F6F2" stroke-width="3">
+    <circle cx="884" cy="540" r="9"/><circle cx="946" cy="519" r="9"/><circle cx="1010" cy="508" r="9"/><circle cx="1076" cy="513" r="9"/><circle cx="1142" cy="533" r="9"/><circle cx="1196" cy="552" r="9"/>
+  </g>
+</svg>
+
+<img class="logo" src="../logo.svg" width="104" height="104" alt="">
+<h1>AgriCarbon Atlas</h1>
+<p class="tag">Open geospatial intelligence for tree planting, agricultural carbon potential and sustainable land analysis</p>
+<div class="note">
+  <svg width="22" height="22" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.2" fill="none" stroke="#8A4B08" stroke-width="1.7"/><path d="M10 9.2v4.6" stroke="#8A4B08" stroke-width="1.8" stroke-linecap="round"/><circle cx="10" cy="6.3" r="1.1" fill="#8A4B08"/></svg>
+  <span>Estimates, not credits</span>
+</div>
+
+</body>
+</html>

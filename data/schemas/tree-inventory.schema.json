@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agricarbon-atlas.org/schemas/tree-inventory.schema.json",
+  "title": "TreeInventory",
+  "description": "Trees reported for a plot. Every measurement has a source.",
+  "type": "object",
+  "required": ["inventory_id", "plot_id", "species", "tree_count", "plantation_year", "measurement_source", "data_quality"],
+  "additionalProperties": false,
+  "properties": {
+    "inventory_id": {"type": "string"},
+    "plot_id": {"type": "string"},
+    "species": {
+      "type": "object",
+      "required": ["id", "scientific_name", "common_name"],
+      "properties": {"id": {"type": "string"}, "scientific_name": {"type": "string"}, "common_name": {"type": "string"}}
+    },
+    "tree_count": {"type": "integer", "minimum": 1, "maximum": 10000000},
+    "density_per_ha": {"type": "number", "minimum": 0},
+    "plantation_year": {"type": "integer", "minimum": 1900, "maximum": 2100},
+    "age_years": {"type": "integer", "minimum": 0},
+    "average_dbh_cm": {"type": ["number", "null"], "minimum": 0, "maximum": 500},
+    "average_height_m": {"type": ["number", "null"], "minimum": 0, "maximum": 120},
+    "survival_rate": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "measurement_source": {"type": "string", "enum": ["user-reported", "satellite-derived", "government-data", "field-measured", "model-estimated"]},
+    "data_quality": {
+      "type": "object",
+      "required": ["fields", "confidence"],
+      "properties": {
+        "fields": {"type": "array", "items": {"type": "object", "required": ["name", "status"], "properties": {"name": {"type": "string"}, "status": {"type": "string", "enum": ["supplied", "missing"]}}}},
+        "confidence": {"type": "string", "enum": ["low", "medium", "high"]}
+      }
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  }
+}

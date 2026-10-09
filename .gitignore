@@ -1,0 +1,46 @@
+# environment / secrets
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+dist/
+build/
+
+# node
+node_modules/
+apps/web/dist/
+apps/web/.vite/
+apps/web/coverage/
+apps/web/playwright-report/
+apps/web/test-results/
+*.tsbuildinfo
+
+# runtime
+.cache/
+.reports/
+*.log
+*.pmtiles
+*.tif
+*.tiff
+!data/sample/**/*.json
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# local-only paper folder (manuscript, results, figures) - never uploaded
+paper/
+*.docx

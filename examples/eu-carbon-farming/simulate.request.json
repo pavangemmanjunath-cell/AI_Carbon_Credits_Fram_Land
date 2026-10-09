@@ -1,0 +1,11 @@
+{
+  "country": "EU",
+  "species_id": "olive",
+  "tree_count": 900,
+  "planting_year": 2020,
+  "horizon_years": 30,
+  "survival_rate": 0.92,
+  "area_hectares": 5.0,
+  "lat": 37.6,
+  "lon": -4.8
+}

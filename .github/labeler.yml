@@ -1,0 +1,127 @@
+# Path-based label rules for actions/labeler v5 (.github/workflows/labeler.yml).
+# Label names must match .github/labels.yml.
+
+type/docs:
+  # Only when every changed file is documentation (one glob that matches ALL changed
+  # files), so a code change that touches a README is not labeled as docs.
+  - changed-files:
+      - any-glob-to-all-files: ["{docs/**,**/*.md}"]
+
+area/web:
+  - changed-files:
+      - any-glob-to-any-file: ["apps/web/**"]
+
+area/api:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "apps/api/**"
+          - "data/schemas/schema.sql"
+
+area/carbon-engine:
+  - changed-files:
+      - any-glob-to-any-file: ["packages/carbon-engine/**"]
+
+area/geo-engine:
+  - changed-files:
+      - any-glob-to-any-file: ["packages/geo-engine/**"]
+
+area/policy-engine:
+  - changed-files:
+      - any-glob-to-any-file: ["packages/policy-engine/**"]
+
+area/report-engine:
+  - changed-files:
+      - any-glob-to-any-file: ["packages/report-engine/**"]
+
+area/agents:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "packages/agent-framework/**"
+          - "apps/api/app/agents/**"
+          - "docs/agents/**"
+
+area/integrations:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "integrations/atlas_integrations/**"
+          - "integrations/tests/**"
+          - "integrations/README.md"
+          - "docs/data-sources/**"
+
+area/earth-observation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "integrations/atlas_integrations/esa_worldcover/**"
+          - "integrations/atlas_integrations/earth_search/**"
+          - "integrations/atlas_integrations/copernicus/**"
+          - "integrations/atlas_integrations/stac_common.py"
+          - "config/imagery/**"
+
+area/config:
+  - changed-files:
+      - any-glob-to-any-file: ["config/**"]
+
+area/qgis-plugin:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "integrations/qgis-plugin/**"
+          - ".github/workflows/qgis-plugin.yml"
+
+area/infra:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/**"
+          - "infra/**"
+          - "docker-compose.yml"
+          - "Makefile"
+
+area/research:
+  - changed-files:
+      - any-glob-to-any-file: ["research/**"]
+
+region/IN:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "config/regions/IN.yaml"
+          - "config/policies/IN.yaml"
+          - "docs/regions/IN/**"
+          - "examples/india-mango-farm/**"
+
+region/US:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "config/regions/US.yaml"
+          - "config/policies/US.yaml"
+          - "docs/regions/US/**"
+          - "examples/usa-agroforestry/**"
+
+region/EU:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "config/regions/EU.yaml"
+          - "config/policies/EU.yaml"
+          - "docs/regions/EU/**"
+          - "examples/eu-carbon-farming/**"
+
+data-licensing:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "docs/licensing/**"
+          - "docs/data-sources/**"
+          - "config/imagery/**"
+
+privacy:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "docs/privacy/**"
+          - "apps/api/app/services/explain.py"
+          - "apps/api/app/core/logging.py"
+          - "packages/geo-engine/geo_engine/geometry/**"
+          - "packages/agent-framework/**"
+
+security:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "SECURITY.md"
+          - ".github/workflows/security.yml"
+          - "infra/docker/nginx.conf"

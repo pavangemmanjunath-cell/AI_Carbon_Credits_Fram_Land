@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "inventory_id": "INV-CGXM",
+      "plot_id": "PLT-DEMOIN",
+      "species": {
+        "id": "mango",
+        "scientific_name": "Mangifera indica",
+        "common_name": "Mango"
+      },
+      "tree_count": 420,
+      "density_per_ha": 197.2,
+      "plantation_year": 2023,
+      "age_years": 3,
+      "average_dbh_cm": null,
+      "average_height_m": null,
+      "survival_rate": 0.85,
+      "measurement_source": "user-reported",
+      "data_quality": {
+        "fields": [
+          {
+            "name": "tree_count",
+            "status": "supplied"
+          },
+          {
+            "name": "species",
+            "status": "supplied"
+          },
+          {
+            "name": "age",
+            "status": "supplied"
+          },
+          {
+            "name": "dbh",
+            "status": "missing"
+          },
+          {
+            "name": "height",
+            "status": "missing"
+          },
+          {
+            "name": "mortality",
+            "status": "supplied"
+          }
+        ],
+        "confidence": "medium"
+      },
+      "created_at": "2026-10-05T19:53:49Z"
+    }
+  ]
+}

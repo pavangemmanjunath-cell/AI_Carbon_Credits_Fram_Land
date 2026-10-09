@@ -1,0 +1,88 @@
+name: Region request
+description: Ask for a new country or region to be supported, or offer to help add one.
+title: "[region]: "
+labels: ["type/feature", "area/config", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Regions are configuration, not code: a region is a file in `config/regions/`, a policy file
+        in `config/policies/`, parameters and tests. The primary key is the ISO 3166-1 alpha-2 code.
+        Read `docs/developer-guide/adding-a-region.md` to see what a complete region contains.
+
+        Do not state program eligibility rules from memory. Name the official documents; a
+        contributor with local knowledge will cite them in the policy file. Estimates are never
+        presented as credits in any region.
+  - type: input
+    id: country
+    attributes:
+      label: Country or region and ISO 3166-1 alpha-2 code
+      placeholder: "Kenya - KE"
+    validations:
+      required: true
+  - type: dropdown
+    id: relation
+    attributes:
+      label: Relationship to existing regions
+      options:
+        - New standalone region
+        - EU member state (maps to the EU rules; needs member-state notes only)
+        - Sub-national scheme inside an existing region (state, province)
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: who
+    attributes:
+      label: Who would use it and for what
+      description: Farmers, cooperatives, researchers, extension officers. What decision does the Atlas help them make?
+    validations:
+      required: true
+  - type: textarea
+    id: programmes
+    attributes:
+      label: Programs, registries and schemes to consider
+      description: National or sub-national carbon, conservation or agroforestry programs, voluntary registries and subsidies. Give names and links to the official pages.
+    validations:
+      required: true
+  - type: textarea
+    id: locale
+    attributes:
+      label: Languages, currency and units
+      description: Languages for the interface, ISO 4217 currency, preferred area unit (hectare, acre or a local unit).
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Datasets that cover the region
+      description: >-
+        Land cover, climate, soil, crop or forest statistics, geocoding. For each, the license and the access
+        method. The global sources already supported are listed in `docs/data-sources/FREE_APIS.md`.
+  - type: textarea
+    id: species
+    attributes:
+      label: Common tree species and growth references
+      description: Species planted by farmers in the region and any published allometric or growth tables. Parameters need a cited table; do not give numbers from memory.
+  - type: dropdown
+    id: help
+    attributes:
+      label: Can you help?
+      multiple: true
+      options:
+        - I can find and cite official program documents
+        - I can verify parameters against published tables
+        - I can translate the interface
+        - I can review the policy file for accuracy
+        - I can write code (Python or TypeScript)
+        - I can test with real farms (without sharing exact coordinates)
+        - I can only request the region
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: I am not asking for eligibility or credit-issuance claims; the Atlas screens programs and reports estimates only.
+          required: true
+        - label: This request contains no exact farm coordinates or personal data.
+          required: true

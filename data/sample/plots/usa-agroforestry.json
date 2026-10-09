@@ -1,0 +1,56 @@
+{
+  "plot_id": "PLT-DEMOUS",
+  "name": "Demo pecan agroforestry (synthetic)",
+  "country": "US",
+  "note": "Synthetic polygon in Bibb County, Georgia, United States. NOT a real farm boundary.",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -83.708624,
+          32.520591
+        ],
+        [
+          -83.70817,
+          32.519498
+        ],
+        [
+          -83.709145,
+          32.518584
+        ],
+        [
+          -83.710483,
+          32.518748
+        ],
+        [
+          -83.711835,
+          32.519213
+        ],
+        [
+          -83.711596,
+          32.520438
+        ],
+        [
+          -83.71078,
+          32.521291
+        ],
+        [
+          -83.709368,
+          32.521637
+        ],
+        [
+          -83.708624,
+          32.520591
+        ]
+      ]
+    ]
+  },
+  "inventory": {
+    "species_id": "pecan",
+    "tree_count": 1200,
+    "plantation_year": 2021,
+    "survival_rate": 0.9,
+    "measurement_source": "user-reported"
+  }
+}

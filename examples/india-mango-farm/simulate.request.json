@@ -1,0 +1,11 @@
+{
+  "country": "IN",
+  "species_id": "mango",
+  "tree_count": 420,
+  "planting_year": 2023,
+  "horizon_years": 30,
+  "survival_rate": 0.85,
+  "area_hectares": 2.13,
+  "lat": 13.29,
+  "lon": 77.54
+}

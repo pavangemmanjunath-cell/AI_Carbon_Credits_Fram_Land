@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agricarbon-atlas.org/schemas/provenance.schema.json",
+  "title": "Provenance",
+  "description": "Evidence chain attached to every dataset-derived or modelled result.",
+  "type": "object",
+  "required": ["generated_at", "api_version", "mode", "sources"],
+  "properties": {
+    "generated_at": {"type": "string", "format": "date-time"},
+    "api_version": {"type": "string"},
+    "mode": {"type": "string", "enum": ["demo", "live"]},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "license", "attribution"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "version": {"type": ["string", "null"]},
+          "license": {"type": "string"},
+          "attribution": {"type": "string"},
+          "url": {"type": ["string", "null"]},
+          "accessed_at": {"type": ["string", "null"], "format": "date-time"},
+          "scene_ids": {"type": "array", "items": {"type": "string"}},
+          "acquisition_dates": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "model": {"type": ["object", "null"], "properties": {"id": {"type": "string"}, "version": {"type": "string"}}},
+    "parameter_set": {"type": ["object", "null"], "properties": {"id": {"type": "string"}, "version": {"type": "string"}, "verification_status": {"type": "string"}}},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}

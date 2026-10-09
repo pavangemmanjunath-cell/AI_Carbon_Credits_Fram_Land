@@ -1,0 +1,107 @@
+cff-version: 1.2.0
+message: >-
+  If you use AgriCarbon Atlas in research, teaching or a report, please cite
+  it using the metadata below. Estimates produced with the software are
+  scenario estimates, not certified carbon credits; please keep that
+  distinction in any publication.
+type: software
+title: Vriksha Atlas (AgriCarbon Atlas)
+abstract: >-
+  An open-source geospatial platform that helps farmers, landowners and
+  researchers understand tree cover, agricultural conditions and potential
+  carbon benefits, and what evidence they still need for a recognised
+  carbon or environmental programme. It combines Earth-observation data
+  (ESA WorldCover, Copernicus Sentinel-2), deterministic carbon models
+  (IPCC 2006 Tier 1 gain-loss, Chave 2014 allometry) and configuration-driven
+  regional policy screening for India, the United States and the European
+  Union, with privacy-preserving handling of farm geometry.
+authors:
+  - family-names: Manjunath
+    given-names: Pavan
+    affiliation: Independent / AgriCarbon Atlas project
+license: Apache-2.0
+repository-code: https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land
+url: https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land
+version: 0.2.0
+date-released: "2026-10-05"
+keywords:
+  - carbon farming
+  - agroforestry
+  - MRV
+  - Earth observation
+  - Sentinel-2
+  - ESA WorldCover
+  - NDVI
+  - IPCC Tier 1
+  - allometry
+  - carbon credit
+  - Green Credit Programme
+  - CCTS
+  - CRCF
+  - geospatial
+  - MapLibre
+  - PMTiles
+  - open source
+references:
+  - type: report
+    title: 2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 4 (AFOLU), Chapter 4 Forest Land
+    authors:
+      - name: Intergovernmental Panel on Climate Change
+    year: 2006
+    url: https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html
+  - type: article
+    title: Improved allometric models to estimate the aboveground biomass of tropical trees
+    authors:
+      - family-names: Chave
+        given-names: Jérôme
+      - family-names: Réjou-Méchain
+        given-names: Maxime
+      - family-names: Búrquez
+        given-names: Alberto
+      - family-names: Chidumayo
+        given-names: Emmanuel
+      - family-names: Colgan
+        given-names: Matthew S.
+      - family-names: Delitti
+        given-names: Welington B. C.
+      - family-names: Duque
+        given-names: Alvaro
+      - family-names: Eid
+        given-names: Tron
+      - family-names: Fearnside
+        given-names: Philip M.
+      - family-names: Goodman
+        given-names: Rosa C.
+      - family-names: Henry
+        given-names: Matieu
+      - family-names: Martínez-Yrízar
+        given-names: Angelina
+      - family-names: Mugasha
+        given-names: Wilson A.
+      - family-names: Muller-Landau
+        given-names: Helene C.
+      - family-names: Mencuccini
+        given-names: Maurizio
+      - family-names: Nelson
+        given-names: Bruce W.
+      - family-names: Ngomanda
+        given-names: Alfred
+      - family-names: Nogueira
+        given-names: Euler M.
+      - family-names: Ortiz-Malavassi
+        given-names: Edgar
+      - family-names: Pélissier
+        given-names: Raphaël
+      - family-names: Ploton
+        given-names: Pierre
+      - family-names: Ryan
+        given-names: Casey M.
+      - family-names: Saldarriaga
+        given-names: Juan G.
+      - family-names: Vieilledent
+        given-names: Ghislain
+    journal: Global Change Biology
+    volume: 20
+    issue: 10
+    year: 2014
+    doi: 10.1111/gcb.12629

@@ -1,0 +1,628 @@
+{
+  "estimate_id": "EST-4UFS",
+  "plot_id": "PLT-DEMOIN",
+  "inventory_id": "INV-CGXM",
+  "model": {
+    "id": "tree-biomass",
+    "version": "0.1.0",
+    "tier": "1"
+  },
+  "methodology": {
+    "id": "ipcc-2006-vol4-ch4",
+    "name": "IPCC 2006 Guidelines, Vol. 4, Ch. 4 (Forest Land), Tier 1 gain-loss",
+    "references": [
+      {
+        "title": "IPCC 2006 Guidelines Vol. 4 Ch. 4 (Forest Land) — Tier 1 gain-loss",
+        "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html"
+      },
+      {
+        "title": "2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 4, Chapter 4 Forest Land",
+        "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html"
+      },
+      {
+        "title": "2019 Refinement to the 2006 IPCC Guidelines, Volume 4, Chapter 4",
+        "url": "https://www.ipcc-nggip.iges.or.jp/public/2019rf/vol4.html"
+      },
+      {
+        "title": "Chave et al. (2014) Improved allometric models to estimate the aboveground biomass of tropical trees. Global Change Biology 20(10)",
+        "url": "https://doi.org/10.1111/gcb.12629"
+      }
+    ]
+  },
+  "estimate": {
+    "low": 7.71,
+    "central": 11.02,
+    "high": 14.32,
+    "unit": "tCO2e/yr"
+  },
+  "stock": {
+    "low": 16.12,
+    "central": 23.03,
+    "high": 29.95,
+    "unit": "tCO2e"
+  },
+  "components": {
+    "above_ground_tco2e_yr": 8.12,
+    "below_ground_tco2e_yr": 2.89
+  },
+  "annual_series": [
+    {
+      "year": 2023,
+      "age": 0,
+      "low": 0.0,
+      "central": 0.0,
+      "high": 0.0,
+      "cum_low": 0.0,
+      "cum_central": 0.0,
+      "cum_high": 0.0
+    },
+    {
+      "year": 2024,
+      "age": 1,
+      "low": 2.687,
+      "central": 3.839,
+      "high": 4.991,
+      "cum_low": 2.687,
+      "cum_central": 3.839,
+      "cum_high": 4.991
+    },
+    {
+      "year": 2025,
+      "age": 2,
+      "low": 5.375,
+      "central": 7.678,
+      "high": 9.982,
+      "cum_low": 8.062,
+      "cum_central": 11.517,
+      "cum_high": 14.972
+    },
+    {
+      "year": 2026,
+      "age": 3,
+      "low": 8.062,
+      "central": 11.517,
+      "high": 14.972,
+      "cum_low": 16.124,
+      "cum_central": 23.034,
+      "cum_high": 29.945
+    },
+    {
+      "year": 2027,
+      "age": 4,
+      "low": 10.749,
+      "central": 15.356,
+      "high": 19.963,
+      "cum_low": 26.873,
+      "cum_central": 38.391,
+      "cum_high": 49.908
+    },
+    {
+      "year": 2028,
+      "age": 5,
+      "low": 13.437,
+      "central": 19.195,
+      "high": 24.954,
+      "cum_low": 40.31,
+      "cum_central": 57.586,
+      "cum_high": 74.862
+    },
+    {
+      "year": 2029,
+      "age": 6,
+      "low": 16.124,
+      "central": 23.034,
+      "high": 29.945,
+      "cum_low": 56.434,
+      "cum_central": 80.62,
+      "cum_high": 104.807
+    },
+    {
+      "year": 2030,
+      "age": 7,
+      "low": 16.124,
+      "central": 23.034,
+      "high": 29.945,
+      "cum_low": 72.558,
+      "cum_central": 103.655,
+      "cum_high": 134.751
+    },
+    {
+      "year": 2031,
+      "age": 8,
+      "low": 13.23,
+      "central": 18.9,
+      "high": 24.57,
+      "cum_low": 85.788,
+      "cum_central": 122.555,
+      "cum_high": 159.321
+    },
+    {
+      "year": 2032,
+      "age": 9,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 92.403,
+      "cum_central": 132.005,
+      "cum_high": 171.606
+    },
+    {
+      "year": 2033,
+      "age": 10,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 99.018,
+      "cum_central": 141.455,
+      "cum_high": 183.891
+    },
+    {
+      "year": 2034,
+      "age": 11,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 105.633,
+      "cum_central": 150.905,
+      "cum_high": 196.176
+    },
+    {
+      "year": 2035,
+      "age": 12,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 112.249,
+      "cum_central": 160.355,
+      "cum_high": 208.462
+    },
+    {
+      "year": 2036,
+      "age": 13,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 118.864,
+      "cum_central": 169.805,
+      "cum_high": 220.747
+    },
+    {
+      "year": 2037,
+      "age": 14,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 125.479,
+      "cum_central": 179.255,
+      "cum_high": 233.032
+    },
+    {
+      "year": 2038,
+      "age": 15,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 132.094,
+      "cum_central": 188.705,
+      "cum_high": 245.317
+    },
+    {
+      "year": 2039,
+      "age": 16,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 138.709,
+      "cum_central": 198.155,
+      "cum_high": 257.602
+    },
+    {
+      "year": 2040,
+      "age": 17,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 145.324,
+      "cum_central": 207.605,
+      "cum_high": 269.887
+    },
+    {
+      "year": 2041,
+      "age": 18,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 151.939,
+      "cum_central": 217.055,
+      "cum_high": 282.172
+    },
+    {
+      "year": 2042,
+      "age": 19,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 158.554,
+      "cum_central": 226.505,
+      "cum_high": 294.457
+    },
+    {
+      "year": 2043,
+      "age": 20,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 165.169,
+      "cum_central": 235.955,
+      "cum_high": 306.742
+    },
+    {
+      "year": 2044,
+      "age": 21,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 171.784,
+      "cum_central": 245.405,
+      "cum_high": 319.027
+    },
+    {
+      "year": 2045,
+      "age": 22,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 178.399,
+      "cum_central": 254.855,
+      "cum_high": 331.312
+    },
+    {
+      "year": 2046,
+      "age": 23,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 185.014,
+      "cum_central": 264.305,
+      "cum_high": 343.597
+    },
+    {
+      "year": 2047,
+      "age": 24,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 191.629,
+      "cum_central": 273.755,
+      "cum_high": 355.882
+    },
+    {
+      "year": 2048,
+      "age": 25,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 198.244,
+      "cum_central": 283.205,
+      "cum_high": 368.167
+    },
+    {
+      "year": 2049,
+      "age": 26,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 204.859,
+      "cum_central": 292.655,
+      "cum_high": 380.452
+    },
+    {
+      "year": 2050,
+      "age": 27,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 211.474,
+      "cum_central": 302.105,
+      "cum_high": 392.737
+    },
+    {
+      "year": 2051,
+      "age": 28,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 218.089,
+      "cum_central": 311.555,
+      "cum_high": 405.022
+    },
+    {
+      "year": 2052,
+      "age": 29,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 224.704,
+      "cum_central": 321.005,
+      "cum_high": 417.307
+    },
+    {
+      "year": 2053,
+      "age": 30,
+      "low": 6.615,
+      "central": 9.45,
+      "high": 12.285,
+      "cum_low": 231.319,
+      "cum_central": 330.455,
+      "cum_high": 429.592
+    }
+  ],
+  "parameters_used": [
+    {
+      "name": "horizon_years_default",
+      "value": 30,
+      "unit": "years",
+      "source": "project assumption v0.1 — evaluation window for annual series and mean annual removal",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "survival_rate",
+      "value": 0.85,
+      "unit": "fraction",
+      "source": "reported (user-reported)",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "above_ground_biomass_growth",
+      "value": 4.0,
+      "unit": "t d.m. / ha / yr",
+      "source": "IPCC 2006 Vol.4 Ch.4 Tables 4.10/4.12 (working values; verify cell by cell) [zone: tropical_dry; age class: le_20_years]",
+      "verification_status": "pending"
+    },
+    {
+      "name": "increment_multiplier",
+      "value": 0.9,
+      "unit": "dimensionless",
+      "source": "fruit orchards pruned/managed below natural stand increment; project assumption v0.1 [species: mango]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "reference_density_per_ha",
+      "value": 150,
+      "unit": "trees/ha",
+      "source": "typical 8 m × 8 m orchard spacing; project assumption v0.1 [species: mango]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "maturity_years",
+      "value": 8,
+      "unit": "years",
+      "source": "config/species/species.yaml v0.1.0 [species: mango]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "carbon_fraction",
+      "value": 0.47,
+      "unit": "t C / t d.m.",
+      "source": "IPCC 2006 Vol.4 Ch.4 Table 4.3 (default for all tree parts)",
+      "verification_status": "verified"
+    },
+    {
+      "name": "co2_per_c",
+      "value": 3.6667,
+      "unit": "t CO2 / t C",
+      "source": "molecular mass ratio 44/12",
+      "verification_status": "verified"
+    },
+    {
+      "name": "density_scaling_clamp",
+      "value": [
+        0.2,
+        1.5
+      ],
+      "unit": "ratio to reference density",
+      "source": "project assumption v0.1",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "years_to_full_increment_default",
+      "value": 6,
+      "unit": "years",
+      "source": "project assumption v0.1 — linear ramp from planting to full Tier 1 increment",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "post_maturity_increment_factor",
+      "value": 0.5,
+      "unit": "fraction of full increment",
+      "source": "project assumption v0.1 — after species maturity_years the annual increment is held at 50% of the full Tier 1 increment (slower net growth of mature orchards/stands; replace with age-class increments when IPCC 2019 Refinement Table 4.9 values are verified)",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "uncertainty_fraction_tier1_low",
+      "value": 0.3,
+      "unit": "fraction of central",
+      "source": "project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "uncertainty_fraction_tier1_high",
+      "value": 0.3,
+      "unit": "fraction of central",
+      "source": "project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "density_factor_applied",
+      "value": 1.3145,
+      "unit": "ratio to reference density",
+      "source": "planted density 197.2 trees/ha ÷ reference 150 trees/ha, clamped to [0.2, 1.5]",
+      "verification_status": "assumption"
+    },
+    {
+      "name": "root_to_shoot_ratio",
+      "value": 0.56,
+      "unit": "dimensionless",
+      "source": "IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: tropical_dry; class: agb_lt_20]",
+      "verification_status": "pending"
+    },
+    {
+      "name": "root_to_shoot_ratio",
+      "value": 0.28,
+      "unit": "dimensionless",
+      "source": "IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: tropical_dry; class: agb_ge_20]",
+      "verification_status": "pending"
+    }
+  ],
+  "confidence": "medium",
+  "certified": false,
+  "disclaimer": "Scenario estimate; not an issued carbon credit.",
+  "readiness": {
+    "score": 55,
+    "grade": "medium",
+    "present_evidence": [
+      {
+        "id": "polygon",
+        "label": "Land polygon"
+      },
+      {
+        "id": "tree_count",
+        "label": "Tree count"
+      },
+      {
+        "id": "species",
+        "label": "Tree species"
+      },
+      {
+        "id": "age",
+        "label": "Plantation age"
+      },
+      {
+        "id": "satellite",
+        "label": "Satellite observation"
+      }
+    ],
+    "missing_evidence": [
+      {
+        "id": "dbh",
+        "label": "Tree diameter measurements",
+        "weight": 15
+      },
+      {
+        "id": "height",
+        "label": "Tree height measurements",
+        "weight": 6
+      },
+      {
+        "id": "baseline",
+        "label": "Baseline land-use records",
+        "weight": 12
+      },
+      {
+        "id": "management",
+        "label": "Farm management history",
+        "weight": 9
+      },
+      {
+        "id": "ownership",
+        "label": "Land ownership / tenure document",
+        "weight": 10
+      }
+    ]
+  },
+  "notes": [
+    "Root-to-shoot ratio follows the above-ground biomass stock class: 0.56 → 0.28 (IPCC 2006 Table 4.4).",
+    "Headline estimate: mean annual removal over the horizon (sum of annual series ÷ number of years with age ≥ 1).",
+    "Climate zone 'tropical_dry' from derived."
+  ],
+  "provenance": {
+    "generated_at": "2026-10-05T19:53:49Z",
+    "api_version": "1",
+    "app_version": "0.2.0",
+    "mode": "demo",
+    "sources": [
+      {
+        "id": "synthetic-demo",
+        "name": "Synthetic demo data (imitating ESA WorldCover 2021 v200)",
+        "version": "v200",
+        "license": "Apache-2.0 (generated)",
+        "attribution": "AgriCarbon Atlas demo generator — not an observation",
+        "url": null,
+        "accessed_at": "2026-10-05T19:53:49.695453Z"
+      },
+      {
+        "id": "synthetic-demo",
+        "name": "Synthetic demo data (imitating Sentinel-2 L2A (Earth Search STAC, Element 84 / AWS))",
+        "version": "L2A",
+        "license": "Apache-2.0 (generated)",
+        "attribution": "AgriCarbon Atlas demo generator — not an observation",
+        "url": null,
+        "accessed_at": "2026-10-05T19:53:49.700062Z",
+        "scene_ids": [
+          "S2A_MSIL2A_20241020T050659_N0511_R019_T43PGQ_DEMO",
+          "S2A_MSIL2A_20251017T050659_N0511_R019_T43PGQ_DEMO",
+          "S2A_MSIL2A_20261005T050659_N0511_R019_T43PGQ_DEMO"
+        ]
+      },
+      {
+        "id": "synthetic-demo",
+        "name": "Synthetic demo data (imitating Open-Meteo Historical Weather API (ERA5) and Elevation API (Copernicus DEM GLO-90))",
+        "version": "v1",
+        "license": "Apache-2.0 (generated)",
+        "attribution": "AgriCarbon Atlas demo generator — not an observation",
+        "url": null,
+        "accessed_at": "2026-10-05T19:53:49.715623Z"
+      },
+      {
+        "id": "synthetic-demo",
+        "name": "Synthetic demo data (imitating SoilGrids 2.0 (ISRIC World Soil Information))",
+        "version": "2.0 (2020)",
+        "license": "Apache-2.0 (generated)",
+        "attribution": "AgriCarbon Atlas demo generator — not an observation",
+        "url": null,
+        "accessed_at": "2026-10-05T19:53:49.732312Z"
+      }
+    ],
+    "notes": [
+      "Root-to-shoot ratio follows the above-ground biomass stock class: 0.56 → 0.28 (IPCC 2006 Table 4.4).",
+      "Headline estimate: mean annual removal over the horizon (sum of annual series ÷ number of years with age ≥ 1).",
+      "Climate zone 'tropical_dry' from derived."
+    ],
+    "model": {
+      "id": "tree-biomass",
+      "version": "0.1.0"
+    },
+    "parameter_set": {
+      "id": "ipcc-2006-tier1",
+      "version": "0.1.0",
+      "verification_status": "pending"
+    },
+    "parameter_sources": [
+      {
+        "id": "ipcc-2006-vol4-ch4",
+        "name": "2006 IPCC Guidelines for National GHG Inventories, Vol. 4 Ch. 4",
+        "version": "2006",
+        "license": "IPCC publication — citation required",
+        "attribution": "IPCC (2006). 2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 4: Agriculture, Forestry and Other Land Use. IGES, Japan.",
+        "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html"
+      },
+      {
+        "id": "species-table",
+        "name": "AgriCarbon Atlas species table",
+        "version": "0.1.0",
+        "license": "Apache-2.0 (project configuration)",
+        "attribution": "AgriCarbon Atlas contributors; wood density working values after Zanne et al. (2009) Global Wood Density Database (Dryad, CC0)",
+        "url": "https://doi.org/10.5061/dryad.234"
+      }
+    ],
+    "climate_zone": {
+      "zone": "tropical_dry",
+      "source": "derived"
+    },
+    "species": {
+      "id": "mango",
+      "scientific_name": "Mangifera indica"
+    }
+  },
+  "generated_at": "2026-10-05T19:53:49Z"
+}

@@ -1,0 +1,569 @@
+# Tree-age rules: which real programmes and laws treat trees differently by age.
+#
+# Read with docs/research/tree-age-carbon-rules.md (rationale, source list and the
+# open questions behind every `pending` rule).
+#
+# Conventions
+# - verification_status: verified = the source was opened and states the condition;
+#   pending = not confirmed from a primary source (press only, or text not opened).
+#   Pending rules MUST NOT be presented as confirmed and must fail a production-mode
+#   data-quality check (CLAUDE.md principle 10).
+# - `amount` is filled only when a source states it; every amount carries its as_of.
+# - is_example: true marks a municipal rule that stands for "check your own local ordinance".
+# - Estimates are not credits: nothing here converts a tree into a credit. Payments such as
+#   the Haryana pension are "other farm income", never added to carbon value.
+# - GCP (India Green Credits) and CCTS (India carbon credits) are separate mechanisms.
+# - EU: an estimate is never automatically CRCF-certifiable.
+#
+# age_classes are a project convention for labels, not legal categories:
+#   20 y = the split used by the IPCC for natural-forest growth (<=20 y and >20 y);
+#   50 y = the heritage-tree age reported for Maharashtra (press; norms still pending);
+#   75 y = the age threshold of Haryana's Pran Vayu Devta Pension Scheme (press; pending).
+version: 0.1.0
+updated: 2026-10-05
+disclaimer: >-
+  Screening information only — not legal advice. Rules change; confirm with the responsible authority before acting.
+age_classes:            # project convention for labels (rationale in docs/research/tree-age-carbon-rules.md)
+  - {id: young, label: "Young (0–20 years)", min_age: 0, max_age: 20}
+  - {id: mature, label: "Mature (21–49 years)", min_age: 21, max_age: 49}
+  - {id: old, label: "Old (50–74 years)", min_age: 50, max_age: 74}
+  - {id: veteran, label: "Veteran (75+ years)", min_age: 75, max_age: null}
+rules:
+  # ------------------------------------------------------------------ GLOBAL standards
+  - id: global-icvcm-ccp-additionality
+    scope: GLOBAL
+    country: null
+    subdivision: null
+    locality: null
+    name: "ICVCM Core Carbon Principles 5-7: additionality, permanence, robust quantification"
+    authority: "Integrity Council for the Voluntary Carbon Market (ICVCM)"
+    category: methodology-note
+    applies_to: {min_age_years: null, max_age_years: null, trees: any, setting: any}
+    outcome_for_existing_trees: conditional
+    summary: >-
+      A carbon credit may only count removals that would not have happened without carbon revenue, so the growth that trees already standing would make anyway is not creditable on its own.
+    details: >-
+      Principle 5 (additionality): the emission reductions or removals 'shall be additional, i.e., they would not have occurred in the absence of the incentive created by carbon credit revenues.' Principle 6 (permanence): they 'shall be permanent or, where there is a risk of reversal, there shall be measures in place to address those risks and compensate reversals.' Principle 7: they 'shall be robustly quantified, based on conservative approaches, completeness and scientific methods.'
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Core Carbon Principles", publisher: "Integrity Council for the Voluntary Carbon Market", url: "https://icvcm.org/core-carbon-principles/", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      The plain-language reading for existing trees (growth that happens anyway is not additional, which is why methodologies use baselines) is the Atlas's interpretation of Principle 5, not ICVCM text. See docs/concepts/additionality.md.
+
+  - id: global-verra-vm0047-arr
+    scope: GLOBAL
+    country: null
+    subdivision: null
+    locality: null
+    name: "Verra VM0047 Afforestation, Reforestation and Revegetation, v1.1"
+    authority: "Verra (Verified Carbon Standard programme)"
+    category: carbon-credit-eligibility
+    applies_to: {min_age_years: null, max_age_years: null, trees: new-planting, setting: any}
+    outcome_for_existing_trees: not-eligible
+    summary: >-
+      VM0047 credits trees that a project plants or restores; the carbon already stored in pre-existing trees is measured as a starting (t=0) stock and is not credited.
+    details: >-
+      Area-based approach: project land must not have met the definition of managed forest at any point in the 10 years immediately preceding the project start date, although v1.1 also allows enhancing forest carbon stocks where existing forest cover has not been managed for wood products in the past ten years. A t = 0 carbon-stock estimate is required for pre-existing woody biomass, and removal of that biomass is only allowed where it is treated as a waste product with no commercial value. Census-based approach (dispersed planting such as agroforestry): planting density must not exceed 50 planting units per hectare, only direct planting is allowed, the pre-project land use must be maintained, and the area must have less than 10% pre-existing woody biomass cover (or be under continuous cropping, 'settlements' or 'other lands').
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "VM0047 Afforestation, Reforestation and Revegetation, v1.1 (methodology document)", publisher: "Verra", url: "https://verra.org/documents/vm0047-afforestation-reforestation-and-revegetation-v1-1/", accessed: "2026-10-05"}
+      - {title: "VM0047 Afforestation, Reforestation and Revegetation, v1.1 (methodology page)", publisher: "Verra", url: "https://verra.org/methodologies/vm0047-afforestation-reforestation-and-revegetation-v1-1/", accessed: "2026-10-05"}
+      - {title: "VM0047 v1.1: what you need to know (independent cross-check)", publisher: "Space Intelligence", url: "https://www.space-intelligence.com/vm0047-v-1-1-what-you-need-to-know/", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      Version 1.1 is effective from 14 May 2025 (Verra methodology page). Section references (4.4.1(1), 4.2(2), 4.3, 8.2.1.2) were read through a page-summarising tool; the 10-year and 50-per-hectare figures were cross-checked against the Verra page and an independent summary. Quote from the PDF before any external publication.
+
+  - id: global-gold-standard-luf-ar
+    scope: GLOBAL
+    country: null
+    subdivision: null
+    locality: null
+    name: "Gold Standard Land Use & Forests Activity Requirements (A/R), v1.2.1, with A/R methodology v2.1"
+    authority: "Gold Standard Foundation"
+    category: carbon-credit-eligibility
+    applies_to: {min_age_years: null, max_age_years: null, trees: new-planting, setting: non-forest}
+    outcome_for_existing_trees: not-eligible
+    summary: >-
+      Gold Standard's afforestation and reforestation rules only cover planting on land that was not forest 10 years before the project start, so trees that already stand earn no credits.
+    details: >-
+      Activity Requirements v1.2.1 (April 2020), Section 2.1.1(b): 'The eligible area shall not meet the definition of forest 10 years before project start date and at project start date.' Credits are not issued for existing forests, improved forest management or avoided deforestation under these A/R requirements, and the A/R project start date is the earliest date when the first trees are planted. In A/R methodology v2.1 (16 May 2024, Section 3.5.1) the baseline is the 'tree' and 'non-tree' biomass present in the eligible planting area just prior to the planting start, and baseline trees are tracked inside the baseline.
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Land Use & Forests Activity Requirements, version 1.2.1 (A/R eligibility)", publisher: "Gold Standard Foundation", url: "https://globalgoals.goldstandard.org/standards/203_V1.2.1_AR_LUF-Activity-Requirements.pdf", accessed: "2026-10-05"}
+      - {title: "Land Use & Forests A/R Methodology, version 2.1", publisher: "Gold Standard Foundation", url: "https://globalgoals.goldstandard.org/standards/403_V2.1_LUF_AR-Methodology-GHGs-emission-reduction-and-Sequestration-Methodology.pdf", accessed: "2026-10-05"}
+      - {title: "Sustainable Transformation through Afforestation, Reforestation and Revegetation (STARR) consultation", publisher: "Gold Standard Foundation", url: "https://www.goldstandard.org/consultations/sustainable-transformation-afforestation-reforestation-revegetation-starr", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      Gold Standard consulted on a successor framework, STARR, from 22 April to 22 May 2026; it also targets non-forest land. Final publication and whether it replaces the documents above were not confirmed. Plan Vivo (PV Climate) was reviewed but its public page does not state how existing trees are treated, so it has no rule here (see the md file).
+
+  # ------------------------------------------------------------------ INDIA
+  - id: in-gcp-tree-plantation
+    scope: IN
+    country: IN
+    subdivision: null
+    locality: null
+    name: "Green Credit Programme: tree-plantation methodology (Green Credit Rules, 2023; revised 29 August 2025)"
+    authority: "Ministry of Environment, Forest and Climate Change; administrator ICFRE"
+    category: incentive-payment
+    applies_to: {min_age_years: null, max_age_years: null, trees: new-planting, setting: forest}
+    outcome_for_existing_trees: not-eligible
+    summary: >-
+      Green Credits for tree plantation are issued only for restoring degraded forest land of at least 5 ha under a State or UT Forest Department, so existing trees on a farm or in a town do not qualify.
+    details: >-
+      Eligible land is 'Degraded forest land parcels under the control and management of the State/UT Forest Department', each a compact area of at least 5 hectares free from encumbrances; wildlife sanctuaries, national parks and tiger reserves are excluded. Credit claims are possible 'After 5 years of restoration work and when canopy density reaches at least 40 percent'. Green Credits issued for tree plantation 'shall be non-tradable' and are non-transferable except between a holding company and its subsidiaries. The methodology was first notified on 22 February 2024 and revised on 29 August 2025.
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Green Credit Programme FAQ", publisher: "MoEFCC Green Credit Programme portal", url: "https://www.moefcc-gcp.in/faq", accessed: "2026-10-05"}
+      - {title: "About the Green Credit Programme", publisher: "MoEFCC Green Credit Programme portal", url: "https://www.moefcc-gcp.in/about/aboutGCP", accessed: "2026-10-05"}
+      - {title: "Green Credit Programme: Lok Sabha written reply, 16 March 2026", publisher: "Press Information Bureau, Government of India", url: "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2240640&reg=3&lang=1", accessed: "2026-10-05"}
+      - {title: "Green Credit Programme home page (notification list)", publisher: "MoEFCC Green Credit Programme portal", url: "https://www.moefcc-gcp.in/", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      Green Credits are a government recognition scheme, not carbon credits (CCTS) and not a cash payment; 'incentive-payment' is the closest available category label. The Green Credit Rules were notified on 12 October 2023 under the Environment Protection Act, 1986 (GCP portal). Per-tree details such as one credit per surviving tree aged five years or more come from secondary sources listed in docs/research/policy-references.md and are not entered here.
+
+  - id: in-ccts-offset-bm-fr05-002
+    scope: IN
+    country: IN
+    subdivision: null
+    locality: null
+    name: "Carbon Credit Trading Scheme offset mechanism: BM FR05.002 Afforestation and reforestation of lands except wetlands, v1.0"
+    authority: "Bureau of Energy Efficiency (BEE), Government of India"
+    category: carbon-credit-eligibility
+    applies_to: {min_age_years: null, max_age_years: null, trees: new-planting, setting: any}
+    outcome_for_existing_trees: not-eligible
+    summary: >-
+      India's approved CCTS afforestation methodology credits net removals above a baseline that already counts the tree biomass standing before the project, so existing trees earn nothing on their own.
+    details: >-
+      BM FR05.002 (Version 1.0, 8 September 2025) is adopted from, and refers to, the UNFCCC CDM methodology AR-ACM0003. Baseline net GHG removals include the 'Change in carbon stock in baseline tree biomass' and baseline shrub biomass (Section 4.4, Equation 1), so pre-existing tree biomass sits in the baseline. Applicability (Section 3.2): the land must not be wetland, and soil disturbance must not cover more than 10 per cent of the area of organic-soil land or of land with baseline management practices. Credits are issued as temporary (tCCC) or long-term (lCCC) Carbon Credit Certificates (Section 4.8).
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "BM FR05.002 Afforestation and reforestation of lands except wetlands, Version 1.0", publisher: "Bureau of Energy Efficiency", url: "https://beeindia.gov.in/sites/default/files/BM_FR05.002_Afforestation_and_reforestation_of_lands_except_wetlands.pdf", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      The applicability text read is silent on agroforestry and cropland, so neither should be assumed eligible; ask BEE. CCTS is separate from the Green Credit Programme. No Carbon Credit Certificate trade or price signal was confirmed in this research (see docs/research/policy-references.md).
+
+  - id: in-hr-pran-vayu-devta-pension
+    scope: IN
+    country: IN
+    subdivision: IN-HR
+    locality: null
+    name: "Pran Vayu Devta Pension Scheme (Haryana)"
+    authority: "Forest and Wildlife Department, Government of Haryana"
+    category: incentive-payment
+    applies_to: {min_age_years: 75, max_age_years: null, trees: existing, setting: non-forest}
+    outcome_for_existing_trees: payment
+    summary: >-
+      Haryana pays the custodian of a living tree that is about 75 years old or more and stands outside forest land an annual pension, reported as Rs 3,000 per tree in 2025 and again in July 2026.
+    details: >-
+      Press reports of the June 2023 announcement describe a pension for trees 'older than 75 years' (later reports say 75 years or older); fallen, hollow, dead, dry or diseased trees and trees on forest land are excluded, and a grove grown from one seed (for example a banyan) counts as one tree. Later reports add that the tree must be one of 40 designated native species, that applicants apply to the district forest department (21-column proforma) and that a five-member district committee approves, with the pension paid to the custodian's bank account. The amount was reported as Rs 2,500 (June 2023), Rs 2,750 (July 2024) and Rs 3,000 (June to September 2025 and again on 13 July 2026), and is meant to rise each year in line with the Old Age Samman pension. A cap of 4,000 trees until a five-year review was reported in 2023, and 3,876 trees in 22 districts in September 2025.
+    amount: {value: 3000, currency: INR, unit: "per tree per year", as_of: "2026-07"}
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Haryana to give Rs 2,500 annually to custodians of trees older than 75 years (23 June 2023)", publisher: "The Tribune", url: "https://www.tribuneindia.com/news/haryana/haryana-to-give-rs-2-500-annually-to-custodians-of-trees-older-than-75-years-says-minister-519354", accessed: "2026-10-05"}
+      - {title: "Old Haryana trees: Rs 3,000 pension and the long red tape (6 September 2025)", publisher: "ThePrint", url: "https://theprint.in/ground-reports/old-haryana-trees-rs-3000-pension-and-the-long-red-tape/2737061/", accessed: "2026-10-05"}
+      - {title: "51 trees in Faridabad aged 75 years are receiving an annual pension of Rs 3,000 (13 July 2026)", publisher: "Amar Ujala", url: "https://www.amarujala.com/delhi-ncr/faridabad/51-trees-in-faridabad-aged-75-years-are-receiving-an-annual-pension-of-3-000-2026-07-13", accessed: "2026-10-05"}
+      - {title: "55 more trees in Karnal get heritage tag under Pran Vayu Devta scheme (12 June 2025)", publisher: "The Tribune", url: "https://www.tribuneindia.com/news/haryana/55-more-trees-in-karnal-get-heritage-tag-under-pran-vayu-devta-scheme/amp", accessed: "2026-10-05"}
+      - {title: "Haryana's Pran Vayu Devta Yojana (2 July 2024)", publisher: "OneIndia", url: "https://www.oneindia.com/india/haryanas-pran-vayu-devta-yojana-financial-aid-for-elderly-tree-care-011-3863365.html", accessed: "2026-10-05"}
+      - {title: "Message from PCCF's Desk (acknowledges the scheme; no amount or age)", publisher: "Haryana Forest Department", url: "https://haryanaforest.gov.in/message-from-pccfs-desk/", accessed: "2026-10-05"}
+    verification_status: pending
+    notes: >-
+      Press only: the single official page found (Haryana Forest Department, PCCF message) names the scheme but gives no amount or age, the haryana.gov.in scheme page returned 404 and the Chief Minister's Office page was blocked to the fetch tool. Still needed: the official notification or guidelines to confirm the age wording (above or at least 75), the species list, exclusions and the current annual amount (it is indexed to the Old Age Samman pension). The as_of date is the latest press report quoting Rs 3,000 (an official, the Faridabad District Forest Officer, is quoted in it).
+
+  - id: in-mh-heritage-tree
+    scope: IN
+    country: IN
+    subdivision: IN-MH
+    locality: null
+    name: "Heritage trees under the Maharashtra (Urban Areas) Protection and Preservation of Trees Act, 1975, as amended in 2021"
+    authority: "Maharashtra State Tree Authority and urban Tree Authorities; Government of Maharashtra"
+    category: tree-protection
+    applies_to: {min_age_years: 50, max_age_years: null, trees: existing, setting: urban}
+    outcome_for_existing_trees: protected
+    summary: >-
+      In Maharashtra's urban areas a tree can be categorised as a heritage tree and a proposal to fell one goes to the State Tree Authority; news reports put the age at 50 years or more, but the amended Act leaves the norms to the Government.
+    details: >-
+      The 2021 amendment defines 'heritage tree' as 'a tree categorised as such by the Tree Authority, in accordance with the norms as may be notified by the Government' and sends a proposal to fell a heritage tree to the Maharashtra State Tree Authority (Section 2 and the proviso to Section 8(3)). The Bill and Act text opened here state no age; news reports of the June 2021 Cabinet decision say 'any tree with an estimated age of 50 years or above' would be classified as a heritage tree. The Tree Officer determines a tree's age 'as per the criteria and method as may be notified by the Government' (Section 8(5)(b)).
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Bill No. VIII of 2021, a Bill further to amend the Maharashtra (Urban Areas) Protection and Preservation of Trees Act, 1975", publisher: "Maharashtra Legislature", url: "https://mls.org.in/assembly-bill/one-house/Bill%20no%208%20of%202021%20Eng.%20One%20House.pdf", accessed: "2026-10-05"}
+      - {title: "Maharashtra (Urban Areas) Protection and Preservation of Trees (Amendment) Act, 2021 (text)", publisher: "Legitquest", url: "https://www.legitquest.com/act/maharashtra-urban-areas-protection-and-preservation-of-trees-amendment-act-2021/A265", accessed: "2026-10-05"}
+      - {title: "Now Maharashtra to give 50-year-old urban trees heritage tag (11 June 2021)", publisher: "The Tribune", url: "https://www.tribuneindia.com/news/schools/now-maharashtra-to-give-50-year-old-urban-trees-heritage-tag-266830", accessed: "2026-10-05"}
+      - {title: "More than 50 years old tree will be declared as a heritage tree in Maharashtra", publisher: "Mumbai Live", url: "https://www.mumbailive.com/en/environment/more-than-50-years-old-tree-will-be-declared-as-a-heritage-tree-in-maharashtra-65671", accessed: "2026-10-05"}
+      - {title: "Reply by Respondent 1 in OA No. 92/2024 (quotes the 2021 Amendment Act, State Tree Authority)", publisher: "National Green Tribunal", url: "https://www.greentribunal.gov.in/sites/default/files/news_updates/Reply%20by%20R-1%20in%20OA%20No.92-2024%20(page%20nos.10-88).pdf", accessed: "2026-10-05"}
+    verification_status: pending
+    notes: >-
+      The 50-year threshold appears only in press reports (The Tribune, 11 June 2021; Mumbai Live) and is the basis of the 'old' age class; the Bill and the Act text opened leave heritage norms to be notified. Still needed: the Government notification of heritage-tree norms (Environment and Climate Change Department) or the consolidated Act on India Code (that PDF is blocked to the fetch tool). The NGT reply confirms the 2021 Amendment Act and the State Tree Authority (Section 3(1)) are on the statute book.
+
+  - id: in-mh-compensatory-planting-estimated-age
+    scope: IN
+    country: IN
+    subdivision: IN-MH
+    locality: null
+    name: "Compensatory planting equal to the felled tree's estimated age (Maharashtra Trees Act, Section 8, as amended 2021)"
+    authority: "Tree Officer and Tree Authorities, Government of Maharashtra"
+    category: compensatory-planting
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: urban}
+    outcome_for_existing_trees: conditional
+    summary: >-
+      To be allowed to fell a tree in a Maharashtra urban area you must plant as many trees as the felled tree's estimated age in years, so a 60-year-old tree means 60 new trees.
+    details: >-
+      Section 8(5), as amended in 2021: the applicant 'shall plant such number of trees equal to the estimated age of the tree being felled and such trees to be planted shall be of atleast six feet height'. The Tree Officer determines the age 'as per the criteria and method as may be notified by the Government'; the Bill text also requires the planted trees to survive for a minimum of seven years (Section 8(5A)) and offers a deposit of not less than the valuation of the felled trees as an alternative. The penalty under Section 21 is the valuation of the tree, using a methodology to be notified, but not more than one lakh rupees, and applications covering more than two hundred trees of age five years or more are referred to the Maharashtra State Tree Authority.
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Bill No. VIII of 2021, a Bill further to amend the Maharashtra (Urban Areas) Protection and Preservation of Trees Act, 1975", publisher: "Maharashtra Legislature", url: "https://mls.org.in/assembly-bill/one-house/Bill%20no%208%20of%202021%20Eng.%20One%20House.pdf", accessed: "2026-10-05"}
+      - {title: "Maharashtra (Urban Areas) Protection and Preservation of Trees (Amendment) Act, 2021 (text)", publisher: "Legitquest", url: "https://www.legitquest.com/act/maharashtra-urban-areas-protection-and-preservation-of-trees-amendment-act-2021/A265", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      The number of trees equals the estimated age (it is not a fixed ratio), so the rule scales with tree age. The seven-year survival period and the deposit alternative are taken from the Bill as introduced; check the enacted text. A press report (Mumbai Live) adds 6-8 ft planting height and geotagging, which were not found in the Act text.
+
+  - id: in-ka-preservation-of-trees-act
+    scope: IN
+    country: IN
+    subdivision: IN-KA
+    locality: null
+    name: "Karnataka Preservation of Trees Act, 1976"
+    authority: "Karnataka Forest Department (Tree Officer)"
+    category: tree-protection
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: any}
+    outcome_for_existing_trees: protected
+    summary: >-
+      Where the Act applies, felling a tree needs the Tree Officer's previous permission and the applicant must plant replacement trees; the Act sets no age test.
+    details: >-
+      Section 8: 'no person shall fell any tree or cause any tree to be felled in any land ... except with the previous permission of the Tree Officer'; a 'tree' is a woody plant whose trunk is not less than five and a half centimetres in diameter and not less than one metre in height (Section 2). Permission must be granted for trees that are dead, diseased or wind-fallen, silviculturally mature, a danger to life or property, an obstruction to traffic or substantially damaged by natural causes (Section 8(3)), and listed species such as casuarina, coconut, rubber and bamboo are exempt (Section 8(7)). Where permission is given the applicant 'shall plant another tree or trees of the same or any other suitable species on the same site or other suitable place within thirty days'. The Act extends to the whole of Karnataka, but its provisions were brought into force area by area through notifications (Section 1).
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "The Karnataka Preservation of Trees Act, 1976 (Karnataka Act 76 of 1976)", publisher: "PRS Legislative Research (copy of the Act)", url: "https://prsindia.org/files/bills_acts/acts_states/karnataka/1976/1976KR76.pdf", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      Text is the 1976 Act as published by PRS India. Later amendments, the list of notified areas and the current penalty (1976 text, Section 22: up to three months' imprisonment or a fine up to Rs 1,000, or both) were not checked, and the India Code copy is blocked to the fetch tool. Karnataka's Krushi Aranya Protsaha Yojane (a new-planting incentive, not age-based) is covered in the md file and not entered as a rule because its amounts are unconfirmed.
+
+  - id: in-dl-preservation-of-trees-act
+    scope: IN
+    country: IN
+    subdivision: IN-DL
+    locality: null
+    name: "Delhi Preservation of Trees Act, 1994"
+    authority: "Department of Forests & Wildlife, Government of NCT of Delhi (Tree Officer)"
+    category: tree-protection
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: urban}
+    outcome_for_existing_trees: protected
+    summary: >-
+      In Delhi, felling, removing or disposing of a tree needs the Tree Officer's previous permission; the Act has no age test and covers a woody plant once its trunk is at least 5 cm across at 30 cm height and it is at least 1 m tall.
+    details: >-
+      Section 8: 'no person shall fell or remove or dispose of any tree or forest produce in any land ... except with the previous permission of the Tree Officer'; a 'tree' is a woody plant whose trunk is not less than five centimetres in diameter at a height of thirty centimetres from the ground and which is not less than one metre in height (Section 2). Section 9(2) lists cases where permission cannot be refused, including dead, diseased or wind-fallen trees, silviculturally mature trees (except on steep slopes) and trees that endanger life, property or traffic. The Tree Officer must decide within 60 days (otherwise permission is deemed granted) and applicants state the girth at 1.85 m above ground (Section 9(1)). A person given permission must plant the number and kind of trees the Tree Officer directs in the area where the tree was felled (Section 10).
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "The Delhi Preservation of Trees Act, 1994", publisher: "India Code (Government of India)", url: "https://www.indiacode.nic.in/bitstream/123456789/13589/1/the_delhi_preservation_of_trees_act_1994.pdf", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      The Act text read has no heritage-tree or age provision. Penalty in that text (Section 24): up to one year's imprisonment or a fine up to Rs 1,000, or both; amendments and the current consolidated text were not checked.
+
+  - id: in-dl-compensatory-plantation-circular
+    scope: IN
+    country: IN
+    subdivision: IN-DL
+    locality: null
+    name: "Delhi Forest Department circular: plant 10 saplings for each tree felled"
+    authority: "Department of Forests & Wildlife, Government of NCT of Delhi"
+    category: compensatory-planting
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: urban}
+    outcome_for_existing_trees: conditional
+    summary: >-
+      Delhi tree-felling permissions carry a condition to plant 10 saplings for each tree felled and to maintain them for 5 to 7 years.
+    details: >-
+      Circular No. FAWL-L/3/2023-Tree Cell, I/76547/2023 dated 2 June 2023 states that Tree Officers grant felling permission under section 9 of the Delhi Preservation of Trees Act, 1994 'on conditions ... one of them being plantation of 10 saplings for each tree felled and maintaining the same for 5-7 years'. Applications must give the girth at 1.85 m above ground and the Tree Officer decides within sixty days. The circular directs Tree Officers to act under sections 11, 12 and 31 against non-compliance and to plant using forfeited security deposits. The ratio does not depend on the age of the tree.
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Circular No. FAWL-L/3/2023-Tree Cell, I/76547/2023 (2 June 2023)", publisher: "Department of Forests & Wildlife, GNCTD", url: "https://dpta.eforest.delhi.gov.in/TEMP/CIRCULAR.pdf", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      In force as of the circular date; later circulars or court orders could change the ratio. The Act itself leaves the number of replacement trees to the Tree Officer (Section 10).
+
+  # ------------------------------------------------------------------ UNITED STATES
+  - id: us-cfc-preservation-protocol
+    scope: US
+    country: US
+    subdivision: null
+    locality: null
+    name: "City Forest Credits Preservation Protocol, version 14.40 (40-year)"
+    authority: "City Forest Credits (Urban Forest Carbon Registry), a nonprofit urban-forest carbon registry"
+    category: carbon-credit-eligibility
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: urban}
+    outcome_for_existing_trees: conditional
+    summary: >-
+      City Forest Credits can credit the carbon already stored in an existing urban forest stand that is at risk of being cleared, if the owner commits to preserve it for 40 years.
+    details: >-
+      Version 14.40 (10 August 2026) covers 'at-risk forested stands' with at least 80% tree canopy where precipitation is 20 inches a year or more, or 60% where it is less (Section 1.4.C); existing carbon stock is quantified for trees at least 5 inches in diameter at breast height (Section 11.1.B) and stand age is established from documentation or tree coring (Section 11.1.A.ii). The stand must show risk of conversion by one of three tests (at least 30% of its perimeter bordering non-forest, developed or improved uses; a sale or assessed value above USD 8,000 per acre within three years; or a higher value in non-forest use) (Section 4.4) and must not already be protected by a recorded encumbrance (Section 4.2). The project duration is 40 years including the preservation commitment (Section 2.2) and 10% of credits go to the registry reversal pool (Section 11.4).
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Preservation Protocol v14.40 (40-year)", publisher: "City Forest Credits", url: "https://www.cityforestcredits.org/wp-content/uploads/2026/08/CFC-Preservation-Protocol-v14.40.pdf", accessed: "2026-10-05"}
+      - {title: "Carbon protocols (current versions)", publisher: "City Forest Credits", url: "https://www.cityforestcredits.org/carbon-protocols/", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      This is avoided loss of existing stock, not new removals, and quantification applies deductions (an 80% factor with the USFS tables method, one standard error with inventory methods). Growth after the initial crediting period is credited only through updated documentation and verification (Section 11.6). A 100-year version (v14.100) is listed on the protocols page but was not opened.
+
+  - id: us-cfc-afforestation-protocol
+    scope: US
+    country: US
+    subdivision: null
+    locality: null
+    name: "City Forest Credits Afforestation and Reforestation Protocol, version 12 (26-year)"
+    authority: "City Forest Credits (Urban Forest Carbon Registry)"
+    category: carbon-credit-eligibility
+    applies_to: {min_age_years: null, max_age_years: null, trees: new-planting, setting: urban}
+    outcome_for_existing_trees: not-eligible
+    summary: >-
+      City Forest Credits' tree-planting protocol credits only newly planted project trees; trees that already stand, trees planted to meet a legal requirement and trees planted after cutting healthy trees are not eligible.
+    details: >-
+      Version 12 (29 February 2024) covers tree planting in urban areas for conservation, not harvest. Section 1.9: 'Proposed projects that convert a forested land use or that cut down healthy, non-invasive trees and plant project trees for crediting are not eligible.' Section 1.8: 'Trees required to be planted by a law or ordinance are not eligible for crediting, unless they are replacement trees' for trees removed for reasons such as poor health, safety hazards, disease, age, invasive species or best management practices. The project duration is 26 years from the date the last project tree is planted (Section 2.2), with ex ante credits issued at five milestones: 10% after planting, 30% at year 4, 30% at year 6, 10% at year 14 and the remainder at year 26 (Section 6.1).
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Afforestation and Reforestation Protocol v12 (26 years)", publisher: "City Forest Credits", url: "https://www.cityforestcredits.org/wp-content/uploads/2024/03/CFC-Afforestation-Protocol-v12.pdf", accessed: "2026-10-05"}
+      - {title: "Carbon protocols (current versions)", publisher: "City Forest Credits", url: "https://www.cityforestcredits.org/carbon-protocols/", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      The website dates version 12 as March 2024 while the PDF cover says 29 February 2024. Interpretation, not protocol text: planting that a permit makes compulsory (for example compensatory planting for removing a healthy tree) is unlikely to qualify under the legal-requirement test.
+
+  - id: us-car-forest-protocol-ifm
+    scope: US
+    country: US
+    subdivision: null
+    locality: null
+    name: "Climate Action Reserve U.S. Forest Protocol v5.1: Improved Forest Management"
+    authority: "Climate Action Reserve"
+    category: carbon-credit-eligibility
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: forest}
+    outcome_for_existing_trees: conditional
+    summary: >-
+      Improved Forest Management credits only the extra carbon an existing forest holds compared with a baseline, not the carbon it already stores, and requires 100 years of monitoring.
+    details: >-
+      Eligible project types are reforestation, improved forest management (activities that 'maintain or increase carbon stocks on forested land relative to baseline levels') and avoided conversion (Section 2.1); IFM must be on land with more than ten percent tree canopy cover and use natural forest management practices (Sections 2.1.2 and 3.9.2). Credits are based on actual onsite carbon stocks minus baseline estimates (Section 6), so existing standing carbon is not credited in itself, and projects must go above and beyond what compliance with any federal, state or local law would deliver (Section 3.3.1). Project operators must monitor and verify for 100 years after issuance of any credit, the baseline is assumed valid for 100 years, and a buffer pool covers reversals (Sections 3.5, 3.4 and 7.2).
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "U.S. Forest Protocol, Version 5.1", publisher: "Climate Action Reserve", url: "https://climateactionreserve.org/wp-content/uploads/2023/07/Final_Forest_Protocol_V5.1_7.14.2023.pdf", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      Version 5.1 (July 2023 file). Newer versions were not checked. Section numbers were read through a page-summarising tool; confirm against the PDF before quoting.
+
+  - id: us-acr-ifm-non-federal-v2-1
+    scope: US
+    country: US
+    subdivision: null
+    locality: null
+    name: "ACR Improved Forest Management on Non-Federal U.S. Forestlands, v2.1"
+    authority: "American Carbon Registry (ACR)"
+    category: carbon-credit-eligibility
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: forest}
+    outcome_for_existing_trees: conditional
+    summary: >-
+      ACR credits the extra live and dead biomass carbon a non-federal forest keeps compared with a harvest baseline; it sets no stand-age test and does not credit existing carbon stock as such.
+    details: >-
+      Emission Reduction Tons are quantified from forgone baseline timber harvests and from removals through retention of with-project forest growth against a project-specific harvesting baseline (Sections 1.1 and 4.1). The project must demonstrate 'an increase in with-project live biomass carbon and dead wood pools, in sum, relative to those pools in the baseline scenario by the end of the Crediting Period' (Section 1.2). Eligible land is non-federal forest where the controlling entity can legally harvest and holds clear title or timber rights; no explicit age requirement appears in the eligibility text, but the baseline uses 'financially mature timber (i.e., at least as old as the optimal rotation age)' (Section 4.1.4). The minimum project term is 40 years and the crediting period 20 years with possible renewal (Section 2.2).
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Improved Forest Management (IFM) on Non-Federal U.S. Forestlands, Version 2.1 (July 2024)", publisher: "American Carbon Registry", url: "https://acrcarbon.org/wp-content/uploads/2022/07/ACR-Methodology-IFM-on-Non-Federal-US-Forestlands-v2_1-20240701.pdf", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      Section numbers were read through a page-summarising tool; confirm against the PDF before quoting. Newer ACR versions were not checked.
+
+  - id: us-family-forest-carbon-vm0045
+    scope: US
+    country: US
+    subdivision: null
+    locality: null
+    name: "Family Forest Carbon Program (American Forest Foundation) with Verra VM0045 dynamic matched baselines"
+    authority: "American Forest Foundation; Verra (VM0045)"
+    category: carbon-credit-eligibility
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: forest}
+    outcome_for_existing_trees: conditional
+    summary: >-
+      Private owners of 30 or more acres of naturally regenerating forest can enrol in a 20-year programme that rewards a changed management practice, such as growing older forests, measured against matched baseline plots rather than the age of the trees.
+    details: >-
+      The programme asks owners to 'own 30 or more acres of non-planted, naturally regenerating trees', to have 'the legal right to harvest' and to be in one of 20 listed states, with a 20-year commitment period and practices such as 'Growing Mature Forests' (Appalachians and Midwest) and 'Grow Older Forests' (Northeast). The American Forest Foundation states the programme uses Verra VM0045, in which eligible projects 'adopt one or more specific, non-pre-existing, IFM practices' and baselines come from matched pairs of project and control plots in national forest inventory data. VM0045 accounting focuses 'on the estimation of GHG emissions and/or carbon stock change on permanent plots, not on the estimation of stocks per se'; v1.2 became active on 10 July 2025.
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Family Forest Carbon Program: how it works", publisher: "American Forest Foundation", url: "https://familyforestcarbon.org/about-the-program/how-it-works/", accessed: "2026-10-05"}
+      - {title: "Family Forest Carbon Program: get started (eligibility)", publisher: "American Forest Foundation", url: "https://familyforestcarbon.org/about-the-program/get-started/", accessed: "2026-10-05"}
+      - {title: "VM0045 Improved Forest Management Using Dynamic Matched Baselines from National Forest Inventories, v1.2", publisher: "Verra", url: "https://verra.org/methodologies/vm0045-improved-forest-management-using-dynamic-matched-baselines-from-national-forest-inventories-v1-2/", accessed: "2026-10-05"}
+      - {title: "First improved forest management methodology designed for family forests recognized by global body for high integrity", publisher: "American Forest Foundation", url: "https://www.forestfoundation.org/why-we-do-it/family-forest-blog/first-improved-forest-management-methodology-designed-for-family-forests-recognized-by-global-body-for-high-integrity/", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      The programme pages opened state no tree-age or tree-size requirement, no payment amounts and no registry. The ICVCM Core Carbon Principles label for VM0045 (13 August 2025) is as reported by the American Forest Foundation, not read on the ICVCM site.
+
+  - id: us-or-portland-heritage-trees
+    scope: US
+    country: US
+    subdivision: US-OR
+    locality: "Portland"
+    name: "Portland City Code 11.20.060: Heritage Trees"
+    authority: "City of Portland: Urban Forestry Commission and City Council"
+    category: tree-protection
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: urban}
+    outcome_for_existing_trees: protected
+    summary: >-
+      Example: Portland can designate a tree as a Heritage Tree because of its age, size, type, historical association or horticultural value, and a designated tree cannot be removed without Urban Forestry Commission consent.
+    details: >-
+      Heritage Trees are 'Trees that because of their age, size, type, historical association or horticultural value, are of special importance to the City'; the Urban Forestry Commission recommends to City Council (at least six commission members must support) and Council may designate once an arborist certifies the tree's health. 'Trees on private property may not be designated as Heritage Trees without the consent of the property owner', and the designation is recorded on the deed. 'Heritage Trees may be removed only with the consent of the UFC' after a public hearing with six-member support, and the City reports more than 300 Heritage Trees. The code sets no minimum age.
+    amount: null
+    status: in-force
+    is_example: true
+    sources:
+      - {title: "Portland City Code 11.20.060 Heritage Trees", publisher: "City of Portland", url: "https://www.portland.gov/code/11/20/060", accessed: "2026-10-05"}
+      - {title: "Heritage Trees", publisher: "City of Portland, Urban Forestry", url: "https://www.portland.gov/trees/heritage", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      Municipal example only: check your own city's tree ordinance. Portland's other tree rules (for example permits for removing non-heritage trees) were not reviewed.
+
+  - id: us-ca-los-angeles-protected-trees
+    scope: US
+    country: US
+    subdivision: US-CA
+    locality: "Los Angeles"
+    name: "City of Los Angeles Protected Tree and Shrub regulations (Ordinance 186873)"
+    authority: "City of Los Angeles: Department of City Planning; Board of Public Works (permits)"
+    category: tree-protection
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: urban}
+    outcome_for_existing_trees: protected
+    summary: >-
+      Example: in Los Angeles, native oaks, southern California black walnut, western sycamore, California bay, Mexican elderberry and toyon are protected once they reach 4 inches in cumulative trunk diameter at 4.5 feet; the test is species and size, not age.
+    details: >-
+      Protected are oaks indigenous to California (excluding scrub oak), Southern California black walnut, Western sycamore and California bay, plus the shrubs Mexican elderberry and toyon, measuring 'four inches or more in cumulative diameter, four and one-half feet above the ground level'. Owners must 'apply for and obtain a permit from the Board of Public Works' before removing, trimming or relocating them. Ordinance 186873 was adopted on 15 December 2020 and took effect on 4 February 2021, and the City's summary states 'Replacement ratio changed to 4:1'.
+    amount: null
+    status: in-force
+    is_example: true
+    sources:
+      - {title: "Protected Tree and Shrub regulations (Ordinance 186873) summary", publisher: "City of Los Angeles, Department of City Planning", url: "https://planning.lacity.gov/odocument/555281f6-f5ef-44e9-b094-1fce25c1c4dc", accessed: "2026-10-05"}
+      - {title: "Guidelines and requirements for regulated trees (P/ZC 2024-022)", publisher: "City of Los Angeles, Department of Building and Safety", url: "https://dbs.lacity.gov/sites/default/files/efs/pdf/publications/zoning/IB-GUIDELINES-AND-REQUIREMENTS-FOR-REGULATED-TREES.pdf", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      Municipal example only: check your own city's tree ordinance. The diameter threshold comes from the Building and Safety bulletin, which is undated in the extract; the planning summary does not state it. Protected-species lists and thresholds vary widely between US cities.
+
+  # ------------------------------------------------------------------ EUROPEAN UNION
+  - id: eu-crcf-regulation-2024-3012
+    scope: EU
+    country: null
+    subdivision: null
+    locality: null
+    name: "Regulation (EU) 2024/3012 (CRCF): carbon farming, quantification, baseline and additionality"
+    authority: "European Union: European Commission and recognised certification schemes"
+    category: carbon-credit-eligibility
+    applies_to: {min_age_years: null, max_age_years: null, trees: any, setting: any}
+    outcome_for_existing_trees: conditional
+    summary: >-
+      Under the EU's voluntary certification framework only net removals above a baseline from an activity lasting at least five years can be certified, and the activity must go beyond legal requirements and need the certification incentive.
+    details: >-
+      Article 2(10) defines carbon farming as 'any practice or process carried out over an activity period of at least five years, related to the management of a terrestrial or coastal environment' that results in carbon storage or lower soil emissions. Article 4 calculates the net carbon-farming benefit by subtracting baseline removals and associated emissions from total removals, preferring standardised baselines 'highly representative of the standard performance of comparable practices'. Article 5(1) requires that the activity goes 'beyond Union and national statutory requirements at the level of an individual operator' and needs 'the incentive effect of the certification' to be financially viable, and Article 5(2) presumes additionality when a standardised baseline is used. Article 6 requires monitoring for at least the activity period, with operators liable for releases during monitoring.
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Regulation (EU) 2024/3012 establishing a Union certification framework for permanent carbon removals, carbon farming and carbon storage in products", publisher: "EUR-Lex (Official Journal of the European Union)", url: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202403012", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      The Regulation text read does not address existing carbon stocks explicitly; treating them as part of the baseline follows from Article 4's net-benefit formula. An Atlas estimate is never automatically CRCF-certifiable: certification by a recognised scheme is required. Article references were read through a page-summarising tool.
+
+  - id: eu-crcf-carbon-farming-delegated-act-2026
+    scope: EU
+    country: null
+    subdivision: null
+    locality: null
+    name: "CRCF carbon-farming certification methodologies (Commission Delegated Regulation, C(2026)4666, adopted 10 July 2026)"
+    authority: "European Commission (DG CLIMA)"
+    category: carbon-credit-eligibility
+    applies_to: {min_age_years: null, max_age_years: null, trees: new-planting, setting: any}
+    outcome_for_existing_trees: conditional
+    summary: >-
+      The Commission adopted certification methodologies for afforestation, agroforestry on mineral soils and peatland rewetting on 10 July 2026; until they enter into force, certification schemes cannot yet apply for recognition for these activities.
+    details: >-
+      The Commission news item of 10 July 2026 says the delegated act (C(2026)4666) covers agriculture and agroforestry on mineral soils, rewetting and restoration of peatlands and other organic soils, and afforestation, and that 'once the Delegated Regulation enters in force, certification schemes will be able to apply for recognition' under Implementing Regulation (EU) 2025/2358. The news item and methodologies page opened do not state the methodologies' rules on existing trees, baselines, additionality or minimum monitoring period. Entry into force after Parliament and Council scrutiny was not confirmed as of 2026-10-05.
+    amount: null
+    status: proposed
+    is_example: false
+    sources:
+      - {title: "Commission adopts certification methodologies for carbon farming under the CRCF Regulation (10 July 2026)", publisher: "European Commission, DG CLIMA", url: "https://climate.ec.europa.eu/news-other-reads/news/commission-adopts-certification-methodologies-carbon-farming-under-crcf-regulation-2026-07-10_en", accessed: "2026-10-05"}
+      - {title: "Certification methodologies under the CRCF Regulation", publisher: "European Commission, DG CLIMA", url: "https://climate.ec.europa.eu/areas-action/carbon-removals-and-carbon-farming/certification-methodologies_en", accessed: "2026-10-05"}
+      - {title: "CRCF tree planting rules (critique of an earlier draft, March 2025)", publisher: "Carbon Market Watch", url: "https://carbonmarketwatch.org/wp-content/uploads/2025/03/TREE-PLANTING.pdf", accessed: "2026-10-05"}
+      - {title: "Takeaways from the carbon farming expert group (25 February 2026)", publisher: "Bellona Europa", url: "https://eu.bellona.org/2026/02/25/takeaways-from-the-carbon-farming-expert-group/", accessed: "2026-10-05"}
+    verification_status: pending
+    notes: >-
+      Status 'proposed' means adopted by the Commission but not confirmed in force. Still needed: the delegated act text and annexes to confirm whether pre-existing trees and biomass are baselined or credited, land-eligibility history, the standardised baseline and the minimum activity and monitoring periods. Third-party critiques of earlier drafts (Carbon Market Watch, March 2025: a zero standardised baseline with sparse existing trees on up to 10% of the area ignored; Bellona, 25 February 2026: pre-existing vegetation ignored with a zero baseline) are not evidence of the adopted text.
+
+  - id: eu-old-growth-forests-guidelines
+    scope: EU
+    country: null
+    subdivision: null
+    locality: null
+    name: "Guidelines for defining, mapping, monitoring and strictly protecting EU primary and old-growth forests (SWD(2023) 62 final)"
+    authority: "European Commission (DG Environment)"
+    category: tree-protection
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: forest}
+    outcome_for_existing_trees: conditional
+    summary: >-
+      Non-binding EU guidance tells Member States how to identify and strictly protect old-growth forests using structural indicators such as old or large trees and deadwood; it sets no numeric tree-age threshold.
+    details: >-
+      Section 2.3 (p. 7) defines old-growth forest as 'A forest stand or area consisting of native tree species that have developed, predominantly through natural processes, structures and dynamics normally associated with late-seral developmental phases in primary or undisturbed forests of the same type.' Section 3.2 lists seven indicators (three main, four complementary); the main ones include native species composition, a high proportion and diversity of standing and lying deadwood, and the 'presence of old or large trees, some of which may reach the maximum age known for the species'. The guidelines contain no numerical age threshold and are 'voluntary and not prescriptive', not a binding condition for state aid or EU funding.
+    amount: null
+    status: in-force
+    is_example: false
+    sources:
+      - {title: "Guidelines for defining, mapping, monitoring and strictly protecting EU primary and old-growth forests (publication page)", publisher: "European Commission, DG Environment", url: "https://environment.ec.europa.eu/publications/guidelines-defining-mapping-monitoring-and-strictly-protecting-eu-primary-and-old-growth-forests_en", accessed: "2026-10-05"}
+      - {title: "Commission Staff Working Document SWD(2023) 62 final (full text, third-party copy)", publisher: "actu-environnement.com (copy of the Commission document)", url: "https://www.actu-environnement.com/media/pdf/news-41427-lignes-directrices-forets-primaires-ue.pdf", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      Status 'in-force' here only means the guidance is published; it is not law. The full text was read from a third-party copy because the Commission download link redirected to the documents register; the Commission publication page confirms title, date (21 March 2023) and purpose. Protection of old-growth forests depends on Member State mapping and national or regional law.
+
+  - id: eu-de-berlin-baumschutzverordnung
+    scope: EU
+    country: DE
+    subdivision: DE-BE
+    locality: "Berlin"
+    name: "Berliner Baumschutzverordnung (BaumSchVO)"
+    authority: "Land Berlin: Umwelt- und Naturschutzämter of the district offices"
+    category: tree-protection
+    applies_to: {min_age_years: null, max_age_years: null, trees: existing, setting: urban}
+    outcome_for_existing_trees: protected
+    summary: >-
+      Example: in Berlin, deciduous trees (except fruit trees), Scots pines, walnuts and Turkish hazels are protected once the trunk circumference is 80 cm at 1.30 m height, or 50 cm on at least one stem of a multi-stem tree; the test is size, not age.
+    details: >-
+      Protected are all deciduous trees except fruit trees, Scots pine (Pinus sylvestris) and, among fruit trees, walnut and Turkish hazel; a single-stem tree needs a trunk circumference of at least 80 cm and a multi-stem tree at least one stem of 50 cm, measured at 130 cm above the ground (directly under the crown if it starts lower). Felling, significant pruning and root interventions need an exemption permit, which the district office can grant only in the cases listed in section 5 of the ordinance and usually with conditions for replacement planting (Ersatzpflanzung) or a compensation payment (Ausgleichszahlung). Newly planted replacement trees are protected whatever their circumference.
+    amount: null
+    status: in-force
+    is_example: true
+    sources:
+      - {title: "Baumschutzverordnung: Ausnahmegenehmigung (service description)", publisher: "Service Berlin (Land Berlin)", url: "https://service.berlin.de/dienstleistung/330487/", accessed: "2026-10-05"}
+      - {title: "Baumschutz (Umwelt- und Naturschutzamt Mitte)", publisher: "Bezirksamt Mitte von Berlin", url: "https://www.berlin.de/ba-mitte/politik-und-verwaltung/aemter/umwelt-und-naturschutzamt/naturschutz/artikel.246719.php", accessed: "2026-10-05"}
+    verification_status: verified
+    notes: >-
+      Municipal example only: other German cities have their own Baumschutzsatzung with different thresholds. The ordinance text itself could not be read (the umwelt-online.de copy was unreadable), so details come from the Berlin service portal and a district office page, which also name the legal basis (BNatSchG sections 29(1) and 39(5) no. 2, BaumSchVO section 5, NatSchG Bln).

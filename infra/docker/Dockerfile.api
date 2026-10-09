@@ -1,0 +1,81 @@
+# syntax=docker/dockerfile:1.7
+# AgriCarbon Atlas — API image (FastAPI + engines + adapters)
+#
+# Build:   docker build -f infra/docker/Dockerfile.api -t agricarbon-atlas-api .
+# Run:     docker run --rm -p 8000:8000 -e ATLAS_MODE=demo agricarbon-atlas-api
+# Health:  curl http://localhost:8000/api/v1/health
+#
+# Design notes
+# - Single stage on python:3.12-slim; the pinned requirements install as
+#   manylinux wheels (rasterio bundles GDAL), so no compiler is needed.
+# - Runs as a dedicated non-root user (uid/gid 10001), matching the
+#   `user: "10001:10001"` in docker-compose.yml.
+# - Cache and report directories are absolute (/app/.cache, /app/.reports) so
+#   that compose volumes line up regardless of WORKDIR.
+# - No secrets are baked in; configuration comes from the environment
+#   (see .env.example).
+
+FROM python:3.12-slim AS runtime
+
+ARG ATLAS_UID=10001
+ARG ATLAS_GID=10001
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    ATLAS_API_HOST=0.0.0.0 \
+    ATLAS_API_PORT=8000 \
+    ATLAS_CACHE_DIR=/app/.cache \
+    ATLAS_REPORTS_DIR=/app/.reports \
+    ATLAS_CONFIG_DIR=/app/config
+
+# Minimal OS updates; tini gives uvicorn proper signal handling.
+RUN apt-get update \
+    && apt-get upgrade -y --no-install-recommends \
+    && apt-get install -y --no-install-recommends tini \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN groupadd --gid "${ATLAS_GID}" atlas \
+    && useradd --uid "${ATLAS_UID}" --gid "${ATLAS_GID}" --create-home \
+       --home-dir /home/atlas --shell /usr/sbin/nologin atlas
+
+WORKDIR /app
+
+# Dependencies first for layer caching.
+COPY requirements.txt ./
+RUN --mount=type=cache,target=/root/.cache/pip,sharing=locked \
+    python -m pip install -r requirements.txt
+
+# Source: engines, adapters, API, configuration and schemas.
+COPY packages/ ./packages/
+COPY integrations/ ./integrations/
+COPY apps/api/ ./apps/api/
+COPY config/ ./config/
+COPY data/schemas/ ./data/schemas/
+COPY CLAUDE.md LICENSE ./
+
+RUN --mount=type=cache,target=/root/.cache/pip,sharing=locked \
+    python -m pip install \
+      -e packages/carbon-engine \
+      -e packages/geo-engine \
+      -e packages/policy-engine \
+      -e packages/report-engine \
+      -e packages/agent-framework \
+      -e integrations \
+      -e apps/api
+
+RUN mkdir -p /app/.cache /app/.reports \
+    && chown -R atlas:atlas /app
+
+USER ${ATLAS_UID}:${ATLAS_GID}
+WORKDIR /app/apps/api
+
+EXPOSE 8000
+
+# No curl in the image: use the standard library for the health probe.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+  CMD python -c "import sys,urllib.request; r=urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=4); sys.exit(0 if r.status==200 else 1)" || exit 1
+
+ENTRYPOINT ["/usr/bin/tini", "--"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

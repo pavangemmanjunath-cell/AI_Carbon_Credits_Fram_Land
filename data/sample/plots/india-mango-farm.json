@@ -1,0 +1,52 @@
+{
+  "plot_id": "PLT-DEMOIN",
+  "name": "Demo mango orchard (synthetic)",
+  "country": "IN",
+  "note": "Synthetic polygon in rural Karnataka, India. NOT a real farm boundary.",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          77.538768,
+          13.293146
+        ],
+        [
+          77.539082,
+          13.292486
+        ],
+        [
+          77.539131,
+          13.291788
+        ],
+        [
+          77.538439,
+          13.291532
+        ],
+        [
+          77.537802,
+          13.291787
+        ],
+        [
+          77.537519,
+          13.292452
+        ],
+        [
+          77.53806,
+          13.292909
+        ],
+        [
+          77.538768,
+          13.293146
+        ]
+      ]
+    ]
+  },
+  "inventory": {
+    "species_id": "mango",
+    "tree_count": 420,
+    "plantation_year": 2023,
+    "survival_rate": 0.85,
+    "measurement_source": "user-reported"
+  }
+}

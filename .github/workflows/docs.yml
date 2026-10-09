@@ -1,0 +1,110 @@
+name: Docs
+
+# Runs when documentation changes (and weekly, because external sites move).
+#
+# - markdownlint: style rules from .markdownlint.yml
+# - Internal links (blocking): every relative link and #anchor between the
+#   Markdown files must resolve. Runs lychee in --offline mode, so it needs no
+#   network and a flaky upstream site can never block a documentation fix.
+# - External links (advisory): checked on pushes to main, weekly and on demand.
+#   Failures are written to the job summary but do not fail the workflow,
+#   because many agencies (data.gov.in, eur-lex, moef.gov.in, ...) block
+#   automated clients intermittently.
+#
+# Hosts that must not be probed (localhost, example.org, <org> placeholders and
+# bot-hostile agency sites) are excluded in .lychee.toml and again below.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "**/*.md"
+      - "docs/**"
+      - ".github/workflows/docs.yml"
+      - ".lychee.toml"
+      - ".markdownlint.yml"
+  pull_request:
+    paths:
+      - "**/*.md"
+      - "docs/**"
+      - ".github/workflows/docs.yml"
+      - ".lychee.toml"
+      - ".markdownlint.yml"
+  schedule:
+    # Weekly external-link check, Wednesday 06:23 UTC
+    - cron: "23 6 * * 3"
+  workflow_dispatch:
+
+concurrency:
+  group: docs-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  markdownlint:
+    name: markdownlint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: markdownlint-cli2
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            **/*.md
+            !**/node_modules/**
+            !apps/web/dist/**
+            !LICENSE
+
+  links:
+    name: Link check (lychee)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      # Offline: relative links, anchors and image paths only. Always blocking.
+      - name: Internal links and anchors (offline, blocking)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --config .lychee.toml
+            --offline
+            --no-progress
+            './**/*.md'
+          fail: true
+          failIfEmpty: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Restore lychee cache
+        if: github.event_name != 'pull_request'
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: lychee-${{ github.sha }}
+          restore-keys: lychee-
+
+      # Online: advisory. Skipped on pull requests so that contributors are not
+      # blocked by third-party outages or rate limits.
+      - name: External links (advisory)
+        if: github.event_name != 'pull_request'
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --config .lychee.toml
+            --cache --max-cache-age 7d
+            --exclude-loopback
+            --exclude '^https?://([a-z0-9-]+\.)*example\.(org|com)'
+            --exclude '^https?://localhost'
+            --no-progress
+            './**/*.md'
+          fail: false
+          failIfEmpty: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

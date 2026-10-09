@@ -1,0 +1,52 @@
+{
+  "items": [
+    {
+      "id": "osm",
+      "text": "© OpenStreetMap contributors",
+      "url": "https://www.openstreetmap.org/copyright",
+      "license": "ODbL"
+    },
+    {
+      "id": "esa-worldcover",
+      "text": "ESA WorldCover 2021 v200 © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+      "url": "https://esa-worldcover.org/",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "copernicus-sentinel-2",
+      "text": "Contains modified Copernicus Sentinel data",
+      "url": "https://dataspace.copernicus.eu/",
+      "license": "Copernicus data licence (free, full and open)"
+    },
+    {
+      "id": "open-meteo",
+      "text": "Weather and climate data by Open-Meteo.com",
+      "url": "https://open-meteo.com/",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "soilgrids",
+      "text": "SoilGrids © ISRIC — World Soil Information",
+      "url": "https://soilgrids.org/",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "maplibre",
+      "text": "MapLibre GL JS",
+      "url": "https://maplibre.org/",
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "usda-nass",
+      "text": "USDA National Agricultural Statistics Service, Quick Stats",
+      "url": "https://quickstats.nass.usda.gov/",
+      "license": "US public data (acknowledge source)"
+    },
+    {
+      "id": "data-gov-in",
+      "text": "Open Government Data (OGD) Platform India, Ministry of Agriculture & Farmers Welfare",
+      "url": "https://data.gov.in/",
+      "license": "Government Open Data License – India (GODL)"
+    }
+  ]
+}

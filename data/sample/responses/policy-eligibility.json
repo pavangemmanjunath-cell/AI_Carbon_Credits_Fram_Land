@@ -1,0 +1,93 @@
+{
+  "country": "IN",
+  "activity": "tree_plantation",
+  "disclaimer": "Initial screening only — not an eligibility determination. Green Credits (GCP) and carbon credits (CCTS) are separate mechanisms.",
+  "programmes": [
+    {
+      "id": "in-gcp",
+      "name": "Green Credit Programme",
+      "authority": "Ministry of Environment, Forest and Climate Change (MoEFCC)",
+      "kind": "government_programme",
+      "status": "requires_assessment",
+      "requirements": [
+        "Registration on the Green Credit Programme portal",
+        "Plantation on land parcels identified/approved under the programme",
+        "Verification of tree survival per the notified methodology",
+        "Understanding that Green Credits are not carbon credits and cannot be used for CCTS compliance"
+      ],
+      "notes": [
+        "Tree plantation is a notified Green Credit activity, but the 2024 tree-plantation methodology targets identified degraded land parcels made available by state forest departments; applicability to private farmland must be confirmed with the administrator (ICFRE).",
+        "Green Credit Programme is a separate mechanism from CCTS."
+      ],
+      "references": [
+        {
+          "title": "MoEFCC — Green Credit Programme (notification and methodology)",
+          "url": "https://moef.gov.in/"
+        },
+        {
+          "title": "ICFRE — Green Credit Programme administrator",
+          "url": "https://icfre.gov.in/"
+        }
+      ],
+      "distinct_from": [
+        "in-ccts"
+      ],
+      "url": "https://moef.gov.in/"
+    },
+    {
+      "id": "in-ccts",
+      "name": "Carbon Credit Trading Scheme (offset mechanism)",
+      "authority": "Bureau of Energy Efficiency (BEE), Ministry of Power",
+      "kind": "compliance_market",
+      "status": "requires_methodology_assessment",
+      "requirements": [
+        "Approved offset methodology applicable to the activity",
+        "Baseline and additionality demonstration",
+        "Monitoring plan with measurements (e.g. DBH, survival) and leakage assessment",
+        "Verification by a BEE-accredited carbon verification agency",
+        "Registration with the registry under the scheme"
+      ],
+      "notes": [
+        "BEE lists agriculture and forestry among sectors covered by accredited carbon verification agencies under the offset mechanism; a project needs an approved methodology, baseline, additionality demonstration, monitoring and third-party verification before any Carbon Credit Certificate is issued.",
+        "CCTS is a separate mechanism from Green Credit Programme."
+      ],
+      "references": [
+        {
+          "title": "BEE — Carbon Credit Trading Scheme",
+          "url": "https://beeindia.gov.in/"
+        },
+        {
+          "title": "Carbon Credit Trading Scheme, 2023 (Ministry of Power notification)",
+          "url": "https://beeindia.gov.in/"
+        }
+      ],
+      "distinct_from": [
+        "in-gcp"
+      ],
+      "url": "https://beeindia.gov.in/"
+    },
+    {
+      "id": "in-state-agroforestry",
+      "name": "State agroforestry / horticulture missions (incentives)",
+      "authority": "State governments (e.g. Karnataka Krishi Aranya Protsaha Yojane)",
+      "kind": "incentive_programme",
+      "status": "potentially_applicable",
+      "requirements": [
+        "Farmer registration with the state forest/horticulture department",
+        "Survival verification after 1–3 years"
+      ],
+      "notes": [
+        "Several states pay per-surviving-tree incentives or subsidise saplings for farmers; conditions vary by state."
+      ],
+      "references": [
+        {
+          "title": "Karnataka Forest Department — Krishi Aranya Protsaha Yojane",
+          "url": "https://aranya.gov.in/"
+        }
+      ],
+      "distinct_from": [],
+      "url": "https://aranya.gov.in/"
+    }
+  ],
+  "region": "IN"
+}

@@ -1,0 +1,19 @@
+# Issue chooser configuration.
+#
+# Blank issues stay disabled so that every report arrives with the fields a maintainer
+# needs (the forms in this directory). The links below assume the repository lives at
+# github.com/agricarbon-atlas/agricarbon-atlas; change the owner if you host a fork.
+blank_issues_enabled: false
+contact_links:
+  - name: Security or privacy problem (private report)
+    url: https://github.com/agricarbon-atlas/agricarbon-atlas/blob/main/SECURITY.md
+    about: Leaked farm geometry, authentication bypass, vulnerable dependencies. Never in a public issue. SECURITY.md explains how to report privately.
+  - name: Question or discussion
+    url: https://github.com/agricarbon-atlas/agricarbon-atlas/discussions
+    about: Ask how something works, propose an idea before writing code, or share how you use the Atlas.
+  - name: User guide and FAQ
+    url: https://github.com/agricarbon-atlas/agricarbon-atlas/blob/main/docs/user-guide/faq.md
+    about: Many questions about ranges, confidence, readiness and why an estimate is not a credit are answered there.
+  - name: Documentation index
+    url: https://github.com/agricarbon-atlas/agricarbon-atlas/blob/main/docs/README.md
+    about: User guide, developer guide, region notes, data sources and licensing.

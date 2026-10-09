@@ -1,0 +1,59 @@
+# Root tooling configuration for the AgriCarbon Atlas monorepo (Python side).
+# Individual packages have their own pyproject.toml for packaging; this file
+# configures pytest, ruff and mypy so everything runs from the repository root
+# without installing the packages (pythonpath below).
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["packages", "apps/api/tests", "integrations", "tests"]
+pythonpath = [
+  "packages/carbon-engine",
+  "packages/geo-engine",
+  "packages/policy-engine",
+  "packages/report-engine",
+  "packages/agent-framework",
+  "integrations",
+  "apps/api",
+]
+asyncio_mode = "auto"
+addopts = "-ra --strict-markers"
+markers = [
+  "production: data-quality checks that only run when ATLAS_ENV=production",
+]
+filterwarnings = [
+  "ignore::DeprecationWarning:pystac.*",
+  "ignore::DeprecationWarning:rasterio.*",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["apps/web", "node_modules", ".cache", ".reports"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = [
+  "B008",  # FastAPI Depends()/Query() in defaults is idiomatic
+  "E501",  # `ruff format` owns line length; long user-facing strings stay unbroken
+]
+
+[tool.ruff.lint.isort]
+known-first-party = [
+  "carbon_engine",
+  "geo_engine",
+  "policy_engine",
+  "report_engine",
+  "atlas_integrations",
+  "atlas_agents",
+  "app",
+]
+
+[tool.mypy]
+python_version = "3.12"
+warn_unused_ignores = false
+ignore_missing_imports = true
+no_implicit_optional = true
+check_untyped_defs = true
+mypy_path = "packages/carbon-engine:packages/geo-engine:packages/policy-engine:packages/report-engine:packages/agent-framework:integrations:apps/api"
+explicit_package_bases = true
+exclude = ["apps/web", "tests/"]

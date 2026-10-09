@@ -1,0 +1,143 @@
+# ISO 3166-2 subdivisions used by the tree-age rules (state / union territory / Land).
+#
+# Codes are exact ISO 3166-2 codes (ISO Online Browsing Platform, https://www.iso.org/obp; the list
+# was cross-checked against the Debian iso-codes package, version 4.16.0). Names are the English
+# names with diacritics removed, except German names, which keep their umlauts. Examples of codes
+# that differ from habit: Odisha is IN-OD (not IN-OR), Chhattisgarh IN-CG, Telangana IN-TS,
+# Uttarakhand IN-UK, and Dadra and Nagar Haveli and Daman and Diu is the single territory IN-DH.
+#
+# Only the countries that have a subdivision-specific tree-age rule today are listed: India and the
+# United States (the Atlas's MVP countries) and Germany (the Berlin example in rules.yaml). Add
+# another country by adding a block; a rule's `subdivision` must exist here (checked in
+# tests/data-quality/test_tree_age_rules.py). Nothing here is a legal or administrative boundary;
+# it only labels the places a rule names. An optional `article: the` on a country block is used
+# only to write plain sentences ("Applies in the United States ...").
+version: 0.1.0
+updated: 2026-10-05
+source:
+  name: ISO 3166-2 (country subdivision codes)
+  url: https://www.iso.org/iso-3166-country-codes.html
+  accessed: "2026-10-05"
+countries:
+  IN:
+    name: India
+    subdivision_label: "State or union territory"
+    subdivisions:
+      - {code: IN-AN, name: "Andaman and Nicobar Islands", type: union-territory}
+      - {code: IN-AP, name: "Andhra Pradesh", type: state}
+      - {code: IN-AR, name: "Arunachal Pradesh", type: state}
+      - {code: IN-AS, name: "Assam", type: state}
+      - {code: IN-BR, name: "Bihar", type: state}
+      - {code: IN-CG, name: "Chhattisgarh", type: state}
+      - {code: IN-CH, name: "Chandigarh", type: union-territory}
+      - {code: IN-DH, name: "Dadra and Nagar Haveli and Daman and Diu", type: union-territory}
+      - {code: IN-DL, name: "Delhi", type: union-territory}
+      - {code: IN-GA, name: "Goa", type: state}
+      - {code: IN-GJ, name: "Gujarat", type: state}
+      - {code: IN-HP, name: "Himachal Pradesh", type: state}
+      - {code: IN-HR, name: "Haryana", type: state}
+      - {code: IN-JH, name: "Jharkhand", type: state}
+      - {code: IN-JK, name: "Jammu and Kashmir", type: union-territory}
+      - {code: IN-KA, name: "Karnataka", type: state}
+      - {code: IN-KL, name: "Kerala", type: state}
+      - {code: IN-LA, name: "Ladakh", type: union-territory}
+      - {code: IN-LD, name: "Lakshadweep", type: union-territory}
+      - {code: IN-MH, name: "Maharashtra", type: state}
+      - {code: IN-ML, name: "Meghalaya", type: state}
+      - {code: IN-MN, name: "Manipur", type: state}
+      - {code: IN-MP, name: "Madhya Pradesh", type: state}
+      - {code: IN-MZ, name: "Mizoram", type: state}
+      - {code: IN-NL, name: "Nagaland", type: state}
+      - {code: IN-OD, name: "Odisha", type: state}
+      - {code: IN-PB, name: "Punjab", type: state}
+      - {code: IN-PY, name: "Puducherry", type: union-territory}
+      - {code: IN-RJ, name: "Rajasthan", type: state}
+      - {code: IN-SK, name: "Sikkim", type: state}
+      - {code: IN-TN, name: "Tamil Nadu", type: state}
+      - {code: IN-TR, name: "Tripura", type: state}
+      - {code: IN-TS, name: "Telangana", type: state}
+      - {code: IN-UK, name: "Uttarakhand", type: state}
+      - {code: IN-UP, name: "Uttar Pradesh", type: state}
+      - {code: IN-WB, name: "West Bengal", type: state}
+  US:
+    name: United States
+    article: the
+    subdivision_label: "State, district or territory"
+    subdivisions:
+      - {code: US-AK, name: "Alaska", type: state}
+      - {code: US-AL, name: "Alabama", type: state}
+      - {code: US-AR, name: "Arkansas", type: state}
+      - {code: US-AS, name: "American Samoa", type: outlying-area}
+      - {code: US-AZ, name: "Arizona", type: state}
+      - {code: US-CA, name: "California", type: state}
+      - {code: US-CO, name: "Colorado", type: state}
+      - {code: US-CT, name: "Connecticut", type: state}
+      - {code: US-DC, name: "District of Columbia", type: federal-district}
+      - {code: US-DE, name: "Delaware", type: state}
+      - {code: US-FL, name: "Florida", type: state}
+      - {code: US-GA, name: "Georgia", type: state}
+      - {code: US-GU, name: "Guam", type: outlying-area}
+      - {code: US-HI, name: "Hawaii", type: state}
+      - {code: US-IA, name: "Iowa", type: state}
+      - {code: US-ID, name: "Idaho", type: state}
+      - {code: US-IL, name: "Illinois", type: state}
+      - {code: US-IN, name: "Indiana", type: state}
+      - {code: US-KS, name: "Kansas", type: state}
+      - {code: US-KY, name: "Kentucky", type: state}
+      - {code: US-LA, name: "Louisiana", type: state}
+      - {code: US-MA, name: "Massachusetts", type: state}
+      - {code: US-MD, name: "Maryland", type: state}
+      - {code: US-ME, name: "Maine", type: state}
+      - {code: US-MI, name: "Michigan", type: state}
+      - {code: US-MN, name: "Minnesota", type: state}
+      - {code: US-MO, name: "Missouri", type: state}
+      - {code: US-MP, name: "Northern Mariana Islands", type: outlying-area}
+      - {code: US-MS, name: "Mississippi", type: state}
+      - {code: US-MT, name: "Montana", type: state}
+      - {code: US-NC, name: "North Carolina", type: state}
+      - {code: US-ND, name: "North Dakota", type: state}
+      - {code: US-NE, name: "Nebraska", type: state}
+      - {code: US-NH, name: "New Hampshire", type: state}
+      - {code: US-NJ, name: "New Jersey", type: state}
+      - {code: US-NM, name: "New Mexico", type: state}
+      - {code: US-NV, name: "Nevada", type: state}
+      - {code: US-NY, name: "New York", type: state}
+      - {code: US-OH, name: "Ohio", type: state}
+      - {code: US-OK, name: "Oklahoma", type: state}
+      - {code: US-OR, name: "Oregon", type: state}
+      - {code: US-PA, name: "Pennsylvania", type: state}
+      - {code: US-PR, name: "Puerto Rico", type: outlying-area}
+      - {code: US-RI, name: "Rhode Island", type: state}
+      - {code: US-SC, name: "South Carolina", type: state}
+      - {code: US-SD, name: "South Dakota", type: state}
+      - {code: US-TN, name: "Tennessee", type: state}
+      - {code: US-TX, name: "Texas", type: state}
+      - {code: US-UM, name: "United States Minor Outlying Islands", type: outlying-area}
+      - {code: US-UT, name: "Utah", type: state}
+      - {code: US-VA, name: "Virginia", type: state}
+      - {code: US-VI, name: "U.S. Virgin Islands", type: outlying-area}
+      - {code: US-VT, name: "Vermont", type: state}
+      - {code: US-WA, name: "Washington", type: state}
+      - {code: US-WI, name: "Wisconsin", type: state}
+      - {code: US-WV, name: "West Virginia", type: state}
+      - {code: US-WY, name: "Wyoming", type: state}
+  DE:
+    name: Germany
+    subdivision_label: "State (Land)"
+    subdivisions:
+      - {code: DE-BB, name: "Brandenburg", type: land}
+      - {code: DE-BE, name: "Berlin", type: land}
+      - {code: DE-BW, name: "Baden-Württemberg", type: land}
+      - {code: DE-BY, name: "Bayern", type: land}
+      - {code: DE-HB, name: "Bremen", type: land}
+      - {code: DE-HE, name: "Hessen", type: land}
+      - {code: DE-HH, name: "Hamburg", type: land}
+      - {code: DE-MV, name: "Mecklenburg-Vorpommern", type: land}
+      - {code: DE-NI, name: "Niedersachsen", type: land}
+      - {code: DE-NW, name: "Nordrhein-Westfalen", type: land}
+      - {code: DE-RP, name: "Rheinland-Pfalz", type: land}
+      - {code: DE-SH, name: "Schleswig-Holstein", type: land}
+      - {code: DE-SL, name: "Saarland", type: land}
+      - {code: DE-SN, name: "Sachsen", type: land}
+      - {code: DE-ST, name: "Sachsen-Anhalt", type: land}
+      - {code: DE-TH, name: "Thüringen", type: land}

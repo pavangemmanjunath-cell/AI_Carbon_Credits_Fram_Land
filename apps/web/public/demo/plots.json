@@ -1,0 +1,208 @@
+{
+  "items": [
+    {
+      "plot_id": "PLT-DEMOEU",
+      "name": "Demo olive grove (synthetic)",
+      "country": "ES",
+      "region": "Andalucía",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -4.818786,
+              37.609141
+            ],
+            [
+              -4.820311,
+              37.608819
+            ],
+            [
+              -4.821546,
+              37.609597
+            ],
+            [
+              -4.821136,
+              37.610804
+            ],
+            [
+              -4.819668,
+              37.611263
+            ],
+            [
+              -4.818554,
+              37.610377
+            ],
+            [
+              -4.818786,
+              37.609141
+            ]
+          ]
+        ]
+      },
+      "area_hectares": 5.0003,
+      "area_acres": 12.3559,
+      "perimeter_m": 834.2,
+      "centroid": {
+        "lat": 37.61,
+        "lon": -4.82
+      },
+      "public_centroid": {
+        "lat": 37.6,
+        "lon": -4.8
+      },
+      "bbox": [
+        -4.821546,
+        37.608819,
+        -4.818554,
+        37.611263
+      ],
+      "source": "synthetic-demo",
+      "boundary_quality": "exact",
+      "privacy": "private",
+      "created_by": "user",
+      "created_at": "2026-10-05T19:53:49Z",
+      "updated_at": null
+    },
+    {
+      "plot_id": "PLT-DEMOIN",
+      "name": "Demo mango orchard (synthetic)",
+      "country": "IN",
+      "region": "Karnataka",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              77.538768,
+              13.293146
+            ],
+            [
+              77.539082,
+              13.292486
+            ],
+            [
+              77.539131,
+              13.291788
+            ],
+            [
+              77.538439,
+              13.291532
+            ],
+            [
+              77.537802,
+              13.291787
+            ],
+            [
+              77.537519,
+              13.292452
+            ],
+            [
+              77.53806,
+              13.292909
+            ],
+            [
+              77.538768,
+              13.293146
+            ]
+          ]
+        ]
+      },
+      "area_hectares": 2.1301,
+      "area_acres": 5.2637,
+      "perimeter_m": 550.9,
+      "centroid": {
+        "lat": 13.292298,
+        "lon": 77.538399
+      },
+      "public_centroid": {
+        "lat": 13.3,
+        "lon": 77.55
+      },
+      "bbox": [
+        77.537519,
+        13.291532,
+        77.539131,
+        13.293146
+      ],
+      "source": "synthetic-demo",
+      "boundary_quality": "exact",
+      "privacy": "private",
+      "created_by": "user",
+      "created_at": "2026-10-05T19:53:49Z",
+      "updated_at": null
+    },
+    {
+      "plot_id": "PLT-DEMOUS",
+      "name": "Demo pecan agroforestry (synthetic)",
+      "country": "US",
+      "region": "Georgia",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -83.708624,
+              32.520591
+            ],
+            [
+              -83.70817,
+              32.519498
+            ],
+            [
+              -83.709145,
+              32.518584
+            ],
+            [
+              -83.710483,
+              32.518748
+            ],
+            [
+              -83.711835,
+              32.519213
+            ],
+            [
+              -83.711596,
+              32.520438
+            ],
+            [
+              -83.71078,
+              32.521291
+            ],
+            [
+              -83.709368,
+              32.521637
+            ],
+            [
+              -83.708624,
+              32.520591
+            ]
+          ]
+        ]
+      },
+      "area_hectares": 8.0002,
+      "area_acres": 19.7688,
+      "perimeter_m": 1062.2,
+      "centroid": {
+        "lat": 32.52,
+        "lon": -83.71
+      },
+      "public_centroid": {
+        "lat": 32.5,
+        "lon": -83.7
+      },
+      "bbox": [
+        -83.711835,
+        32.518584,
+        -83.70817,
+        32.521637
+      ],
+      "source": "synthetic-demo",
+      "boundary_quality": "exact",
+      "privacy": "private",
+      "created_by": "user",
+      "created_at": "2026-10-05T19:53:49Z",
+      "updated_at": null
+    }
+  ]
+}

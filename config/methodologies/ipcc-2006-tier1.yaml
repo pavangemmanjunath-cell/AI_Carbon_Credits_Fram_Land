@@ -1,0 +1,119 @@
+# Tier 1 parameter set for the tree-biomass model (carbon-engine v0.1)
+#
+# RULES (see CLAUDE.md):
+# - every value carries `source`, `unit` and `verification_status`
+# - verification_status: verified | pending | assumption
+#   * verified  — checked against the cited table by a maintainer (record who/when)
+#   * pending   — value copied from working notes; MUST be checked against the
+#                 cited table before release. Production mode refuses to run with
+#                 pending parameters unless ATLAS_ALLOW_PENDING_PARAMETERS=true.
+#   * assumption — project assumption, not from literature; shown in provenance.
+# - nothing here is a universal "kg CO2 per tree per year" factor.
+
+id: ipcc-2006-tier1
+version: 0.1.0
+name: IPCC 2006 Guidelines for National Greenhouse Gas Inventories, Vol. 4 (AFOLU), Ch. 4 Forest Land — Tier 1 gain-loss parameters
+references:
+  - title: 2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 4, Chapter 4 Forest Land
+    url: https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html
+  - title: 2019 Refinement to the 2006 IPCC Guidelines, Volume 4, Chapter 4
+    url: https://www.ipcc-nggip.iges.or.jp/public/2019rf/vol4.html
+  - title: Chave et al. (2014) Improved allometric models to estimate the aboveground biomass of tropical trees. Global Change Biology 20(10)
+    url: https://doi.org/10.1111/gcb.12629
+
+constants:
+  carbon_fraction:
+    value: 0.47
+    unit: t C / t d.m.
+    source: IPCC 2006 Vol.4 Ch.4 Table 4.3 (default for all tree parts)
+    verification_status: verified
+  co2_per_c:
+    value: 3.6667
+    unit: t CO2 / t C
+    source: molecular mass ratio 44/12
+    verification_status: verified
+
+# Root-to-shoot ratios (below-ground biomass = R × above-ground biomass)
+root_to_shoot:
+  source: IPCC 2006 Vol.4 Ch.4 Table 4.4
+  verification_status: pending
+  unit: dimensionless
+  by_climate_zone:
+    tropical_wet:            {default: 0.37}
+    tropical_moist:          {agb_lt_125: 0.20, agb_ge_125: 0.24}
+    tropical_dry:            {agb_lt_20: 0.56, agb_ge_20: 0.28}
+    tropical_mountain:       {default: 0.27}
+    subtropical_humid:       {agb_lt_125: 0.20, agb_ge_125: 0.24}
+    subtropical_dry:         {agb_lt_20: 0.56, agb_ge_20: 0.28}
+    warm_temperate_moist:    {agb_lt_75: 0.46, agb_75_150: 0.23, agb_gt_150: 0.24}
+    warm_temperate_dry:      {agb_lt_75: 0.46, agb_75_150: 0.23, agb_gt_150: 0.24}
+    cool_temperate_moist:    {agb_lt_75: 0.46, agb_75_150: 0.23, agb_gt_150: 0.24}
+    cool_temperate_dry:      {agb_lt_75: 0.46, agb_75_150: 0.23, agb_gt_150: 0.24}
+    boreal:                  {agb_lt_75: 0.39, agb_gt_75: 0.24}
+
+# Above-ground net biomass growth for young plantations/stands (≤ 20 years).
+# Broad category values; species-specific overrides live in config/species/.
+# TODO(verify): check each value against IPCC 2006 Vol.4 Ch.4 Tables 4.10 and
+# 4.12 (and the 2019 Refinement) and record the exact table cell in `source`.
+above_ground_biomass_growth:
+  unit: t d.m. / ha / yr
+  age_class: le_20_years
+  verification_status: pending
+  source: IPCC 2006 Vol.4 Ch.4 Tables 4.10/4.12 (working values; verify cell by cell)
+  by_climate_zone:
+    tropical_wet:          {value: 10.0, range: [5.0, 15.0]}
+    tropical_moist:        {value: 7.0,  range: [3.0, 11.0]}
+    tropical_dry:          {value: 4.0,  range: [2.0, 6.0]}
+    tropical_mountain:     {value: 5.0,  range: [2.0, 8.0]}
+    subtropical_humid:     {value: 7.0,  range: [3.0, 11.0]}
+    subtropical_dry:       {value: 4.0,  range: [2.0, 6.0]}
+    warm_temperate_moist:  {value: 7.0,  range: [3.0, 11.0]}
+    warm_temperate_dry:    {value: 4.0,  range: [2.0, 6.0]}
+    cool_temperate_moist:  {value: 4.0,  range: [2.0, 7.0]}
+    cool_temperate_dry:    {value: 3.0,  range: [1.5, 5.0]}
+    boreal:                {value: 1.5,  range: [0.5, 3.0]}
+
+# Allometry used when DBH (and optionally height) is supplied (Tier 2 path)
+allometry:
+  pantropical_chave_2014_with_height:
+    equation: "AGB_kg = 0.0673 * (rho_g_cm3 * D_cm^2 * H_m)^0.976"
+    source: Chave et al. 2014, eq. 4
+    verification_status: verified
+    applicability: tropical and subtropical broadleaf trees
+  pantropical_chave_2014_no_height:
+    equation: "AGB_kg = exp(-1.803 - 0.976*E + 0.976*ln(rho) + 2.673*ln(D) - 0.0299*ln(D)^2)"
+    source: Chave et al. 2014, eq. 7 (E = environmental stress variable)
+    verification_status: verified
+    note: requires the bioclimatic E raster; v0.1 uses the with-height form and a species height estimate when H is missing
+  temperate_generic:
+    equation: null
+    source: "TODO(verify): select a documented species-group equation (e.g. Chojnacky et al. 2014 for North America; Forrester et al. 2017 for Europe)"
+    verification_status: pending
+
+# Model behaviour assumptions (not literature values; surfaced in provenance)
+assumptions:
+  survival_rate_default:
+    value: 0.85
+    unit: fraction of planted trees surviving
+    source: project assumption v0.1
+    verification_status: assumption
+  years_to_full_increment_default:
+    value: 6
+    unit: years
+    source: project assumption v0.1 — linear ramp from planting to full Tier 1 increment
+    verification_status: assumption
+  density_scaling:
+    description: Tier 1 per-hectare increment is scaled by stocking density relative to the species reference density, clamped to [0.2, 1.5]
+    clamp: [0.2, 1.5]
+    source: project assumption v0.1
+    verification_status: assumption
+  uncertainty_fraction_tier1:
+    low: 0.30
+    high: 0.30
+    source: project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)
+    verification_status: assumption
+  uncertainty_fraction_tier2:
+    low: 0.20
+    high: 0.20
+    source: project assumption v0.1
+    verification_status: assumption

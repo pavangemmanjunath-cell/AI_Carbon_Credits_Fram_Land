@@ -1,0 +1,87 @@
+{
+  "currency": "INR",
+  "currency_symbol": "₹",
+  "scenarios": [
+    {
+      "id": "low",
+      "label": "Low",
+      "price_per_tco2e": 480.0,
+      "value_per_year": {
+        "low": 3701.0,
+        "central": 5290.0,
+        "high": 6874.0
+      }
+    },
+    {
+      "id": "reference",
+      "label": "Reference",
+      "price_per_tco2e": 1100.0,
+      "value_per_year": {
+        "low": 8481.0,
+        "central": 12122.0,
+        "high": 15752.0
+      }
+    },
+    {
+      "id": "high",
+      "label": "High",
+      "price_per_tco2e": 2100.0,
+      "value_per_year": {
+        "low": 16191.0,
+        "central": 23142.0,
+        "high": 30072.0
+      }
+    }
+  ],
+  "basis": {
+    "source": "config/market/carbon-price-scenarios.yaml",
+    "as_of": "2025",
+    "note": "Scenario ranges bracket recently reported voluntary-market prices for nature-based removal (ARR) credits. They are placeholders for local price discovery and must be reviewed each release against the World Bank \"State and Trends of Carbon Pricing\" and Ecosystem Marketplace reports.",
+    "references": [
+      {
+        "title": "World Bank — State and Trends of Carbon Pricing (annual)",
+        "url": "https://www.worldbank.org/en/programs/pricing-carbon"
+      },
+      {
+        "title": "Ecosystem Marketplace — State of the Voluntary Carbon Market (annual)",
+        "url": "https://www.ecosystemmarketplace.com/"
+      }
+    ],
+    "version": "0.1.0",
+    "region_note": "India's CCTS offset market and the Green Credit Programme have no public, liquid price for agroforestry removals yet; values are global voluntary ranges converted to INR.",
+    "verification_status": "pending"
+  },
+  "other_income": [
+    {
+      "id": "fruit_yield",
+      "label": "Fruit yield (mango, coconut, citrus)",
+      "value": null,
+      "unit": "INR/yr",
+      "source": "data.gov.in district crop production + farmer records"
+    },
+    {
+      "id": "intercrop",
+      "label": "Agroforestry intercrop",
+      "value": null,
+      "unit": "INR/yr",
+      "source": "farmer records"
+    },
+    {
+      "id": "timber",
+      "label": "Timber potential (teak, eucalyptus)",
+      "value": null,
+      "unit": "INR/yr",
+      "source": "state forest department rates + farmer records"
+    },
+    {
+      "id": "incentives",
+      "label": "Eligible incentives (state agroforestry / horticulture missions)",
+      "value": null,
+      "unit": "INR/yr",
+      "source": "programme screening"
+    }
+  ],
+  "disclaimer": "Market-value scenario — not guaranteed revenue. Issuance depends on methodology, additionality, verification, permanence and market conditions.",
+  "estimate_id": "EST-4UFS",
+  "plot_id": "PLT-DEMOIN"
+}

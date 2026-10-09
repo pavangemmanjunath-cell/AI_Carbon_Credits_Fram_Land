@@ -1,0 +1,126 @@
+{
+  "_comment": "Static mirror of config/regions/*.yaml for the UI (units, currency, languages, programmes). Regenerate by hand when the YAML changes; the API's GET /regions remains authoritative at runtime.",
+  "regions": [
+    {
+      "id": "IN",
+      "name": "India",
+      "calling_code": "+91",
+      "currency": "INR",
+      "currency_symbol": "₹",
+      "locale": "en-IN",
+      "units": { "area": "hectare", "area_secondary": "acre" },
+      "languages": ["en", "hi", "kn"],
+      "default_center": { "lat": 20.59, "lon": 78.96 },
+      "default_zoom": 4.5,
+      "bbox": [68.1, 6.5, 97.4, 35.7],
+      "climate": { "default_zone": "tropical_dry" },
+      "programmes": [
+        {
+          "id": "in-gcp",
+          "name": "Green Credit Programme",
+          "authority": "Ministry of Environment, Forest and Climate Change (MoEFCC)",
+          "kind": "government_programme",
+          "url": "https://moef.gov.in/"
+        },
+        {
+          "id": "in-ccts",
+          "name": "Carbon Credit Trading Scheme (offset mechanism)",
+          "authority": "Bureau of Energy Efficiency (BEE)",
+          "kind": "compliance_market",
+          "url": "https://beeindia.gov.in/"
+        }
+      ],
+      "other_income_sources": [
+        { "id": "fruit_yield", "label": "Fruit yield (mango, coconut, citrus)", "source": "data.gov.in district crop production + farmer records" },
+        { "id": "intercrop", "label": "Agroforestry intercrop", "source": "farmer records" },
+        { "id": "timber", "label": "Timber potential (teak, eucalyptus)", "source": "state forest department rates + farmer records" },
+        { "id": "incentives", "label": "Eligible incentives (state agroforestry / horticulture missions)", "source": "programme screening" }
+      ]
+    },
+    {
+      "id": "US",
+      "name": "United States",
+      "calling_code": "+1",
+      "currency": "USD",
+      "currency_symbol": "$",
+      "locale": "en-US",
+      "units": { "area": "acre", "area_secondary": "hectare" },
+      "languages": ["en", "es"],
+      "default_center": { "lat": 39.5, "lon": -98.35 },
+      "default_zoom": 3.8,
+      "bbox": [-125.0, 24.4, -66.9, 49.4],
+      "climate": { "default_zone": "warm_temperate_moist" },
+      "programmes": [
+        {
+          "id": "us-comet-farm",
+          "name": "USDA COMET-Farm (methodology reference)",
+          "authority": "USDA / Colorado State University",
+          "kind": "methodology_tool",
+          "url": "https://comet-farm.com/"
+        },
+        {
+          "id": "us-voluntary-arr",
+          "name": "Voluntary market afforestation/reforestation methodologies",
+          "authority": "Verra VCS · ACR · Climate Action Reserve",
+          "kind": "voluntary_standard",
+          "url": "https://verra.org/"
+        },
+        {
+          "id": "us-nrcs-conservation",
+          "name": "USDA NRCS conservation programmes (EQIP, CSP)",
+          "authority": "USDA Natural Resources Conservation Service",
+          "kind": "incentive_programme",
+          "url": "https://www.nrcs.usda.gov/"
+        }
+      ],
+      "other_income_sources": [
+        { "id": "nut_fruit_yield", "label": "Nut / fruit yield (pecan, walnut, apple)", "source": "USDA NASS county statistics + farmer records" },
+        { "id": "timber", "label": "Timber potential", "source": "state extension stumpage reports + farmer records" },
+        { "id": "incentives", "label": "Conservation programme payments (EQIP, CSP)", "source": "programme screening" }
+      ]
+    },
+    {
+      "id": "EU",
+      "name": "European Union",
+      "calling_code": null,
+      "currency": "EUR",
+      "currency_symbol": "€",
+      "locale": "en-IE",
+      "units": { "area": "hectare", "area_secondary": "acre" },
+      "languages": ["en", "de", "fr", "es"],
+      "default_center": { "lat": 50.0, "lon": 10.0 },
+      "default_zoom": 3.8,
+      "bbox": [-10.5, 34.5, 31.6, 71.2],
+      "climate": { "default_zone": "cool_temperate_moist" },
+      "programmes": [
+        {
+          "id": "eu-crcf",
+          "name": "Carbon Removals and Carbon Farming Certification Framework (CRCF)",
+          "authority": "European Commission — Regulation (EU) 2024/3012",
+          "kind": "certification_framework",
+          "url": "https://climate.ec.europa.eu/eu-action/carbon-removals-and-carbon-farming_en"
+        },
+        {
+          "id": "eu-cap-eco-schemes",
+          "name": "CAP eco-schemes and agri-environment-climate measures (national)",
+          "authority": "Member-state paying agencies",
+          "kind": "incentive_programme",
+          "url": "https://agriculture.ec.europa.eu/"
+        },
+        {
+          "id": "eu-voluntary",
+          "name": "Voluntary carbon-farming standards",
+          "authority": "Verra VCS · Gold Standard · national labels (e.g. Label Bas-Carbone)",
+          "kind": "voluntary_standard",
+          "url": "https://verra.org/"
+        }
+      ],
+      "other_income_sources": [
+        { "id": "fruit_yield", "label": "Fruit / olive / nut yield", "source": "Eurostat and national statistics + farmer records" },
+        { "id": "timber", "label": "Timber potential", "source": "national forestry statistics + farmer records" },
+        { "id": "incentives", "label": "CAP eco-scheme payments", "source": "programme screening" }
+      ]
+    }
+  ],
+  "eu_member_states": ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE"]
+}

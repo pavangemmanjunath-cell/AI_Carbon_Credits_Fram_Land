@@ -1,0 +1,68 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.api
+    env_file: .env
+    environment:
+      ATLAS_MODE: ${ATLAS_MODE:-demo}
+      ATLAS_REPOSITORY: ${ATLAS_REPOSITORY:-memory}
+      DATABASE_URL: postgresql://atlas:atlas@db:5432/atlas
+      ATLAS_CORS_ORIGINS: http://localhost:5173,http://localhost:8080
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - atlas-cache:/app/.cache
+      - atlas-reports:/app/.reports
+    read_only: false
+    user: "10001:10001"
+
+  web:
+    build:
+      context: .
+      dockerfile: infra/docker/Dockerfile.web
+      args:
+        VITE_API_BASE_URL: http://localhost:8000/api/v1
+        VITE_BASEMAP_STYLE_URL: ${VITE_BASEMAP_STYLE_URL:-https://demotiles.maplibre.org/style.json}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+
+  db:
+    image: postgis/postgis:16-3.4
+    environment:
+      POSTGRES_USER: atlas
+      POSTGRES_PASSWORD: atlas
+      POSTGRES_DB: atlas
+    ports:
+      - "5432:5432"
+    volumes:
+      - atlas-db:/var/lib/postgresql/data
+      - ./data/schemas/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U atlas -d atlas"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: atlas
+      MINIO_ROOT_PASSWORD: atlas-secret-change-me
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - atlas-minio:/data
+
+volumes:
+  atlas-db:
+  atlas-minio:
+  atlas-cache:
+  atlas-reports:

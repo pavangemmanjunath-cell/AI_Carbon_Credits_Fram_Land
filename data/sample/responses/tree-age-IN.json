@@ -1,0 +1,1332 @@
+{
+  "inputs": {
+    "country": "IN",
+    "region": "IN",
+    "subdivision": "IN-HR",
+    "setting": "farm",
+    "species_id": "mango",
+    "age_years": 60,
+    "tree_count": 25,
+    "girth_cm": null,
+    "height_m": null,
+    "plot_id": null
+  },
+  "age_class": {
+    "id": "old",
+    "label": "Old (50–74 years)"
+  },
+  "climate_zone": "tropical_dry",
+  "climate_zone_label": "Tropical dry",
+  "climate_zone_source": "region default (IN)",
+  "carbon": {
+    "method": "tier1-age",
+    "curve_method": "tier1-age",
+    "stored_now": {
+      "low": 30.299,
+      "central": 43.284,
+      "high": 56.269,
+      "unit": "tCO2e"
+    },
+    "annual_now": {
+      "low": 0.463,
+      "central": 0.662,
+      "high": 0.86,
+      "unit": "tCO2e/yr"
+    },
+    "per_tree": {
+      "stored_now_kg_co2e": 1731.3,
+      "annual_now_kg_co2e": 26.5
+    },
+    "curve": [
+      {
+        "age": 0,
+        "stored": 0.0,
+        "stored_low": 0.0,
+        "stored_high": 0.0,
+        "annual": 0.0
+      },
+      {
+        "age": 1,
+        "stored": 0.269,
+        "stored_low": 0.188,
+        "stored_high": 0.35,
+        "annual": 0.269
+      },
+      {
+        "age": 2,
+        "stored": 0.807,
+        "stored_low": 0.565,
+        "stored_high": 1.048,
+        "annual": 0.538
+      },
+      {
+        "age": 3,
+        "stored": 1.613,
+        "stored_low": 1.129,
+        "stored_high": 2.097,
+        "annual": 0.807
+      },
+      {
+        "age": 4,
+        "stored": 2.688,
+        "stored_low": 1.882,
+        "stored_high": 3.495,
+        "annual": 1.075
+      },
+      {
+        "age": 5,
+        "stored": 4.033,
+        "stored_low": 2.823,
+        "stored_high": 5.242,
+        "annual": 1.344
+      },
+      {
+        "age": 6,
+        "stored": 5.646,
+        "stored_low": 3.952,
+        "stored_high": 7.339,
+        "annual": 1.613
+      },
+      {
+        "age": 7,
+        "stored": 7.259,
+        "stored_low": 5.081,
+        "stored_high": 9.436,
+        "annual": 1.613
+      },
+      {
+        "age": 8,
+        "stored": 8.872,
+        "stored_low": 6.21,
+        "stored_high": 11.533,
+        "annual": 1.613
+      },
+      {
+        "age": 9,
+        "stored": 9.534,
+        "stored_low": 6.673,
+        "stored_high": 12.394,
+        "annual": 0.662
+      },
+      {
+        "age": 10,
+        "stored": 10.195,
+        "stored_low": 7.137,
+        "stored_high": 13.254,
+        "annual": 0.662
+      },
+      {
+        "age": 11,
+        "stored": 10.857,
+        "stored_low": 7.6,
+        "stored_high": 14.114,
+        "annual": 0.662
+      },
+      {
+        "age": 12,
+        "stored": 11.519,
+        "stored_low": 8.063,
+        "stored_high": 14.975,
+        "annual": 0.662
+      },
+      {
+        "age": 13,
+        "stored": 12.181,
+        "stored_low": 8.526,
+        "stored_high": 15.835,
+        "annual": 0.662
+      },
+      {
+        "age": 14,
+        "stored": 12.842,
+        "stored_low": 8.99,
+        "stored_high": 16.695,
+        "annual": 0.662
+      },
+      {
+        "age": 15,
+        "stored": 13.504,
+        "stored_low": 9.453,
+        "stored_high": 17.555,
+        "annual": 0.662
+      },
+      {
+        "age": 16,
+        "stored": 14.166,
+        "stored_low": 9.916,
+        "stored_high": 18.416,
+        "annual": 0.662
+      },
+      {
+        "age": 17,
+        "stored": 14.828,
+        "stored_low": 10.379,
+        "stored_high": 19.276,
+        "annual": 0.662
+      },
+      {
+        "age": 18,
+        "stored": 15.489,
+        "stored_low": 10.843,
+        "stored_high": 20.136,
+        "annual": 0.662
+      },
+      {
+        "age": 19,
+        "stored": 16.151,
+        "stored_low": 11.306,
+        "stored_high": 20.997,
+        "annual": 0.662
+      },
+      {
+        "age": 20,
+        "stored": 16.813,
+        "stored_low": 11.769,
+        "stored_high": 21.857,
+        "annual": 0.662
+      },
+      {
+        "age": 21,
+        "stored": 17.475,
+        "stored_low": 12.232,
+        "stored_high": 22.717,
+        "annual": 0.662
+      },
+      {
+        "age": 22,
+        "stored": 18.137,
+        "stored_low": 12.696,
+        "stored_high": 23.577,
+        "annual": 0.662
+      },
+      {
+        "age": 23,
+        "stored": 18.798,
+        "stored_low": 13.159,
+        "stored_high": 24.438,
+        "annual": 0.662
+      },
+      {
+        "age": 24,
+        "stored": 19.46,
+        "stored_low": 13.622,
+        "stored_high": 25.298,
+        "annual": 0.662
+      },
+      {
+        "age": 25,
+        "stored": 20.122,
+        "stored_low": 14.085,
+        "stored_high": 26.158,
+        "annual": 0.662
+      },
+      {
+        "age": 26,
+        "stored": 20.784,
+        "stored_low": 14.549,
+        "stored_high": 27.019,
+        "annual": 0.662
+      },
+      {
+        "age": 27,
+        "stored": 21.445,
+        "stored_low": 15.012,
+        "stored_high": 27.879,
+        "annual": 0.662
+      },
+      {
+        "age": 28,
+        "stored": 22.107,
+        "stored_low": 15.475,
+        "stored_high": 28.739,
+        "annual": 0.662
+      },
+      {
+        "age": 29,
+        "stored": 22.769,
+        "stored_low": 15.938,
+        "stored_high": 29.6,
+        "annual": 0.662
+      },
+      {
+        "age": 30,
+        "stored": 23.431,
+        "stored_low": 16.401,
+        "stored_high": 30.46,
+        "annual": 0.662
+      },
+      {
+        "age": 31,
+        "stored": 24.092,
+        "stored_low": 16.865,
+        "stored_high": 31.32,
+        "annual": 0.662
+      },
+      {
+        "age": 32,
+        "stored": 24.754,
+        "stored_low": 17.328,
+        "stored_high": 32.18,
+        "annual": 0.662
+      },
+      {
+        "age": 33,
+        "stored": 25.416,
+        "stored_low": 17.791,
+        "stored_high": 33.041,
+        "annual": 0.662
+      },
+      {
+        "age": 34,
+        "stored": 26.078,
+        "stored_low": 18.254,
+        "stored_high": 33.901,
+        "annual": 0.662
+      },
+      {
+        "age": 35,
+        "stored": 26.739,
+        "stored_low": 18.718,
+        "stored_high": 34.761,
+        "annual": 0.662
+      },
+      {
+        "age": 36,
+        "stored": 27.401,
+        "stored_low": 19.181,
+        "stored_high": 35.622,
+        "annual": 0.662
+      },
+      {
+        "age": 37,
+        "stored": 28.063,
+        "stored_low": 19.644,
+        "stored_high": 36.482,
+        "annual": 0.662
+      },
+      {
+        "age": 38,
+        "stored": 28.725,
+        "stored_low": 20.107,
+        "stored_high": 37.342,
+        "annual": 0.662
+      },
+      {
+        "age": 39,
+        "stored": 29.387,
+        "stored_low": 20.571,
+        "stored_high": 38.203,
+        "annual": 0.662
+      },
+      {
+        "age": 40,
+        "stored": 30.048,
+        "stored_low": 21.034,
+        "stored_high": 39.063,
+        "annual": 0.662
+      },
+      {
+        "age": 41,
+        "stored": 30.71,
+        "stored_low": 21.497,
+        "stored_high": 39.923,
+        "annual": 0.662
+      },
+      {
+        "age": 42,
+        "stored": 31.372,
+        "stored_low": 21.96,
+        "stored_high": 40.783,
+        "annual": 0.662
+      },
+      {
+        "age": 43,
+        "stored": 32.034,
+        "stored_low": 22.424,
+        "stored_high": 41.644,
+        "annual": 0.662
+      },
+      {
+        "age": 44,
+        "stored": 32.695,
+        "stored_low": 22.887,
+        "stored_high": 42.504,
+        "annual": 0.662
+      },
+      {
+        "age": 45,
+        "stored": 33.357,
+        "stored_low": 23.35,
+        "stored_high": 43.364,
+        "annual": 0.662
+      },
+      {
+        "age": 46,
+        "stored": 34.019,
+        "stored_low": 23.813,
+        "stored_high": 44.225,
+        "annual": 0.662
+      },
+      {
+        "age": 47,
+        "stored": 34.681,
+        "stored_low": 24.276,
+        "stored_high": 45.085,
+        "annual": 0.662
+      },
+      {
+        "age": 48,
+        "stored": 35.342,
+        "stored_low": 24.74,
+        "stored_high": 45.945,
+        "annual": 0.662
+      },
+      {
+        "age": 49,
+        "stored": 36.004,
+        "stored_low": 25.203,
+        "stored_high": 46.805,
+        "annual": 0.662
+      },
+      {
+        "age": 50,
+        "stored": 36.666,
+        "stored_low": 25.666,
+        "stored_high": 47.666,
+        "annual": 0.662
+      },
+      {
+        "age": 51,
+        "stored": 37.328,
+        "stored_low": 26.129,
+        "stored_high": 48.526,
+        "annual": 0.662
+      },
+      {
+        "age": 52,
+        "stored": 37.989,
+        "stored_low": 26.593,
+        "stored_high": 49.386,
+        "annual": 0.662
+      },
+      {
+        "age": 53,
+        "stored": 38.651,
+        "stored_low": 27.056,
+        "stored_high": 50.247,
+        "annual": 0.662
+      },
+      {
+        "age": 54,
+        "stored": 39.313,
+        "stored_low": 27.519,
+        "stored_high": 51.107,
+        "annual": 0.662
+      },
+      {
+        "age": 55,
+        "stored": 39.975,
+        "stored_low": 27.982,
+        "stored_high": 51.967,
+        "annual": 0.662
+      },
+      {
+        "age": 56,
+        "stored": 40.637,
+        "stored_low": 28.446,
+        "stored_high": 52.828,
+        "annual": 0.662
+      },
+      {
+        "age": 57,
+        "stored": 41.298,
+        "stored_low": 28.909,
+        "stored_high": 53.688,
+        "annual": 0.662
+      },
+      {
+        "age": 58,
+        "stored": 41.96,
+        "stored_low": 29.372,
+        "stored_high": 54.548,
+        "annual": 0.662
+      },
+      {
+        "age": 59,
+        "stored": 42.622,
+        "stored_low": 29.835,
+        "stored_high": 55.408,
+        "annual": 0.662
+      },
+      {
+        "age": 60,
+        "stored": 43.284,
+        "stored_low": 30.299,
+        "stored_high": 56.269,
+        "annual": 0.662
+      },
+      {
+        "age": 61,
+        "stored": 43.945,
+        "stored_low": 30.762,
+        "stored_high": 57.129,
+        "annual": 0.662
+      },
+      {
+        "age": 62,
+        "stored": 44.607,
+        "stored_low": 31.225,
+        "stored_high": 57.989,
+        "annual": 0.662
+      },
+      {
+        "age": 63,
+        "stored": 45.269,
+        "stored_low": 31.688,
+        "stored_high": 58.85,
+        "annual": 0.662
+      },
+      {
+        "age": 64,
+        "stored": 45.931,
+        "stored_low": 32.151,
+        "stored_high": 59.71,
+        "annual": 0.662
+      },
+      {
+        "age": 65,
+        "stored": 46.592,
+        "stored_low": 32.615,
+        "stored_high": 60.57,
+        "annual": 0.662
+      },
+      {
+        "age": 66,
+        "stored": 47.254,
+        "stored_low": 33.078,
+        "stored_high": 61.43,
+        "annual": 0.662
+      },
+      {
+        "age": 67,
+        "stored": 47.916,
+        "stored_low": 33.541,
+        "stored_high": 62.291,
+        "annual": 0.662
+      },
+      {
+        "age": 68,
+        "stored": 48.578,
+        "stored_low": 34.004,
+        "stored_high": 63.151,
+        "annual": 0.662
+      },
+      {
+        "age": 69,
+        "stored": 49.24,
+        "stored_low": 34.468,
+        "stored_high": 64.011,
+        "annual": 0.662
+      },
+      {
+        "age": 70,
+        "stored": 49.901,
+        "stored_low": 34.931,
+        "stored_high": 64.872,
+        "annual": 0.662
+      },
+      {
+        "age": 71,
+        "stored": 50.563,
+        "stored_low": 35.394,
+        "stored_high": 65.732,
+        "annual": 0.662
+      },
+      {
+        "age": 72,
+        "stored": 51.225,
+        "stored_low": 35.857,
+        "stored_high": 66.592,
+        "annual": 0.662
+      },
+      {
+        "age": 73,
+        "stored": 51.887,
+        "stored_low": 36.321,
+        "stored_high": 67.453,
+        "annual": 0.662
+      },
+      {
+        "age": 74,
+        "stored": 52.548,
+        "stored_low": 36.784,
+        "stored_high": 68.313,
+        "annual": 0.662
+      },
+      {
+        "age": 75,
+        "stored": 53.21,
+        "stored_low": 37.247,
+        "stored_high": 69.173,
+        "annual": 0.662
+      },
+      {
+        "age": 76,
+        "stored": 53.872,
+        "stored_low": 37.71,
+        "stored_high": 70.033,
+        "annual": 0.662
+      },
+      {
+        "age": 77,
+        "stored": 54.534,
+        "stored_low": 38.174,
+        "stored_high": 70.894,
+        "annual": 0.662
+      },
+      {
+        "age": 78,
+        "stored": 55.195,
+        "stored_low": 38.637,
+        "stored_high": 71.754,
+        "annual": 0.662
+      },
+      {
+        "age": 79,
+        "stored": 55.857,
+        "stored_low": 39.1,
+        "stored_high": 72.614,
+        "annual": 0.662
+      },
+      {
+        "age": 80,
+        "stored": 56.519,
+        "stored_low": 39.563,
+        "stored_high": 73.475,
+        "annual": 0.662
+      }
+    ],
+    "confidence": "low",
+    "model": {
+      "id": "tree-biomass",
+      "version": "0.1.0",
+      "tier": "1"
+    },
+    "methodology": {
+      "id": "ipcc-2006-vol4-ch4",
+      "name": "IPCC 2006 Guidelines, Vol. 4, Ch. 4 (Forest Land), Tier 1 gain-loss",
+      "references": [
+        {
+          "title": "IPCC 2006 Guidelines Vol. 4 Ch. 4 (Forest Land) — Tier 1 gain-loss",
+          "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html"
+        },
+        {
+          "title": "2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 4, Chapter 4 Forest Land",
+          "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html"
+        },
+        {
+          "title": "2019 Refinement to the 2006 IPCC Guidelines, Volume 4, Chapter 4",
+          "url": "https://www.ipcc-nggip.iges.or.jp/public/2019rf/vol4.html"
+        },
+        {
+          "title": "Chave et al. (2014) Improved allometric models to estimate the aboveground biomass of tropical trees. Global Change Biology 20(10)",
+          "url": "https://doi.org/10.1111/gcb.12629"
+        }
+      ]
+    },
+    "parameters_used": [
+      {
+        "name": "survival_rate",
+        "value": 1.0,
+        "unit": "fraction",
+        "source": "the trees you list are counted alive today, so their past mortality is already in the count and no further mortality is applied to the existing stand",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "above_ground_biomass_growth",
+        "value": 4.0,
+        "unit": "t d.m. / ha / yr",
+        "source": "IPCC 2006 Vol.4 Ch.4 Tables 4.10/4.12 (working values; verify cell by cell) [zone: tropical_dry; age class: le_20_years]",
+        "verification_status": "pending"
+      },
+      {
+        "name": "increment_multiplier",
+        "value": 0.9,
+        "unit": "dimensionless",
+        "source": "fruit orchards pruned/managed below natural stand increment; project assumption v0.1 [species: mango]",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "reference_density_per_ha",
+        "value": 150,
+        "unit": "trees/ha",
+        "source": "typical 8 m × 8 m orchard spacing; project assumption v0.1 [species: mango]",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "maturity_years",
+        "value": 8,
+        "unit": "years",
+        "source": "config/species/species.yaml v0.1.0 [species: mango]",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "carbon_fraction",
+        "value": 0.47,
+        "unit": "t C / t d.m.",
+        "source": "IPCC 2006 Vol.4 Ch.4 Table 4.3 (default for all tree parts)",
+        "verification_status": "verified"
+      },
+      {
+        "name": "co2_per_c",
+        "value": 3.6667,
+        "unit": "t CO2 / t C",
+        "source": "molecular mass ratio 44/12",
+        "verification_status": "verified"
+      },
+      {
+        "name": "density_scaling_clamp",
+        "value": [
+          0.2,
+          1.5
+        ],
+        "unit": "ratio to reference density",
+        "source": "project assumption v0.1",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "years_to_full_increment_default",
+        "value": 6,
+        "unit": "years",
+        "source": "project assumption v0.1 — linear ramp from planting to full Tier 1 increment",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "post_maturity_increment_factor",
+        "value": 0.5,
+        "unit": "fraction of full increment",
+        "source": "project assumption v0.1 — after species maturity_years the annual increment is held at 50% of the full Tier 1 increment (slower net growth of mature orchards/stands; replace with age-class increments when IPCC 2019 Refinement Table 4.9 values are verified)",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "uncertainty_fraction_tier1_low",
+        "value": 0.3,
+        "unit": "fraction of central",
+        "source": "project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "uncertainty_fraction_tier1_high",
+        "value": 0.3,
+        "unit": "fraction of central",
+        "source": "project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "density_factor_applied",
+        "value": 1.0,
+        "unit": "ratio to reference density",
+        "source": "planted density 150.0 trees/ha ÷ reference 150 trees/ha, clamped to [0.2, 1.5]",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "root_to_shoot_ratio",
+        "value": 0.56,
+        "unit": "dimensionless",
+        "source": "IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: tropical_dry; class: agb_lt_20]",
+        "verification_status": "pending"
+      },
+      {
+        "name": "root_to_shoot_ratio",
+        "value": 0.28,
+        "unit": "dimensionless",
+        "source": "IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: tropical_dry; class: agb_ge_20]",
+        "verification_status": "pending"
+      },
+      {
+        "name": "stand_area_hectares",
+        "value": 0.1667,
+        "unit": "ha",
+        "source": "25 trees ÷ species reference density 150 trees/ha (stand at the reference density)",
+        "verification_status": "assumption"
+      }
+    ],
+    "notes": [
+      "Method: stand-level IPCC Tier 1 growth for this species and climate zone, added up from planting to today. The individual trees are not measured.",
+      "The trees you list are counted as alive today, so no further mortality is applied.",
+      "These trees are past the species' maturity age (8 years): stand-level Tier 1 continues at the post-maturity factor (0.5 of the full increment) — measure trunk girth for a better estimate.",
+      "Root-to-shoot ratio follows the above-ground biomass stock class: 0.56 → 0.28 (IPCC 2006 Table 4.4).",
+      "No area was given, so the 25 trees are treated as a stand at the species' reference density of 150 trees per hectare (0.1667 ha).",
+      "Parameters still pending verification: above_ground_biomass_growth, root_to_shoot_ratio. Treat the figures as screening estimates.",
+      "Carbon counted is above- plus below-ground tree biomass, expressed as CO2e; soil, litter and dead wood are not included.",
+      "Scenario estimate only: removals already made by existing trees are not carbon credits."
+    ]
+  },
+  "credit_outlook": {
+    "existing_trees": "not-eligible",
+    "summary": "Trees that already stand usually do not earn removal credits under the rules that apply here, because credits reward carbon added by new planting, not carbon already stored.",
+    "based_on_rule_ids": [
+      "global-gold-standard-luf-ar",
+      "global-verra-vm0047-arr",
+      "in-ccts-offset-bm-fr05-002"
+    ]
+  },
+  "rules": [
+    {
+      "id": "global-gold-standard-luf-ar",
+      "scope": "GLOBAL",
+      "country": null,
+      "subdivision": null,
+      "locality": null,
+      "name": "Gold Standard Land Use & Forests Activity Requirements (A/R), v1.2.1, with A/R methodology v2.1",
+      "authority": "Gold Standard Foundation",
+      "category": "carbon-credit-eligibility",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "new-planting",
+        "setting": "non-forest"
+      },
+      "outcome_for_existing_trees": "not-eligible",
+      "summary": "Gold Standard's afforestation and reforestation rules only cover planting on land that was not forest 10 years before the project start, so trees that already stand earn no credits.",
+      "details": "Activity Requirements v1.2.1 (April 2020), Section 2.1.1(b): 'The eligible area shall not meet the definition of forest 10 years before project start date and at project start date.' Credits are not issued for existing forests, improved forest management or avoided deforestation under these A/R requirements, and the A/R project start date is the earliest date when the first trees are planted. In A/R methodology v2.1 (16 May 2024, Section 3.5.1) the baseline is the 'tree' and 'non-tree' biomass present in the eligible planting area just prior to the planting start, and baseline trees are tracked inside the baseline.",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Land Use & Forests Activity Requirements, version 1.2.1 (A/R eligibility)",
+          "publisher": "Gold Standard Foundation",
+          "url": "https://globalgoals.goldstandard.org/standards/203_V1.2.1_AR_LUF-Activity-Requirements.pdf",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Land Use & Forests A/R Methodology, version 2.1",
+          "publisher": "Gold Standard Foundation",
+          "url": "https://globalgoals.goldstandard.org/standards/403_V2.1_LUF_AR-Methodology-GHGs-emission-reduction-and-Sequestration-Methodology.pdf",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Sustainable Transformation through Afforestation, Reforestation and Revegetation (STARR) consultation",
+          "publisher": "Gold Standard Foundation",
+          "url": "https://www.goldstandard.org/consultations/sustainable-transformation-afforestation-reforestation-revegetation-starr",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "Gold Standard consulted on a successor framework, STARR, from 22 April to 22 May 2026; it also targets non-forest land. Final publication and whether it replaces the documents above were not confirmed. Plan Vivo (PV Climate) was reviewed but its public page does not state how existing trees are treated, so it has no rule here (see the md file).",
+      "applies": true,
+      "why": "Applies worldwide to trees outside forests at any age",
+      "outcome_for_you": "not-eligible"
+    },
+    {
+      "id": "global-verra-vm0047-arr",
+      "scope": "GLOBAL",
+      "country": null,
+      "subdivision": null,
+      "locality": null,
+      "name": "Verra VM0047 Afforestation, Reforestation and Revegetation, v1.1",
+      "authority": "Verra (Verified Carbon Standard programme)",
+      "category": "carbon-credit-eligibility",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "new-planting",
+        "setting": "any"
+      },
+      "outcome_for_existing_trees": "not-eligible",
+      "summary": "VM0047 credits trees that a project plants or restores; the carbon already stored in pre-existing trees is measured as a starting (t=0) stock and is not credited.",
+      "details": "Area-based approach: project land must not have met the definition of managed forest at any point in the 10 years immediately preceding the project start date, although v1.1 also allows enhancing forest carbon stocks where existing forest cover has not been managed for wood products in the past ten years. A t = 0 carbon-stock estimate is required for pre-existing woody biomass, and removal of that biomass is only allowed where it is treated as a waste product with no commercial value. Census-based approach (dispersed planting such as agroforestry): planting density must not exceed 50 planting units per hectare, only direct planting is allowed, the pre-project land use must be maintained, and the area must have less than 10% pre-existing woody biomass cover (or be under continuous cropping, 'settlements' or 'other lands').",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "VM0047 Afforestation, Reforestation and Revegetation, v1.1 (methodology document)",
+          "publisher": "Verra",
+          "url": "https://verra.org/documents/vm0047-afforestation-reforestation-and-revegetation-v1-1/",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "VM0047 Afforestation, Reforestation and Revegetation, v1.1 (methodology page)",
+          "publisher": "Verra",
+          "url": "https://verra.org/methodologies/vm0047-afforestation-reforestation-and-revegetation-v1-1/",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "VM0047 v1.1: what you need to know (independent cross-check)",
+          "publisher": "Space Intelligence",
+          "url": "https://www.space-intelligence.com/vm0047-v-1-1-what-you-need-to-know/",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "Version 1.1 is effective from 14 May 2025 (Verra methodology page). Section references (4.4.1(1), 4.2(2), 4.3, 8.2.1.2) were read through a page-summarising tool; the 10-year and 50-per-hectare figures were cross-checked against the Verra page and an independent summary. Quote from the PDF before any external publication.",
+      "applies": true,
+      "why": "Applies worldwide at any age",
+      "outcome_for_you": "not-eligible"
+    },
+    {
+      "id": "in-ccts-offset-bm-fr05-002",
+      "scope": "IN",
+      "country": "IN",
+      "subdivision": null,
+      "locality": null,
+      "name": "Carbon Credit Trading Scheme offset mechanism: BM FR05.002 Afforestation and reforestation of lands except wetlands, v1.0",
+      "authority": "Bureau of Energy Efficiency (BEE), Government of India",
+      "category": "carbon-credit-eligibility",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "new-planting",
+        "setting": "any"
+      },
+      "outcome_for_existing_trees": "not-eligible",
+      "summary": "India's approved CCTS afforestation methodology credits net removals above a baseline that already counts the tree biomass standing before the project, so existing trees earn nothing on their own.",
+      "details": "BM FR05.002 (Version 1.0, 8 September 2025) is adopted from, and refers to, the UNFCCC CDM methodology AR-ACM0003. Baseline net GHG removals include the 'Change in carbon stock in baseline tree biomass' and baseline shrub biomass (Section 4.4, Equation 1), so pre-existing tree biomass sits in the baseline. Applicability (Section 3.2): the land must not be wetland, and soil disturbance must not cover more than 10 per cent of the area of organic-soil land or of land with baseline management practices. Credits are issued as temporary (tCCC) or long-term (lCCC) Carbon Credit Certificates (Section 4.8).",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "BM FR05.002 Afforestation and reforestation of lands except wetlands, Version 1.0",
+          "publisher": "Bureau of Energy Efficiency",
+          "url": "https://beeindia.gov.in/sites/default/files/BM_FR05.002_Afforestation_and_reforestation_of_lands_except_wetlands.pdf",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "The applicability text read is silent on agroforestry and cropland, so neither should be assumed eligible; ask BEE. CCTS is separate from the Green Credit Programme. No Carbon Credit Certificate trade or price signal was confirmed in this research (see docs/research/policy-references.md).",
+      "applies": true,
+      "why": "Applies in India at any age",
+      "outcome_for_you": "not-eligible"
+    },
+    {
+      "id": "global-icvcm-ccp-additionality",
+      "scope": "GLOBAL",
+      "country": null,
+      "subdivision": null,
+      "locality": null,
+      "name": "ICVCM Core Carbon Principles 5-7: additionality, permanence, robust quantification",
+      "authority": "Integrity Council for the Voluntary Carbon Market (ICVCM)",
+      "category": "methodology-note",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "any",
+        "setting": "any"
+      },
+      "outcome_for_existing_trees": "conditional",
+      "summary": "A carbon credit may only count removals that would not have happened without carbon revenue, so the growth that trees already standing would make anyway is not creditable on its own.",
+      "details": "Principle 5 (additionality): the emission reductions or removals 'shall be additional, i.e., they would not have occurred in the absence of the incentive created by carbon credit revenues.' Principle 6 (permanence): they 'shall be permanent or, where there is a risk of reversal, there shall be measures in place to address those risks and compensate reversals.' Principle 7: they 'shall be robustly quantified, based on conservative approaches, completeness and scientific methods.'",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Core Carbon Principles",
+          "publisher": "Integrity Council for the Voluntary Carbon Market",
+          "url": "https://icvcm.org/core-carbon-principles/",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "The plain-language reading for existing trees (growth that happens anyway is not additional, which is why methodologies use baselines) is the Atlas's interpretation of Principle 5, not ICVCM text. See docs/concepts/additionality.md.",
+      "applies": true,
+      "why": "Applies worldwide at any age",
+      "outcome_for_you": "conditional"
+    },
+    {
+      "id": "in-gcp-tree-plantation",
+      "scope": "IN",
+      "country": "IN",
+      "subdivision": null,
+      "locality": null,
+      "name": "Green Credit Programme: tree-plantation methodology (Green Credit Rules, 2023; revised 29 August 2025)",
+      "authority": "Ministry of Environment, Forest and Climate Change; administrator ICFRE",
+      "category": "incentive-payment",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "new-planting",
+        "setting": "forest"
+      },
+      "outcome_for_existing_trees": "not-eligible",
+      "summary": "Green Credits for tree plantation are issued only for restoring degraded forest land of at least 5 ha under a State or UT Forest Department, so existing trees on a farm or in a town do not qualify.",
+      "details": "Eligible land is 'Degraded forest land parcels under the control and management of the State/UT Forest Department', each a compact area of at least 5 hectares free from encumbrances; wildlife sanctuaries, national parks and tiger reserves are excluded. Credit claims are possible 'After 5 years of restoration work and when canopy density reaches at least 40 percent'. Green Credits issued for tree plantation 'shall be non-tradable' and are non-transferable except between a holding company and its subsidiaries. The methodology was first notified on 22 February 2024 and revised on 29 August 2025.",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Green Credit Programme FAQ",
+          "publisher": "MoEFCC Green Credit Programme portal",
+          "url": "https://www.moefcc-gcp.in/faq",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "About the Green Credit Programme",
+          "publisher": "MoEFCC Green Credit Programme portal",
+          "url": "https://www.moefcc-gcp.in/about/aboutGCP",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Green Credit Programme: Lok Sabha written reply, 16 March 2026",
+          "publisher": "Press Information Bureau, Government of India",
+          "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2240640&reg=3&lang=1",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Green Credit Programme home page (notification list)",
+          "publisher": "MoEFCC Green Credit Programme portal",
+          "url": "https://www.moefcc-gcp.in/",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "Green Credits are a government recognition scheme, not carbon credits (CCTS) and not a cash payment; 'incentive-payment' is the closest available category label. The Green Credit Rules were notified on 12 October 2023 under the Environment Protection Act, 1986 (GCP portal). Per-tree details such as one credit per surviving tree aged five years or more come from secondary sources listed in docs/research/policy-references.md and are not entered here.",
+      "applies": false,
+      "why": "Only for trees in forests",
+      "outcome_for_you": "not-eligible"
+    },
+    {
+      "id": "in-hr-pran-vayu-devta-pension",
+      "scope": "IN",
+      "country": "IN",
+      "subdivision": "IN-HR",
+      "locality": null,
+      "name": "Pran Vayu Devta Pension Scheme (Haryana)",
+      "authority": "Forest and Wildlife Department, Government of Haryana",
+      "category": "incentive-payment",
+      "applies_to": {
+        "min_age_years": 75,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "non-forest"
+      },
+      "outcome_for_existing_trees": "payment",
+      "summary": "Haryana pays the custodian of a living tree that is about 75 years old or more and stands outside forest land an annual pension, reported as Rs 3,000 per tree in 2025 and again in July 2026.",
+      "details": "Press reports of the June 2023 announcement describe a pension for trees 'older than 75 years' (later reports say 75 years or older); fallen, hollow, dead, dry or diseased trees and trees on forest land are excluded, and a grove grown from one seed (for example a banyan) counts as one tree. Later reports add that the tree must be one of 40 designated native species, that applicants apply to the district forest department (21-column proforma) and that a five-member district committee approves, with the pension paid to the custodian's bank account. The amount was reported as Rs 2,500 (June 2023), Rs 2,750 (July 2024) and Rs 3,000 (June to September 2025 and again on 13 July 2026), and is meant to rise each year in line with the Old Age Samman pension. A cap of 4,000 trees until a five-year review was reported in 2023, and 3,876 trees in 22 districts in September 2025.",
+      "amount": {
+        "value": 3000,
+        "currency": "INR",
+        "unit": "per tree per year",
+        "as_of": "2026-07"
+      },
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Haryana to give Rs 2,500 annually to custodians of trees older than 75 years (23 June 2023)",
+          "publisher": "The Tribune",
+          "url": "https://www.tribuneindia.com/news/haryana/haryana-to-give-rs-2-500-annually-to-custodians-of-trees-older-than-75-years-says-minister-519354",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Old Haryana trees: Rs 3,000 pension and the long red tape (6 September 2025)",
+          "publisher": "ThePrint",
+          "url": "https://theprint.in/ground-reports/old-haryana-trees-rs-3000-pension-and-the-long-red-tape/2737061/",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "51 trees in Faridabad aged 75 years are receiving an annual pension of Rs 3,000 (13 July 2026)",
+          "publisher": "Amar Ujala",
+          "url": "https://www.amarujala.com/delhi-ncr/faridabad/51-trees-in-faridabad-aged-75-years-are-receiving-an-annual-pension-of-3-000-2026-07-13",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "55 more trees in Karnal get heritage tag under Pran Vayu Devta scheme (12 June 2025)",
+          "publisher": "The Tribune",
+          "url": "https://www.tribuneindia.com/news/haryana/55-more-trees-in-karnal-get-heritage-tag-under-pran-vayu-devta-scheme/amp",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Haryana's Pran Vayu Devta Yojana (2 July 2024)",
+          "publisher": "OneIndia",
+          "url": "https://www.oneindia.com/india/haryanas-pran-vayu-devta-yojana-financial-aid-for-elderly-tree-care-011-3863365.html",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Message from PCCF's Desk (acknowledges the scheme; no amount or age)",
+          "publisher": "Haryana Forest Department",
+          "url": "https://haryanaforest.gov.in/message-from-pccfs-desk/",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "pending",
+      "notes": "Press only: the single official page found (Haryana Forest Department, PCCF message) names the scheme but gives no amount or age, the haryana.gov.in scheme page returned 404 and the Chief Minister's Office page was blocked to the fetch tool. Still needed: the official notification or guidelines to confirm the age wording (above or at least 75), the species list, exclusions and the current annual amount (it is indexed to the Old Age Samman pension). The as_of date is the latest press report quoting Rs 3,000 (an official, the Faridabad District Forest Officer, is quoted in it).",
+      "applies": false,
+      "why": "Needs trees aged 75 years or more",
+      "outcome_for_you": "payment"
+    },
+    {
+      "id": "in-dl-preservation-of-trees-act",
+      "scope": "IN",
+      "country": "IN",
+      "subdivision": "IN-DL",
+      "locality": null,
+      "name": "Delhi Preservation of Trees Act, 1994",
+      "authority": "Department of Forests & Wildlife, Government of NCT of Delhi (Tree Officer)",
+      "category": "tree-protection",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "urban"
+      },
+      "outcome_for_existing_trees": "protected",
+      "summary": "In Delhi, felling, removing or disposing of a tree needs the Tree Officer's previous permission; the Act has no age test and covers a woody plant once its trunk is at least 5 cm across at 30 cm height and it is at least 1 m tall.",
+      "details": "Section 8: 'no person shall fell or remove or dispose of any tree or forest produce in any land ... except with the previous permission of the Tree Officer'; a 'tree' is a woody plant whose trunk is not less than five centimetres in diameter at a height of thirty centimetres from the ground and which is not less than one metre in height (Section 2). Section 9(2) lists cases where permission cannot be refused, including dead, diseased or wind-fallen trees, silviculturally mature trees (except on steep slopes) and trees that endanger life, property or traffic. The Tree Officer must decide within 60 days (otherwise permission is deemed granted) and applicants state the girth at 1.85 m above ground (Section 9(1)). A person given permission must plant the number and kind of trees the Tree Officer directs in the area where the tree was felled (Section 10).",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "The Delhi Preservation of Trees Act, 1994",
+          "publisher": "India Code (Government of India)",
+          "url": "https://www.indiacode.nic.in/bitstream/123456789/13589/1/the_delhi_preservation_of_trees_act_1994.pdf",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "The Act text read has no heritage-tree or age provision. Penalty in that text (Section 24): up to one year's imprisonment or a fine up to Rs 1,000, or both; amendments and the current consolidated text were not checked.",
+      "applies": false,
+      "why": "Only in Delhi (IN-DL)",
+      "outcome_for_you": "protected"
+    },
+    {
+      "id": "in-ka-preservation-of-trees-act",
+      "scope": "IN",
+      "country": "IN",
+      "subdivision": "IN-KA",
+      "locality": null,
+      "name": "Karnataka Preservation of Trees Act, 1976",
+      "authority": "Karnataka Forest Department (Tree Officer)",
+      "category": "tree-protection",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "any"
+      },
+      "outcome_for_existing_trees": "protected",
+      "summary": "Where the Act applies, felling a tree needs the Tree Officer's previous permission and the applicant must plant replacement trees; the Act sets no age test.",
+      "details": "Section 8: 'no person shall fell any tree or cause any tree to be felled in any land ... except with the previous permission of the Tree Officer'; a 'tree' is a woody plant whose trunk is not less than five and a half centimetres in diameter and not less than one metre in height (Section 2). Permission must be granted for trees that are dead, diseased or wind-fallen, silviculturally mature, a danger to life or property, an obstruction to traffic or substantially damaged by natural causes (Section 8(3)), and listed species such as casuarina, coconut, rubber and bamboo are exempt (Section 8(7)). Where permission is given the applicant 'shall plant another tree or trees of the same or any other suitable species on the same site or other suitable place within thirty days'. The Act extends to the whole of Karnataka, but its provisions were brought into force area by area through notifications (Section 1).",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "The Karnataka Preservation of Trees Act, 1976 (Karnataka Act 76 of 1976)",
+          "publisher": "PRS Legislative Research (copy of the Act)",
+          "url": "https://prsindia.org/files/bills_acts/acts_states/karnataka/1976/1976KR76.pdf",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "Text is the 1976 Act as published by PRS India. Later amendments, the list of notified areas and the current penalty (1976 text, Section 22: up to three months' imprisonment or a fine up to Rs 1,000, or both) were not checked, and the India Code copy is blocked to the fetch tool. Karnataka's Krushi Aranya Protsaha Yojane (a new-planting incentive, not age-based) is covered in the md file and not entered as a rule because its amounts are unconfirmed.",
+      "applies": false,
+      "why": "Only in Karnataka (IN-KA)",
+      "outcome_for_you": "protected"
+    },
+    {
+      "id": "in-mh-heritage-tree",
+      "scope": "IN",
+      "country": "IN",
+      "subdivision": "IN-MH",
+      "locality": null,
+      "name": "Heritage trees under the Maharashtra (Urban Areas) Protection and Preservation of Trees Act, 1975, as amended in 2021",
+      "authority": "Maharashtra State Tree Authority and urban Tree Authorities; Government of Maharashtra",
+      "category": "tree-protection",
+      "applies_to": {
+        "min_age_years": 50,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "urban"
+      },
+      "outcome_for_existing_trees": "protected",
+      "summary": "In Maharashtra's urban areas a tree can be categorised as a heritage tree and a proposal to fell one goes to the State Tree Authority; news reports put the age at 50 years or more, but the amended Act leaves the norms to the Government.",
+      "details": "The 2021 amendment defines 'heritage tree' as 'a tree categorised as such by the Tree Authority, in accordance with the norms as may be notified by the Government' and sends a proposal to fell a heritage tree to the Maharashtra State Tree Authority (Section 2 and the proviso to Section 8(3)). The Bill and Act text opened here state no age; news reports of the June 2021 Cabinet decision say 'any tree with an estimated age of 50 years or above' would be classified as a heritage tree. The Tree Officer determines a tree's age 'as per the criteria and method as may be notified by the Government' (Section 8(5)(b)).",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Bill No. VIII of 2021, a Bill further to amend the Maharashtra (Urban Areas) Protection and Preservation of Trees Act, 1975",
+          "publisher": "Maharashtra Legislature",
+          "url": "https://mls.org.in/assembly-bill/one-house/Bill%20no%208%20of%202021%20Eng.%20One%20House.pdf",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Maharashtra (Urban Areas) Protection and Preservation of Trees (Amendment) Act, 2021 (text)",
+          "publisher": "Legitquest",
+          "url": "https://www.legitquest.com/act/maharashtra-urban-areas-protection-and-preservation-of-trees-amendment-act-2021/A265",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Now Maharashtra to give 50-year-old urban trees heritage tag (11 June 2021)",
+          "publisher": "The Tribune",
+          "url": "https://www.tribuneindia.com/news/schools/now-maharashtra-to-give-50-year-old-urban-trees-heritage-tag-266830",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "More than 50 years old tree will be declared as a heritage tree in Maharashtra",
+          "publisher": "Mumbai Live",
+          "url": "https://www.mumbailive.com/en/environment/more-than-50-years-old-tree-will-be-declared-as-a-heritage-tree-in-maharashtra-65671",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Reply by Respondent 1 in OA No. 92/2024 (quotes the 2021 Amendment Act, State Tree Authority)",
+          "publisher": "National Green Tribunal",
+          "url": "https://www.greentribunal.gov.in/sites/default/files/news_updates/Reply%20by%20R-1%20in%20OA%20No.92-2024%20(page%20nos.10-88).pdf",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "pending",
+      "notes": "The 50-year threshold appears only in press reports (The Tribune, 11 June 2021; Mumbai Live) and is the basis of the 'old' age class; the Bill and the Act text opened leave heritage norms to be notified. Still needed: the Government notification of heritage-tree norms (Environment and Climate Change Department) or the consolidated Act on India Code (that PDF is blocked to the fetch tool). The NGT reply confirms the 2021 Amendment Act and the State Tree Authority (Section 3(1)) are on the statute book.",
+      "applies": false,
+      "why": "Only in Maharashtra (IN-MH)",
+      "outcome_for_you": "protected"
+    },
+    {
+      "id": "in-dl-compensatory-plantation-circular",
+      "scope": "IN",
+      "country": "IN",
+      "subdivision": "IN-DL",
+      "locality": null,
+      "name": "Delhi Forest Department circular: plant 10 saplings for each tree felled",
+      "authority": "Department of Forests & Wildlife, Government of NCT of Delhi",
+      "category": "compensatory-planting",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "urban"
+      },
+      "outcome_for_existing_trees": "conditional",
+      "summary": "Delhi tree-felling permissions carry a condition to plant 10 saplings for each tree felled and to maintain them for 5 to 7 years.",
+      "details": "Circular No. FAWL-L/3/2023-Tree Cell, I/76547/2023 dated 2 June 2023 states that Tree Officers grant felling permission under section 9 of the Delhi Preservation of Trees Act, 1994 'on conditions ... one of them being plantation of 10 saplings for each tree felled and maintaining the same for 5-7 years'. Applications must give the girth at 1.85 m above ground and the Tree Officer decides within sixty days. The circular directs Tree Officers to act under sections 11, 12 and 31 against non-compliance and to plant using forfeited security deposits. The ratio does not depend on the age of the tree.",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Circular No. FAWL-L/3/2023-Tree Cell, I/76547/2023 (2 June 2023)",
+          "publisher": "Department of Forests & Wildlife, GNCTD",
+          "url": "https://dpta.eforest.delhi.gov.in/TEMP/CIRCULAR.pdf",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "In force as of the circular date; later circulars or court orders could change the ratio. The Act itself leaves the number of replacement trees to the Tree Officer (Section 10).",
+      "applies": false,
+      "why": "Only in Delhi (IN-DL)",
+      "outcome_for_you": "conditional"
+    },
+    {
+      "id": "in-mh-compensatory-planting-estimated-age",
+      "scope": "IN",
+      "country": "IN",
+      "subdivision": "IN-MH",
+      "locality": null,
+      "name": "Compensatory planting equal to the felled tree's estimated age (Maharashtra Trees Act, Section 8, as amended 2021)",
+      "authority": "Tree Officer and Tree Authorities, Government of Maharashtra",
+      "category": "compensatory-planting",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "urban"
+      },
+      "outcome_for_existing_trees": "conditional",
+      "summary": "To be allowed to fell a tree in a Maharashtra urban area you must plant as many trees as the felled tree's estimated age in years, so a 60-year-old tree means 60 new trees.",
+      "details": "Section 8(5), as amended in 2021: the applicant 'shall plant such number of trees equal to the estimated age of the tree being felled and such trees to be planted shall be of atleast six feet height'. The Tree Officer determines the age 'as per the criteria and method as may be notified by the Government'; the Bill text also requires the planted trees to survive for a minimum of seven years (Section 8(5A)) and offers a deposit of not less than the valuation of the felled trees as an alternative. The penalty under Section 21 is the valuation of the tree, using a methodology to be notified, but not more than one lakh rupees, and applications covering more than two hundred trees of age five years or more are referred to the Maharashtra State Tree Authority.",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Bill No. VIII of 2021, a Bill further to amend the Maharashtra (Urban Areas) Protection and Preservation of Trees Act, 1975",
+          "publisher": "Maharashtra Legislature",
+          "url": "https://mls.org.in/assembly-bill/one-house/Bill%20no%208%20of%202021%20Eng.%20One%20House.pdf",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Maharashtra (Urban Areas) Protection and Preservation of Trees (Amendment) Act, 2021 (text)",
+          "publisher": "Legitquest",
+          "url": "https://www.legitquest.com/act/maharashtra-urban-areas-protection-and-preservation-of-trees-amendment-act-2021/A265",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "The number of trees equals the estimated age (it is not a fixed ratio), so the rule scales with tree age. The seven-year survival period and the deposit alternative are taken from the Bill as introduced; check the enacted text. A press report (Mumbai Live) adds 6-8 ft planting height and geotagging, which were not found in the Act text.",
+      "applies": false,
+      "why": "Only in Maharashtra (IN-MH)",
+      "outcome_for_you": "conditional"
+    }
+  ],
+  "withheld_rule_ids": [],
+  "certified": false,
+  "disclaimer": "Screening information only — not legal advice. Rules change; confirm with the responsible authority before acting. Scenario estimate only. This is not an issued carbon credit.",
+  "provenance": {
+    "generated_at": "2026-10-05T00:00:00Z",
+    "api_version": "1",
+    "app_version": "0.2.0",
+    "mode": "demo",
+    "sources": [
+      {
+        "id": "ipcc-2006-vol4-ch4",
+        "name": "2006 IPCC Guidelines for National GHG Inventories, Vol. 4 Ch. 4",
+        "version": "2006",
+        "license": "IPCC publication — citation required",
+        "attribution": "IPCC (2006). 2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 4: Agriculture, Forestry and Other Land Use. IGES, Japan.",
+        "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html"
+      },
+      {
+        "id": "species-table",
+        "name": "AgriCarbon Atlas species table",
+        "version": "0.1.0",
+        "license": "Apache-2.0 (project configuration)",
+        "attribution": "AgriCarbon Atlas contributors; wood density working values after Zanne et al. (2009) Global Wood Density Database (Dryad, CC0)",
+        "url": "https://doi.org/10.5061/dryad.234"
+      },
+      {
+        "id": "tree-age-rules",
+        "name": "AgriCarbon Atlas tree-age rules (config/tree-age/rules.yaml)",
+        "version": "0.1.0",
+        "updated": "2026-10-05",
+        "license": "Apache-2.0 (project configuration); each rule cites its own public sources",
+        "attribution": "AgriCarbon Atlas contributors; each rule lists its sources and the date they were accessed",
+        "url": null
+      }
+    ],
+    "notes": [
+      "Method: stand-level IPCC Tier 1 growth for this species and climate zone, added up from planting to today. The individual trees are not measured.",
+      "The trees you list are counted as alive today, so no further mortality is applied.",
+      "These trees are past the species' maturity age (8 years): stand-level Tier 1 continues at the post-maturity factor (0.5 of the full increment) — measure trunk girth for a better estimate.",
+      "Root-to-shoot ratio follows the above-ground biomass stock class: 0.56 → 0.28 (IPCC 2006 Table 4.4).",
+      "No area was given, so the 25 trees are treated as a stand at the species' reference density of 150 trees per hectare (0.1667 ha).",
+      "Parameters still pending verification: above_ground_biomass_growth, root_to_shoot_ratio. Treat the figures as screening estimates.",
+      "Carbon counted is above- plus below-ground tree biomass, expressed as CO2e; soil, litter and dead wood are not included.",
+      "Scenario estimate only: removals already made by existing trees are not carbon credits."
+    ],
+    "model": {
+      "id": "tree-biomass",
+      "version": "0.1.0"
+    },
+    "parameter_set": {
+      "id": "ipcc-2006-tier1",
+      "version": "0.1.0",
+      "verification_status": "pending"
+    },
+    "climate_zone": {
+      "zone": "tropical_dry",
+      "label": "Tropical dry",
+      "source": "region default (IN)"
+    },
+    "species": {
+      "id": "mango",
+      "scientific_name": "Mangifera indica"
+    }
+  }
+}

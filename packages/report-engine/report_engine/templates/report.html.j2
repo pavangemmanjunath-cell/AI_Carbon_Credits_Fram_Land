@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="{{ language }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgriCarbon Atlas report {{ report_id }}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1E6B41;
+    --ink: #14211A;
+    --ground: #F3F6F2;
+    --rule: #14211A;
+    --muted: #5B6B60;
+  }
+  @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: 10.5pt; line-height: 1.45; color: var(--ink); background: #fff;
+  }
+  .page { max-width: 190mm; margin: 0 auto; padding: 12mm 0 18mm 0; }
+  h1, h2, h3 { font-family: "Space Grotesk", "IBM Plex Sans", sans-serif; font-weight: 700; margin: 0; }
+  h1 { font-size: 22pt; letter-spacing: -0.01em; color: var(--ink); }
+  h2 { font-size: 13pt; color: var(--forest); margin: 9mm 0 3mm 0; padding-bottom: 1.5mm; border-bottom: 1px solid var(--rule); page-break-after: avoid; }
+  h3 { font-size: 11pt; margin: 4mm 0 2mm 0; }
+  .masthead { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--forest); padding-bottom: 4mm; margin-bottom: 4mm; }
+  .masthead .brand { font-family: "Space Grotesk", sans-serif; font-weight: 500; color: var(--forest); font-size: 10pt; letter-spacing: 0.08em; text-transform: uppercase; }
+  .meta { font-family: "IBM Plex Mono", monospace; font-size: 8.5pt; color: var(--muted); text-align: right; }
+  .banner { background: var(--ground); border-left: 4px solid var(--forest); padding: 3mm 4mm; margin: 4mm 0; font-size: 10pt; }
+  .banner strong { color: var(--forest); }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; margin: 3mm 0; }
+  .kpi { background: var(--ground); padding: 3mm 4mm; border-top: 1px solid var(--rule); }
+  .kpi .label { font-size: 8.5pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .kpi .value { font-family: "IBM Plex Mono", monospace; font-size: 15pt; font-weight: 500; color: var(--ink); }
+  .kpi .range { font-family: "IBM Plex Mono", monospace; font-size: 8.5pt; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm 0; font-size: 9.5pt; page-break-inside: auto; }
+  th, td { text-align: left; padding: 1.6mm 2mm; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-weight: 600; font-size: 8.5pt; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); border-bottom: 1px solid var(--rule); }
+  td.num, th.num { text-align: right; font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+  tr { page-break-inside: avoid; }
+  .tag { display: inline-block; font-family: "IBM Plex Mono", monospace; font-size: 8pt; padding: 0.3mm 1.6mm; border: 1px solid var(--rule); border-radius: 2px; }
+  .tag.pending { border-color: #B5651D; color: #B5651D; }
+  .tag.verified { border-color: var(--forest); color: var(--forest); }
+  .tag.assumption { border-color: var(--muted); color: var(--muted); }
+  .muted { color: var(--muted); }
+  .small { font-size: 8.5pt; }
+  ul { margin: 1mm 0 2mm 0; padding-left: 5mm; }
+  li { margin: 0.6mm 0; }
+  .disclaimer { border-top: 2px solid var(--forest); margin-top: 8mm; padding-top: 3mm; font-size: 9pt; }
+  footer { margin-top: 6mm; font-family: "IBM Plex Mono", monospace; font-size: 8pt; color: var(--muted); }
+  @media print { .page { padding: 0; max-width: none; } a { color: inherit; text-decoration: none; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="masthead">
+    <div>
+      <div class="brand">AgriCarbon Atlas · Evidence report</div>
+      <h1>{{ plot.name or plot.plot_id }}</h1>
+    </div>
+    <div class="meta">
+      {{ report_id }}<br>
+      generated {{ generated_at }}<br>
+      mode: {{ mode }} · api v{{ api_version }}
+    </div>
+  </div>
+
+  <div class="banner">
+    <strong>Scenario estimate — not an issued carbon credit.</strong>
+    All carbon figures are modelled ranges with stated uncertainty and are <em>not certified</em>
+    (certified: false). Programme sections are an initial screening, not an eligibility determination.
+  </div>
+
+  {% if estimate %}
+  <div class="kpis">
+    <div class="kpi">
+      <div class="label">Estimated annual carbon removal</div>
+      <div class="value">{{ estimate.estimate.central | num(1) }} <span class="small">{{ estimate.estimate.unit }}</span></div>
+      <div class="range">range {{ estimate.estimate.low | num(1) }} – {{ estimate.estimate.high | num(1) }} · confidence {{ estimate.confidence }}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Cumulative removal to date</div>
+      <div class="value">{{ estimate.stock.central | num(1) }} <span class="small">{{ estimate.stock.unit }}</span></div>
+      <div class="range">range {{ estimate.stock.low | num(1) }} – {{ estimate.stock.high | num(1) }}</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Evidence readiness</div>
+      <div class="value">{{ estimate.readiness.score }}<span class="small">/100</span></div>
+      <div class="range">grade {{ estimate.readiness.grade }} · {{ estimate.readiness.missing_evidence | length }} items missing</div>
+    </div>
+  </div>
+  {% endif %}
+
+  <h2>1 · Plot</h2>
+  <table>
+    <tr><th>Plot id</th><td>{{ plot.plot_id }}</td><th>Country / region</th><td>{{ plot.country }}{% if plot.region %} · {{ plot.region }}{% endif %}</td></tr>
+    <tr><th>Area</th><td class="num">{{ plot.area_hectares | num(2) }} ha ({{ plot.area_acres | num(2) }} ac)</td><th>Perimeter</th><td class="num">{{ plot.perimeter_m | num(0) }} m</td></tr>
+    <tr><th>Approximate location</th><td class="num">{{ plot.public_centroid.lat | num(2) }}°, {{ plot.public_centroid.lon | num(2) }}°</td><th>Boundary source</th><td>{{ plot.source }}</td></tr>
+  </table>
+  <p class="small muted">The exact boundary is withheld in this document (privacy by default); the location is generalised to a 0.05° grid.</p>
+
+  <h2>2 · Plantation</h2>
+  {% if inventory %}
+  <table>
+    <tr><th>Species</th><td>{{ inventory.species.common_name }} <span class="muted">({{ inventory.species.scientific_name }})</span></td><th>Trees</th><td class="num">{{ inventory.tree_count | num(0) }} ({{ inventory.density_per_ha | num(0) }} / ha)</td></tr>
+    <tr><th>Planted</th><td class="num">{{ inventory.plantation_year }} (age {{ inventory.age_years }} yr)</td><th>Survival rate</th><td class="num">{% if inventory.survival_rate is not none %}{{ inventory.survival_rate | pct(0) }}{% else %}—{% endif %}</td></tr>
+    <tr><th>Average DBH</th><td class="num">{% if inventory.average_dbh_cm %}{{ inventory.average_dbh_cm | num(1) }} cm{% else %}not measured{% endif %}</td><th>Average height</th><td class="num">{% if inventory.average_height_m %}{{ inventory.average_height_m | num(1) }} m{% else %}not measured{% endif %}</td></tr>
+    <tr><th>Measurement source</th><td>{{ inventory.measurement_source }}</td><th>Inventory confidence</th><td>{{ inventory.data_quality.confidence }}</td></tr>
+  </table>
+  {% else %}
+  <p class="muted">No tree inventory has been recorded for this plot.</p>
+  {% endif %}
+
+  <h2>3 · Earth observations</h2>
+  {% if analysis %}
+    {% if analysis.landcover %}
+    <h3>Land cover — {{ analysis.landcover.dataset }} {{ analysis.landcover.version }} ({{ analysis.landcover.resolution_m }} m)</h3>
+    <table>
+      <tr><th>Class</th><th class="num">Share</th><th class="num">Area (ha)</th></tr>
+      {% for c in analysis.landcover.classes %}
+      <tr><td>{{ c.name }} <span class="muted small">({{ c.code }})</span></td><td class="num">{{ c.share | pct(0) }}</td><td class="num">{{ c.area_ha | num(2) }}</td></tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+    {% if analysis.vegetation %}
+    <h3>Vegetation condition (Sentinel-2 L2A)</h3>
+    <table>
+      <tr><th>Date</th><th class="num">NDVI</th><th class="num">NDMI</th><th class="num">Cloud %</th><th>Scene</th></tr>
+      {% for row in analysis.vegetation.time_series %}
+      <tr><td class="num">{{ row.date }}</td><td class="num">{{ row.ndvi | num(2) }}</td><td class="num">{{ row.ndmi | num(2) }}</td><td class="num">{{ row.cloud_cover | num(1) }}</td><td class="small">{{ row.scene_id }}</td></tr>
+      {% endfor %}
+    </table>
+    <p>Latest NDVI {{ analysis.vegetation.indices.ndvi.value | num(2) }} ({{ analysis.vegetation.indices.ndvi.class }}),
+       NDMI {{ analysis.vegetation.indices.ndmi.value | num(2) }} ({{ analysis.vegetation.indices.ndmi.class }}).
+       {{ analysis.vegetation.trend.statement }}</p>
+    {% endif %}
+    {% if analysis.climate or analysis.soil %}
+    <table>
+      {% if analysis.climate %}
+      <tr><th>Climate zone</th><td>{{ analysis.climate.zone_label }}</td><th>Mean annual temperature</th><td class="num">{{ analysis.climate.mean_annual_temp_c | num(1) }} °C</td></tr>
+      <tr><th>Annual precipitation</th><td class="num">{{ analysis.climate.annual_precip_mm | num(0) }} mm</td><th>Elevation</th><td class="num">{{ analysis.climate.elevation_m | num(0) }} m</td></tr>
+      {% endif %}
+      {% if analysis.soil %}
+      <tr><th>Soil organic carbon (0–30 cm)</th><td class="num">{{ analysis.soil.soc_0_30cm_g_per_kg | num(1) }} g/kg</td><th></th><td class="muted small">current stock indicator (SoilGrids), not a change estimate</td></tr>
+      {% endif %}
+    </table>
+    {% endif %}
+    {% if analysis.data_quality and analysis.data_quality.warnings %}
+    <p class="small muted">Data quality: {{ analysis.data_quality.warnings | join('; ') }}</p>
+    {% endif %}
+  {% else %}
+  <p class="muted">No earth-observation analysis has been run for this plot.</p>
+  {% endif %}
+
+  <h2>4 · Carbon</h2>
+  {% if estimate %}
+  <p>Model <strong>{{ estimate.model.id }} v{{ estimate.model.version }}</strong> (tier {{ estimate.model.tier }}) ·
+     methodology {{ estimate.methodology.name }}.
+     Parameter set status: <span class="tag {{ estimate.provenance.parameter_set.verification_status }}">{{ estimate.provenance.parameter_set.verification_status }}</span></p>
+  <table>
+    <tr><th></th><th class="num">Low</th><th class="num">Central</th><th class="num">High</th><th>Unit</th></tr>
+    <tr><td>Estimated annual carbon removal</td><td class="num">{{ estimate.estimate.low | num(1) }}</td><td class="num">{{ estimate.estimate.central | num(1) }}</td><td class="num">{{ estimate.estimate.high | num(1) }}</td><td>{{ estimate.estimate.unit }}</td></tr>
+    <tr><td>Cumulative removal to date</td><td class="num">{{ estimate.stock.low | num(1) }}</td><td class="num">{{ estimate.stock.central | num(1) }}</td><td class="num">{{ estimate.stock.high | num(1) }}</td><td>{{ estimate.stock.unit }}</td></tr>
+    {% for key, value in estimate.components.items() %}
+    <tr><td class="muted">{{ key | humanize }}</td><td></td><td class="num">{{ value | num(1) }}</td><td></td><td>tCO2e/yr</td></tr>
+    {% endfor %}
+  </table>
+  <h3>Annual series (central, cumulative)</h3>
+  <table>
+    <tr><th class="num">Year</th><th class="num">Age</th><th class="num">Low</th><th class="num">Central</th><th class="num">High</th><th class="num">Cumulative</th></tr>
+    {% for p in estimate.annual_series %}
+    {% if loop.index0 % 5 == 0 or loop.last %}
+    <tr><td class="num">{{ p.year }}</td><td class="num">{{ p.age }}</td><td class="num">{{ p.low | num(1) }}</td><td class="num">{{ p.central | num(1) }}</td><td class="num">{{ p.high | num(1) }}</td><td class="num">{{ p.cum_central | num(1) }}</td></tr>
+    {% endif %}
+    {% endfor %}
+  </table>
+  <h3>Parameters used</h3>
+  <table>
+    <tr><th>Parameter</th><th class="num">Value</th><th>Unit</th><th>Source</th><th>Status</th></tr>
+    {% for p in estimate.parameters_used %}
+    <tr><td>{{ p.name }}</td><td class="num">{{ p.value }}</td><td>{{ p.unit }}</td><td class="small">{{ p.source }}</td><td><span class="tag {{ p.verification_status }}">{{ p.verification_status }}</span></td></tr>
+    {% endfor %}
+  </table>
+  {% if estimate.notes %}
+  <ul class="small">
+    {% for n in estimate.notes %}<li>{{ n }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+  {% else %}
+  <p class="muted">No carbon estimate has been generated for this plot.</p>
+  {% endif %}
+
+  <h2>5 · Potential programmes (screening)</h2>
+  {% if policy %}
+  <p class="small muted">{{ policy.disclaimer }}</p>
+  <table>
+    <tr><th>Programme</th><th>Authority</th><th>Screening status</th><th>Key requirements</th></tr>
+    {% for prog in policy.programmes %}
+    <tr>
+      <td><strong>{{ prog.name }}</strong><br><span class="small muted">{{ prog.kind | humanize }}</span>
+        {% if prog.notes %}<ul class="small">{% for n in prog.notes %}<li>{{ n }}</li>{% endfor %}</ul>{% endif %}</td>
+      <td class="small">{{ prog.authority }}</td>
+      <td><span class="tag">{{ prog.status | humanize }}</span></td>
+      <td><ul class="small">{% for r in prog.requirements %}<li>{{ r }}</li>{% endfor %}</ul>
+        {% for ref in prog.references %}<div class="small"><a href="{{ ref.url }}">{{ ref.title }}</a></div>{% endfor %}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p class="muted">No programme screening available (country not supported or no estimate).</p>
+  {% endif %}
+
+  <h2>6 · Financial scenarios</h2>
+  {% if market %}
+  <p class="small muted">Three separate values are shown and never summed: environmental benefit (section 4), indicative carbon value (scenario, not a credit) and other farm income.</p>
+  <table>
+    <tr><th>Scenario</th><th class="num">Price ({{ market.currency }}/tCO2e)</th><th class="num">Low</th><th class="num">Central</th><th class="num">High</th></tr>
+    {% for s in market.scenarios %}
+    <tr><td>{{ s.id | humanize }}</td><td class="num">{{ market.currency_symbol }}{{ s.price_per_tco2e | num(0) }}</td><td class="num">{{ market.currency_symbol }}{{ s.value_per_year.low | num(0) }}</td><td class="num">{{ market.currency_symbol }}{{ s.value_per_year.central | num(0) }}</td><td class="num">{{ market.currency_symbol }}{{ s.value_per_year.high | num(0) }}</td></tr>
+    {% endfor %}
+  </table>
+  <p class="small muted">Basis: {{ market.basis.source }} (as of {{ market.basis.as_of }}). {{ market.basis.note }} {{ market.disclaimer }}</p>
+  {% if market.other_income %}
+  <h3>Other farm income (not summed)</h3>
+  <table>
+    <tr><th>Item</th><th class="num">Value</th><th>Source</th></tr>
+    {% for item in market.other_income %}
+    <tr><td>{{ item.label }}</td><td class="num">{% if item.value is not none %}{{ item.value | num(0) }} {{ item.unit }}{% else %}to be entered{% endif %}</td><td class="small">{{ item.source }}</td></tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+  {% else %}
+  <p class="muted">No market scenario available.</p>
+  {% endif %}
+
+  <h2>7 · Evidence</h2>
+  {% if estimate %}
+  <table>
+    <tr><th>Present</th><th>Missing (weight)</th></tr>
+    <tr>
+      <td><ul>{% for e in estimate.readiness.present_evidence %}<li>{{ e.label }}</li>{% endfor %}</ul></td>
+      <td><ul>{% for e in estimate.readiness.missing_evidence %}<li>{{ e.label }} <span class="muted">({{ e.weight }})</span></li>{% endfor %}</ul></td>
+    </tr>
+  </table>
+  {% endif %}
+  <h3>Data sources and provenance</h3>
+  <table>
+    <tr><th>Source</th><th>Version</th><th>Licence</th><th>Attribution</th></tr>
+    {% for src in sources %}
+    <tr><td>{{ src.name }}</td><td class="small">{{ src.version or '—' }}</td><td class="small">{{ src.license }}</td><td class="small">{{ src.attribution }}</td></tr>
+    {% endfor %}
+  </table>
+
+  <div class="disclaimer">
+    <h2 style="margin-top:0">8 · Disclaimer</h2>
+    <p>{{ disclaimer }}</p>
+    <p class="small muted">Generated by AgriCarbon Atlas (open source, Apache-2.0). Estimates follow the cited methodology with
+      parameters whose verification status is shown above; values marked <em>pending</em> have not yet been checked
+      against the cited tables. Nothing in this document constitutes a carbon credit, a certification, a market quote
+      or an eligibility decision.</p>
+  </div>
+  <footer>{{ report_id }} · {{ generated_at }} · AgriCarbon Atlas API v{{ api_version }}</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "results": [
+    {
+      "label": "Doddaballapura, Bengaluru Rural, Karnataka, India",
+      "lat": 13.2923,
+      "lon": 77.5384,
+      "bbox": [
+        77.4884,
+        13.242299999999998,
+        77.5884,
+        13.3423
+      ],
+      "admin": {
+        "country": "IN",
+        "state": "Karnataka",
+        "district": "Bengaluru Rural"
+      }
+    }
+  ],
+  "provider": "demo",
+  "attribution": "AgriCarbon Atlas demo generator — not an observation"
+}

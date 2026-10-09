@@ -1,0 +1,149 @@
+name: Verify a parameter or rule
+description: Check one `pending` parameter or rule in config/ against the source it cites, and report what you found.
+title: "[verify]: "
+labels: ["needs-verification", "area/config"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Values and rules in `config/` carry a `verification_status`:
+
+        - `verified`: a reviewer compared the value or rule with the cited table, equation or document.
+        - `pending`: a working value or rule that nobody has confirmed against a primary source.
+          **Production mode refuses to run estimates that use a pending parameter**, so each one
+          blocks a production release. Pending tree-age rules must not be shown as confirmed.
+        - `assumption`: a project assumption, not a literature value.
+
+        This form records one check of one item. Open the primary source (not a summary, a blog
+        post or an AI answer), find the cell or passage, and transcribe what you see. A reviewer
+        with domain expertise changes `verification_status` to `verified` in a pull request that
+        links this issue; the status is never changed on the strength of a form alone.
+        See `docs/developer-guide/adding-a-species-or-parameter.md` for the workflow and
+        `docs/developer-guide/adding-a-tree-age-rule.md` for tree-age rules.
+
+        Do not paste numbers from memory. If you cannot reach the source, say so below.
+  - type: dropdown
+    id: file
+    attributes:
+      label: File
+      description: The file that holds the item.
+      options:
+        - config/species/species.yaml
+        - config/methodologies/ipcc-2006-tier1.yaml
+        - config/methodologies/tree-biomass-model.yaml
+        - config/tree-age/rules.yaml
+        - config/market/carbon-price-scenarios.yaml
+        - config/readiness.yaml
+        - config/detection.yaml
+        - config/imagery/providers.yaml
+        - config/policies/IN.yaml
+        - config/policies/US.yaml
+        - config/policies/EU.yaml
+        - config/regions/IN.yaml
+        - config/regions/US.yaml
+        - config/regions/EU.yaml
+        - Other (name it in the Key field)
+    validations:
+      required: true
+  - type: input
+    id: key
+    attributes:
+      label: Key
+      description: The path to the item inside the file. For a species row use its id; for a tree-age rule use its `id`; for a policy rule use the program `id` and the rule's `reason`.
+      placeholder: "species[id=mango].wood_density_g_cm3   or   rules[id=in-hr-pran-vayu-devta-pension]"
+    validations:
+      required: true
+  - type: input
+    id: current_value
+    attributes:
+      label: Value or statement currently in config (with unit)
+      placeholder: "0.55 g/cm3   or   the rule's `summary` text"
+    validations:
+      required: true
+  - type: input
+    id: cited_source
+    attributes:
+      label: Source the config cites
+      description: Copy the `source` text (or the `sources` entry) from the config, then add the exact table, equation, database or document you opened.
+      placeholder: "IPCC 2006 Vol.4 Ch.4 Table 4.4 (root-to-shoot ratios), tropical dry forest"
+    validations:
+      required: true
+  - type: input
+    id: edition
+    attributes:
+      label: Edition or version of the source you consulted
+      description: Several IPCC tables changed in the 2019 Refinement; databases, methodologies and laws have versions and amendments. Say which one you read.
+      placeholder: "2006 IPCC Guidelines, Vol. 4, Chapter 4 (PDF)"
+    validations:
+      required: true
+  - type: input
+    id: source_location
+    attributes:
+      label: Source table or page
+      description: Where a second reviewer can find the same cell or passage in under a minute.
+      placeholder: "Page <n>, Table <x>, row '<row label>', or the URL of the exact table or article"
+    validations:
+      required: true
+  - type: input
+    id: value_found
+    attributes:
+      label: Value found (with unit)
+      description: The number or statement exactly as printed, and its unit. If the source gives a range or classes, give all of them.
+      placeholder: "<number as printed> <unit as printed> (and the class or range it applies to)"
+    validations:
+      required: true
+  - type: dropdown
+    id: comparison
+    attributes:
+      label: How does it compare with the config?
+      options:
+        - Matches exactly
+        - Differs (config needs correcting)
+        - Differs only by unit or rounding
+        - The source gives classes or ranges and the config needs a different structure
+        - The cited source has no such cell or passage (the citation is wrong)
+        - I could not access the source
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Transcription (short quote)
+      description: Copy the row or sentence as printed, with its column headers. Keep it short; do not paste whole tables or articles from copyrighted works.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: applicability
+    attributes:
+      label: Applicability notes
+      description: Climate domain, age class, species group, region, management system, effective date, and anything else the source says about where the value or rule is valid.
+  - type: dropdown
+    id: proposed_status
+    attributes:
+      label: Status you recommend
+      options:
+        - verified (value and citation are confirmed as written)
+        - pending (still needs a correction or a second check)
+        - assumption (no literature value exists; document it as a project assumption)
+    validations:
+      required: true
+  - type: input
+    id: verifier
+    attributes:
+      label: Verifier
+      description: Your name or GitHub handle, and your relevant expertise (forestry, remote sensing, policy, statistics, law). The reviewer who merges the change is recorded in the pull request.
+      placeholder: "@your-handle, forest ecologist"
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: I read the primary source myself; I did not copy the value from memory, a secondary summary or an AI answer.
+          required: true
+        - label: The unit in the source matches the `unit` in config, or I described the conversion above.
+          required: true
+        - label: I understand a reviewer will set `verified`; this issue does not change the status by itself.
+          required: true

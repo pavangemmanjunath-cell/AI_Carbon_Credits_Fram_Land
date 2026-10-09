@@ -1,0 +1,185 @@
+# AgriCarbon Atlas — Evidence report {{ report_id }}
+
+> **Scenario estimate — not an issued carbon credit.** All carbon figures are modelled ranges
+> (certified: false). Programme sections are an initial screening, not an eligibility determination.
+
+Generated {{ generated_at }} · mode {{ mode }} · API v{{ api_version }}
+
+## 1 · Plot
+
+| Field | Value |
+|---|---|
+| Plot id | {{ plot.plot_id }} |
+| Name | {{ plot.name or '—' }} |
+| Country / region | {{ plot.country }}{% if plot.region %} · {{ plot.region }}{% endif %} |
+| Area | {{ plot.area_hectares | num(2) }} ha ({{ plot.area_acres | num(2) }} ac) |
+| Perimeter | {{ plot.perimeter_m | num(0) }} m |
+| Approximate location (0.05° grid) | {{ plot.public_centroid.lat | num(2) }}°, {{ plot.public_centroid.lon | num(2) }}° |
+
+The exact boundary is withheld (privacy by default).
+
+## 2 · Plantation
+
+{% if inventory %}
+| Field | Value |
+|---|---|
+| Species | {{ inventory.species.common_name }} (*{{ inventory.species.scientific_name }}*) |
+| Trees | {{ inventory.tree_count | num(0) }} ({{ inventory.density_per_ha | num(0) }} per ha) |
+| Planted | {{ inventory.plantation_year }} (age {{ inventory.age_years }} yr) |
+| Survival rate | {% if inventory.survival_rate is not none %}{{ inventory.survival_rate | pct(0) }}{% else %}—{% endif %} |
+| Average DBH | {% if inventory.average_dbh_cm %}{{ inventory.average_dbh_cm | num(1) }} cm{% else %}not measured{% endif %} |
+| Average height | {% if inventory.average_height_m %}{{ inventory.average_height_m | num(1) }} m{% else %}not measured{% endif %} |
+| Measurement source | {{ inventory.measurement_source }} |
+| Inventory confidence | {{ inventory.data_quality.confidence }} |
+{% else %}
+No tree inventory recorded.
+{% endif %}
+
+## 3 · Earth observations
+
+{% if analysis %}
+{% if analysis.landcover %}
+**Land cover — {{ analysis.landcover.dataset }} {{ analysis.landcover.version }}**
+
+| Class | Share | Area (ha) |
+|---|---:|---:|
+{% for c in analysis.landcover.classes %}
+| {{ c.name }} ({{ c.code }}) | {{ c.share | pct(0) }} | {{ c.area_ha | num(2) }} |
+{% endfor %}
+{% endif %}
+{% if analysis.vegetation %}
+
+**Vegetation condition (Sentinel-2 L2A)**
+
+| Date | NDVI | NDMI | Cloud % | Scene |
+|---|---:|---:|---:|---|
+{% for row in analysis.vegetation.time_series %}
+| {{ row.date }} | {{ row.ndvi | num(2) }} | {{ row.ndmi | num(2) }} | {{ row.cloud_cover | num(1) }} | {{ row.scene_id }} |
+{% endfor %}
+
+Latest NDVI {{ analysis.vegetation.indices.ndvi.value | num(2) }} ({{ analysis.vegetation.indices.ndvi.class }}), NDMI {{ analysis.vegetation.indices.ndmi.value | num(2) }} ({{ analysis.vegetation.indices.ndmi.class }}). {{ analysis.vegetation.trend.statement }}
+{% endif %}
+{% if analysis.climate %}
+
+Climate zone: {{ analysis.climate.zone_label }} · MAT {{ analysis.climate.mean_annual_temp_c | num(1) }} °C · MAP {{ analysis.climate.annual_precip_mm | num(0) }} mm · elevation {{ analysis.climate.elevation_m | num(0) }} m
+{% endif %}
+{% if analysis.soil %}
+
+Soil organic carbon 0–30 cm: {{ analysis.soil.soc_0_30cm_g_per_kg | num(1) }} g/kg (SoilGrids; current stock indicator, not a change estimate)
+{% endif %}
+{% else %}
+No earth-observation analysis has been run.
+{% endif %}
+
+## 4 · Carbon
+
+{% if estimate %}
+Model **{{ estimate.model.id }} v{{ estimate.model.version }}** (tier {{ estimate.model.tier }}) · {{ estimate.methodology.name }} · parameter set status: `{{ estimate.provenance.parameter_set.verification_status }}`
+
+| | Low | Central | High | Unit |
+|---|---:|---:|---:|---|
+| Estimated annual carbon removal | {{ estimate.estimate.low | num(1) }} | {{ estimate.estimate.central | num(1) }} | {{ estimate.estimate.high | num(1) }} | {{ estimate.estimate.unit }} |
+| Cumulative removal to date | {{ estimate.stock.low | num(1) }} | {{ estimate.stock.central | num(1) }} | {{ estimate.stock.high | num(1) }} | {{ estimate.stock.unit }} |
+
+Confidence: **{{ estimate.confidence }}** · certified: **false**
+
+**Annual series (every 5th year)**
+
+| Year | Age | Low | Central | High | Cumulative |
+|---:|---:|---:|---:|---:|---:|
+{% for p in estimate.annual_series %}
+{% if loop.index0 % 5 == 0 or loop.last %}
+| {{ p.year }} | {{ p.age }} | {{ p.low | num(1) }} | {{ p.central | num(1) }} | {{ p.high | num(1) }} | {{ p.cum_central | num(1) }} |
+{% endif %}
+{% endfor %}
+
+**Parameters used**
+
+| Parameter | Value | Unit | Source | Status |
+|---|---:|---|---|---|
+{% for p in estimate.parameters_used %}
+| {{ p.name }} | {{ p.value }} | {{ p.unit }} | {{ p.source }} | {{ p.verification_status }} |
+{% endfor %}
+{% for n in estimate.notes %}
+- {{ n }}
+{% endfor %}
+{% else %}
+No carbon estimate generated.
+{% endif %}
+
+## 5 · Potential programmes (screening)
+
+{% if policy %}
+_{{ policy.disclaimer }}_
+
+{% for prog in policy.programmes %}
+### {{ prog.name }} — `{{ prog.status }}`
+
+{{ prog.authority }} ({{ prog.kind | humanize }})
+
+{% for n in prog.notes %}
+- {{ n }}
+{% endfor %}
+
+Requirements:
+{% for r in prog.requirements %}
+- {{ r }}
+{% endfor %}
+{% for ref in prog.references %}
+- [{{ ref.title }}]({{ ref.url }})
+{% endfor %}
+
+{% endfor %}
+{% else %}
+No programme screening available.
+{% endif %}
+
+## 6 · Financial scenarios
+
+{% if market %}
+Three separate values are shown and never summed: environmental benefit, indicative carbon value (scenario, not a credit) and other farm income.
+
+| Scenario | Price ({{ market.currency }}/tCO2e) | Low | Central | High |
+|---|---:|---:|---:|---:|
+{% for s in market.scenarios %}
+| {{ s.id | humanize }} | {{ s.price_per_tco2e | num(0) }} | {{ s.value_per_year.low | num(0) }} | {{ s.value_per_year.central | num(0) }} | {{ s.value_per_year.high | num(0) }} |
+{% endfor %}
+
+Basis: {{ market.basis.source }} (as of {{ market.basis.as_of }}). {{ market.basis.note }} **{{ market.disclaimer }}**
+{% if market.other_income %}
+
+Other farm income (not summed):
+{% for item in market.other_income %}
+- {{ item.label }}: {% if item.value is not none %}{{ item.value | num(0) }} {{ item.unit }}{% else %}to be entered{% endif %} — {{ item.source }}
+{% endfor %}
+{% endif %}
+{% else %}
+No market scenario available.
+{% endif %}
+
+## 7 · Evidence
+
+{% if estimate %}
+Readiness score {{ estimate.readiness.score }}/100 (grade {{ estimate.readiness.grade }}).
+
+Present:
+{% for e in estimate.readiness.present_evidence %}
+- {{ e.label }}
+{% endfor %}
+
+Missing:
+{% for e in estimate.readiness.missing_evidence %}
+- {{ e.label }} (weight {{ e.weight }})
+{% endfor %}
+{% endif %}
+
+Data sources:
+{% for src in sources %}
+- {{ src.name }}{% if src.version %} {{ src.version }}{% endif %} — {{ src.license }} — {{ src.attribution }}
+{% endfor %}
+
+## 8 · Disclaimer
+
+{{ disclaimer }}
+
+Generated by AgriCarbon Atlas (open source, Apache-2.0). Values marked *pending* have not yet been checked against the cited tables. Nothing in this document constitutes a carbon credit, a certification, a market quote or an eligibility decision.

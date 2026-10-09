@@ -1,0 +1,29 @@
+# Model-behaviour settings for carbon-engine model `tree-biomass` v0.1
+#
+# These are NOT carbon factors (those live in ipcc-2006-tier1.yaml and
+# species.yaml). They describe how the model turns parameters into a time
+# series. Each entry is surfaced in `parameters_used` with its
+# verification_status so reviewers can see every assumption.
+id: tree-biomass
+version: 0.1.0
+methodology_id: ipcc-2006-vol4-ch4
+parameter_set_id: ipcc-2006-tier1
+settings:
+  horizon_years_default:
+    value: 30
+    unit: years
+    source: project assumption v0.1 — evaluation window for annual series and mean annual removal
+    verification_status: assumption
+  post_maturity_increment_factor:
+    value: 0.5
+    unit: fraction of full increment
+    source: project assumption v0.1 — after species maturity_years the annual increment is held at 50% of the full Tier 1 increment (slower net growth of mature orchards/stands; replace with age-class increments when IPCC 2019 Refinement Table 4.9 values are verified)
+    verification_status: assumption
+  tier2_series_extrapolation:
+    value: mean-annual-to-date
+    unit: method
+    source: project assumption v0.1 — when DBH is supplied, the measured stock is spread evenly over the stand age (stock / max(age, 1)) and the same rate is carried forward until maturity (then × post_maturity_increment_factor)
+    verification_status: assumption
+headline_definition:
+  tier1: mean annual removal over the horizon (sum of annual series ÷ number of years with age ≥ 1)
+  tier2: measured stock ÷ max(age, 1)

@@ -1,0 +1,97 @@
+name: Bug report
+description: Something behaves incorrectly (wrong result, crash, UI defect).
+title: "[bug]: "
+labels: ["type/bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. **Do not paste exact farm coordinates or polygons.**
+        Use one of the synthetic examples under `examples/` or round coordinates to 0.05 degrees.
+        Security and privacy problems go through `SECURITY.md`, not here.
+
+        If a number looks wrong, say which number and what you expected. Estimates are
+        scenario ranges, not credits, so "the range is wide" is not a bug by itself;
+        "the range does not match the cited table" is.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Web app (map, drawing, results)
+        - Web app (import data / Data page)
+        - Web app (AI agents)
+        - Web app (tree age)
+        - Web app (simulation lab)
+        - Plot creation (pin and area, tree line, typed coordinates)
+        - Import (GeoJSON, KML/KMZ, CSV, LAS/LAZ)
+        - Tree detection or tree-age assessment
+        - API / back end
+        - Database (PostgreSQL schema, ATLAS_REPOSITORY=postgres)
+        - Carbon engine (numbers look wrong)
+        - Policy engine (program screening)
+        - Data adapter (WorldCover, Sentinel-2, Open-Meteo, SoilGrids, geocoder, NASS, data.gov.in)
+        - Imagery providers
+        - Report
+        - QGIS plugin
+        - AI agents
+        - Docker / infrastructure
+        - Documentation
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Server mode (ATLAS_MODE)
+      description: "demo uses synthetic data and needs no network; live calls public APIs."
+      options: [demo, live, not sure]
+    validations:
+      required: true
+  - type: textarea
+    id: version
+    attributes:
+      label: Version or commit
+      description: Paste the JSON from `GET /api/v1/health` (it shows `version`, `mode` and `repository`) or the commit hash.
+      render: json
+      placeholder: '{"status": "ok", "version": "0.1.0", "mode": "demo", "repository": "memory", "time": "2026-10-05T09:00:00Z"}'
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Requests, clicks or commands. A `curl` sequence from `examples/*/curl.sh` is ideal.
+      placeholder: |
+        1. POST /api/v1/plots with examples/india-mango-farm/plot.request.json
+        2. POST /api/v1/plots/{id}/trees ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include the response body (RFC 7807 problem) or a screenshot. Redact coordinates.
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: OS, browser and version, Python and Node versions, Docker or local run.
+      placeholder: "Ubuntu 24.04, Firefox 131, Python 3.12.6, Node 22.9, docker compose"
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched existing issues and the FAQ (docs/user-guide/faq.md).
+          required: true
+        - label: This report contains no exact farm coordinates or personal data.
+          required: true

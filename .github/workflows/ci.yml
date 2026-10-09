@@ -1,0 +1,312 @@
+name: CI
+
+# Mirrors what a contributor runs locally:
+#   make install   ->  "Install" step below: requirements.txt, then the editable packages.
+#                      The Makefile (install-api) does not list packages/agent-framework yet;
+#                      CI installs it because apps/api imports it.
+#   make lint      ->  ruff, mypy, eslint
+#   make test      ->  pytest, tsc, vitest
+#   make build     ->  production web build
+#   make docker-up ->  the two images are built (never pushed) and smoke-tested
+#
+# Job names are referenced by branch protection (infra/github/README.md);
+# rename them only together with that document.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  # A newer push to a pull request supersedes the older run; runs on main always finish.
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
+
+env:
+  # Demo mode needs no network, no keys and no database: CI never calls a public API.
+  ATLAS_MODE: demo
+  ATLAS_ENV: development
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+jobs:
+  python:
+    name: Python ${{ matrix.python-version }} (ruff · mypy · pytest)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        # 3.12 is the supported baseline (pyproject: py312); 3.13 guards against drift.
+        python-version: ["3.12", "3.13"]
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      # Same two commands as `make install-api`, plus the agent framework.
+      - name: Install requirements and editable packages
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install \
+            -e packages/carbon-engine \
+            -e packages/geo-engine \
+            -e packages/policy-engine \
+            -e packages/report-engine \
+            -e packages/agent-framework \
+            -e integrations \
+            -e apps/api
+
+      - name: Ruff (lint)
+        run: python -m ruff check .
+
+      - name: Ruff (format check)
+        run: python -m ruff format --check .
+
+      # Same command as `make lint`; strictness comes from [tool.mypy] in pyproject.toml.
+      - name: Mypy
+        run: python -m mypy packages apps/api/app integrations --ignore-missing-imports
+
+      # One run for everything under testpaths in pyproject.toml: packages (including
+      # packages/agent-framework), apps/api/tests, integrations (including
+      # integrations/qgis-plugin/tests, which needs no QGIS) and tests.
+      - name: Pytest
+        run: python -m pytest -q --junitxml=pytest-${{ matrix.python-version }}.xml
+
+      # Principle 10 (CLAUDE.md): production mode must refuse `pending` parameters.
+      - name: Data-quality gate in production mode
+        env:
+          ATLAS_ENV: production
+          ATLAS_ALLOW_PENDING_PARAMETERS: "false"
+        run: python -m pytest -q tests/data-quality
+
+      - name: Parameter verification summary (informational)
+        if: matrix.python-version == '3.12'
+        run: |
+          python - <<'PY'
+          import collections
+          import os
+          import pathlib
+
+          import yaml
+
+
+          def count(node, acc):
+              if isinstance(node, dict):
+                  status = node.get("verification_status")
+                  if isinstance(status, str):
+                      acc[status] += 1
+                  for value in node.values():
+                      count(value, acc)
+              elif isinstance(node, list):
+                  for value in node:
+                      count(value, acc)
+
+
+          rows = []
+          total = collections.Counter()
+          for path in sorted(pathlib.Path("config").rglob("*.yaml")):
+              acc = collections.Counter()
+              count(yaml.safe_load(path.read_text(encoding="utf-8")), acc)
+              if acc:
+                  rows.append((path.as_posix(), acc))
+                  total.update(acc)
+
+          lines = [
+              "### Parameter verification status (informational)",
+              "",
+              "| Config file | verified | pending | assumption |",
+              "|---|---:|---:|---:|",
+          ]
+          for name, acc in rows:
+              lines.append(f"| `{name}` | {acc['verified']} | {acc['pending']} | {acc['assumption']} |")
+          lines.append(f"| **total** | {total['verified']} | {total['pending']} | {total['assumption']} |")
+          lines += [
+              "",
+              "Production mode refuses estimates that use a `pending` parameter "
+              "(see docs/developer-guide/adding-a-species-or-parameter.md).",
+          ]
+          text = "\n".join(lines)
+          print(text)
+          summary = os.environ.get("GITHUB_STEP_SUMMARY")
+          if summary:
+              with open(summary, "a", encoding="utf-8") as handle:
+                  handle.write(text + "\n")
+          PY
+
+      - name: Upload pytest reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-report-${{ matrix.python-version }}
+          path: pytest-*.xml
+          if-no-files-found: ignore
+          retention-days: 14
+
+  postgres:
+    name: PostgreSQL schema (PostGIS 3.4)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Keeps data/schemas/schema.sql and apps/api/app/repositories/postgres.py in step.
+    # The image is the one docker-compose.yml uses.
+    services:
+      db:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_USER: atlas
+          POSTGRES_PASSWORD: atlas
+          POSTGRES_DB: atlas
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U atlas -d atlas"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://atlas:atlas@localhost:5432/atlas
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install psycopg (the version pinned in requirements.txt)
+        run: |
+          python -m pip install "$(grep -E '^psycopg' requirements.txt | sed 's/ *#.*//')"
+
+      # The docker image applies the file once, on first start. Applying it twice here
+      # proves that it is idempotent, which is how operators upgrade an existing database.
+      - name: Apply data/schemas/schema.sql twice
+        run: |
+          psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -q -f data/schemas/schema.sql
+          psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -q -f data/schemas/schema.sql
+
+      # Every PostgresRepository method, once: keeps postgres.py and schema.sql in step.
+      - name: Run every PostgresRepository method against the schema
+        run: python .github/scripts/postgres_smoke.py
+
+      # Self-checking: the database must refuse a certified estimate, an exact public
+      # centroid, coordinates in an audit event and so on. Rolled back at the end.
+      - name: Check the schema constraints
+        run: psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -q -f .github/scripts/schema_constraints.sql
+
+  web:
+    name: Web (Node 22 · lint · typecheck · vitest · build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: apps/web
+    env:
+      VITE_API_BASE_URL: http://localhost:8000/api/v1
+      VITE_BASEMAP_STYLE_URL: https://demotiles.maplibre.org/style.json
+      VITE_DEFAULT_COUNTRY: IN
+      VITE_DEFAULT_LANGUAGE: en
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install (npm ci)
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      # `npm run test` starts Vitest in watch mode unless --run is given.
+      - name: Vitest
+        run: npm run test -- --run
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: apps/web/dist
+          if-no-files-found: error
+          retention-days: 14
+
+  docker:
+    name: Docker build (api · web)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: [python, web]
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Images are built to prove the Dockerfiles work; nothing is pushed.
+      - name: Build API image (infra/docker/Dockerfile.api)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: infra/docker/Dockerfile.api
+          push: false
+          load: true
+          tags: agricarbon-atlas-api:ci
+          cache-from: type=gha,scope=api
+          cache-to: type=gha,scope=api,mode=max
+
+      - name: Build web image (infra/docker/Dockerfile.web)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: infra/docker/Dockerfile.web
+          push: false
+          load: true
+          tags: agricarbon-atlas-web:ci
+          build-args: |
+            VITE_API_BASE_URL=http://localhost:8000/api/v1
+            VITE_BASEMAP_STYLE_URL=https://demotiles.maplibre.org/style.json
+          cache-from: type=gha,scope=web
+          cache-to: type=gha,scope=web,mode=max
+
+      - name: Smoke-test API container (demo mode, /api/v1/health)
+        run: |
+          docker run -d --rm --name atlas-api -e ATLAS_MODE=demo -p 8000:8000 agricarbon-atlas-api:ci
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8000/api/v1/health; then echo; exit 0; fi
+            sleep 2
+          done
+          echo "API did not become healthy"; docker logs atlas-api; exit 1
+
+      - name: Smoke-test web container (/healthz and Content-Security-Policy)
+        run: |
+          docker run -d --rm --name atlas-web -p 8080:8080 agricarbon-atlas-web:ci
+          for i in $(seq 1 15); do
+            if curl -fsS http://127.0.0.1:8080/healthz; then break; fi
+            sleep 2
+          done
+          curl -fsSI http://127.0.0.1:8080/ | grep -i '^content-security-policy:' \
+            || { echo "CSP header missing"; docker logs atlas-web; exit 1; }
+
+      - name: Stop containers
+        if: always()
+        run: docker stop atlas-api atlas-web || true

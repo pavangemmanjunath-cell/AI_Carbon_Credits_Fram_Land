@@ -1,0 +1,48 @@
+# Evidence readiness scoring — "what evidence do I still need?"
+#
+# Used by packages/carbon-engine (readiness.py). The score is NOT an
+# eligibility determination; it tells a landowner how complete their evidence
+# file is relative to what carbon/environmental programmes typically request
+# (polygon, counts, species, age, measurements, baseline, management history,
+# tenure). Weights are project assumptions (v0.1) and sum to 116.
+#
+# score = round(100 × sum(weights of present items) / sum(all weights))
+version: 0.1.0
+source: project assumption v0.1 — weights reflect typical MRV evidence requests (Verra VM0047, CRCF QU.A.L.ITY criteria, GCP methodology)
+verification_status: assumption
+evidence:
+  - id: polygon
+    label: Land polygon
+    weight: 15
+  - id: tree_count
+    label: Tree count
+    weight: 15
+  - id: species
+    label: Tree species
+    weight: 10
+  - id: age
+    label: Plantation age
+    weight: 10
+  - id: satellite
+    label: Satellite observation
+    weight: 14
+  - id: dbh
+    label: Tree diameter measurements
+    weight: 15
+  - id: height
+    label: Tree height measurements
+    weight: 6
+  - id: baseline
+    label: Baseline land-use records
+    weight: 12
+  - id: management
+    label: Farm management history
+    weight: 9
+  - id: ownership
+    label: Land ownership / tenure document
+    weight: 10
+grades:
+  # inclusive lower bounds, evaluated from highest to lowest
+  high: 70
+  medium: 40
+  low: 0

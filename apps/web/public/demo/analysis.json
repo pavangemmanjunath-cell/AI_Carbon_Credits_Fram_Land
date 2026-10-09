@@ -1,0 +1,199 @@
+{
+  "plot_id": "PLT-DEMOIN",
+  "mode": "demo",
+  "years": [
+    2024,
+    2025,
+    2026
+  ],
+  "landcover": {
+    "dataset": "ESA WorldCover",
+    "version": "2021 v200",
+    "resolution_m": 10,
+    "classes": [
+      {
+        "code": 40,
+        "name": "Cropland",
+        "share": 0.68,
+        "area_ha": 1.4485
+      },
+      {
+        "code": 10,
+        "name": "Tree cover",
+        "share": 0.27,
+        "area_ha": 0.5751
+      },
+      {
+        "code": 50,
+        "name": "Built-up",
+        "share": 0.03,
+        "area_ha": 0.0639
+      },
+      {
+        "code": 30,
+        "name": "Grassland",
+        "share": 0.02,
+        "area_ha": 0.0426
+      }
+    ],
+    "tree_cover_share": 0.27,
+    "cropland_share": 0.68,
+    "tiles": [
+      "ESA_WorldCover_10m_2021_v200_N12E075_Map.tif"
+    ],
+    "notes": [
+      "demo mode: synthetic land-cover shares"
+    ],
+    "provenance": {
+      "generated_at": "2026-10-05T19:53:49Z",
+      "api_version": "1",
+      "app_version": "0.2.0",
+      "mode": "demo",
+      "sources": [
+        {
+          "id": "synthetic-demo",
+          "name": "Synthetic demo data (imitating ESA WorldCover 2021 v200)",
+          "version": "v200",
+          "license": "Apache-2.0 (generated)",
+          "attribution": "AgriCarbon Atlas demo generator — not an observation",
+          "url": null,
+          "accessed_at": "2026-10-05T19:53:49.695453Z"
+        }
+      ],
+      "notes": []
+    }
+  },
+  "vegetation": {
+    "indices": {
+      "ndvi": {
+        "value": 0.63,
+        "class": "healthy",
+        "date": "2026-10-05",
+        "scene_id": "S2A_MSIL2A_20261005T050659_N0511_R019_T43PGQ_DEMO"
+      },
+      "ndmi": {
+        "value": 0.226,
+        "class": "moderate",
+        "date": "2026-10-05",
+        "scene_id": "S2A_MSIL2A_20261005T050659_N0511_R019_T43PGQ_DEMO"
+      }
+    },
+    "time_series": [
+      {
+        "date": "2024-10-20",
+        "ndvi": 0.57,
+        "ndmi": 0.193,
+        "cloud_cover": 4.9,
+        "scene_id": "S2A_MSIL2A_20241020T050659_N0511_R019_T43PGQ_DEMO"
+      },
+      {
+        "date": "2025-10-17",
+        "ndvi": 0.598,
+        "ndmi": 0.209,
+        "cloud_cover": 1.9,
+        "scene_id": "S2A_MSIL2A_20251017T050659_N0511_R019_T43PGQ_DEMO"
+      },
+      {
+        "date": "2026-10-05",
+        "ndvi": 0.63,
+        "ndmi": 0.226,
+        "cloud_cover": 3.0,
+        "scene_id": "S2A_MSIL2A_20261005T050659_N0511_R019_T43PGQ_DEMO"
+      }
+    ],
+    "trend": {
+      "start": "2024-10",
+      "end": "2026-10",
+      "change_pct": 10.5,
+      "statement": "Vegetation index increased approximately 10% during the evaluated period."
+    },
+    "notes": [
+      "demo mode: synthetic observations"
+    ],
+    "provenance": {
+      "generated_at": "2026-10-05T19:53:49Z",
+      "api_version": "1",
+      "app_version": "0.2.0",
+      "mode": "demo",
+      "sources": [
+        {
+          "id": "synthetic-demo",
+          "name": "Synthetic demo data (imitating Sentinel-2 L2A (Earth Search STAC, Element 84 / AWS))",
+          "version": "L2A",
+          "license": "Apache-2.0 (generated)",
+          "attribution": "AgriCarbon Atlas demo generator — not an observation",
+          "url": null,
+          "accessed_at": "2026-10-05T19:53:49.700062Z",
+          "scene_ids": [
+            "S2A_MSIL2A_20241020T050659_N0511_R019_T43PGQ_DEMO",
+            "S2A_MSIL2A_20251017T050659_N0511_R019_T43PGQ_DEMO",
+            "S2A_MSIL2A_20261005T050659_N0511_R019_T43PGQ_DEMO"
+          ]
+        }
+      ],
+      "notes": []
+    }
+  },
+  "climate": {
+    "zone": "tropical_dry",
+    "zone_label": "Tropical dry",
+    "zone_source": "derived",
+    "mean_annual_temp_c": 24.0,
+    "annual_precip_mm": 807.0,
+    "elevation_m": 873.0,
+    "pet_mm": 1587.6,
+    "method": "Approximation of IPCC 2006 Vol.4 Ch.3 Fig. 3A.5.1 from MAT/MAP/elevation; PET from Holland (1978) PET = 300 + 25T + 0.05T^3",
+    "verification_status": "assumption",
+    "provenance": {
+      "generated_at": "2026-10-05T19:53:49Z",
+      "api_version": "1",
+      "app_version": "0.2.0",
+      "mode": "demo",
+      "sources": [
+        {
+          "id": "synthetic-demo",
+          "name": "Synthetic demo data (imitating Open-Meteo Historical Weather API (ERA5) and Elevation API (Copernicus DEM GLO-90))",
+          "version": "v1",
+          "license": "Apache-2.0 (generated)",
+          "attribution": "AgriCarbon Atlas demo generator — not an observation",
+          "url": null,
+          "accessed_at": "2026-10-05T19:53:49.715623Z"
+        }
+      ],
+      "notes": []
+    }
+  },
+  "soil": {
+    "soc_0_30cm_g_per_kg": 10.53,
+    "depths_used": [
+      "0-5cm",
+      "5-15cm",
+      "15-30cm"
+    ],
+    "provenance": {
+      "generated_at": "2026-10-05T19:53:49Z",
+      "api_version": "1",
+      "app_version": "0.2.0",
+      "mode": "demo",
+      "sources": [
+        {
+          "id": "synthetic-demo",
+          "name": "Synthetic demo data (imitating SoilGrids 2.0 (ISRIC World Soil Information))",
+          "version": "2.0 (2020)",
+          "license": "Apache-2.0 (generated)",
+          "attribution": "AgriCarbon Atlas demo generator — not an observation",
+          "url": null,
+          "accessed_at": "2026-10-05T19:53:49.732312Z"
+        }
+      ],
+      "notes": []
+    }
+  },
+  "terrain": null,
+  "data_quality": {
+    "warnings": [
+      "demo mode: synthetic observations"
+    ]
+  },
+  "generated_at": "2026-10-05T19:53:49Z"
+}

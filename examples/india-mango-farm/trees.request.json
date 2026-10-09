@@ -1,0 +1,9 @@
+{
+  "species_id": "mango",
+  "tree_count": 420,
+  "plantation_year": 2023,
+  "average_dbh_cm": null,
+  "average_height_m": null,
+  "survival_rate": 0.85,
+  "measurement_source": "user-reported"
+}

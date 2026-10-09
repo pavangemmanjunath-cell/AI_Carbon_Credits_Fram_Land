@@ -1,0 +1,17 @@
+{
+  "name": "Demo olive grove, Córdoba province (synthetic)",
+  "country": "ES",
+  "source": "manual-drawing",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-4.80134, 37.59903],
+        [-4.79872, 37.59898],
+        [-4.7986, 37.60088],
+        [-4.80117, 37.60102],
+        [-4.80134, 37.59903]
+      ]
+    ]
+  }
+}

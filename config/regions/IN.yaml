@@ -1,0 +1,55 @@
+# Region configuration — India
+# ISO 3166-1 alpha-2 is the primary key. Calling codes are UX aliases only.
+id: IN
+name: India
+calling_code: "+91"
+currency: INR
+currency_symbol: "₹"
+locale: en-IN
+units:
+  area: hectare
+  area_secondary: acre
+languages: [en, hi, kn]
+default_center: {lat: 20.59, lon: 78.96}
+default_zoom: 4.5
+bbox: [68.1, 6.5, 97.4, 35.7]
+admin_levels: [state, district]
+climate:
+  # Used when no coordinates are supplied to /simulate. Derived live from
+  # Open-Meteo normals when coordinates are available.
+  default_zone: tropical_dry
+  default_zone_note: "Semi-arid Deccan plateau default; derived per plot in live mode."
+data_sources:
+  crop_statistics: data-gov-in
+  land_cover: esa-worldcover
+  satellite: sentinel-2-l2a
+  climate: open-meteo
+  soil: soilgrids
+  geocoder: nominatim
+programmes:
+  - id: in-gcp
+    name: Green Credit Programme
+    authority: Ministry of Environment, Forest and Climate Change (MoEFCC)
+    kind: government_programme
+    url: https://moef.gov.in/
+    policy_file: ../policies/IN.yaml
+  - id: in-ccts
+    name: Carbon Credit Trading Scheme (offset mechanism)
+    authority: Bureau of Energy Efficiency (BEE)
+    kind: compliance_market
+    url: https://beeindia.gov.in/
+    policy_file: ../policies/IN.yaml
+market_scenarios: IN
+other_income_sources:
+  - id: fruit_yield
+    label: Fruit yield (mango, coconut, citrus)
+    source: data.gov.in district crop production + farmer records
+  - id: intercrop
+    label: Agroforestry intercrop
+    source: farmer records
+  - id: timber
+    label: Timber potential (teak, eucalyptus)
+    source: state forest department rates + farmer records
+  - id: incentives
+    label: Eligible incentives (state agroforestry / horticulture missions)
+    source: programme screening

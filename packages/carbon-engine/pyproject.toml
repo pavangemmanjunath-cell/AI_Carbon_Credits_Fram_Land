@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agricarbon-carbon-engine"
+version = "0.2.0"
+description = "Deterministic, parameter-cited carbon removal scenario models for AgriCarbon Atlas"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "Apache-2.0"}
+dependencies = ["PyYAML>=6"]
+
+[tool.setuptools.packages.find]
+include = ["carbon_engine*"]

@@ -1,0 +1,86 @@
+name: Policy rule proposal
+description: Propose or correct a program screening rule in config/policies/<ISO>.yaml.
+title: "[policy]: "
+labels: ["type/feature", "area/policy-engine", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Rules produce a **screening status**, never an eligibility determination.
+        Every rule must cite the source document. Do not propose thresholds, dates or
+        prices from memory — link the notification, regulation or official guidance.
+        See `docs/developer-guide/adding-a-region.md` (step 2 covers policy files).
+  - type: dropdown
+    id: country
+    attributes:
+      label: Country / region
+      options: [IN, US, EU, EU member state (name below), Other (new region — see adding-a-region.md)]
+    validations:
+      required: true
+  - type: input
+    id: programme
+    attributes:
+      label: Program
+      description: Existing `id` from config/policies (e.g. `in-gcp`, `us-nrcs-conservation`, `eu-crcf`) or a proposed new one.
+      placeholder: "eu-crcf"
+    validations:
+      required: true
+  - type: input
+    id: authority
+    attributes:
+      label: Administering authority
+      placeholder: "European Commission, DG CLIMA"
+    validations:
+      required: true
+  - type: dropdown
+    id: activity
+    attributes:
+      label: Activity the rule applies to
+      multiple: true
+      options: [tree_plantation, agroforestry, soil_carbon, cropland_practice, grazing, other]
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Proposed screening status
+      options: [potentially_applicable, requires_assessment, requires_methodology_assessment, requires_certification, not_applicable, unknown]
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason shown to the user
+      description: One or two sentences, factual, with no promises. This text is displayed verbatim.
+    validations:
+      required: true
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Requirements a project would need to meet
+      description: One per line (registration, methodology, baseline, monitoring, verification…).
+  - type: textarea
+    id: source
+    attributes:
+      label: Source document(s)
+      description: Title, publisher, date and URL of the notification, regulation, methodology or official FAQ. Quote the relevant passage.
+      placeholder: |
+        Regulation (EU) 2024/3012, Article 4 — https://eur-lex.europa.eu/eli/reg/2024/3012/oj
+        "…"
+    validations:
+      required: true
+  - type: dropdown
+    id: certainty
+    attributes:
+      label: How certain are you?
+      options:
+        - Verified against the primary source (quoted above)
+        - Based on secondary reporting — needs verification against the current notification
+        - Uncertain — proposing for discussion
+    validations:
+      required: true
+  - type: textarea
+    id: distinct
+    attributes:
+      label: Related or distinct mechanisms
+      description: E.g. "Green Credits are distinct from CCTS carbon credits". Helps us set `distinct_from`.

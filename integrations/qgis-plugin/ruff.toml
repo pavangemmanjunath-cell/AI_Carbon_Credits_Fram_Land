@@ -1,0 +1,6 @@
+# Plugin-local ruff configuration. It inherits the repository settings (line length, rule
+# selection) from the root pyproject.toml and only lowers the target version: QGIS 3.28 on
+# Windows embeds Python 3.9, so the plugin must not use syntax or standard-library features
+# that need Python 3.10 or newer.
+extend = "../../pyproject.toml"
+target-version = "py39"

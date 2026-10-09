@@ -1,0 +1,109 @@
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lint-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prettier-eslint:
+    name: Prettier check · ESLint (apps/web)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: npm ci
+        run: npm ci
+
+      - name: Prettier (check only)
+        run: npx prettier --check .
+
+      - name: ESLint
+        run: npm run lint
+
+  ruff-format:
+    name: Ruff format --check (Python)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install ruff (pinned to requirements.txt)
+        run: |
+          python -m pip install "$(grep -E '^ruff==' requirements.txt)"
+
+      - name: Ruff format check
+        run: python -m ruff format --check .
+
+      - name: Ruff lint
+        run: python -m ruff check .
+
+  yamllint:
+    name: yamllint (config/ and workflows)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install yamllint
+        run: python -m pip install yamllint
+
+      - name: Lint config/ (regions, species, methodologies, policies, market)
+        # Relaxed line-length: policy "reason" strings are long by design. Extra spaces after a colon or a
+        # comma are allowed because the parameter tables align their values in columns, which makes it easier
+        # for a reviewer to compare them with the source table.
+        run: |
+          yamllint -d "{extends: default, rules: {
+            line-length: {max: 200, level: warning}, document-start: disable, truthy: disable,
+            colons: {max-spaces-after: -1}, commas: {max-spaces-after: -1}}}" config/
+
+      - name: Lint GitHub workflows and templates
+        run: |
+          yamllint -d "{extends: default, rules: {line-length: {max: 200, level: warning}, document-start: disable, truthy: disable}}" .github/
+
+      - name: Validate example request JSON
+        run: |
+          python - <<'EOF'
+          import json, pathlib, sys
+          bad = 0
+          for p in sorted(pathlib.Path("examples").rglob("*.json")):
+              try:
+                  json.loads(p.read_text())
+              except Exception as e:  # noqa: BLE001
+                  bad += 1
+                  print(f"INVALID {p}: {e}")
+          print("checked", len(list(pathlib.Path('examples').rglob('*.json'))), "JSON files")
+          sys.exit(1 if bad else 0)
+          EOF

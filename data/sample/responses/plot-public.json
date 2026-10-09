@@ -1,0 +1,24 @@
+{
+  "plot_id": "PLT-DEMOIN",
+  "name": "Demo mango orchard (synthetic)",
+  "country": "IN",
+  "region": "Karnataka",
+  "area_hectares": 2.1301,
+  "area_acres": 5.2637,
+  "public_centroid": {
+    "lat": 13.3,
+    "lon": 77.55
+  },
+  "bbox": [
+    77.537519,
+    13.291532,
+    77.539131,
+    13.293146
+  ],
+  "source": "synthetic-demo",
+  "boundary_quality": "exact",
+  "privacy": "generalized-public",
+  "created_by": "user",
+  "created_at": "2026-10-05T19:53:49Z",
+  "updated_at": null
+}

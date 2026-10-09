@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Demo orchard boundary (synthetic)</name>
+    <description>Synthetic boundary around the demo plot PLT-DEMOIN. Not a real farm.
+    License: CC0-1.0.</description>
+    <Placemark>
+      <name>Demo mango orchard (synthetic)</name>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <coordinates>77.538768,13.293146,0 77.539082,13.292486,0 77.539131,13.291788,0 77.538439,13.291532,0 77.537802,13.291787,0 77.537519,13.292452,0 77.53806,13.292909,0 77.538768,13.293146,0</coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>

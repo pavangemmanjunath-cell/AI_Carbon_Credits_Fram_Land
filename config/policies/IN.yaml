@@ -1,0 +1,60 @@
+# Policy screening rules — India
+# Evaluated by packages/policy-engine. Output is a SCREENING, never an
+# eligibility determination. Every rule cites its reference documents.
+country: IN
+disclaimer: Initial screening only — not an eligibility determination. Green Credits (GCP) and carbon credits (CCTS) are separate mechanisms.
+programmes:
+  - id: in-gcp
+    name: Green Credit Programme
+    authority: Ministry of Environment, Forest and Climate Change (MoEFCC)
+    kind: government_programme
+    distinct_from: [in-ccts]
+    rules:
+      - when: {activity: tree_plantation}
+        status: requires_assessment
+        reason: Tree plantation is a notified Green Credit activity, but the 2024 tree-plantation methodology targets identified degraded land parcels made available by state forest departments; applicability to private farmland must be confirmed with the administrator (ICFRE).
+      - when: {activity: agroforestry}
+        status: requires_assessment
+        reason: Agroforestry on private land is not the primary GCP tree-plantation pathway; confirm with the administrator.
+      - default: not_applicable
+    requirements:
+      - Registration on the Green Credit Programme portal
+      - Plantation on land parcels identified/approved under the programme
+      - Verification of tree survival per the notified methodology
+      - Understanding that Green Credits are not carbon credits and cannot be used for CCTS compliance
+    references:
+      - {title: "MoEFCC — Green Credit Programme (notification and methodology)", url: "https://moef.gov.in/"}
+      - {title: "ICFRE — Green Credit Programme administrator", url: "https://icfre.gov.in/"}
+  - id: in-ccts
+    name: Carbon Credit Trading Scheme (offset mechanism)
+    authority: Bureau of Energy Efficiency (BEE), Ministry of Power
+    kind: compliance_market
+    distinct_from: [in-gcp]
+    rules:
+      - when: {activity: [tree_plantation, agroforestry, soil_carbon]}
+        status: requires_methodology_assessment
+        reason: BEE lists agriculture and forestry among sectors covered by accredited carbon verification agencies under the offset mechanism; a project needs an approved methodology, baseline, additionality demonstration, monitoring and third-party verification before any Carbon Credit Certificate is issued.
+      - default: unknown
+    requirements:
+      - Approved offset methodology applicable to the activity
+      - Baseline and additionality demonstration
+      - Monitoring plan with measurements (e.g. DBH, survival) and leakage assessment
+      - Verification by a BEE-accredited carbon verification agency
+      - Registration with the registry under the scheme
+    references:
+      - {title: "BEE — Carbon Credit Trading Scheme", url: "https://beeindia.gov.in/"}
+      - {title: "Carbon Credit Trading Scheme, 2023 (Ministry of Power notification)", url: "https://beeindia.gov.in/"}
+  - id: in-state-agroforestry
+    name: State agroforestry / horticulture missions (incentives)
+    authority: State governments (e.g. Karnataka Krishi Aranya Protsaha Yojane)
+    kind: incentive_programme
+    rules:
+      - when: {activity: [tree_plantation, agroforestry]}
+        status: potentially_applicable
+        reason: Several states pay per-surviving-tree incentives or subsidise saplings for farmers; conditions vary by state.
+      - default: not_applicable
+    requirements:
+      - Farmer registration with the state forest/horticulture department
+      - Survival verification after 1–3 years
+    references:
+      - {title: "Karnataka Forest Department — Krishi Aranya Protsaha Yojane", url: "https://aranya.gov.in/"}

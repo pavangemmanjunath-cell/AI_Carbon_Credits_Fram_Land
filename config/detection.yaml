@@ -1,0 +1,182 @@
+# Detection and import parameters (v0.2): point clouds, satellite tree cover, vector imports.
+#
+# Read with docs/architecture/imports-and-detection.md (algorithms, limits, references).
+#
+# Conventions (same as the rest of config/)
+# - Every tunable number is a mapping {value, unit, source, verification_status}.
+# - verification_status: assumption = a project default that has NOT been calibrated against
+#   field data; verified means the number was read from a cited document (only the ASPRS class
+#   codes are). Every tunable number here is an assumption: calibrate locally (species, canopy
+#   structure, sensor, point density) before relying on a result. A parameter that is still
+#   `pending` must fail the production data-quality test.
+# - Results derived from these numbers are heuristics and are labelled as such in the API
+#   (`confidence` of a satellite patch is a heuristic score, not a probability).
+# - Structural limits (20 000 features, 5 000 preview features, 50 MB archives, 100 archive
+#   entries, 4 000 x 4 000 CHM cells, 30 million points) are part of the API contract and are
+#   named constants in the code, not parameters.
+version: 0.1.0
+updated: 2026-10-05
+
+# ---------------------------------------------------------------------------- point clouds (LAS/LAZ)
+# Pipeline: ground -> normalised height -> canopy height model (CHM, max height per cell) ->
+# 3x3 mean smoothing -> local maxima within a window above a minimum height = tree tops.
+point_cloud:
+  cell_size_m:
+    value: 0.5
+    unit: m
+    source: "project assumption v0.1 - CHM cell size; raised automatically so the grid stays within 4 000 x 4 000 cells"
+    verification_status: assumption
+  min_height_m:
+    value: 2.0
+    unit: m
+    source: "project assumption v0.1 - minimum height of a tree top and of canopy cover (common practice for CHM-based tree detection; tune to the crop: young orchards may need a lower value)"
+    verification_status: assumption
+  window_radius_m:
+    value: 1.5
+    unit: m
+    source: "project assumption v0.1 - radius of the local-maximum window; a fixed window under-counts large crowns and over-counts multi-stemmed ones"
+    verification_status: assumption
+  max_tree_height_m:
+    value: 80.0
+    unit: m
+    source: "project assumption v0.1 - points higher above the ground than this are treated as noise (birds, power lines, sensor artefacts) and ignored"
+    verification_status: assumption
+  ground_cell_size_m:
+    value: 5.0
+    unit: m
+    source: "project assumption v0.1 - cell size of the ground model when ground must be estimated as the lowest return per cell"
+    verification_status: assumption
+  ground_class_code:
+    value: 2
+    unit: ASPRS class code
+    source: "ASPRS LAS 1.4 specification, classification table: code 2 = ground"
+    verification_status: verified
+  noise_class_codes:
+    value: [7, 18]
+    unit: ASPRS class codes
+    source: "ASPRS LAS 1.4 specification, classification table: 7 = low point (noise), 18 = high noise; points with these codes are ignored"
+    verification_status: verified
+  ground_class_min_share:
+    value: 0.01
+    unit: fraction of points
+    source: "project assumption v0.1 - classification 2 is trusted as ground only when at least this share of the points carries it"
+    verification_status: assumption
+  smoothing_window_cells:
+    value: 3
+    unit: cells
+    source: "project assumption v0.1 - side of the square mean filter applied to the CHM before looking for maxima"
+    verification_status: assumption
+  max_points:
+    value: 30000000
+    unit: points
+    source: "project assumption v0.1 - above this the cloud is thinned deterministically (every k-th point) with a warning"
+    verification_status: assumption
+  max_points_hard_limit:
+    value: 300000000
+    unit: points
+    source: "project assumption v0.1 - clouds that declare more points than this are rejected before decoding (compression-bomb guard)"
+    verification_status: assumption
+  max_ground_gap_cells:
+    value: 60
+    unit: cells
+    source: "project assumption v0.1 - ground gaps wider than this many ground cells fall back to the median ground height"
+    verification_status: assumption
+  low_density_warning_per_m2:
+    value: 2.0
+    unit: points per m2
+    source: "project assumption v0.1 - below this point density a warning says the count may be unreliable (in synthetic tests of this code, tops start to be over-counted below about 2 points per m2 because gaps in the canopy surface create false peaks)"
+    verification_status: assumption
+
+# ---------------------------------------------------------------------------- satellite tree cover
+# Pipeline: median of the last 3 monthly NDVI slices -> cells >= threshold -> 8-connected patches
+# -> patches smaller than min_patch_cells dropped -> heuristic confidence score -> min_confidence.
+tree_cover:
+  ndvi_tree_cover_threshold:
+    value: 0.6
+    unit: NDVI
+    source: "project assumption v0.1 - calibrate locally"
+    verification_status: assumption
+  min_patch_cells:
+    value: 2
+    unit: cells
+    source: "project assumption v0.1 - calibrate locally; a single cell is too easily a mixed or noisy pixel"
+    verification_status: assumption
+  composite_slices:
+    value: 3
+    unit: monthly slices
+    source: "project assumption v0.1 - the median of the last N monthly slices (nulls ignored) reduces cloud and single-date noise"
+    verification_status: assumption
+  confidence_ndvi_ceiling:
+    value: 0.9
+    unit: NDVI
+    source: "project assumption v0.1 - NDVI at which the spectral part of the heuristic score reaches 1.0"
+    verification_status: assumption
+  confidence_reliable_cells:
+    value: 6
+    unit: cells
+    source: "project assumption v0.1 - patch size (cells) at which the size part of the heuristic score reaches 1.0"
+    verification_status: assumption
+  confidence_weight_spectral:
+    value: 0.5
+    unit: weight
+    source: "project assumption v0.1 - weight of the NDVI margin above the threshold in the heuristic score (the three weights must sum to 1)"
+    verification_status: assumption
+  confidence_weight_size:
+    value: 0.3
+    unit: weight
+    source: "project assumption v0.1 - weight of the patch size in the heuristic score"
+    verification_status: assumption
+  confidence_weight_persistence:
+    value: 0.2
+    unit: weight
+    source: "project assumption v0.1 - weight of the share of the composite months in which the patch stays above the threshold"
+    verification_status: assumption
+  default_min_confidence:
+    value: 0.5
+    unit: heuristic score 0-1
+    source: "project assumption v0.1 - patches scoring below this are dropped unless the request says otherwise"
+    verification_status: assumption
+
+# ---------------------------------------------------------------------------- vector imports
+# How a GeoJSON / KML / KMZ / CSV file is interpreted when the purpose is `auto`.
+vector_import:
+  crown_median_area_m2:
+    value: 200.0
+    unit: m2
+    source: "project assumption v0.1 - when every polygon is below crown_max_area_ha and there are at least min_polygons_for_median of them, a median area below this reads the file as tree crowns"
+    verification_status: assumption
+  min_polygons_for_median:
+    value: 3
+    unit: polygons
+    source: "project assumption v0.1 - fewest polygons for the median rule: one or two small polygons are not enough to call a file crowns"
+    verification_status: assumption
+  crown_count_threshold:
+    value: 10
+    unit: polygons
+    source: "project assumption v0.1 - this many small polygons are read as tree crowns whatever their median area; a file that also holds a larger polygon (a field outline) needs this many small ones, outnumbering the large ones, to be read as crowns instead of a boundary"
+    verification_status: assumption
+  crown_max_area_ha:
+    value: 0.05
+    unit: ha
+    source: "project assumption v0.1 - polygons at or above this are 'large' (candidate boundaries)"
+    verification_status: assumption
+  default_min_confidence:
+    value: 0.5
+    unit: score 0-1
+    source: "project assumption v0.1 - used with a numeric score / confidence / prob / probability field"
+    verification_status: assumption
+  corner_points_min:
+    value: 3
+    unit: points
+    source: "project assumption v0.1 - fewest points that can be read as the corners of a boundary"
+    verification_status: assumption
+  corner_points_max:
+    value: 50
+    unit: points
+    source: "project assumption v0.1 - with purpose `auto`, more points than this are read as trees, not corners"
+    verification_status: assumption
+  corner_min_area_ha:
+    value: 0.01
+    unit: ha
+    source: "project assumption v0.1 - corner points must enclose at least the minimum plot area (same as POST /plots)"
+    verification_status: assumption

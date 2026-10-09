@@ -1,0 +1,1159 @@
+{
+  "inputs": {
+    "country": "US",
+    "region": "US",
+    "subdivision": "US-OR",
+    "setting": "urban",
+    "species_id": "black_walnut",
+    "age_years": 45,
+    "tree_count": 3,
+    "girth_cm": null,
+    "height_m": null,
+    "plot_id": null
+  },
+  "age_class": {
+    "id": "mature",
+    "label": "Mature (21–49 years)"
+  },
+  "climate_zone": "warm_temperate_moist",
+  "climate_zone_label": "Warm temperate moist",
+  "climate_zone_source": "region default (US)",
+  "carbon": {
+    "method": "tier1-age",
+    "curve_method": "tier1-age",
+    "stored_now": {
+      "low": 3.851,
+      "central": 5.502,
+      "high": 7.153,
+      "unit": "tCO2e"
+    },
+    "annual_now": {
+      "low": 0.052,
+      "central": 0.075,
+      "high": 0.097,
+      "unit": "tCO2e/yr"
+    },
+    "per_tree": {
+      "stored_now_kg_co2e": 1834.0,
+      "annual_now_kg_co2e": 24.9
+    },
+    "curve": [
+      {
+        "age": 0,
+        "stored": 0.0,
+        "stored_low": 0.0,
+        "stored_high": 0.0,
+        "annual": 0.0
+      },
+      {
+        "age": 1,
+        "stored": 0.029,
+        "stored_low": 0.021,
+        "stored_high": 0.038,
+        "annual": 0.029
+      },
+      {
+        "age": 2,
+        "stored": 0.088,
+        "stored_low": 0.062,
+        "stored_high": 0.114,
+        "annual": 0.059
+      },
+      {
+        "age": 3,
+        "stored": 0.176,
+        "stored_low": 0.123,
+        "stored_high": 0.229,
+        "annual": 0.088
+      },
+      {
+        "age": 4,
+        "stored": 0.294,
+        "stored_low": 0.205,
+        "stored_high": 0.382,
+        "annual": 0.117
+      },
+      {
+        "age": 5,
+        "stored": 0.44,
+        "stored_low": 0.308,
+        "stored_high": 0.572,
+        "annual": 0.147
+      },
+      {
+        "age": 6,
+        "stored": 0.616,
+        "stored_low": 0.432,
+        "stored_high": 0.801,
+        "annual": 0.176
+      },
+      {
+        "age": 7,
+        "stored": 0.793,
+        "stored_low": 0.555,
+        "stored_high": 1.03,
+        "annual": 0.176
+      },
+      {
+        "age": 8,
+        "stored": 0.969,
+        "stored_low": 0.678,
+        "stored_high": 1.259,
+        "annual": 0.176
+      },
+      {
+        "age": 9,
+        "stored": 1.145,
+        "stored_low": 0.801,
+        "stored_high": 1.488,
+        "annual": 0.176
+      },
+      {
+        "age": 10,
+        "stored": 1.321,
+        "stored_low": 0.925,
+        "stored_high": 1.717,
+        "annual": 0.176
+      },
+      {
+        "age": 11,
+        "stored": 1.497,
+        "stored_low": 1.048,
+        "stored_high": 1.946,
+        "annual": 0.176
+      },
+      {
+        "age": 12,
+        "stored": 1.673,
+        "stored_low": 1.171,
+        "stored_high": 2.175,
+        "annual": 0.176
+      },
+      {
+        "age": 13,
+        "stored": 1.849,
+        "stored_low": 1.295,
+        "stored_high": 2.404,
+        "annual": 0.176
+      },
+      {
+        "age": 14,
+        "stored": 1.998,
+        "stored_low": 1.398,
+        "stored_high": 2.597,
+        "annual": 0.148
+      },
+      {
+        "age": 15,
+        "stored": 2.146,
+        "stored_low": 1.502,
+        "stored_high": 2.79,
+        "annual": 0.148
+      },
+      {
+        "age": 16,
+        "stored": 2.294,
+        "stored_low": 1.606,
+        "stored_high": 2.983,
+        "annual": 0.148
+      },
+      {
+        "age": 17,
+        "stored": 2.443,
+        "stored_low": 1.71,
+        "stored_high": 3.176,
+        "annual": 0.148
+      },
+      {
+        "age": 18,
+        "stored": 2.591,
+        "stored_low": 1.814,
+        "stored_high": 3.369,
+        "annual": 0.148
+      },
+      {
+        "age": 19,
+        "stored": 2.74,
+        "stored_low": 1.918,
+        "stored_high": 3.561,
+        "annual": 0.148
+      },
+      {
+        "age": 20,
+        "stored": 2.888,
+        "stored_low": 2.022,
+        "stored_high": 3.754,
+        "annual": 0.148
+      },
+      {
+        "age": 21,
+        "stored": 3.036,
+        "stored_low": 2.125,
+        "stored_high": 3.947,
+        "annual": 0.148
+      },
+      {
+        "age": 22,
+        "stored": 3.185,
+        "stored_low": 2.229,
+        "stored_high": 4.14,
+        "annual": 0.148
+      },
+      {
+        "age": 23,
+        "stored": 3.333,
+        "stored_low": 2.333,
+        "stored_high": 4.333,
+        "annual": 0.148
+      },
+      {
+        "age": 24,
+        "stored": 3.483,
+        "stored_low": 2.438,
+        "stored_high": 4.528,
+        "annual": 0.15
+      },
+      {
+        "age": 25,
+        "stored": 3.632,
+        "stored_low": 2.543,
+        "stored_high": 4.722,
+        "annual": 0.15
+      },
+      {
+        "age": 26,
+        "stored": 3.782,
+        "stored_low": 2.647,
+        "stored_high": 4.916,
+        "annual": 0.15
+      },
+      {
+        "age": 27,
+        "stored": 3.931,
+        "stored_low": 2.752,
+        "stored_high": 5.111,
+        "annual": 0.15
+      },
+      {
+        "age": 28,
+        "stored": 4.081,
+        "stored_low": 2.857,
+        "stored_high": 5.305,
+        "annual": 0.15
+      },
+      {
+        "age": 29,
+        "stored": 4.231,
+        "stored_low": 2.961,
+        "stored_high": 5.5,
+        "annual": 0.15
+      },
+      {
+        "age": 30,
+        "stored": 4.38,
+        "stored_low": 3.066,
+        "stored_high": 5.694,
+        "annual": 0.15
+      },
+      {
+        "age": 31,
+        "stored": 4.455,
+        "stored_low": 3.119,
+        "stored_high": 5.792,
+        "annual": 0.075
+      },
+      {
+        "age": 32,
+        "stored": 4.53,
+        "stored_low": 3.171,
+        "stored_high": 5.889,
+        "annual": 0.075
+      },
+      {
+        "age": 33,
+        "stored": 4.605,
+        "stored_low": 3.223,
+        "stored_high": 5.986,
+        "annual": 0.075
+      },
+      {
+        "age": 34,
+        "stored": 4.679,
+        "stored_low": 3.276,
+        "stored_high": 6.083,
+        "annual": 0.075
+      },
+      {
+        "age": 35,
+        "stored": 4.754,
+        "stored_low": 3.328,
+        "stored_high": 6.18,
+        "annual": 0.075
+      },
+      {
+        "age": 36,
+        "stored": 4.829,
+        "stored_low": 3.38,
+        "stored_high": 6.278,
+        "annual": 0.075
+      },
+      {
+        "age": 37,
+        "stored": 4.904,
+        "stored_low": 3.433,
+        "stored_high": 6.375,
+        "annual": 0.075
+      },
+      {
+        "age": 38,
+        "stored": 4.979,
+        "stored_low": 3.485,
+        "stored_high": 6.472,
+        "annual": 0.075
+      },
+      {
+        "age": 39,
+        "stored": 5.053,
+        "stored_low": 3.537,
+        "stored_high": 6.569,
+        "annual": 0.075
+      },
+      {
+        "age": 40,
+        "stored": 5.128,
+        "stored_low": 3.59,
+        "stored_high": 6.667,
+        "annual": 0.075
+      },
+      {
+        "age": 41,
+        "stored": 5.203,
+        "stored_low": 3.642,
+        "stored_high": 6.764,
+        "annual": 0.075
+      },
+      {
+        "age": 42,
+        "stored": 5.278,
+        "stored_low": 3.694,
+        "stored_high": 6.861,
+        "annual": 0.075
+      },
+      {
+        "age": 43,
+        "stored": 5.353,
+        "stored_low": 3.747,
+        "stored_high": 6.958,
+        "annual": 0.075
+      },
+      {
+        "age": 44,
+        "stored": 5.427,
+        "stored_low": 3.799,
+        "stored_high": 7.056,
+        "annual": 0.075
+      },
+      {
+        "age": 45,
+        "stored": 5.502,
+        "stored_low": 3.851,
+        "stored_high": 7.153,
+        "annual": 0.075
+      },
+      {
+        "age": 46,
+        "stored": 5.577,
+        "stored_low": 3.904,
+        "stored_high": 7.25,
+        "annual": 0.075
+      },
+      {
+        "age": 47,
+        "stored": 5.652,
+        "stored_low": 3.956,
+        "stored_high": 7.347,
+        "annual": 0.075
+      },
+      {
+        "age": 48,
+        "stored": 5.727,
+        "stored_low": 4.009,
+        "stored_high": 7.444,
+        "annual": 0.075
+      },
+      {
+        "age": 49,
+        "stored": 5.801,
+        "stored_low": 4.061,
+        "stored_high": 7.542,
+        "annual": 0.075
+      },
+      {
+        "age": 50,
+        "stored": 5.876,
+        "stored_low": 4.113,
+        "stored_high": 7.639,
+        "annual": 0.075
+      },
+      {
+        "age": 51,
+        "stored": 5.951,
+        "stored_low": 4.166,
+        "stored_high": 7.736,
+        "annual": 0.075
+      },
+      {
+        "age": 52,
+        "stored": 6.026,
+        "stored_low": 4.218,
+        "stored_high": 7.833,
+        "annual": 0.075
+      },
+      {
+        "age": 53,
+        "stored": 6.1,
+        "stored_low": 4.27,
+        "stored_high": 7.931,
+        "annual": 0.075
+      },
+      {
+        "age": 54,
+        "stored": 6.175,
+        "stored_low": 4.323,
+        "stored_high": 8.028,
+        "annual": 0.075
+      },
+      {
+        "age": 55,
+        "stored": 6.25,
+        "stored_low": 4.375,
+        "stored_high": 8.125,
+        "annual": 0.075
+      },
+      {
+        "age": 56,
+        "stored": 6.325,
+        "stored_low": 4.427,
+        "stored_high": 8.222,
+        "annual": 0.075
+      },
+      {
+        "age": 57,
+        "stored": 6.4,
+        "stored_low": 4.48,
+        "stored_high": 8.32,
+        "annual": 0.075
+      },
+      {
+        "age": 58,
+        "stored": 6.474,
+        "stored_low": 4.532,
+        "stored_high": 8.417,
+        "annual": 0.075
+      },
+      {
+        "age": 59,
+        "stored": 6.549,
+        "stored_low": 4.584,
+        "stored_high": 8.514,
+        "annual": 0.075
+      },
+      {
+        "age": 60,
+        "stored": 6.624,
+        "stored_low": 4.637,
+        "stored_high": 8.611,
+        "annual": 0.075
+      },
+      {
+        "age": 61,
+        "stored": 6.699,
+        "stored_low": 4.689,
+        "stored_high": 8.708,
+        "annual": 0.075
+      },
+      {
+        "age": 62,
+        "stored": 6.774,
+        "stored_low": 4.742,
+        "stored_high": 8.806,
+        "annual": 0.075
+      },
+      {
+        "age": 63,
+        "stored": 6.848,
+        "stored_low": 4.794,
+        "stored_high": 8.903,
+        "annual": 0.075
+      },
+      {
+        "age": 64,
+        "stored": 6.923,
+        "stored_low": 4.846,
+        "stored_high": 9.0,
+        "annual": 0.075
+      },
+      {
+        "age": 65,
+        "stored": 6.998,
+        "stored_low": 4.899,
+        "stored_high": 9.097,
+        "annual": 0.075
+      }
+    ],
+    "confidence": "low",
+    "model": {
+      "id": "tree-biomass",
+      "version": "0.1.0",
+      "tier": "1"
+    },
+    "methodology": {
+      "id": "ipcc-2006-vol4-ch4",
+      "name": "IPCC 2006 Guidelines, Vol. 4, Ch. 4 (Forest Land), Tier 1 gain-loss",
+      "references": [
+        {
+          "title": "IPCC 2006 Guidelines Vol. 4 Ch. 4 (Forest Land) — Tier 1 gain-loss",
+          "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html"
+        },
+        {
+          "title": "2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 4, Chapter 4 Forest Land",
+          "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html"
+        },
+        {
+          "title": "2019 Refinement to the 2006 IPCC Guidelines, Volume 4, Chapter 4",
+          "url": "https://www.ipcc-nggip.iges.or.jp/public/2019rf/vol4.html"
+        },
+        {
+          "title": "Chave et al. (2014) Improved allometric models to estimate the aboveground biomass of tropical trees. Global Change Biology 20(10)",
+          "url": "https://doi.org/10.1111/gcb.12629"
+        }
+      ]
+    },
+    "parameters_used": [
+      {
+        "name": "survival_rate",
+        "value": 1.0,
+        "unit": "fraction",
+        "source": "the trees you list are counted alive today, so their past mortality is already in the count and no further mortality is applied to the existing stand",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "above_ground_biomass_growth",
+        "value": 7.0,
+        "unit": "t d.m. / ha / yr",
+        "source": "IPCC 2006 Vol.4 Ch.4 Tables 4.10/4.12 (working values; verify cell by cell) [zone: warm_temperate_moist; age class: le_20_years]",
+        "verification_status": "pending"
+      },
+      {
+        "name": "increment_multiplier",
+        "value": 1.0,
+        "unit": "dimensionless",
+        "source": "Tier 1 broad category used directly [species: black_walnut]",
+        "verification_status": "verified"
+      },
+      {
+        "name": "reference_density_per_ha",
+        "value": 300,
+        "unit": "trees/ha",
+        "source": "project assumption v0.1 [species: black_walnut]",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "maturity_years",
+        "value": 30,
+        "unit": "years",
+        "source": "config/species/species.yaml v0.1.0 [species: black_walnut]",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "carbon_fraction",
+        "value": 0.47,
+        "unit": "t C / t d.m.",
+        "source": "IPCC 2006 Vol.4 Ch.4 Table 4.3 (default for all tree parts)",
+        "verification_status": "verified"
+      },
+      {
+        "name": "co2_per_c",
+        "value": 3.6667,
+        "unit": "t CO2 / t C",
+        "source": "molecular mass ratio 44/12",
+        "verification_status": "verified"
+      },
+      {
+        "name": "density_scaling_clamp",
+        "value": [
+          0.2,
+          1.5
+        ],
+        "unit": "ratio to reference density",
+        "source": "project assumption v0.1",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "years_to_full_increment_default",
+        "value": 6,
+        "unit": "years",
+        "source": "project assumption v0.1 — linear ramp from planting to full Tier 1 increment",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "post_maturity_increment_factor",
+        "value": 0.5,
+        "unit": "fraction of full increment",
+        "source": "project assumption v0.1 — after species maturity_years the annual increment is held at 50% of the full Tier 1 increment (slower net growth of mature orchards/stands; replace with age-class increments when IPCC 2019 Refinement Table 4.9 values are verified)",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "uncertainty_fraction_tier1_low",
+        "value": 0.3,
+        "unit": "fraction of central",
+        "source": "project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "uncertainty_fraction_tier1_high",
+        "value": 0.3,
+        "unit": "fraction of central",
+        "source": "project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "density_factor_applied",
+        "value": 1.0,
+        "unit": "ratio to reference density",
+        "source": "planted density 300.0 trees/ha ÷ reference 300 trees/ha, clamped to [0.2, 1.5]",
+        "verification_status": "assumption"
+      },
+      {
+        "name": "root_to_shoot_ratio",
+        "value": 0.46,
+        "unit": "dimensionless",
+        "source": "IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: warm_temperate_moist; class: agb_lt_75]",
+        "verification_status": "pending"
+      },
+      {
+        "name": "root_to_shoot_ratio",
+        "value": 0.23,
+        "unit": "dimensionless",
+        "source": "IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: warm_temperate_moist; class: agb_75_150]",
+        "verification_status": "pending"
+      },
+      {
+        "name": "root_to_shoot_ratio",
+        "value": 0.24,
+        "unit": "dimensionless",
+        "source": "IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: warm_temperate_moist; class: agb_gt_150]",
+        "verification_status": "pending"
+      },
+      {
+        "name": "stand_area_hectares",
+        "value": 0.01,
+        "unit": "ha",
+        "source": "3 trees ÷ species reference density 300 trees/ha (stand at the reference density)",
+        "verification_status": "assumption"
+      }
+    ],
+    "notes": [
+      "Method: stand-level IPCC Tier 1 growth for this species and climate zone, added up from planting to today. The individual trees are not measured.",
+      "The trees you list are counted as alive today, so no further mortality is applied.",
+      "These trees are past the species' maturity age (30 years): stand-level Tier 1 continues at the post-maturity factor (0.5 of the full increment) — measure trunk girth for a better estimate.",
+      "Root-to-shoot ratio follows the above-ground biomass stock class: 0.46 → 0.23 → 0.24 (IPCC 2006 Table 4.4).",
+      "No area was given, so the 3 trees are treated as a stand at the species' reference density of 300 trees per hectare (0.01 ha).",
+      "Parameters still pending verification: above_ground_biomass_growth, root_to_shoot_ratio. Treat the figures as screening estimates.",
+      "Carbon counted is above- plus below-ground tree biomass, expressed as CO2e; soil, litter and dead wood are not included.",
+      "Scenario estimate only: removals already made by existing trees are not carbon credits."
+    ]
+  },
+  "credit_outlook": {
+    "existing_trees": "conditional",
+    "summary": "Existing trees can qualify only under specific conditions in City Forest Credits Preservation Protocol, version 14.40 (40-year); confirm with the programme, because an estimate is never a credit.",
+    "based_on_rule_ids": [
+      "global-gold-standard-luf-ar",
+      "global-verra-vm0047-arr",
+      "us-cfc-afforestation-protocol",
+      "us-cfc-preservation-protocol"
+    ]
+  },
+  "rules": [
+    {
+      "id": "global-gold-standard-luf-ar",
+      "scope": "GLOBAL",
+      "country": null,
+      "subdivision": null,
+      "locality": null,
+      "name": "Gold Standard Land Use & Forests Activity Requirements (A/R), v1.2.1, with A/R methodology v2.1",
+      "authority": "Gold Standard Foundation",
+      "category": "carbon-credit-eligibility",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "new-planting",
+        "setting": "non-forest"
+      },
+      "outcome_for_existing_trees": "not-eligible",
+      "summary": "Gold Standard's afforestation and reforestation rules only cover planting on land that was not forest 10 years before the project start, so trees that already stand earn no credits.",
+      "details": "Activity Requirements v1.2.1 (April 2020), Section 2.1.1(b): 'The eligible area shall not meet the definition of forest 10 years before project start date and at project start date.' Credits are not issued for existing forests, improved forest management or avoided deforestation under these A/R requirements, and the A/R project start date is the earliest date when the first trees are planted. In A/R methodology v2.1 (16 May 2024, Section 3.5.1) the baseline is the 'tree' and 'non-tree' biomass present in the eligible planting area just prior to the planting start, and baseline trees are tracked inside the baseline.",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Land Use & Forests Activity Requirements, version 1.2.1 (A/R eligibility)",
+          "publisher": "Gold Standard Foundation",
+          "url": "https://globalgoals.goldstandard.org/standards/203_V1.2.1_AR_LUF-Activity-Requirements.pdf",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Land Use & Forests A/R Methodology, version 2.1",
+          "publisher": "Gold Standard Foundation",
+          "url": "https://globalgoals.goldstandard.org/standards/403_V2.1_LUF_AR-Methodology-GHGs-emission-reduction-and-Sequestration-Methodology.pdf",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Sustainable Transformation through Afforestation, Reforestation and Revegetation (STARR) consultation",
+          "publisher": "Gold Standard Foundation",
+          "url": "https://www.goldstandard.org/consultations/sustainable-transformation-afforestation-reforestation-revegetation-starr",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "Gold Standard consulted on a successor framework, STARR, from 22 April to 22 May 2026; it also targets non-forest land. Final publication and whether it replaces the documents above were not confirmed. Plan Vivo (PV Climate) was reviewed but its public page does not state how existing trees are treated, so it has no rule here (see the md file).",
+      "applies": true,
+      "why": "Applies worldwide to trees outside forests at any age",
+      "outcome_for_you": "not-eligible"
+    },
+    {
+      "id": "global-verra-vm0047-arr",
+      "scope": "GLOBAL",
+      "country": null,
+      "subdivision": null,
+      "locality": null,
+      "name": "Verra VM0047 Afforestation, Reforestation and Revegetation, v1.1",
+      "authority": "Verra (Verified Carbon Standard programme)",
+      "category": "carbon-credit-eligibility",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "new-planting",
+        "setting": "any"
+      },
+      "outcome_for_existing_trees": "not-eligible",
+      "summary": "VM0047 credits trees that a project plants or restores; the carbon already stored in pre-existing trees is measured as a starting (t=0) stock and is not credited.",
+      "details": "Area-based approach: project land must not have met the definition of managed forest at any point in the 10 years immediately preceding the project start date, although v1.1 also allows enhancing forest carbon stocks where existing forest cover has not been managed for wood products in the past ten years. A t = 0 carbon-stock estimate is required for pre-existing woody biomass, and removal of that biomass is only allowed where it is treated as a waste product with no commercial value. Census-based approach (dispersed planting such as agroforestry): planting density must not exceed 50 planting units per hectare, only direct planting is allowed, the pre-project land use must be maintained, and the area must have less than 10% pre-existing woody biomass cover (or be under continuous cropping, 'settlements' or 'other lands').",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "VM0047 Afforestation, Reforestation and Revegetation, v1.1 (methodology document)",
+          "publisher": "Verra",
+          "url": "https://verra.org/documents/vm0047-afforestation-reforestation-and-revegetation-v1-1/",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "VM0047 Afforestation, Reforestation and Revegetation, v1.1 (methodology page)",
+          "publisher": "Verra",
+          "url": "https://verra.org/methodologies/vm0047-afforestation-reforestation-and-revegetation-v1-1/",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "VM0047 v1.1: what you need to know (independent cross-check)",
+          "publisher": "Space Intelligence",
+          "url": "https://www.space-intelligence.com/vm0047-v-1-1-what-you-need-to-know/",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "Version 1.1 is effective from 14 May 2025 (Verra methodology page). Section references (4.4.1(1), 4.2(2), 4.3, 8.2.1.2) were read through a page-summarising tool; the 10-year and 50-per-hectare figures were cross-checked against the Verra page and an independent summary. Quote from the PDF before any external publication.",
+      "applies": true,
+      "why": "Applies worldwide at any age",
+      "outcome_for_you": "not-eligible"
+    },
+    {
+      "id": "us-cfc-afforestation-protocol",
+      "scope": "US",
+      "country": "US",
+      "subdivision": null,
+      "locality": null,
+      "name": "City Forest Credits Afforestation and Reforestation Protocol, version 12 (26-year)",
+      "authority": "City Forest Credits (Urban Forest Carbon Registry)",
+      "category": "carbon-credit-eligibility",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "new-planting",
+        "setting": "urban"
+      },
+      "outcome_for_existing_trees": "not-eligible",
+      "summary": "City Forest Credits' tree-planting protocol credits only newly planted project trees; trees that already stand, trees planted to meet a legal requirement and trees planted after cutting healthy trees are not eligible.",
+      "details": "Version 12 (29 February 2024) covers tree planting in urban areas for conservation, not harvest. Section 1.9: 'Proposed projects that convert a forested land use or that cut down healthy, non-invasive trees and plant project trees for crediting are not eligible.' Section 1.8: 'Trees required to be planted by a law or ordinance are not eligible for crediting, unless they are replacement trees' for trees removed for reasons such as poor health, safety hazards, disease, age, invasive species or best management practices. The project duration is 26 years from the date the last project tree is planted (Section 2.2), with ex ante credits issued at five milestones: 10% after planting, 30% at year 4, 30% at year 6, 10% at year 14 and the remainder at year 26 (Section 6.1).",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Afforestation and Reforestation Protocol v12 (26 years)",
+          "publisher": "City Forest Credits",
+          "url": "https://www.cityforestcredits.org/wp-content/uploads/2024/03/CFC-Afforestation-Protocol-v12.pdf",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Carbon protocols (current versions)",
+          "publisher": "City Forest Credits",
+          "url": "https://www.cityforestcredits.org/carbon-protocols/",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "The website dates version 12 as March 2024 while the PDF cover says 29 February 2024. Interpretation, not protocol text: planting that a permit makes compulsory (for example compensatory planting for removing a healthy tree) is unlikely to qualify under the legal-requirement test.",
+      "applies": true,
+      "why": "Applies in the United States to urban trees at any age",
+      "outcome_for_you": "not-eligible"
+    },
+    {
+      "id": "us-cfc-preservation-protocol",
+      "scope": "US",
+      "country": "US",
+      "subdivision": null,
+      "locality": null,
+      "name": "City Forest Credits Preservation Protocol, version 14.40 (40-year)",
+      "authority": "City Forest Credits (Urban Forest Carbon Registry), a nonprofit urban-forest carbon registry",
+      "category": "carbon-credit-eligibility",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "urban"
+      },
+      "outcome_for_existing_trees": "conditional",
+      "summary": "City Forest Credits can credit the carbon already stored in an existing urban forest stand that is at risk of being cleared, if the owner commits to preserve it for 40 years.",
+      "details": "Version 14.40 (10 August 2026) covers 'at-risk forested stands' with at least 80% tree canopy where precipitation is 20 inches a year or more, or 60% where it is less (Section 1.4.C); existing carbon stock is quantified for trees at least 5 inches in diameter at breast height (Section 11.1.B) and stand age is established from documentation or tree coring (Section 11.1.A.ii). The stand must show risk of conversion by one of three tests (at least 30% of its perimeter bordering non-forest, developed or improved uses; a sale or assessed value above USD 8,000 per acre within three years; or a higher value in non-forest use) (Section 4.4) and must not already be protected by a recorded encumbrance (Section 4.2). The project duration is 40 years including the preservation commitment (Section 2.2) and 10% of credits go to the registry reversal pool (Section 11.4).",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Preservation Protocol v14.40 (40-year)",
+          "publisher": "City Forest Credits",
+          "url": "https://www.cityforestcredits.org/wp-content/uploads/2026/08/CFC-Preservation-Protocol-v14.40.pdf",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Carbon protocols (current versions)",
+          "publisher": "City Forest Credits",
+          "url": "https://www.cityforestcredits.org/carbon-protocols/",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "This is avoided loss of existing stock, not new removals, and quantification applies deductions (an 80% factor with the USFS tables method, one standard error with inventory methods). Growth after the initial crediting period is credited only through updated documentation and verification (Section 11.6). A 100-year version (v14.100) is listed on the protocols page but was not opened.",
+      "applies": true,
+      "why": "Applies in the United States to urban trees at any age",
+      "outcome_for_you": "conditional"
+    },
+    {
+      "id": "global-icvcm-ccp-additionality",
+      "scope": "GLOBAL",
+      "country": null,
+      "subdivision": null,
+      "locality": null,
+      "name": "ICVCM Core Carbon Principles 5-7: additionality, permanence, robust quantification",
+      "authority": "Integrity Council for the Voluntary Carbon Market (ICVCM)",
+      "category": "methodology-note",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "any",
+        "setting": "any"
+      },
+      "outcome_for_existing_trees": "conditional",
+      "summary": "A carbon credit may only count removals that would not have happened without carbon revenue, so the growth that trees already standing would make anyway is not creditable on its own.",
+      "details": "Principle 5 (additionality): the emission reductions or removals 'shall be additional, i.e., they would not have occurred in the absence of the incentive created by carbon credit revenues.' Principle 6 (permanence): they 'shall be permanent or, where there is a risk of reversal, there shall be measures in place to address those risks and compensate reversals.' Principle 7: they 'shall be robustly quantified, based on conservative approaches, completeness and scientific methods.'",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Core Carbon Principles",
+          "publisher": "Integrity Council for the Voluntary Carbon Market",
+          "url": "https://icvcm.org/core-carbon-principles/",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "The plain-language reading for existing trees (growth that happens anyway is not additional, which is why methodologies use baselines) is the Atlas's interpretation of Principle 5, not ICVCM text. See docs/concepts/additionality.md.",
+      "applies": true,
+      "why": "Applies worldwide at any age",
+      "outcome_for_you": "conditional"
+    },
+    {
+      "id": "us-acr-ifm-non-federal-v2-1",
+      "scope": "US",
+      "country": "US",
+      "subdivision": null,
+      "locality": null,
+      "name": "ACR Improved Forest Management on Non-Federal U.S. Forestlands, v2.1",
+      "authority": "American Carbon Registry (ACR)",
+      "category": "carbon-credit-eligibility",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "forest"
+      },
+      "outcome_for_existing_trees": "conditional",
+      "summary": "ACR credits the extra live and dead biomass carbon a non-federal forest keeps compared with a harvest baseline; it sets no stand-age test and does not credit existing carbon stock as such.",
+      "details": "Emission Reduction Tons are quantified from forgone baseline timber harvests and from removals through retention of with-project forest growth against a project-specific harvesting baseline (Sections 1.1 and 4.1). The project must demonstrate 'an increase in with-project live biomass carbon and dead wood pools, in sum, relative to those pools in the baseline scenario by the end of the Crediting Period' (Section 1.2). Eligible land is non-federal forest where the controlling entity can legally harvest and holds clear title or timber rights; no explicit age requirement appears in the eligibility text, but the baseline uses 'financially mature timber (i.e., at least as old as the optimal rotation age)' (Section 4.1.4). The minimum project term is 40 years and the crediting period 20 years with possible renewal (Section 2.2).",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Improved Forest Management (IFM) on Non-Federal U.S. Forestlands, Version 2.1 (July 2024)",
+          "publisher": "American Carbon Registry",
+          "url": "https://acrcarbon.org/wp-content/uploads/2022/07/ACR-Methodology-IFM-on-Non-Federal-US-Forestlands-v2_1-20240701.pdf",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "Section numbers were read through a page-summarising tool; confirm against the PDF before quoting. Newer ACR versions were not checked.",
+      "applies": false,
+      "why": "Only for trees in forests",
+      "outcome_for_you": "conditional"
+    },
+    {
+      "id": "us-car-forest-protocol-ifm",
+      "scope": "US",
+      "country": "US",
+      "subdivision": null,
+      "locality": null,
+      "name": "Climate Action Reserve U.S. Forest Protocol v5.1: Improved Forest Management",
+      "authority": "Climate Action Reserve",
+      "category": "carbon-credit-eligibility",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "forest"
+      },
+      "outcome_for_existing_trees": "conditional",
+      "summary": "Improved Forest Management credits only the extra carbon an existing forest holds compared with a baseline, not the carbon it already stores, and requires 100 years of monitoring.",
+      "details": "Eligible project types are reforestation, improved forest management (activities that 'maintain or increase carbon stocks on forested land relative to baseline levels') and avoided conversion (Section 2.1); IFM must be on land with more than ten percent tree canopy cover and use natural forest management practices (Sections 2.1.2 and 3.9.2). Credits are based on actual onsite carbon stocks minus baseline estimates (Section 6), so existing standing carbon is not credited in itself, and projects must go above and beyond what compliance with any federal, state or local law would deliver (Section 3.3.1). Project operators must monitor and verify for 100 years after issuance of any credit, the baseline is assumed valid for 100 years, and a buffer pool covers reversals (Sections 3.5, 3.4 and 7.2).",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "U.S. Forest Protocol, Version 5.1",
+          "publisher": "Climate Action Reserve",
+          "url": "https://climateactionreserve.org/wp-content/uploads/2023/07/Final_Forest_Protocol_V5.1_7.14.2023.pdf",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "Version 5.1 (July 2023 file). Newer versions were not checked. Section numbers were read through a page-summarising tool; confirm against the PDF before quoting.",
+      "applies": false,
+      "why": "Only for trees in forests",
+      "outcome_for_you": "conditional"
+    },
+    {
+      "id": "us-family-forest-carbon-vm0045",
+      "scope": "US",
+      "country": "US",
+      "subdivision": null,
+      "locality": null,
+      "name": "Family Forest Carbon Program (American Forest Foundation) with Verra VM0045 dynamic matched baselines",
+      "authority": "American Forest Foundation; Verra (VM0045)",
+      "category": "carbon-credit-eligibility",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "forest"
+      },
+      "outcome_for_existing_trees": "conditional",
+      "summary": "Private owners of 30 or more acres of naturally regenerating forest can enrol in a 20-year programme that rewards a changed management practice, such as growing older forests, measured against matched baseline plots rather than the age of the trees.",
+      "details": "The programme asks owners to 'own 30 or more acres of non-planted, naturally regenerating trees', to have 'the legal right to harvest' and to be in one of 20 listed states, with a 20-year commitment period and practices such as 'Growing Mature Forests' (Appalachians and Midwest) and 'Grow Older Forests' (Northeast). The American Forest Foundation states the programme uses Verra VM0045, in which eligible projects 'adopt one or more specific, non-pre-existing, IFM practices' and baselines come from matched pairs of project and control plots in national forest inventory data. VM0045 accounting focuses 'on the estimation of GHG emissions and/or carbon stock change on permanent plots, not on the estimation of stocks per se'; v1.2 became active on 10 July 2025.",
+      "amount": null,
+      "status": "in-force",
+      "is_example": false,
+      "sources": [
+        {
+          "title": "Family Forest Carbon Program: how it works",
+          "publisher": "American Forest Foundation",
+          "url": "https://familyforestcarbon.org/about-the-program/how-it-works/",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Family Forest Carbon Program: get started (eligibility)",
+          "publisher": "American Forest Foundation",
+          "url": "https://familyforestcarbon.org/about-the-program/get-started/",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "VM0045 Improved Forest Management Using Dynamic Matched Baselines from National Forest Inventories, v1.2",
+          "publisher": "Verra",
+          "url": "https://verra.org/methodologies/vm0045-improved-forest-management-using-dynamic-matched-baselines-from-national-forest-inventories-v1-2/",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "First improved forest management methodology designed for family forests recognized by global body for high integrity",
+          "publisher": "American Forest Foundation",
+          "url": "https://www.forestfoundation.org/why-we-do-it/family-forest-blog/first-improved-forest-management-methodology-designed-for-family-forests-recognized-by-global-body-for-high-integrity/",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "The programme pages opened state no tree-age or tree-size requirement, no payment amounts and no registry. The ICVCM Core Carbon Principles label for VM0045 (13 August 2025) is as reported by the American Forest Foundation, not read on the ICVCM site.",
+      "applies": false,
+      "why": "Only for trees in forests",
+      "outcome_for_you": "conditional"
+    },
+    {
+      "id": "us-ca-los-angeles-protected-trees",
+      "scope": "US",
+      "country": "US",
+      "subdivision": "US-CA",
+      "locality": "Los Angeles",
+      "name": "City of Los Angeles Protected Tree and Shrub regulations (Ordinance 186873)",
+      "authority": "City of Los Angeles: Department of City Planning; Board of Public Works (permits)",
+      "category": "tree-protection",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "urban"
+      },
+      "outcome_for_existing_trees": "protected",
+      "summary": "Example: in Los Angeles, native oaks, southern California black walnut, western sycamore, California bay, Mexican elderberry and toyon are protected once they reach 4 inches in cumulative trunk diameter at 4.5 feet; the test is species and size, not age.",
+      "details": "Protected are oaks indigenous to California (excluding scrub oak), Southern California black walnut, Western sycamore and California bay, plus the shrubs Mexican elderberry and toyon, measuring 'four inches or more in cumulative diameter, four and one-half feet above the ground level'. Owners must 'apply for and obtain a permit from the Board of Public Works' before removing, trimming or relocating them. Ordinance 186873 was adopted on 15 December 2020 and took effect on 4 February 2021, and the City's summary states 'Replacement ratio changed to 4:1'.",
+      "amount": null,
+      "status": "in-force",
+      "is_example": true,
+      "sources": [
+        {
+          "title": "Protected Tree and Shrub regulations (Ordinance 186873) summary",
+          "publisher": "City of Los Angeles, Department of City Planning",
+          "url": "https://planning.lacity.gov/odocument/555281f6-f5ef-44e9-b094-1fce25c1c4dc",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Guidelines and requirements for regulated trees (P/ZC 2024-022)",
+          "publisher": "City of Los Angeles, Department of Building and Safety",
+          "url": "https://dbs.lacity.gov/sites/default/files/efs/pdf/publications/zoning/IB-GUIDELINES-AND-REQUIREMENTS-FOR-REGULATED-TREES.pdf",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "Municipal example only: check your own city's tree ordinance. The diameter threshold comes from the Building and Safety bulletin, which is undated in the extract; the planning summary does not state it. Protected-species lists and thresholds vary widely between US cities.",
+      "applies": false,
+      "why": "Only in California (US-CA)",
+      "outcome_for_you": "protected"
+    },
+    {
+      "id": "us-or-portland-heritage-trees",
+      "scope": "US",
+      "country": "US",
+      "subdivision": "US-OR",
+      "locality": "Portland",
+      "name": "Portland City Code 11.20.060: Heritage Trees",
+      "authority": "City of Portland: Urban Forestry Commission and City Council",
+      "category": "tree-protection",
+      "applies_to": {
+        "min_age_years": null,
+        "max_age_years": null,
+        "trees": "existing",
+        "setting": "urban"
+      },
+      "outcome_for_existing_trees": "protected",
+      "summary": "Example: Portland can designate a tree as a Heritage Tree because of its age, size, type, historical association or horticultural value, and a designated tree cannot be removed without Urban Forestry Commission consent.",
+      "details": "Heritage Trees are 'Trees that because of their age, size, type, historical association or horticultural value, are of special importance to the City'; the Urban Forestry Commission recommends to City Council (at least six commission members must support) and Council may designate once an arborist certifies the tree's health. 'Trees on private property may not be designated as Heritage Trees without the consent of the property owner', and the designation is recorded on the deed. 'Heritage Trees may be removed only with the consent of the UFC' after a public hearing with six-member support, and the City reports more than 300 Heritage Trees. The code sets no minimum age.",
+      "amount": null,
+      "status": "in-force",
+      "is_example": true,
+      "sources": [
+        {
+          "title": "Portland City Code 11.20.060 Heritage Trees",
+          "publisher": "City of Portland",
+          "url": "https://www.portland.gov/code/11/20/060",
+          "accessed": "2026-10-05"
+        },
+        {
+          "title": "Heritage Trees",
+          "publisher": "City of Portland, Urban Forestry",
+          "url": "https://www.portland.gov/trees/heritage",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "verification_status": "verified",
+      "notes": "Municipal example only: check your own city's tree ordinance. Portland's other tree rules (for example permits for removing non-heritage trees) were not reviewed.",
+      "applies": false,
+      "why": "Municipal example for Portland (US-OR); check your own city's rules",
+      "outcome_for_you": "protected"
+    }
+  ],
+  "withheld_rule_ids": [],
+  "certified": false,
+  "disclaimer": "Screening information only — not legal advice. Rules change; confirm with the responsible authority before acting. Scenario estimate only. This is not an issued carbon credit.",
+  "provenance": {
+    "generated_at": "2026-10-05T00:00:00Z",
+    "api_version": "1",
+    "app_version": "0.2.0",
+    "mode": "demo",
+    "sources": [
+      {
+        "id": "ipcc-2006-vol4-ch4",
+        "name": "2006 IPCC Guidelines for National GHG Inventories, Vol. 4 Ch. 4",
+        "version": "2006",
+        "license": "IPCC publication — citation required",
+        "attribution": "IPCC (2006). 2006 IPCC Guidelines for National Greenhouse Gas Inventories, Volume 4: Agriculture, Forestry and Other Land Use. IGES, Japan.",
+        "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html"
+      },
+      {
+        "id": "species-table",
+        "name": "AgriCarbon Atlas species table",
+        "version": "0.1.0",
+        "license": "Apache-2.0 (project configuration)",
+        "attribution": "AgriCarbon Atlas contributors; wood density working values after Zanne et al. (2009) Global Wood Density Database (Dryad, CC0)",
+        "url": "https://doi.org/10.5061/dryad.234"
+      },
+      {
+        "id": "tree-age-rules",
+        "name": "AgriCarbon Atlas tree-age rules (config/tree-age/rules.yaml)",
+        "version": "0.1.0",
+        "updated": "2026-10-05",
+        "license": "Apache-2.0 (project configuration); each rule cites its own public sources",
+        "attribution": "AgriCarbon Atlas contributors; each rule lists its sources and the date they were accessed",
+        "url": null
+      }
+    ],
+    "notes": [
+      "Method: stand-level IPCC Tier 1 growth for this species and climate zone, added up from planting to today. The individual trees are not measured.",
+      "The trees you list are counted as alive today, so no further mortality is applied.",
+      "These trees are past the species' maturity age (30 years): stand-level Tier 1 continues at the post-maturity factor (0.5 of the full increment) — measure trunk girth for a better estimate.",
+      "Root-to-shoot ratio follows the above-ground biomass stock class: 0.46 → 0.23 → 0.24 (IPCC 2006 Table 4.4).",
+      "No area was given, so the 3 trees are treated as a stand at the species' reference density of 300 trees per hectare (0.01 ha).",
+      "Parameters still pending verification: above_ground_biomass_growth, root_to_shoot_ratio. Treat the figures as screening estimates.",
+      "Carbon counted is above- plus below-ground tree biomass, expressed as CO2e; soil, litter and dead wood are not included.",
+      "Scenario estimate only: removals already made by existing trees are not carbon credits."
+    ],
+    "model": {
+      "id": "tree-biomass",
+      "version": "0.1.0"
+    },
+    "parameter_set": {
+      "id": "ipcc-2006-tier1",
+      "version": "0.1.0",
+      "verification_status": "pending"
+    },
+    "climate_zone": {
+      "zone": "warm_temperate_moist",
+      "label": "Warm temperate moist",
+      "source": "region default (US)"
+    },
+    "species": {
+      "id": "black_walnut",
+      "scientific_name": "Juglans nigra"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+name: Carbon model / parameter proposal
+description: Propose an equation, parameter table or species entry for the carbon engine.
+title: "[carbon-model]: "
+labels: ["type/feature", "area/carbon-engine", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A model without a documented equation source does not ship (CLAUDE.md principle 4).
+        Parameters are never hard-coded: they live in `config/` with `source`, `source_table`,
+        `unit` and `verification_status`. See `docs/architecture/carbon-engine.md` and
+        `docs/developer-guide/adding-a-species-or-parameter.md`. To check a value that is already
+        in `config/` and marked `pending`, use the "Verify a parameter or rule" form instead.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind of proposal
+      options:
+        - New species entry (config/species/species.yaml)
+        - Correction of an existing parameter
+        - New allometric equation
+        - New growth / increment table
+        - Root-to-shoot or carbon-fraction update
+        - Uncertainty method
+        - Other model component
+    validations:
+      required: true
+  - type: textarea
+    id: equation
+    attributes:
+      label: Equation or parameter (exact form, with units)
+      description: Write the equation as in the source, e.g. `AGB_kg = 0.0673 × (ρ · D² · H)^0.976`, and list every variable with its unit and valid range.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: citation
+    attributes:
+      label: Citation
+      description: Full reference with DOI or URL, and the exact table / equation number (e.g. "IPCC 2006 Vol. 4 Ch. 4, Table 4.12, row 'Tropical dry, Asia, ≤ 20 yr'").
+    validations:
+      required: true
+  - type: textarea
+    id: applicability
+    attributes:
+      label: Applicability
+      description: Species, climate zones, DBH/height ranges, regions, management systems (orchard vs plantation) for which the source states the equation is valid.
+    validations:
+      required: true
+  - type: dropdown
+    id: verification
+    attributes:
+      label: Verification status you can vouch for
+      options:
+        - verified — I checked the cited table cell / equation in the primary source
+        - pending — copied from notes or a secondary source; needs checking
+        - assumption — project assumption, not from literature
+    validations:
+      required: true
+  - type: textarea
+    id: comparison
+    attributes:
+      label: Comparison with current behavior
+      description: If you ran the engine, how do the central values and ranges change for the example farms (`examples/`)? Attach a table or notebook link.
+  - type: textarea
+    id: tests
+    attributes:
+      label: Proposed tests
+      description: Reference values the implementation must reproduce (input → expected output with tolerance).
+      placeholder: "ρ=0.55 g/cm³, D=20 cm, H=10 m → AGB ≈ 123 kg (Chave 2014 eq. 4), tolerance 1%"

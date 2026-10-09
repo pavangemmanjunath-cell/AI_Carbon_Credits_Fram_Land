@@ -1,0 +1,126 @@
+name: Data source proposal
+description: Propose a new dataset or API (land cover, imagery, climate, soil, statistics, geocoding).
+title: "[data]: "
+labels: ["type/feature", "area/integrations", "data-licensing", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Every external dataset needs licensing metadata in `docs/licensing/DATA_LICENSES.md`
+        and an adapter under `integrations/atlas_integrations/` with README, source, license,
+        attribution, rate limits, caching and failure handling (CLAUDE.md principles 5 and 6).
+        Endpoints come from environment variables, never from literals in application code.
+        See `docs/developer-guide/adding-an-integration.md` and `docs/data-sources/FREE_APIS.md`
+        (the list of sources already used or supported).
+
+        Fill in what you can verify from the provider's own pages. Write "unknown" rather than
+        guessing; a maintainer will not accept license or rate-limit details from memory.
+  - type: input
+    id: name
+    attributes:
+      label: Dataset / API name and version
+      placeholder: "ESA WorldCover 2021 v200"
+    validations:
+      required: true
+  - type: input
+    id: publisher
+    attributes:
+      label: Publisher
+      placeholder: "ESA / VITO"
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose in the Atlas
+      description: Which analysis block or feature it would feed (landcover, vegetation, climate, soil, terrain, crop statistics, geocoding, basemap).
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License or terms of use (exact name and URL)
+      placeholder: "CC BY 4.0 - https://creativecommons.org/licenses/by/4.0/"
+    validations:
+      required: true
+  - type: textarea
+    id: attribution
+    attributes:
+      label: Required attribution text (verbatim)
+      placeholder: "Quote the provider's attribution requirement exactly."
+    validations:
+      required: true
+  - type: dropdown
+    id: derived
+    attributes:
+      label: Can outputs derived from this data appear in reports and exports under Apache-2.0 terms?
+      description: Share-alike, non-commercial or no-redistribution clauses matter here.
+      options:
+        - "Yes - attribution only"
+        - "Only with conditions (describe in notes)"
+        - "No / not allowed"
+        - "Unknown - needs a license review"
+    validations:
+      required: true
+  - type: input
+    id: endpoint
+    attributes:
+      label: Endpoint or access method
+      description: URL, protocol (REST, STAC, S3/COG, WMS, bulk download), authentication (none / free key / paid).
+      placeholder: "https://rest.isric.org/soilgrids/v2.0/properties/query - REST, no key"
+    validations:
+      required: true
+  - type: input
+    id: endpoint_env
+    attributes:
+      label: Proposed environment variable names
+      description: One variable for the base URL, one for the key if a key is needed (they go into `.env.example` and `Settings`).
+      placeholder: "SOILGRIDS_URL"
+    validations:
+      required: true
+  - type: input
+    id: rate_limit
+    attributes:
+      label: Rate limit and fair-use terms
+      placeholder: "1 request/s; non-commercial free tier up to N calls/day"
+    validations:
+      required: true
+  - type: dropdown
+    id: coverage
+    attributes:
+      label: Coverage
+      multiple: true
+      options: [Global, India, United States, European Union, Other (describe below)]
+    validations:
+      required: true
+  - type: input
+    id: resolution
+    attributes:
+      label: Spatial / temporal resolution and update cadence
+      placeholder: "10 m, annual; or district level, annual"
+  - type: dropdown
+    id: storage
+    attributes:
+      label: Should we store a local copy?
+      description: Local storage must be allowed by the license and documented in DATA_LICENSES.md.
+      options: ["No - query on demand with cache", "Yes - bounding-box clips only", "Yes - full regional copy (justify below)"]
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Privacy considerations
+      description: >-
+        Does the query reveal plot location to the provider? Most point and bounding-box queries do.
+        Explain the mitigation, e.g. buffered bbox, caching, generalized coordinates where accuracy allows.
+    validations:
+      required: true
+  - type: textarea
+    id: failure
+    attributes:
+      label: Failure behavior
+      description: >-
+        What should the Atlas show when the service is down, slow or rate-limiting? The adapter raises a
+        typed error and the analysis reports the layer as unavailable; it never invents values.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes, references, sample response

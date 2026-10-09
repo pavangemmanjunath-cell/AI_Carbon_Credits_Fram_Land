@@ -1,0 +1,134 @@
+# Repository labels. Sync them with a labels action (for example
+# crazy-max/ghaction-github-labeler) or create them by hand with `gh label create`.
+# Colors are hex without '#'. GitHub limits a description to 100 characters.
+#
+# Scheme
+#   type/*   what kind of work an issue or pull request is (one per item)
+#   area/*   which part of the repository it touches (one or more); .github/labeler.yml
+#            applies them to pull requests from the paths they change
+#   region/* which region's rules or data it concerns (IN, US, EU)
+#   plain    triage, entry points and cross-cutting concerns
+#
+# Every label used by an issue form (.github/ISSUE_TEMPLATE), by dependabot.yml and by
+# labeler.yml must be listed here.
+
+# --- type/* ----------------------------------------------------------------------
+- name: type/bug
+  color: "d73a4a"
+  description: "Something behaves incorrectly (wrong result, crash, UI defect)."
+
+- name: type/feature
+  color: "a2eeef"
+  description: "New capability, or an improvement to an existing one."
+
+- name: type/docs
+  color: "0075ca"
+  description: "Documentation only."
+
+- name: type/translation
+  color: "c2e0c6"
+  description: "Interface or documentation translation."
+
+- name: type/chore
+  color: "cfd3d7"
+  description: "Maintenance with no behavior change (refactor, tooling, CI)."
+
+# --- area/* ----------------------------------------------------------------------
+- name: area/web
+  color: "fb8500"
+  description: "Web app in apps/web (React, MapLibre, i18n, accessibility)."
+
+- name: area/api
+  color: "219ebc"
+  description: "FastAPI service in apps/api, repositories and the PostgreSQL schema."
+
+- name: area/carbon-engine
+  color: "2a9d8f"
+  description: "Carbon models, equations, uncertainty and readiness scoring."
+
+- name: area/geo-engine
+  color: "3d5a80"
+  description: "Geometry, imports (GeoJSON, KML, CSV, LAS/LAZ) and tree detection."
+
+- name: area/policy-engine
+  color: "e76f51"
+  description: "Program screening engine and the rules in config/policies."
+
+- name: area/report-engine
+  color: "98c1d9"
+  description: "Report rendering (HTML, Markdown, JSON, PDF)."
+
+- name: area/agents
+  color: "5319e7"
+  description: "Agent framework and agent definitions. Agents never compute a carbon number."
+
+- name: area/integrations
+  color: "bfd200"
+  description: "Data adapters and their demo twins in integrations/atlas_integrations."
+
+- name: area/earth-observation
+  color: "6a4c93"
+  description: "Sentinel-2, STAC, WorldCover, NDVI/NDMI, imagery providers."
+
+- name: area/config
+  color: "f2c14e"
+  description: "Parameters, species, methodologies and regions under config/."
+
+- name: area/qgis-plugin
+  color: "589636"
+  description: "The QGIS plugin in integrations/qgis-plugin (GPL-2.0-or-later)."
+
+- name: area/infra
+  color: "5a6270"
+  description: "Docker, nginx, CI workflows, deployment and repository settings."
+
+- name: area/research
+  color: "d4a5a5"
+  description: "Validation studies, notebooks and publications under research/."
+
+# --- region/* --------------------------------------------------------------------
+- name: region/IN
+  color: "f4a261"
+  description: "India (IN): Green Credit Programme, CCTS, data.gov.in, state schemes."
+
+- name: region/US
+  color: "3a86ff"
+  description: "United States (US): USDA NASS, COMET-Farm, voluntary methodologies, NRCS."
+
+- name: region/EU
+  color: "0b3d91"
+  description: "European Union (EU): CRCF, CAP eco-schemes, Copernicus and Eurostat data."
+
+# --- Triage and entry points -----------------------------------------------------
+- name: needs-triage
+  color: "ededed"
+  description: "Not yet reviewed by a maintainer. The issue forms apply it."
+
+- name: needs-verification
+  color: "fbca04"
+  description: "A pending parameter or rule that must be checked against its cited source."
+
+- name: good first issue
+  color: "7057ff"
+  description: "Small, well scoped and mentored. A good entry point for new contributors."
+
+- name: help wanted
+  color: "008672"
+  description: "Maintainers would welcome outside help on this."
+
+# --- Cross-cutting concerns ------------------------------------------------------
+- name: data-licensing
+  color: "e4e669"
+  description: "Dataset license, attribution or terms of use (docs/licensing)."
+
+- name: privacy
+  color: "8d99ae"
+  description: "Plot geometry privacy, generalization, retention, and what leaves the server."
+
+- name: security
+  color: "b60205"
+  description: "Hardening, vulnerabilities, CSP and secrets. Report vulnerabilities privately."
+
+- name: dependencies
+  color: "0366d6"
+  description: "Dependency update (applied by Dependabot)."

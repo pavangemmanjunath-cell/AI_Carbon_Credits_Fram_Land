@@ -1,0 +1,11 @@
+{
+  "country": "US",
+  "species_id": "pecan",
+  "tree_count": 1200,
+  "planting_year": 2021,
+  "horizon_years": 30,
+  "survival_rate": 0.9,
+  "area_hectares": 8.0,
+  "lat": 32.5,
+  "lon": -83.7
+}

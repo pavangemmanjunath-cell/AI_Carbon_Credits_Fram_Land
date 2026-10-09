@@ -1,0 +1,18 @@
+{
+  "name": "Demo pecan agroforestry, Houston County GA (synthetic)",
+  "country": "US",
+  "source": "manual-drawing",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [-83.70161, 32.49882],
+        [-83.6985, 32.49877],
+        [-83.69834, 32.50109],
+        [-83.70021, 32.50127],
+        [-83.70172, 32.501],
+        [-83.70161, 32.49882]
+      ]
+    ]
+  }
+}

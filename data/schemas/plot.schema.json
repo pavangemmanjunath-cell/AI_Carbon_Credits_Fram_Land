@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agricarbon-atlas.org/schemas/plot.schema.json",
+  "title": "Plot",
+  "description": "A user-defined land parcel. Exact geometry is private by default; public views use public_centroid only.",
+  "type": "object",
+  "required": ["plot_id", "country", "geometry", "area_hectares", "source", "privacy", "created_at"],
+  "additionalProperties": false,
+  "properties": {
+    "plot_id": {"type": "string", "pattern": "^PLT-[A-Z0-9]{4,12}$"},
+    "name": {"type": "string", "maxLength": 120},
+    "country": {"type": "string", "pattern": "^[A-Z]{2}$", "description": "ISO 3166-1 alpha-2 (EU member states keep their own code; rules resolve to EU)"},
+    "region": {"type": ["string", "null"], "description": "State / province / NUTS region name"},
+    "geometry": {
+      "type": "object",
+      "required": ["type", "coordinates"],
+      "properties": {
+        "type": {"const": "Polygon"},
+        "coordinates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "minItems": 4,
+            "maxItems": 501,
+            "items": {"type": "array", "minItems": 2, "maxItems": 3, "items": {"type": "number"}}
+          }
+        }
+      }
+    },
+    "area_hectares": {"type": "number", "minimum": 0.01, "maximum": 10000},
+    "area_acres": {"type": "number", "minimum": 0},
+    "perimeter_m": {"type": "number", "minimum": 0},
+    "centroid": {"$ref": "#/$defs/latlon"},
+    "public_centroid": {"$ref": "#/$defs/latlon", "description": "Generalized to 0.05° for public views"},
+    "source": {"type": "string", "enum": ["manual-drawing", "upload", "import", "pin-and-area", "tree-line", "coordinates", "qgis-plugin", "api", "synthetic-demo"]},
+    "boundary_quality": {"type": "string", "enum": ["exact", "approximate"], "description": "approximate when the boundary was built from a pin + size or a tree line"},
+    "privacy": {"type": "string", "enum": ["private", "generalized-public"]},
+    "created_by": {"type": ["string", "null"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": ["string", "null"], "format": "date-time"}
+  },
+  "$defs": {
+    "latlon": {
+      "type": "object",
+      "required": ["lat", "lon"],
+      "properties": {"lat": {"type": "number", "minimum": -90, "maximum": 90}, "lon": {"type": "number", "minimum": -180, "maximum": 180}}
+    }
+  }
+}

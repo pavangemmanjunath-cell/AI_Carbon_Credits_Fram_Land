@@ -1,0 +1,71 @@
+{
+  "indices": {
+    "ndvi": {
+      "value": 0.63,
+      "class": "healthy",
+      "date": "2026-10-05",
+      "scene_id": "S2A_MSIL2A_20261005T050659_N0511_R019_T43PGQ_DEMO"
+    },
+    "ndmi": {
+      "value": 0.226,
+      "class": "moderate",
+      "date": "2026-10-05",
+      "scene_id": "S2A_MSIL2A_20261005T050659_N0511_R019_T43PGQ_DEMO"
+    }
+  },
+  "time_series": [
+    {
+      "date": "2024-10-20",
+      "ndvi": 0.57,
+      "ndmi": 0.193,
+      "cloud_cover": 4.9,
+      "scene_id": "S2A_MSIL2A_20241020T050659_N0511_R019_T43PGQ_DEMO"
+    },
+    {
+      "date": "2025-10-17",
+      "ndvi": 0.598,
+      "ndmi": 0.209,
+      "cloud_cover": 1.9,
+      "scene_id": "S2A_MSIL2A_20251017T050659_N0511_R019_T43PGQ_DEMO"
+    },
+    {
+      "date": "2026-10-05",
+      "ndvi": 0.63,
+      "ndmi": 0.226,
+      "cloud_cover": 3.0,
+      "scene_id": "S2A_MSIL2A_20261005T050659_N0511_R019_T43PGQ_DEMO"
+    }
+  ],
+  "trend": {
+    "start": "2024-10",
+    "end": "2026-10",
+    "change_pct": 10.5,
+    "statement": "Vegetation index increased approximately 10% during the evaluated period."
+  },
+  "notes": [
+    "demo mode: synthetic observations"
+  ],
+  "provenance": {
+    "generated_at": "2026-10-05T19:53:49Z",
+    "api_version": "1",
+    "app_version": "0.2.0",
+    "mode": "demo",
+    "sources": [
+      {
+        "id": "synthetic-demo",
+        "name": "Synthetic demo data (imitating Sentinel-2 L2A (Earth Search STAC, Element 84 / AWS))",
+        "version": "L2A",
+        "license": "Apache-2.0 (generated)",
+        "attribution": "AgriCarbon Atlas demo generator — not an observation",
+        "url": null,
+        "accessed_at": "2026-10-05T19:53:49.700062Z",
+        "scene_ids": [
+          "S2A_MSIL2A_20241020T050659_N0511_R019_T43PGQ_DEMO",
+          "S2A_MSIL2A_20251017T050659_N0511_R019_T43PGQ_DEMO",
+          "S2A_MSIL2A_20261005T050659_N0511_R019_T43PGQ_DEMO"
+        ]
+      }
+    ],
+    "notes": []
+  }
+}
