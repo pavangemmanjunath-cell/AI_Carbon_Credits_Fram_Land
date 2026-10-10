@@ -541,10 +541,43 @@ export interface SimulateBody {
   tree_count: number;
   planting_year: number;
   horizon_years: number;
-  survival_rate: number;
+  /** Omit to use the engine's configured default (reported with its source). */
+  survival_rate?: number;
   area_hectares: number;
   lat?: number;
   lon?: number;
+  /** Your own costs (region currency). The platform has no built-in cost values. */
+  costs?: CostInputs;
+}
+
+export interface CostInputs {
+  sapling_per_tree?: number | null;
+  planting_per_tree?: number | null;
+  maintenance_per_ha_per_year?: number | null;
+  monitoring_per_year?: number | null;
+}
+
+/** `cost_scenario` of POST /simulate — undiscounted bookkeeping on your costs; never revenue. */
+export interface CostScenario {
+  currency: string;
+  horizon_years: number;
+  inputs: CostInputs;
+  not_entered: (keyof CostInputs)[];
+  establishment: number;
+  maintenance_over_horizon: number;
+  monitoring_over_horizon: number;
+  total_cost: number;
+  removal_over_horizon_tco2e: { low: number; central: number; high: number };
+  break_even_price_per_tco2e: { low: number | null; central: number | null; high: number | null };
+  price_scenarios: {
+    id: string;
+    price_per_tco2e: number;
+    indicative_value_over_horizon: number;
+    share_of_costs_covered_pct: number | null;
+  }[];
+  discounted: false;
+  certified: false;
+  disclaimer: string;
 }
 
 export interface SimulationValueScenario extends MarketScenarioEntry {
@@ -598,6 +631,7 @@ export interface Simulation {
   annual: Range;
   series: AnnualPoint[];
   value_scenarios: SimulationValueScenario[];
+  cost_scenario?: CostScenario | null;
   programmes: SimulationProgramme[];
   comparison: SimulationComparison[];
   confidence: Confidence;

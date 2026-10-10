@@ -123,7 +123,7 @@ Seven adapters (Open-Meteo, SoilGrids, Nominatim, Photon, NASS, the Census geoco
 | --- | --- |
 | Timeout | 20 seconds per request |
 | Retry | One retry after 0.5 seconds on a transport error, including a timeout, or on an HTTP 5xx status. A 4xx status is never retried |
-| Headers | `User-Agent`, by default `agricarbon-atlas/0.1 (+https://github.com/agricarbon-atlas)` (Nominatim sends `NOMINATIM_USER_AGENT`), and `Accept: application/json` |
+| Headers | `User-Agent`, by default `agricarbon-atlas/0.1 (+https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land)` (Nominatim sends `NOMINATIM_USER_AGENT`), and `Accept: application/json` |
 | 404 | `NotFoundError` |
 | 429 | `RateLimitedError`, with no retry and no `Retry-After` handling |
 | 401 and 403 | `ConfigurationError` ("authentication failed ... check API key"), whatever the provider's reason |

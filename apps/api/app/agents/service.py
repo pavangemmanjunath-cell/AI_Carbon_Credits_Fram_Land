@@ -156,6 +156,7 @@ class AgentService:
         plan: str = DEFAULT_PLAN,
         question: str | None = None,
         locale: str = "en",
+        costs: Mapping[str, Any] | None = None,
     ) -> dict[str, Any]:
         """Run ``plan`` on a plot. A question, if given, is answered at the end."""
         plot = self.app.plots.require(plot_id)
@@ -166,9 +167,15 @@ class AgentService:
                 type_slug="unknown-plan",
             )
         route = self.router.route(question) if question else None
-        return self._execute(plot, plan, question, locale, route)
+        return self._execute(plot, plan, question, locale, route, costs)
 
-    def ask(self, question: str, plot_id: str | None, locale: str = "en") -> dict[str, Any]:
+    def ask(
+        self,
+        question: str,
+        plot_id: str | None,
+        locale: str = "en",
+        costs: Mapping[str, Any] | None = None,
+    ) -> dict[str, Any]:
         """Answer a free-text question: the intent router picks the plan."""
         if not plot_id:
             raise ProblemError(
@@ -178,7 +185,7 @@ class AgentService:
             )
         plot = self.app.plots.require(plot_id)
         route = self.router.route(question)
-        return self._execute(plot, route.plan, question, locale, route)
+        return self._execute(plot, route.plan, question, locale, route, costs)
 
     def get_run(self, run_id: str) -> dict[str, Any]:
         record = self.app.repo.get_record(RUN_KIND, run_id)
@@ -215,6 +222,7 @@ class AgentService:
         question: str | None,
         locale: str,
         route: Route | None,
+        costs: Mapping[str, Any] | None = None,
     ) -> dict[str, Any]:
         plan = PLANS[plan_id]
         safe_question = redact_text(question) if question else None
@@ -231,6 +239,8 @@ class AgentService:
                 inputs["what_if"] = {"change": route.tree_change}
             if route.age_years is not None:
                 inputs["age_years"] = route.age_years
+        if costs and any(v is not None for v in costs.values()):
+            inputs["costs"] = dict(costs)
         result = self.orchestrator.run(
             plan,
             inputs=inputs,

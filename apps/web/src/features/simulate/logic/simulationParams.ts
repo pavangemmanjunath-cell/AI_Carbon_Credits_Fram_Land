@@ -60,14 +60,19 @@ export function toSearchParams(state: SimulationState): URLSearchParams {
   return params;
 }
 
-export function toSimulateBody(state: SimulationState, survival = 0.85): SimulateBody {
+/**
+ * Survival is sent only when someone actually entered it; otherwise the engine
+ * applies its configured default and reports it with its own source and status
+ * (sending a default here would mislabel an assumption as a user value).
+ */
+export function toSimulateBody(state: SimulationState, survival?: number): SimulateBody {
   return {
     country: state.country,
     species_id: state.species,
     tree_count: state.trees,
     planting_year: state.year,
     horizon_years: state.horizon,
-    survival_rate: survival,
+    ...(survival === undefined ? {} : { survival_rate: survival }),
     area_hectares: state.area,
   };
 }

@@ -9,7 +9,7 @@ __version__ = "0.1.0"
 
 PLUGIN_NAME = "AgriCarbon Atlas"
 #: Placeholder until the project has its final home; keep in sync with ``metadata.txt``.
-REPOSITORY_URL = "https://github.com/agricarbon-atlas/agricarbon-atlas"
+REPOSITORY_URL = "https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land"
 USER_AGENT = f"AgriCarbonAtlas-QGIS/{__version__}"
 
 #: Shown next to every estimate. Wording is fixed by the project's CLAUDE.md rules.

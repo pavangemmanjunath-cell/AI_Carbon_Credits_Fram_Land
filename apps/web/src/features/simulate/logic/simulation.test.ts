@@ -28,7 +28,8 @@ describe('simulationParams', () => {
 
   it('builds the API body with an explicit survival rate', () => {
     const body = toSimulateBody(DEFAULT_SIMULATION);
-    expect(body.survival_rate).toBe(0.85);
+    expect(body).not.toHaveProperty('survival_rate'); // the engine's configured default applies
+    expect(toSimulateBody(DEFAULT_SIMULATION, 0.9).survival_rate).toBe(0.9);
     expect(body.horizon_years).toBe(30);
   });
 

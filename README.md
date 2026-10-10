@@ -56,7 +56,7 @@ More screenshots: [docs/images/screenshots/](docs/images/screenshots/) (landing,
 
 ## Quick start
 
-**Windows, one click:** run `run_all.bat` (installs, tests, runs the agent demo; `run_all.bat serve` also starts the API and web app).
+**Windows, one click:** double-click `START.bat` to start the API and the web app. The browser opens when both are ready. Double-click `STOP.bat` to stop both, and `STATUS.bat` to see what is running. The first run sets up `.venv` and `node_modules`. If ports 8000 and 5173 are taken, the next free ports are used. `run_all.bat` installs, runs the tests and runs the agent demo; `run_all.bat serve` also starts the app. To use an AI language model for the agents (optional, off by default) or to add data API keys, double-click `API-KEYS.bat`. Keys are stored encrypted for your Windows user, outside the repository. [Who does what in the agent team, the free LLM options and the services used](docs/agents/AGENTS_OVERVIEW.md).
 
 Requirements: Python 3.12+, Node.js 22+, `make`. No API keys are needed for demo mode.
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { ExternalLink, Link2, Pause, Play } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'react-router';
@@ -12,6 +12,15 @@ import { useUiStore } from '@/store/uiStore';
 import { growthFactor, parseSimulationParams, shareUrl, toSearchParams, toSimulateBody, type SimulationState } from './logic/simulationParams';
 import { MAX_GLYPHS } from './logic/standIllustration';
 import { StandIllustration } from './StandIllustration';
+import { CostPanel } from './land3d/CostPanel';
+import { EMPTY_COSTS, toCostInputs, type CostDraft } from './land3d/costs';
+import { CreditPathway } from './land3d/CreditPathway';
+import { ExplainPanel } from './land3d/ExplainPanel';
+import { carbonInYear, projectRing, squareRing } from './land3d/landScene';
+import { hasWebGL } from './land3d/webgl';
+import './land3d/i18n';
+
+const LandView3D = lazy(() => import('./land3d/LandView3D'));
 
 export default function SimulatePage() {
   const { t } = useTranslation();
@@ -27,6 +36,9 @@ export default function SimulatePage() {
   const [standYear, setStandYear] = useState<number>(new Date().getFullYear());
   const [playing, setPlaying] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [webgl] = useState(hasWebGL);
+  const [view, setView] = useState<'3d' | '2d'>(() => (hasWebGL() ? '3d' : '2d'));
+  const [costDraft, setCostDraft] = useState<CostDraft>(EMPTY_COSTS);
 
   const regionId = regionIdFor(state.country);
   const species = useSpecies(regionId).data ?? [];
@@ -37,7 +49,7 @@ export default function SimulatePage() {
     if (species.length && !species.some((s) => s.id === state.species)) setState((s) => ({ ...s, species: species[0].id }));
   }, [species, state.species]);
   useEffect(() => {
-    if (plot && Math.abs(plot.area_hectares - state.area) > 0.001) setState((s) => ({ ...s, area: plot.area_hectares }));
+    if (plot && plot.area_hectares !== state.area) setState((s) => ({ ...s, area: plot.area_hectares }));
   }, [plot, state.area]);
   useEffect(() => {
     const next = toSearchParams(state);
@@ -45,7 +57,10 @@ export default function SimulatePage() {
   }, [state, params, setParams]);
 
   const debounced = useDebouncedValue(state, 300);
-  const simulation = useSimulation(toSimulateBody(debounced)).data;
+  const debouncedCosts = useDebouncedValue(costDraft, 500);
+  const baseBody = toSimulateBody(debounced);
+  const costs = toCostInputs(debouncedCosts);
+  const simulation = useSimulation(baseBody && costs ? { ...baseBody, costs } : baseBody).data;
   const locale = intlLocale(language, state.country);
 
   // Stand-year scrubber
@@ -71,6 +86,12 @@ export default function SimulatePage() {
     setTimeout(() => setCopied(false), 2000);
   };
   const region = REGIONS.find((r) => r.id === regionId);
+  // The saved boundary is projected here in the browser and never sent anywhere.
+  const ring = useMemo(() => {
+    const projected = plot?.geometry ? projectRing(plot.geometry) : [];
+    return projected.length >= 3 ? projected : squareRing(state.area);
+  }, [plot?.geometry, state.area]);
+  const yearCarbon = simulation ? carbonInYear(simulation.series, standYear, state.trees) : null;
   const activeProgramme = simulation?.programmes[0];
 
   return (
@@ -168,6 +189,22 @@ export default function SimulatePage() {
             <span className="text-[13px] font-semibold text-ink">
               {t('simulate.sceneChip', { plot: plot?.name ?? t('simulate.scenarioPlot'), area: `${formatNumber(state.area, locale, { maximumFractionDigits: 2 })} ha`, count: state.trees, species: speciesEntry?.common_name.toLowerCase() ?? state.species, year: standYear })}
             </span>
+            <div className="ml-auto flex items-center gap-2">
+            {webgl && (
+              <div role="group" aria-label={t('land3d.view3d')} className="flex gap-0.5 rounded-[8px] bg-ground p-0.5">
+                {(['3d', '2d'] as const).map((v) => (
+                  <button
+                    key={v}
+                    type="button"
+                    aria-pressed={view === v}
+                    onClick={() => setView(v)}
+                    className={`h-7 rounded-[6px] px-2.5 text-[12px] font-semibold ${view === v ? 'bg-surface text-forest-deep shadow-sm' : 'text-ink-2'}`}
+                  >
+                    {v === '3d' ? t('land3d.view3d') : t('land3d.view2d')}
+                  </button>
+                ))}
+              </div>
+            )}
             <button
               type="button"
               aria-label={playing ? t('simulate.scenePause') : t('simulate.scenePlay')}
@@ -177,9 +214,28 @@ export default function SimulatePage() {
             >
               {playing ? <Pause size={15} aria-hidden="true" /> : <Play size={15} aria-hidden="true" />}
             </button>
+            </div>
           </div>
           <div className="min-h-[320px] flex-1 bg-[#F4F8EF]">
-            <StandIllustration treeCount={state.trees} growth={growth} canopyTone={canopyTone} label={t('simulate.illustrationLabel', { year: standYear, age })} />
+            {view === '3d' && webgl ? (
+              <Suspense fallback={<div className="flex h-[540px] items-center justify-center text-[13px] text-muted">{t('land3d.loading')}</div>}>
+                <LandView3D
+                  ring={ring}
+                  boundarySaved={Boolean(plot?.geometry)}
+                  treeCount={state.trees}
+                  areaHectares={state.area}
+                  growth={growth}
+                  age={age}
+                  standYear={standYear}
+                  species={speciesEntry}
+                  speciesName={speciesEntry?.common_name ?? state.species}
+                  carbon={yearCarbon}
+                  locale={locale}
+                />
+              </Suspense>
+            ) : (
+              <StandIllustration treeCount={state.trees} growth={growth} canopyTone={canopyTone} label={t('simulate.illustrationLabel', { year: standYear, age })} />
+            )}
           </div>
           <div className="flex items-center gap-3 border-t border-line bg-surface px-4 py-3">
             <label className="flex flex-1 flex-col gap-1 text-[12px] text-ink-2">
@@ -189,7 +245,7 @@ export default function SimulatePage() {
               </span>
               <input type="range" min={state.year} max={horizonEnd} step={1} value={standYear} onChange={(e) => setStandYear(Number(e.target.value))} className="range-input" />
             </label>
-            {state.trees > MAX_GLYPHS && (
+            {view === '2d' && state.trees > MAX_GLYPHS && (
               <span className="hidden max-w-[180px] text-right text-[11px] text-muted md:block">{t('simulate.glyphNote', { per: Math.round(state.trees / MAX_GLYPHS) })}</span>
             )}
           </div>
@@ -243,6 +299,23 @@ export default function SimulatePage() {
             </a>
           )}
         </section>
+      </div>
+
+      <ExplainPanel body={baseBody} locale={locale} />
+
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-[minmax(0,1fr)_420px]">
+        <CreditPathway programmes={simulation?.programmes ?? []} regionName={simulation?.region_name ?? region?.name ?? state.country} />
+        <CostPanel
+          draft={costDraft}
+          onChange={setCostDraft}
+          scenario={simulation?.cost_scenario}
+          currency={simulation?.currency ?? region?.currency ?? ''}
+          symbol={simulation?.currency_symbol ?? ''}
+          locale={locale}
+          horizon={state.horizon}
+          plotId={plot?.plot_id ?? null}
+          language={language}
+        />
       </div>
 
       <section className="card flex flex-col gap-3 p-5">

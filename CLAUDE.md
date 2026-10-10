@@ -55,8 +55,10 @@ code, e.g. `DE`, `FR`, `ES`, `IT`, mapped to `EU` rules).
 ## Stack
 
 - Frontend: React 19 + Vite + TypeScript, MapLibre GL JS (PMTiles basemap, raster
-  satellite/aerial imagery, GeoJSON layers — a flat 2D map; no 3D on purpose: the
-  owner asked for simple and easy), TanStack Query, Zustand, i18next (en, hi, kn,
+  satellite/aerial imagery, GeoJSON layers — the map stays a flat 2D map for
+  simplicity; on the owner's request (2026-10-11) the Simulation page adds an
+  optional, lazy-loaded 3D land view with three.js + React Three Fiber that only
+  renders engine and config values), TanStack Query, Zustand, i18next (en, hi, kn,
   de, fr, es), Tailwind CSS, recharts, terra-draw, Turf, Vitest, Playwright.
   All data exchange is JSON (no DuckDB; see ADR-0002).
 - Backend: Python 3.12+, FastAPI, Pydantic v2, Shapely, PyProj, NumPy,

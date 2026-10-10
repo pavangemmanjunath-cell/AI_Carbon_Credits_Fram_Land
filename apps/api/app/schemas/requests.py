@@ -92,6 +92,16 @@ class ReportRequest(BaseModel):
     estimate_id: str | None = None
 
 
+class CostInputsBody(BaseModel):
+    """The user's own costs in the region's currency; none has a built-in default."""
+
+    model_config = ConfigDict(extra="forbid")
+    sapling_per_tree: float | None = Field(None, ge=0, le=1e9)
+    planting_per_tree: float | None = Field(None, ge=0, le=1e9)
+    maintenance_per_ha_per_year: float | None = Field(None, ge=0, le=1e9)
+    monitoring_per_year: float | None = Field(None, ge=0, le=1e9)
+
+
 class SimulateRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
     country: str = Field(..., min_length=2, max_length=2)
@@ -104,6 +114,7 @@ class SimulateRequest(BaseModel):
     lat: float | None = Field(None, ge=-90, le=90)
     lon: float | None = Field(None, ge=-180, le=180)
     plot_id: str | None = None
+    costs: CostInputsBody | None = None
 
     @field_validator("country")
     @classmethod

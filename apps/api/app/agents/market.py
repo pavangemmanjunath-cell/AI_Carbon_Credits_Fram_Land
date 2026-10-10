@@ -12,7 +12,7 @@ from __future__ import annotations
 from typing import Any
 
 from app.agents import wording
-from app.agents.tools import market_scenarios
+from app.agents.tools import cost_scenario, market_scenarios
 from atlas_agents import Agent, AgentMessage, Evidence, RunContext
 
 
@@ -27,9 +27,9 @@ class MarketAgent(Agent):
         "Three separate values — environmental benefit (tCO₂e per year), indicative carbon "
         "value (a price scenario, not a credit) and other farm income — never added together."
     )
-    tools = (market_scenarios,)
-    reads = ("plot_id", "estimate")
-    writes = ("market",)
+    tools = (market_scenarios, cost_scenario)
+    reads = ("plot_id", "estimate", "costs")
+    writes = ("market", "cost")
 
     def run(self, ctx: RunContext) -> list[AgentMessage]:
         estimate = ctx.read("estimate")
@@ -62,12 +62,43 @@ class MarketAgent(Agent):
             ),
             *wording.evidence_from_references(basis.get("references"), "market-reference"),
         ]
-        return [
+        messages = [
             ctx.say(
                 "finding",
                 " ".join(wording.market_sentences(market, estimate["estimate"])),
                 facts=facts,
                 evidence=evidence,
                 disclaimer=market.get("disclaimer"),
+            )
+        ]
+        costs = ctx.read("costs")
+        if costs:
+            messages.extend(self._cost(ctx, costs))
+        return messages
+
+    def _cost(self, ctx: RunContext, costs: dict[str, Any]) -> list[AgentMessage]:
+        result = ctx.use(cost_scenario, plot_id=ctx.read("plot_id"), costs=costs)
+        if not result.ok:
+            return [ctx.warn(f"The cost scenario is not available ({result.reason}).")]
+        cost = result.value
+        ctx.write("cost", cost)
+        facts = {
+            "total_cost": cost["total_cost"],
+            "currency": cost["currency"],
+            "horizon_years": cost["horizon_years"],
+            "break_even_price_per_tco2e": cost["break_even_price_per_tco2e"],
+            "not_entered": cost["not_entered"],
+        }
+        evidence = [
+            Evidence("Costs entered by you (no built-in cost values)", "user-costs"),
+            Evidence("Cumulative removal from the carbon engine's simulation", "simulation"),
+        ]
+        return [
+            ctx.say(
+                "finding",
+                " ".join(wording.cost_sentences(cost)),
+                facts=facts,
+                evidence=evidence,
+                disclaimer=cost.get("disclaimer"),
             )
         ]

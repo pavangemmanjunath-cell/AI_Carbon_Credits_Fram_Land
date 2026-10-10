@@ -23,6 +23,21 @@ describe('api client', () => {
     expect(isUnreachable(new ApiError(503, undefined, 'x'))).toBe(true);
   });
 
+  it('treats a request cancelled by the caller as cancelled, not as the API being offline', async () => {
+    vi.spyOn(globalThis, 'fetch').mockImplementation(
+      (_url, init) =>
+        new Promise((_resolve, reject) => {
+          init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError')));
+        }),
+    );
+    const outer = new AbortController();
+    const pending = request('/plots', { signal: outer.signal }).catch((e: unknown) => e);
+    outer.abort();
+    const error = await pending;
+    expect(error).toMatchObject({ name: 'AbortError' });
+    expect(isUnreachable(error)).toBe(false);
+  });
+
   it('sends JSON bodies and reads text responses', async () => {
     const spy = vi.spyOn(globalThis, 'fetch').mockResolvedValue(new Response('<html></html>', { status: 200, headers: { 'content-type': 'text/html' } }));
     const text = await request<string>('/reports/R', { as: 'text' });

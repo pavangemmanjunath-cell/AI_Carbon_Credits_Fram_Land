@@ -13,6 +13,7 @@ from app.services.policy import PolicyService
 from app.services.regions import RegionConfig
 from atlas_integrations import AdapterError
 from carbon_engine import ClimateInput, InventoryInput, ModelParams, PlotInput
+from carbon_engine.economics import CostInputs, cost_scenario
 from geo_engine.climate import classify_climate_zone, zone_label
 
 DEFAULT_AREA_HA = 2.13
@@ -101,6 +102,124 @@ class SimulationService:
             "provenance": {},
         }
 
+    def drivers(self, body: dict[str, Any], step: float = 0.10) -> dict[str, Any]:
+        """Explainable AI without AI: which inputs move the estimate, and what it is built from.
+
+        One-at-a-time sensitivity — each input you control is moved by ±``step``
+        with everything else fixed, and the carbon engine is simply run again.
+        No model, no learned weights, no new numbers: every value below is an
+        engine output or a configured parameter with its source and status.
+        """
+        region_id = self.regions.resolve(body["country"])
+        if region_id is None:
+            raise ProblemError(
+                422, f"Country {body['country']} is not supported.", type_slug="unsupported-country"
+            )
+        area_ha = float(body.get("area_hectares") or DEFAULT_AREA_HA)
+        climate = self._climate(region_id, body.get("lat"), body.get("lon"))
+        base = self._run(region_id, body, climate, area_ha)
+        central = float(base["estimate"]["central"])
+        survival = body.get("survival_rate")
+        if survival is None:
+            survival = next(
+                (
+                    p.get("value")
+                    for p in base.get("parameters_used", [])
+                    if p.get("name") == "survival_rate"
+                ),
+                None,
+            )
+
+        def rerun(changes: dict[str, Any], area: float = area_ha) -> float:
+            return float(
+                self._run(region_id, {**body, **changes}, climate, area)["estimate"]["central"]
+            )
+
+        def entry(
+            name: str, value: float, low: float, high: float, at_low: float, at_high: float
+        ) -> dict[str, Any]:
+            def pct(v: float) -> float | None:
+                return round(100 * (v - central) / central, 1) if central else None
+
+            return {
+                "input": name,
+                "value": value,
+                "value_low": low,
+                "value_high": high,
+                "central_low": round(at_low, 3),
+                "central_high": round(at_high, 3),
+                "change_pct_low": pct(at_low),
+                "change_pct_high": pct(at_high),
+            }
+
+        drivers: list[dict[str, Any]] = []
+        trees = int(body["tree_count"])
+        if trees > 0:
+            lo, hi = max(1, round(trees * (1 - step))), round(trees * (1 + step))
+            drivers.append(
+                entry(
+                    "tree_count",
+                    trees,
+                    lo,
+                    hi,
+                    rerun({"tree_count": lo}),
+                    rerun({"tree_count": hi}),
+                )
+            )
+            if isinstance(survival, (int, float)) and survival > 0:
+                s_lo, s_hi = (
+                    round(survival * (1 - step), 4),
+                    round(min(1.0, survival * (1 + step)), 4),
+                )
+                drivers.append(
+                    entry(
+                        "survival_rate",
+                        float(survival),
+                        s_lo,
+                        s_hi,
+                        rerun({"survival_rate": s_lo}),
+                        rerun({"survival_rate": s_hi}),
+                    )
+                )
+            a_lo, a_hi = round(area_ha * (1 - step), 4), round(area_ha * (1 + step), 4)
+            drivers.append(
+                entry("area_hectares", area_ha, a_lo, a_hi, rerun({}, a_lo), rerun({}, a_hi))
+            )
+        drivers.sort(
+            key=lambda d: -max(abs(d["change_pct_low"] or 0), abs(d["change_pct_high"] or 0))
+        )
+
+        factors = [
+            {
+                "name": p.get("name"),
+                "value": p.get("value"),
+                "unit": p.get("unit"),
+                "source": p.get("source"),
+                "verification_status": p.get("verification_status"),
+            }
+            for p in base.get("parameters_used", [])
+        ]
+        weakest = list(
+            dict.fromkeys(
+                f["name"] for f in factors if f["verification_status"] in ("pending", "unverified")
+            )
+        )
+        return {
+            "method": (
+                f"One-at-a-time sensitivity: each input is moved by ±{round(step * 100)} % with "
+                "everything else fixed and the carbon engine is run again. No AI model is involved."
+            ),
+            "step_pct": round(step * 100),
+            "baseline": base["estimate"],
+            "drivers": drivers,
+            "factors": factors,
+            "weakest_evidence": weakest,
+            "notes": list((base.get("provenance") or {}).get("notes", [])),
+            "climate_zone": climate.zone,
+            "certified": False,
+            "disclaimer": DISCLAIMER,
+        }
+
     def simulate(self, body: dict[str, Any]) -> dict[str, Any]:
         region_id = self.regions.resolve(body["country"])
         if region_id is None:
@@ -157,6 +276,23 @@ class SimulationService:
             }
         )
         region = self.regions.region(region_id)
+        costs = CostInputs.from_mapping(body.get("costs"))
+        cost = None
+        if costs.entered:
+            last = result["annual_series"][-1] if result["annual_series"] else {}
+            cost = cost_scenario(
+                costs,
+                tree_count=int(body["tree_count"]),
+                area_hectares=area_ha,
+                horizon_years=int(body["horizon_years"]),
+                removal_over_horizon={
+                    "low": float(last.get("cum_low", 0.0)),
+                    "central": float(last.get("cum_central", 0.0)),
+                    "high": float(last.get("cum_high", 0.0)),
+                },
+                price_scenarios=value["scenarios"],
+                currency=value["currency"],
+            )
         value_scenarios = [
             {
                 **scenario,
@@ -188,6 +324,7 @@ class SimulationService:
             "stock_now": result["stock"],
             "series": result["annual_series"],
             "value_scenarios": value_scenarios,
+            "cost_scenario": cost,
             "market_disclaimer": value["disclaimer"],
             "programmes": programmes,
             "comparison": comparison,

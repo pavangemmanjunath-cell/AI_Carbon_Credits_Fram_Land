@@ -328,6 +328,44 @@ def tree_age_sentences(result: Mapping[str, Any]) -> list[str]:
     return out
 
 
+def cost_sentences(cost: Mapping[str, Any]) -> list[str]:
+    """The user's costs against the simulated removal — a break-even price, not revenue."""
+    symbol = str(cost.get("currency_symbol") or "")
+    years = int(cost["horizon_years"])
+    removal = cost["removal_over_horizon_tco2e"]
+    out = [
+        f"Your entered costs come to {money(cost['total_cost'], symbol)} over {years} years "
+        f"(planting {money(cost['establishment'], symbol)}, upkeep "
+        f"{money(cost['maintenance_over_horizon'], symbol)}, monitoring "
+        f"{money(cost['monitoring_over_horizon'], symbol)}; undiscounted)."
+    ]
+    even = cost.get("break_even_price_per_tco2e") or {}
+    if even.get("central") is not None:
+        out.append(
+            f"Against an estimated {stored(removal)} removed over those years, a carbon price of "
+            f"about {money(even['central'], symbol)} per tCO₂e "
+            f"({money(even['low'], symbol)}–{money(even['high'], symbol)}) would match these costs."
+        )
+    for scenario in cost.get("price_scenarios") or []:
+        if (
+            scenario.get("id") == "reference"
+            and scenario.get("share_of_costs_covered_pct") is not None
+        ):
+            out.append(
+                f"At the reference price scenario of {money(scenario['price_per_tco2e'], symbol)} "
+                f"per tCO₂e that is about {num(scenario['share_of_costs_covered_pct'], 0)} % of the "
+                "entered costs."
+            )
+    if cost.get("not_entered"):
+        names = [n.replace("_", " ") for n in cost["not_entered"]]
+        out.append(f"Not entered, so counted as zero: {join_words(names)}.")
+    out.append(
+        "Credits only exist after a recognised programme validates, monitors and verifies the "
+        "removal; this is a planning scenario, not revenue."
+    )
+    return out
+
+
 def market_sentences(market: Mapping[str, Any], estimate_range: Mapping[str, Any]) -> list[str]:
     """Three separate values, three separate sentences — never added together."""
     symbol = str(market.get("currency_symbol") or "")

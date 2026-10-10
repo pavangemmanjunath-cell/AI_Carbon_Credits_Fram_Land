@@ -20,6 +20,17 @@ def simulate(body: SimulateRequest, ctx: AppContext = Depends(get_context)) -> d
 
 
 @router.post(
+    "/simulate/drivers",
+    tags=["explanation"],
+    summary="Explainable AI: which inputs drive the estimate (sensitivity) and its cited factors",
+)
+def simulate_drivers(
+    body: SimulateRequest, ctx: AppContext = Depends(get_context)
+) -> dict[str, Any]:
+    return ctx.simulate.drivers(body.model_dump())
+
+
+@router.post(
     "/explain", tags=["explanation"], summary="Plain-language explanation from indicators only"
 )
 def explain(body: ExplainRequest, ctx: AppContext = Depends(get_context)) -> dict[str, Any]:

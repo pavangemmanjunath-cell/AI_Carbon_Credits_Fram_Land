@@ -42,7 +42,8 @@ def run_agents(
     ctx: AppContext = Depends(get_context),
 ) -> dict[str, Any]:
     body = body or AgentRunRequest()
-    return _agents(ctx).run(plot_id, body.plan, body.question, body.locale)
+    costs = body.costs.model_dump() if body.costs else None
+    return _agents(ctx).run(plot_id, body.plan, body.question, body.locale, costs)
 
 
 @router.post(
@@ -52,7 +53,8 @@ def run_agents(
     summary="Ask the agent team a question about a plot (deterministic intent routing)",
 )
 def ask_agents(body: AgentAskRequest, ctx: AppContext = Depends(get_context)) -> dict[str, Any]:
-    return _agents(ctx).ask(body.question, body.plot_id, body.locale)
+    costs = body.costs.model_dump() if body.costs else None
+    return _agents(ctx).ask(body.question, body.plot_id, body.locale, costs)
 
 
 @router.get("/agents/runs", summary="Stored agent runs, newest first (summaries)")

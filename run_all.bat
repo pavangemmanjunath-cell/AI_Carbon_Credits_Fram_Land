@@ -67,10 +67,8 @@ if errorlevel 1 (
 )
 
 if /i "%~1"=="serve" (
-  echo.
-  echo === Starting API on http://localhost:8000 and web on http://localhost:5173 ===
-  start "Vriksha Atlas API" cmd /k "cd /d %~dp0apps\api && ..\..\%PY% -m uvicorn app.main:app --host 127.0.0.1 --port 8000"
-  where npm >nul 2>nul && start "Vriksha Atlas Web" cmd /k "cd /d %~dp0apps\web && npm run dev"
+  REM Same launcher as START.bat (STOP.bat ends both servers).
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\windows\atlas.ps1" start
 )
 
 echo.

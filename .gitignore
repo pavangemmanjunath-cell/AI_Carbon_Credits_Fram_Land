@@ -29,6 +29,7 @@ apps/web/test-results/
 # runtime
 .cache/
 .reports/
+.run/
 *.log
 *.pmtiles
 *.tif

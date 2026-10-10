@@ -249,6 +249,32 @@ from Open-Meteo normals, otherwise from the region default.
  "provenance":{…}}
 ```
 
+Optional `"costs"` in the body — the user's own costs in the region currency; the platform has no built-in cost
+values and a missing field counts as zero (listed in `not_entered`):
+`{"sapling_per_tree":60,"planting_per_tree":null,"maintenance_per_ha_per_year":5000,"monitoring_per_year":null}`.
+The response then carries `cost_scenario` (otherwise `null`), computed by `carbon_engine.economics`:
+```json
+{"currency":"INR","horizon_years":30,"total_cost":344700,"establishment":25200,
+ "maintenance_over_horizon":319500,"monitoring_over_horizon":0,
+ "removal_over_horizon_tco2e":{"low":231,"central":330,"high":430},
+ "break_even_price_per_tco2e":{"low":802,"central":1043,"high":1490},
+ "price_scenarios":[{"id":"reference","price_per_tco2e":1100,"indicative_value_over_horizon":…,"share_of_costs_covered_pct":105.4},…],
+ "not_entered":["planting_per_tree","monitoring_per_year"],"discounted":false,"certified":false,"disclaimer":"…"}
+```
+The same `costs` object is accepted by `POST /plots/{id}/agents/run` and `POST /agents/ask`; the Market agent then
+adds a cost-scenario finding.
+
+### `POST /simulate/drivers`
+Explainable AI without an AI model. Same body as `/simulate`. The carbon engine is re-run with each input the user
+controls (`tree_count`, `survival_rate`, `area_hectares`) moved by ±10 %, everything else fixed.
+```json
+{"method":"One-at-a-time sensitivity: …","step_pct":10,"baseline":{"low":…,"central":11.02,"high":…,"unit":"tCO2e/yr"},
+ "drivers":[{"input":"tree_count","value":420,"value_low":378,"value_high":462,
+             "central_low":10.04,"central_high":12.12,"change_pct_low":-8.9,"change_pct_high":10.0},…],
+ "factors":[{"name":"carbon_fraction","value":0.47,"unit":"t C / t d.m.","source":"IPCC 2006 Vol.4 Ch.4 Table 4.3 …","verification_status":"verified"},…],
+ "weakest_evidence":["above_ground_biomass_growth","root_to_shoot_ratio"],"certified":false,"disclaimer":"…"}
+```
+
 ### `POST /explain`
 Privacy-preserving explanation. The body schema **rejects** any key named
 `lat`, `lon`, `latitude`, `longitude`, `geometry`, `coordinates`, `polygon`.

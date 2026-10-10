@@ -19,7 +19,7 @@ const DATA_BADGES = [
   { label: 'MapLibre GL JS', note: 'BSD-3-Clause', tone: 'bg-muted' },
 ];
 
-const DOCS = 'https://github.com/agricarbon-atlas/agricarbon-atlas';
+const DOCS = 'https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land';
 
 export default function LandingPage() {
   const { t } = useTranslation();

@@ -6,6 +6,8 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+from app.schemas.requests import CostInputsBody
+
 PlanId = Literal["full-assessment", "quick-estimate", "tree-age-check"]
 """Must match ``app.agents.plans.PLANS`` (a test checks it)."""
 
@@ -26,6 +28,8 @@ class AgentRunRequest(BaseModel):
     plan: PlanId = "full-assessment"
     question: str | None = Field(default=None, max_length=500)
     locale: str = Field(default="en", min_length=2, max_length=5, pattern=LOCALE_PATTERN)
+    costs: CostInputsBody | None = None
+    """Your own costs; the Market agent then adds a cost scenario (break-even carbon price)."""
 
     @field_validator("question")
     @classmethod
@@ -40,6 +44,7 @@ class AgentAskRequest(BaseModel):
     question: str = Field(..., min_length=1, max_length=500)
     plot_id: str | None = Field(default=None, min_length=1, max_length=64)
     locale: str = Field(default="en", min_length=2, max_length=5, pattern=LOCALE_PATTERN)
+    costs: CostInputsBody | None = None
 
     @field_validator("question")
     @classmethod

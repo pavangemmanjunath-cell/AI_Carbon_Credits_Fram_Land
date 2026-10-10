@@ -160,11 +160,19 @@ scenario, not a credit) and other farm income — never added together.
 |---|---|---|
 | `market_scenarios` | `MarketService.scenarios_for` (`config/market/carbon-price-scenarios.yaml`) | currency, low / reference / high scenarios with price and value per year, price basis with verification status and references, other income sources (value `null` until you add records), disclaimer |
 
-Reads `plot_id`, `estimate`; writes `market`. Skipped when there is no `estimate`. One `finding` in three
+| `cost_scenario` | `SimulationService.simulate` with `costs` → `carbon_engine.economics.cost_scenario` — only when the request carries costs | currency, totals (establishment, upkeep and monitoring over the horizon, undiscounted), cumulative removal range, break-even carbon price per tCO₂e (low–central–high), per price scenario the indicative value over the horizon and the share of costs covered, `not_entered`, `certified: false`, disclaimer |
+
+Reads `plot_id`, `estimate`, `costs`; writes `market`, `cost`. Skipped when there is no `estimate`. One `finding` in three
 sentences — environmental benefit, indicative value (reference price, with the low and high scenario values in
 brackets), other farm income (not estimated) — and "These three values answer different questions and are never
 added together." The market disclaimer is pinned. The facts keep the three values under separate keys
 (`environmental_benefit_tco2e_per_year`, `indicative_value_per_year`, `other_farm_income`).
+
+When the run or question carries `costs` (your own sapling, planting, upkeep and monitoring costs — the platform
+has no built-in cost values), a second `finding` follows: the entered costs over the horizon, the carbon price at
+which an indicative value would match them, the share covered at the reference price scenario, which costs were
+not entered (counted as zero), and that credits exist only after a programme validates, monitors and verifies the
+removal.
 
 ## Review agent (`review`)
 
@@ -226,6 +234,8 @@ not match the question.
 | `programmes` | policy | coordinator | the programme screening |
 | `tree_age` | policy | coordinator | the tree-age assessment |
 | `market` | market | coordinator | the value scenarios |
+| `costs` | request (optional) | market | your entered costs |
+| `cost` | market | coordinator | the cost scenario and break-even carbon price |
 | `review` | review | coordinator | the review checks |
 | `report` | report | coordinator | the report id and URL |
 | `summary` | coordinator | the service (stored as the run's `summary`) | headline, estimate, readiness, next steps |

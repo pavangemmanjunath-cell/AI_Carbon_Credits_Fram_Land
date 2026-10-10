@@ -570,6 +570,33 @@ def market_scenarios(app: AppContext, plot_id: str, estimate_id: str) -> dict[st
     }
 
 
+@TOOLS.tool()
+def cost_scenario(app: AppContext, plot_id: str, costs: dict[str, Any]) -> dict[str, Any]:
+    """Your entered costs against the simulated removal: totals and the break-even carbon price."""
+    plot = app.plots.require(plot_id)
+    inventory = app.trees.latest(plot_id)
+    if inventory is None:
+        raise ToolSkipped("no tree inventory to cost yet")
+    horizon = int(app.store.model_setting("horizon_years_default", "years").value)
+    sim = app.simulate.simulate(
+        {
+            "country": plot["country"],
+            "species_id": inventory["species"]["id"],
+            "tree_count": int(inventory["tree_count"]),
+            "planting_year": int(inventory["plantation_year"]),
+            "horizon_years": horizon,
+            "survival_rate": inventory.get("survival_rate"),
+            "area_hectares": float(plot["area_hectares"]),
+            "plot_id": plot_id,
+            "costs": dict(costs),
+        }
+    )
+    cost = sim.get("cost_scenario")
+    if not cost:
+        raise ToolSkipped("no costs were entered")
+    return {**cost, "currency_symbol": sim.get("currency_symbol")}
+
+
 # ----------------------------------------------------------------------------- review
 @TOOLS.tool()
 def review_estimate(app: AppContext, plot_id: str, estimate_id: str) -> dict[str, Any]:

@@ -258,6 +258,66 @@ def test_simulate_scales_with_tree_count_and_zero_trees(client):
     assert zero["annual"]["central"] == 0 and zero["series"][-1]["cum_central"] == 0
 
 
+def test_simulate_drivers_explain_the_estimate_with_engine_reruns(client):
+    body = {
+        "country": "IN",
+        "species_id": "mango",
+        "planting_year": 2023,
+        "horizon_years": 30,
+        "tree_count": 420,
+        "area_hectares": 2.13,
+    }
+    out = client.post("/api/v1/simulate/drivers", json=body).json()
+    plain = client.post("/api/v1/simulate", json=body).json()
+    assert out["baseline"]["central"] == plain["annual"]["central"]
+    by_input = {d["input"]: d for d in out["drivers"]}
+    assert set(by_input) == {"tree_count", "survival_rate", "area_hectares"}
+    trees = by_input["tree_count"]
+    assert (trees["value_low"], trees["value_high"]) == (378, 462)
+    more = client.post("/api/v1/simulate", json={**body, "tree_count": 462}).json()
+    assert trees["central_high"] == round(more["annual"]["central"], 3)  # a plain engine rerun
+    assert trees["change_pct_high"] > 0 > trees["change_pct_low"]
+    assert by_input["survival_rate"]["value"] == 0.85  # the engine's own default, reported back
+    # every factor carries its source and status; pending ones are flagged as weakest evidence
+    assert all(f["source"] and f["verification_status"] for f in out["factors"])
+    assert "above_ground_biomass_growth" in out["weakest_evidence"]
+    assert len(out["weakest_evidence"]) == len(set(out["weakest_evidence"]))
+    survival = next(f for f in out["factors"] if f["name"] == "survival_rate")
+    assert survival["verification_status"] == "assumption"  # not sent → the config default
+    assert out["certified"] is False and "No AI model" in out["method"]
+    zero = client.post("/api/v1/simulate/drivers", json={**body, "tree_count": 0}).json()
+    assert zero["drivers"] == []
+
+
+def test_simulate_cost_scenario_uses_only_the_users_costs(client):
+    base = {
+        "country": "IN",
+        "species_id": "mango",
+        "planting_year": 2023,
+        "horizon_years": 20,
+        "tree_count": 400,
+        "area_hectares": 2.0,
+    }
+    plain = client.post("/api/v1/simulate", json=base).json()
+    assert plain["cost_scenario"] is None  # no built-in costs
+    costs = {"sapling_per_tree": 60, "maintenance_per_ha_per_year": 5000}
+    sim = client.post("/api/v1/simulate", json={**base, "costs": costs}).json()
+    cost = sim["cost_scenario"]
+    assert cost["total_cost"] == 400 * 60 + 2.0 * 5000 * 20
+    assert cost["currency"] == sim["currency"]
+    assert cost["removal_over_horizon_tco2e"]["central"] == sim["series"][-1]["cum_central"]
+    assert cost["break_even_price_per_tco2e"]["central"] == round(
+        cost["total_cost"] / sim["series"][-1]["cum_central"], 2
+    )
+    assert {s["id"] for s in cost["price_scenarios"]} == {s["id"] for s in sim["value_scenarios"]}
+    assert cost["certified"] is False and set(cost["not_entered"]) == {
+        "planting_per_tree",
+        "monitoring_per_year",
+    }
+    bad = client.post("/api/v1/simulate", json={**base, "costs": {"sapling_per_tree": -1}})
+    assert bad.status_code == 422
+
+
 def test_explain_accepts_indicators_and_rejects_coordinates(client):
     ok = client.post(
         "/api/v1/explain",

@@ -60,6 +60,7 @@ Runtime dependencies, which ship in the web build:
 | maplibre-gl | Map renderer | BSD-3-Clause |
 | pmtiles | Tile archive protocol | BSD-3-Clause |
 | terra-draw, terra-draw-maplibre-gl-adapter | Drawing | MIT |
+| three, @react-three/fiber, @react-three/drei | 3D land view on the Simulation page (lazy-loaded) | MIT |
 | @turf/turf | Geospatial helpers in the browser | MIT |
 | recharts | Charts | MIT |
 | motion | Animation | MIT |

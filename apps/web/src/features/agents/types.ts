@@ -4,7 +4,7 @@
  * section of docs/architecture/api-contract.md. Field names stay snake_case
  * exactly as on the wire.
  */
-import type { Confidence, Provenance, Range } from '@/types/api';
+import type { Confidence, CostInputs, Provenance, Range } from '@/types/api';
 
 /** The nine agents in the contract. Any other id is still rendered (generic avatar). */
 export type KnownAgentId =
@@ -183,6 +183,8 @@ export interface AgentAskBody {
   question: string;
   plot_id: string;
   locale?: string;
+  /** Your own costs; the Market agent then adds a break-even carbon price. */
+  costs?: CostInputs;
 }
 
 // ─── Raw wire shapes (everything optional → normalised by `normalizeRun`) ────

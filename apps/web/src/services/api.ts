@@ -151,6 +151,10 @@ export async function request<T>(path: string, options: RequestOptions = {}): Pr
       signal: controller.signal,
     });
   } catch (cause) {
+    // Cancelled by the caller (page left, query superseded, React StrictMode's
+    // double mount): not a connectivity failure, so it must not flip the app
+    // into offline/demo mode. A timeout still counts as unreachable.
+    if (signal?.aborted) throw new DOMException('Request cancelled', 'AbortError');
     throw new NetworkError(`Could not reach the API at ${apiBaseUrl()}`, cause);
   } finally {
     clearTimeout(timer);

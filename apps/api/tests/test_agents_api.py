@@ -162,6 +162,29 @@ def test_market_keeps_three_values_separate(full_run):
     assert "not guaranteed revenue" in text and "total" not in text.lower()
 
 
+def test_market_adds_a_cost_scenario_only_from_the_users_costs(client):
+    costs = {"sapling_per_tree": 60, "maintenance_per_ha_per_year": 4000}
+    run = run_plan(client, "full-assessment", costs=costs)
+    findings = by_agent(run, "market", "finding")
+    assert len(findings) == 2  # the three values, then the cost scenario in its own message
+    cost = findings[1]
+    assert "break" not in findings[0]["text"].lower()
+    assert "Your entered costs" in cost["text"] and "per tCO₂e" in cost["text"]
+    assert "not revenue" in cost["text"]
+    assert "planting per tree" in cost["text"] and "monitoring per year" in cost["text"]
+    facts = cost["facts"]
+    assert facts["not_entered"] == ["planting_per_tree", "monitoring_per_year"]
+    assert facts["break_even_price_per_tco2e"]["central"] > 0
+    assert guardrails(run)["values-separated"] == "pass"
+    assert guardrails(run)["not-a-credit"] == "pass"
+    # without costs, no cost message and no cost tool call
+    plain = run_plan(client, "full-assessment")
+    assert len(by_agent(plain, "market", "finding")) == 1
+    asked = ask(client, "What does it cost and when does it break even?", costs=costs)
+    assert asked["intent"]["intent"] == "value"
+    assert len(by_agent(asked, "market", "finding")) == 2
+
+
 def test_guardrails_run_and_pass_on_the_demo_plot(full_run):
     checks = guardrails(full_run)
     assert CONTRACT_GUARDRAILS == set(checks)

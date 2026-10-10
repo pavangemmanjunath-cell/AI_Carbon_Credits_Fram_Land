@@ -108,7 +108,7 @@ describe('AgentsPage', () => {
     const guide = await screen.findByRole('link', { name: /Learn how it works/ });
     expect(guide).toHaveAttribute(
       'href',
-      'https://github.com/agricarbon-atlas/agricarbon-atlas/blob/main/docs/agents/README.md',
+      'https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land/blob/main/docs/agents/README.md',
     );
     expect(guide).toHaveAttribute('target', '_blank');
 
