@@ -33,7 +33,7 @@ services:
       - api
 
   db:
-    image: postgis/postgis:16-3.4
+    image: postgis/postgis:17-3.5
     environment:
       POSTGRES_USER: atlas
       POSTGRES_PASSWORD: atlas
