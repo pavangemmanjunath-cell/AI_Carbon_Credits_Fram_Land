@@ -32,7 +32,7 @@
     "@turf/turf": "^7.4.0",
     "i18next": "^25.10.10",
     "lucide-react": "^0.577.0",
-    "maplibre-gl": "^6.11.2",
+    "maplibre-gl": "^6.13.0",
     "motion": "^12.43.0",
     "pmtiles": "^4.5.0",
     "react": "^19.3.0",
