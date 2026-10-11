@@ -3,7 +3,7 @@
 The Green Credit Programme (GCP) is a government incentive mechanism, not
 a carbon market. This page explains what it is, what its tree-plantation
 methodology covers, why **Green Credits are distinct from carbon credits
-under the CCTS**, and what the Atlas shows for it. Statements about the
+under the CCTS**, and what CarbonCreditBuy shows for it. Statements about the
 rules are summarized from the notifications linked below; where we could
 not confirm a detail against the current text, the page says *verify
 against the current notification*.
@@ -72,10 +72,10 @@ The Green Credit Rules state that a Green Credit is distinct from a carbon
 credit, and MoEFCC has clarified that an activity which earns Green
 Credits may *separately* earn carbon credits under a carbon-market scheme
 if it meets that scheme's own requirements (verify the exact wording in
-the Rules and the ministry's clarifications). The Atlas never implies
+the Rules and the ministry's clarifications). CarbonCreditBuy never implies
 convertibility between the two.
 
-## What the Atlas shows
+## What CarbonCreditBuy shows
 
 - Programme card "Green Credit Programme" with status
   `requires_assessment`, the reason above, the requirements list
@@ -84,7 +84,7 @@ convertibility between the two.
   Green Credits are not carbon credits), and references to MoEFCC and
   ICFRE.
 - The `distinct_from: [in-ccts]` relation, rendered as a visible note.
-- Nothing quantitative: the Atlas does not estimate how many Green Credits
+- Nothing quantitative: CarbonCreditBuy does not estimate how many Green Credits
   a plantation might earn, because the methodology's counting rules apply
   to programme parcels and are verified by the Administrator, not by a
   model.

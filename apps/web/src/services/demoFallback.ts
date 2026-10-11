@@ -124,7 +124,7 @@ export function inventoryDataQuality(body: TreeInventoryBody): { fields: DataQua
 export class FeatureNeedsApiError extends Error {
   readonly feature: string;
   constructor(feature: string) {
-    super(`${feature} needs the AgriCarbon Atlas API. Start it with \`make api\` and try again.`);
+    super(`${feature} needs the CarbonCreditBuy API. Start it with \`make api\` and try again.`);
     this.name = 'FeatureNeedsApiError';
     this.feature = feature;
   }

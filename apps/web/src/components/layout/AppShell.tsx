@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { CloudUpload, Menu, UserRound, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link, Outlet, useLocation } from 'react-router';
@@ -9,14 +9,21 @@ import { useUiStore } from '@/store/uiStore';
 import { Stepper, type StepKey } from './Stepper';
 import { SideNav } from './SideNav';
 
-const ImportDialog = lazy(() => import('@/components/import/ImportDialog').then((m) => ({ default: m.ImportDialog })));
+const ImportDialog = lazy(() =>
+  import('@/components/import/ImportDialog').then((m) => ({ default: m.ImportDialog })),
+);
 
 function stepForPath(pathname: string): { current: StepKey; completed: StepKey[] } {
-  if (pathname.includes('/results') || pathname.includes('/report') || pathname.includes('/simulate')) {
+  if (
+    pathname.includes('/results') ||
+    pathname.includes('/report') ||
+    pathname.includes('/simulate')
+  ) {
     return { current: 'carbonPotential', completed: ['selectLand', 'addTrees', 'analyze'] };
   }
   if (pathname.startsWith('/app/data')) return { current: 'selectLand', completed: [] };
-  if (pathname.startsWith('/app/agents') || pathname.startsWith('/app/tree-age')) return { current: 'analyze', completed: ['selectLand', 'addTrees'] };
+  if (pathname.startsWith('/app/agents') || pathname.startsWith('/app/tree-age'))
+    return { current: 'analyze', completed: ['selectLand', 'addTrees'] };
   return { current: 'addTrees', completed: ['selectLand'] };
 }
 
@@ -27,10 +34,17 @@ export function AppShell() {
   const importOpen = useUiStore((s) => s.importOpen);
   const setImportOpen = useUiStore((s) => s.setImportOpen);
   const step = stepForPath(location.pathname);
+  // A new page starts at the top (e.g. "Simulate this land" from the bottom of the workspace).
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   return (
     <div className="flex min-h-screen flex-col bg-ground text-ink">
-      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-surface focus:px-3 focus:py-2">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-surface focus:px-3 focus:py-2"
+      >
         {t('app.skipToContent')}
       </a>
       <OfflineBanner />

@@ -1,6 +1,6 @@
-# AgriCarbon Atlas documentation
+# CarbonCreditBuy documentation
 
-AgriCarbon Atlas is an open-source geospatial platform that helps farmers, landowners and researchers understand tree
+CarbonCreditBuy is an open-source geospatial platform that helps farmers, landowners and researchers understand tree
 cover, agricultural conditions and *potential* carbon benefits, and shows which evidence a recognized programme would
 still require. Every carbon figure it produces is a scenario estimate with a range, a confidence grade and provenance;
 none is a carbon credit. If you read only one page, read

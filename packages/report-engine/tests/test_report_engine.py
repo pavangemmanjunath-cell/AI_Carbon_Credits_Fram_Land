@@ -199,7 +199,7 @@ def test_html_report_contains_sections_design_tokens_and_escapes(renderer):
 
 def test_markdown_and_json_renderers(renderer):
     md = renderer.render_markdown(sample_context())
-    assert md.startswith("# AgriCarbon Atlas — Evidence report RPT-2026-10-04-0001")
+    assert md.startswith("# CarbonCreditBuy — Evidence report RPT-2026-10-04-0001")
     assert "| Estimated annual carbon removal | 7.7 | 11.0 | 14.3 | tCO2e/yr |" in md
     assert "<script>" in md  # markdown is not HTML-escaped
     data = json.loads(renderer.render_json(sample_context()))

@@ -8,7 +8,7 @@ from collections.abc import Sequence
 import httpx
 import pytest
 
-from atlas_agents import (
+from carboncreditbuy_agents import (
     Agent,
     AgentMessage,
     Evidence,
@@ -21,8 +21,8 @@ from atlas_agents import (
     TemplateReasoner,
     review_rephrase,
 )
-from atlas_agents.llm import ChatMessage, LLMError, OpenAICompatibleProvider
-from atlas_agents.reasoner import numbers_in, numbers_in_facts
+from carboncreditbuy_agents.llm import ChatMessage, LLMError, OpenAICompatibleProvider
+from carboncreditbuy_agents.reasoner import numbers_in, numbers_in_facts
 
 TEMPLATE = "Estimated removal is 7.7–14.3 tCO₂e per year (central 11.0) using IPCC Tier 1."
 FACTS = {"low": 7.71, "central": 11.02, "high": 14.32, "unit": "tCO2e/yr"}

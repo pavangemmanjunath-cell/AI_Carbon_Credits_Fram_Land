@@ -1,6 +1,6 @@
 # System architecture
 
-This page shows the parts of AgriCarbon Atlas, who may call whom, how a request travels through them and how the two
+This page shows the parts of CarbonCreditBuy, who may call whom, how a request travels through them and how the two
 running modes differ. The version 0.2 pieces are the agent team, the import, detection, tree-age and imagery features,
 and the QGIS plugin. The web app is a flat 2D map; there is no 3D scene.
 
@@ -42,7 +42,7 @@ flowchart LR
 
     CONFIG["config/ (YAML)<br/>regions · species · methodologies · policies · market<br/>detection · tree-age · imagery"]
 
-    subgraph Adapters["integrations/atlas_integrations"]
+    subgraph Adapters["integrations/carboncreditbuy_integrations"]
         EO["ESA WorldCover · STAC Sentinel-2"]
         MET["Open-Meteo · SoilGrids"]
         GEOC["Nominatim · Photon"]
@@ -87,11 +87,11 @@ Content-Security-Policy of the web image lists exactly these origins (`ATLAS_API
 | `packages/carbon-engine` | Model registry, parameter loading, Tier 1 and Tier 2 calculations, carbon by tree age, uncertainty, confidence, readiness | Hard-code any factor; accept `pending` parameters in production |
 | `packages/policy-engine` | Programme rules from `config/policies/<ISO>.yaml`, member states resolved to `EU`, the tree-age rules from `config/tree-age/` | Contain a country-specific `if` |
 | `packages/report-engine` | Templates for HTML, Markdown and JSON and optional PDF (WeasyPrint), the attribution block, the three separated values | Recompute anything |
-| `packages/agent-framework` | The generic machinery (`atlas_agents`): agents, tools, blackboard, plans, orchestrator, reasoner, guardrails, redaction | Know about plots, carbon or HTTP; call a model unless the deployer turns it on |
+| `packages/agent-framework` | The generic machinery (`carboncreditbuy_agents`): agents, tools, blackboard, plans, orchestrator, reasoner, guardrails, redaction | Know about plots, carbon or HTTP; call a model unless the deployer turns it on |
 | `apps/api/app/agents` | The nine agents, three plans, the tool wrappers over the services and the transcript store | Compute a number, receive coordinates |
-| `integrations/atlas_integrations` | One adapter per external API: endpoint from the environment, request shaping, parsing, caching, retry, `provenance()` with licence and attribution | Log coordinates; hard-code endpoints |
+| `integrations/carboncreditbuy_integrations` | One adapter per external API: endpoint from the environment, request shaping, parsing, caching, retry, `provenance()` with licence and attribution | Log coordinates; hard-code endpoints |
 | `integrations/imagery` | The documentation of the imagery providers; the data is `config/imagery/providers.yaml` | Fetch, proxy or store tiles |
-| `integrations/qgis-plugin` | A QGIS 3 client of the API, licensed GPL-2.0-or-later | Talk to anything but the Atlas API |
+| `integrations/qgis-plugin` | A QGIS 3 client of the API, licensed GPL-2.0-or-later | Talk to anything but CarbonCreditBuy API |
 | `config/` | All regional, species, methodology, policy, market, detection, tree-age and imagery knowledge, with sources and verification status | None |
 
 ## Request lifecycle
@@ -133,7 +133,7 @@ version 0.2 features add no field to it. Each builds its service on first use wi
 goes through the repository's generic `save_record(kind, id, record, plot_id)`. The kinds in use are `import`,
 `detection` (the five newest per plot are kept) and `agent-run`. A record linked to a plot is deleted with the plot.
 
-The agent team follows the same rule. `AgentService` runs a plan with the orchestrator of `atlas_agents`; each agent calls
+The agent team follows the same rule. `AgentService` runs a plan with the orchestrator of `carboncreditbuy_agents`; each agent calls
 tools that wrap the services above, writes its findings to a shared blackboard and says them through a reasoner. The
 default reasoner fills a template; with `ATLAS_AGENT_REASONER=llm` an OpenAI-compatible model may rephrase the redacted
 sentence, and its answer is discarded if it changes a number. Guardrails check the whole transcript before it is stored

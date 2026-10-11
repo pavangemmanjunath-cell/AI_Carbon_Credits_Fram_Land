@@ -170,7 +170,7 @@ Three details matter for what is stored and what moves:
 An agent run that has to analyse a plot first makes the same adapter requests as `POST /plots/{id}/analyze`, because its
 tools call the same services. The statistics adapters (USDA NASS, data.gov.in, the Census geocoder) are built by the
 API but no service calls them yet, so nothing is sent to them. The [QGIS plugin](../../integrations/qgis-plugin/README.md)
-is one more client: it posts the selected polygon to your own Atlas server, and the flow from there is the one above.
+is one more client: it posts the selected polygon to your own CarbonCreditBuy server, and the flow from there is the one above.
 
 ## The privacy boundary
 

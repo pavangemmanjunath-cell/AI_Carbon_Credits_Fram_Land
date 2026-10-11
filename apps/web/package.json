@@ -1,8 +1,8 @@
 {
-  "name": "@agricarbon-atlas/web",
+  "name": "@carboncreditbuy/web",
   "version": "0.2.0",
   "private": true,
-  "description": "AgriCarbon Atlas web app — open geospatial platform for tree cover, vegetation condition and potential carbon benefit (never issued credits).",
+  "description": "CarbonCreditBuy web app — open geospatial platform for tree cover, vegetation condition and potential carbon benefit (never issued credits).",
   "license": "Apache-2.0",
   "type": "module",
   "engines": {

@@ -17,10 +17,10 @@ flowchart LR
     API --> Carbon["packages/carbon-engine<br/>deterministic scenarios"]
     API --> Policy["packages/policy-engine<br/>screening and tree-age rules"]
     API --> Report["packages/report-engine<br/>HTML, Markdown, JSON, PDF"]
-    API --> Agents["apps/api/app/agents<br/>the Atlas agent team"]
-    Agents --> Framework["packages/agent-framework<br/>atlas_agents, generic"]
+    API --> Agents["apps/api/app/agents<br/>CarbonCreditBuy agent team"]
+    Agents --> Framework["packages/agent-framework<br/>carboncreditbuy_agents, generic"]
     Agents -.->|"call the same services"| API
-    API --> Adapters["integrations/atlas_integrations<br/>one adapter per external API"]
+    API --> Adapters["integrations/carboncreditbuy_integrations<br/>one adapter per external API"]
     Config["config/<br/>regions, species, methodologies, policies, tree-age, imagery, market"] --> Carbon
     Config --> Policy
     Config --> API
@@ -43,14 +43,14 @@ Three rules explain most of the structure (see [CLAUDE.md](../../CLAUDE.md)):
 | Path | What is there |
 | --- | --- |
 | `apps/api/` | FastAPI service: routers (`app/api/v1/routers/`), services, repositories, settings, tests ([README](../../apps/api/README.md)) |
-| `apps/api/app/agents/` | The nine Atlas agents, their tools, the three plans and `AgentService` |
+| `apps/api/app/agents/` | The nine CarbonCreditBuy agents, their tools, the three plans and `AgentService` |
 | `apps/web/` | React 19 + Vite app ([README](../../apps/web/README.md)) |
 | `packages/carbon-engine/` | Models, parameter store, uncertainty, confidence, readiness, tree-age curves ([README](../../packages/carbon-engine/README.md)) |
 | `packages/geo-engine/` | Polygon validation and measurement, pin-and-area and tree-line construction, coordinate parsing, imports (GeoJSON, KML, CSV, LAS/LAZ), tree detection, indices, climate zones, cube ([README](../../packages/geo-engine/README.md)) |
 | `packages/policy-engine/` | Evaluates `config/policies/*.yaml` and `config/tree-age/rules.yaml` ([README](../../packages/policy-engine/README.md)) |
 | `packages/report-engine/` | Jinja2 templates and renderers ([README](../../packages/report-engine/README.md)) |
-| `packages/agent-framework/` | `atlas_agents`: agents, tools, plans, blackboard, guardrails, with no knowledge of carbon |
-| `integrations/atlas_integrations/` | External-API adapters with demo twins ([README](../../integrations/README.md)) |
+| `packages/agent-framework/` | `carboncreditbuy_agents`: agents, tools, plans, blackboard, guardrails, with no knowledge of carbon |
+| `integrations/carboncreditbuy_integrations/` | External-API adapters with demo twins ([README](../../integrations/README.md)) |
 | `integrations/qgis-plugin/` | The QGIS plugin, a client of the API. GPL-2.0-or-later, kept separate on purpose ([why](../licensing/THIRD_PARTY.md#the-qgis-plugin-and-the-gpl)) |
 | `config/` | `regions/`, `policies/`, `species/`, `methodologies/`, `market/`, `tree-age/`, `imagery/`, `readiness.yaml`, `detection.yaml` |
 | `data/schemas/` | JSON Schemas for the contract and `schema.sql` for PostgreSQL + PostGIS |
@@ -181,7 +181,7 @@ every agent, plan and message kind.
 | Add or change a program rule | `config/policies/<REGION>.yaml` | `config/regions/<REGION>.yaml` program list, policy tests, `docs/regions/` ([adding a region](adding-a-region.md)) |
 | Add or change a tree-age rule | `config/tree-age/rules.yaml` | Tests, `docs/research/tree-age-carbon-rules.md` ([tree-age rules](adding-a-tree-age-rule.md)) |
 | Support a new country or region | `config/regions/`, `config/policies/`, `config/market/` | [adding a region](adding-a-region.md) |
-| Add a data source | `integrations/atlas_integrations/<name>/`, `.env.example`, `Settings`, `ModeRouter` | `docs/licensing/`, [adding an integration](adding-an-integration.md) |
+| Add a data source | `integrations/carboncreditbuy_integrations/<name>/`, `.env.example`, `Settings`, `ModeRouter` | `docs/licensing/`, [adding an integration](adding-an-integration.md) |
 | Add an imagery provider | `config/imagery/providers.yaml` | `docs/licensing/MAP_LICENSES.md`, `docs/research/imagery-providers.md` |
 | Change an equation or add a model | `packages/carbon-engine` | Methodology citation, parameters in `config/`, tests with reference values |
 | Change geometry, imports, detection, indices or the cube | `packages/geo-engine` | Tests; API response shape if it changes |

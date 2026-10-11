@@ -115,7 +115,7 @@
             "name": "Synthetic demo data (imitating ESA WorldCover 2021 v200)",
             "version": "v200",
             "license": "Apache-2.0 (generated)",
-            "attribution": "AgriCarbon Atlas demo generator — not an observation",
+            "attribution": "CarbonCreditBuy demo generator — not an observation",
             "url": null,
             "accessed_at": "2026-10-05T19:53:49.695453Z"
           }
@@ -181,7 +181,7 @@
             "name": "Synthetic demo data (imitating Sentinel-2 L2A (Earth Search STAC, Element 84 / AWS))",
             "version": "L2A",
             "license": "Apache-2.0 (generated)",
-            "attribution": "AgriCarbon Atlas demo generator — not an observation",
+            "attribution": "CarbonCreditBuy demo generator — not an observation",
             "url": null,
             "accessed_at": "2026-10-05T19:53:49.700062Z",
             "scene_ids": [
@@ -215,7 +215,7 @@
             "name": "Synthetic demo data (imitating Open-Meteo Historical Weather API (ERA5) and Elevation API (Copernicus DEM GLO-90))",
             "version": "v1",
             "license": "Apache-2.0 (generated)",
-            "attribution": "AgriCarbon Atlas demo generator — not an observation",
+            "attribution": "CarbonCreditBuy demo generator — not an observation",
             "url": null,
             "accessed_at": "2026-10-05T19:53:49.715623Z"
           }
@@ -241,7 +241,7 @@
             "name": "Synthetic demo data (imitating SoilGrids 2.0 (ISRIC World Soil Information))",
             "version": "2.0 (2020)",
             "license": "Apache-2.0 (generated)",
-            "attribution": "AgriCarbon Atlas demo generator — not an observation",
+            "attribution": "CarbonCreditBuy demo generator — not an observation",
             "url": null,
             "accessed_at": "2026-10-05T19:53:49.732312Z"
           }
@@ -803,7 +803,7 @@
           "name": "Synthetic demo data (imitating ESA WorldCover 2021 v200)",
           "version": "v200",
           "license": "Apache-2.0 (generated)",
-          "attribution": "AgriCarbon Atlas demo generator — not an observation",
+          "attribution": "CarbonCreditBuy demo generator — not an observation",
           "url": null,
           "accessed_at": "2026-10-05T19:53:49.695453Z"
         },
@@ -812,7 +812,7 @@
           "name": "Synthetic demo data (imitating Sentinel-2 L2A (Earth Search STAC, Element 84 / AWS))",
           "version": "L2A",
           "license": "Apache-2.0 (generated)",
-          "attribution": "AgriCarbon Atlas demo generator — not an observation",
+          "attribution": "CarbonCreditBuy demo generator — not an observation",
           "url": null,
           "accessed_at": "2026-10-05T19:53:49.700062Z",
           "scene_ids": [
@@ -826,7 +826,7 @@
           "name": "Synthetic demo data (imitating Open-Meteo Historical Weather API (ERA5) and Elevation API (Copernicus DEM GLO-90))",
           "version": "v1",
           "license": "Apache-2.0 (generated)",
-          "attribution": "AgriCarbon Atlas demo generator — not an observation",
+          "attribution": "CarbonCreditBuy demo generator — not an observation",
           "url": null,
           "accessed_at": "2026-10-05T19:53:49.715623Z"
         },
@@ -835,7 +835,7 @@
           "name": "Synthetic demo data (imitating SoilGrids 2.0 (ISRIC World Soil Information))",
           "version": "2.0 (2020)",
           "license": "Apache-2.0 (generated)",
-          "attribution": "AgriCarbon Atlas demo generator — not an observation",
+          "attribution": "CarbonCreditBuy demo generator — not an observation",
           "url": null,
           "accessed_at": "2026-10-05T19:53:49.732312Z"
         }
@@ -865,10 +865,10 @@
         },
         {
           "id": "species-table",
-          "name": "AgriCarbon Atlas species table",
+          "name": "CarbonCreditBuy species table",
           "version": "0.1.0",
           "license": "Apache-2.0 (project configuration)",
-          "attribution": "AgriCarbon Atlas contributors; wood density working values after Zanne et al. (2009) Global Wood Density Database (Dryad, CC0)",
+          "attribution": "CarbonCreditBuy contributors; wood density working values after Zanne et al. (2009) Global Wood Density Database (Dryad, CC0)",
           "url": "https://doi.org/10.5061/dryad.234"
         }
       ],
@@ -1067,7 +1067,7 @@
       "name": "Synthetic demo data (imitating ESA WorldCover 2021 v200)",
       "version": "v200",
       "license": "Apache-2.0 (generated)",
-      "attribution": "AgriCarbon Atlas demo generator — not an observation",
+      "attribution": "CarbonCreditBuy demo generator — not an observation",
       "url": null,
       "accessed_at": "2026-10-05T19:53:49.695453Z"
     },
@@ -1076,7 +1076,7 @@
       "name": "Synthetic demo data (imitating Sentinel-2 L2A (Earth Search STAC, Element 84 / AWS))",
       "version": "L2A",
       "license": "Apache-2.0 (generated)",
-      "attribution": "AgriCarbon Atlas demo generator — not an observation",
+      "attribution": "CarbonCreditBuy demo generator — not an observation",
       "url": null,
       "accessed_at": "2026-10-05T19:53:49.700062Z",
       "scene_ids": [
@@ -1090,7 +1090,7 @@
       "name": "Synthetic demo data (imitating Open-Meteo Historical Weather API (ERA5) and Elevation API (Copernicus DEM GLO-90))",
       "version": "v1",
       "license": "Apache-2.0 (generated)",
-      "attribution": "AgriCarbon Atlas demo generator — not an observation",
+      "attribution": "CarbonCreditBuy demo generator — not an observation",
       "url": null,
       "accessed_at": "2026-10-05T19:53:49.715623Z"
     },
@@ -1099,7 +1099,7 @@
       "name": "Synthetic demo data (imitating SoilGrids 2.0 (ISRIC World Soil Information))",
       "version": "2.0 (2020)",
       "license": "Apache-2.0 (generated)",
-      "attribution": "AgriCarbon Atlas demo generator — not an observation",
+      "attribution": "CarbonCreditBuy demo generator — not an observation",
       "url": null,
       "accessed_at": "2026-10-05T19:53:49.732312Z"
     }

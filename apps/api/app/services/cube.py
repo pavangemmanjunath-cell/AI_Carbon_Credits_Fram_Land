@@ -9,7 +9,7 @@ from shapely.geometry import shape
 from app.core.errors import ProblemError
 from app.repositories.base import Repository
 from app.services.adapters import ModeRouter
-from atlas_integrations import AdapterError, DependencyMissingError
+from carboncreditbuy_integrations import AdapterError, DependencyMissingError
 from geo_engine.cube import GridTooLargeError
 
 SUPPORTED_INDICES = ("ndvi", "ndmi", "ndre")

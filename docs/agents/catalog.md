@@ -1,6 +1,6 @@
 # Agent catalog
 
-The per-agent reference for the AgriCarbon Atlas team. The learning guide is [README.md](README.md); the live
+The per-agent reference for the CarbonCreditBuy team. The learning guide is [README.md](README.md); the live
 version of this metadata is `GET /api/v1/agents`, built from the agent classes in
 [`apps/api/app/agents/`](../../apps/api/app/agents/). A test (`apps/api/tests/test_agents_docs.py`) fails when
 an agent, tool or blackboard key is missing from this page.

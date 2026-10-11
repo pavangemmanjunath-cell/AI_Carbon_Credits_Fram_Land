@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
-"""Tests of the plugin's HTTP client against a local fake of the AgriCarbon Atlas API."""
+# Copyright (C) 2026 CarbonCreditBuy contributors
+"""Tests of the plugin's HTTP client against a local fake of the CarbonCreditBuy API."""
 
 from __future__ import annotations
 
@@ -19,8 +19,8 @@ from qgis_plugin_fake_server import (
     problem_answer,
 )
 
-from agricarbon_atlas_qgis import api_client
-from agricarbon_atlas_qgis.api_client import (
+from carboncreditbuy_qgis import api_client
+from carboncreditbuy_qgis.api_client import (
     ApiConfigError,
     ApiConnectionError,
     ApiError,
@@ -46,7 +46,7 @@ def test_get_returns_json_and_sends_standard_headers(atlas_server: FakeAtlasServ
     assert result == {"status": "ok", "version": "0.1.0"}
     (request,) = atlas_server.requests
     assert "application/json" in request.headers["accept"]
-    assert request.headers["user-agent"].startswith("AgriCarbonAtlas-QGIS/")
+    assert request.headers["user-agent"].startswith("CarbonCreditBuy-QGIS/")
     assert "x-api-key" not in request.headers
     assert request.body == b""
 
@@ -371,7 +371,7 @@ def test_a_closed_port_gives_a_connection_refused_error() -> None:
     with pytest.raises(ApiConnectionError) as caught:
         AtlasClient(f"http://127.0.0.1:{port}/api/v1", timeout_s=2).health()
     assert caught.value.reason == "refused"
-    assert "Is the AgriCarbon Atlas API running" in str(caught.value)
+    assert "Is the CarbonCreditBuy API running" in str(caught.value)
 
 
 # --------------------------------------------------------------------------- construction
@@ -430,7 +430,7 @@ def test_redirect_handler_refuses_everything() -> None:
 def test_logs_never_contain_coordinates_bodies_keys_or_server_text(
     atlas_server: FakeAtlasServer, caplog: pytest.LogCaptureFixture
 ) -> None:
-    caplog.set_level(logging.DEBUG, logger="agricarbon_atlas_qgis")
+    caplog.set_level(logging.DEBUG, logger="carboncreditbuy_qgis")
     secret_key = "key-9f8e7d6c"
     polygon = {
         "type": "Polygon",

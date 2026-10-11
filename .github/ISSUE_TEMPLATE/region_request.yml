@@ -35,7 +35,7 @@ body:
     id: who
     attributes:
       label: Who would use it and for what
-      description: Farmers, cooperatives, researchers, extension officers. What decision does the Atlas help them make?
+      description: Farmers, cooperatives, researchers, extension officers. What decision does CarbonCreditBuy help them make?
     validations:
       required: true
   - type: textarea
@@ -82,7 +82,7 @@ body:
     attributes:
       label: Confirmation
       options:
-        - label: I am not asking for eligibility or credit-issuance claims; the Atlas screens programs and reports estimates only.
+        - label: I am not asking for eligibility or credit-issuance claims; CarbonCreditBuy screens programs and reports estimates only.
           required: true
         - label: This request contains no exact farm coordinates or personal data.
           required: true

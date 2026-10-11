@@ -12,7 +12,7 @@ from app.core.errors import ProblemError
 from app.dependencies import get_context
 from app.services.common import now_iso
 from app.services.regions import ATTRIBUTION_ITEMS
-from atlas_integrations import AdapterError
+from carboncreditbuy_integrations import AdapterError
 
 router = APIRouter()
 

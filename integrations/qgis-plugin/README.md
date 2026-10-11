@@ -1,6 +1,6 @@
-# AgriCarbon Atlas for QGIS
+# CarbonCreditBuy for QGIS
 
-A QGIS 3 plugin that connects your QGIS project to an AgriCarbon Atlas API (see the
+A QGIS 3 plugin that connects your QGIS project to a CarbonCreditBuy API (see the
 [project docs](../../docs/README.md)). Select a field polygon, count the tree crowns that an AI segmentation plugin
 found inside it, and get a *scenario estimate* of the carbon those trees may remove each year.
 
@@ -8,16 +8,16 @@ found inside it, and get a *scenario estimate* of the carbon those trees may rem
 > The plugin cannot issue, verify or certify anything. The three kinds of value it shows (environmental benefit,
 > indicative carbon value and other farm income) are always kept apart and are never added together.
 
-Status: **experimental, version 0.1.0.** Requires QGIS 3.28 or newer in the 3.x series (Qt 5) and a running AgriCarbon
-Atlas API. The plugin uses nothing but QGIS and the Python standard library.
+Status: **experimental, version 0.1.0.** Requires QGIS 3.28 or newer in the 3.x series (Qt 5) and a running
+CarbonCreditBuy API. The plugin uses nothing but QGIS and the Python standard library.
 
 ## What it does
 
-The plugin adds a toolbar and a **Plugins > AgriCarbon Atlas** menu with these actions.
+The plugin adds a toolbar and a **Plugins > CarbonCreditBuy** menu with these actions.
 
 | Action | What happens | API calls |
 | --- | --- | --- |
-| **Send selected polygon to AgriCarbon Atlas** | Takes the selected field polygon, converts it to EPSG:4326, checks it, and creates a plot on your server and analyzes it (land cover, vegetation, climate, soil) | `POST /plots`, `POST /plots/{id}/analyze` |
+| **Send selected polygon to CarbonCreditBuy** | Takes the selected field polygon, converts it to EPSG:4326, checks it, and creates a plot on your server and analyzes it (land cover, vegetation, climate, soil) | `POST /plots`, `POST /plots/{id}/analyze` |
 | **Count trees from segmentation layer** | Counts the crowns of a segmentation layer whose centre lies inside the selected field, with an optional confidence filter, and records the count as a tree inventory | `GET /species`, `POST /plots/{id}/trees` |
 | **Estimate carbon (scenario)** | Shows the estimated annual carbon removal (tCO₂e/yr) as low, central and high, indicative value scenarios, other farm income, programme screening and evidence readiness | `POST /plots/{id}/carbon-estimate`, `GET /plots/{id}/market-scenario`, `GET /plots/{id}/policy-eligibility` |
 | **Run AI agent team** | Runs the server's agent team on the plot and shows the transcript | `POST /plots/{id}/agents/run` |
@@ -27,29 +27,29 @@ The plugin adds a toolbar and a **Plugins > AgriCarbon Atlas** menu with these a
 | **Settings ...** | API address, API key, default country and timeout, with a connection test | `GET /health` |
 
 All network calls run in a background QGIS task, so QGIS stays responsive. Results open in a window that you can copy
-as text or save as HTML. Short notices go to the message bar and the QGIS log panel (tab **AgriCarbon Atlas**).
+as text or save as HTML. Short notices go to the message bar and the QGIS log panel (tab **CarbonCreditBuy**).
 
 ## Requirements
 
 - QGIS 3.28 LTR or a newer 3.x release. QGIS 4 (Qt 6) is not supported yet.
-- An AgriCarbon Atlas API that your computer can reach. To run one locally, follow the
+- A CarbonCreditBuy API that your computer can reach. To run one locally, follow the
   [developer setup guide](../../docs/developer-guide/setup.md); the default address is `http://localhost:8000/api/v1`.
 - Optional: an API key, if your server asks for one on write requests.
 
 ## Install
 
 1. Build the ZIP archive. From this directory run `make package` (or `python scripts/package.py`). The result is
-   `dist/agricarbon_atlas_qgis-0.1.0.zip`. The archive is a build artifact and is not committed.
+   `dist/carboncreditbuy_qgis-0.1.0.zip`. The archive is a build artifact and is not committed.
 2. In QGIS open **Plugins > Manage and Install Plugins ... > Install from ZIP**, choose the file and press
    **Install Plugin**.
-3. Open the **Installed** tab and check that **AgriCarbon Atlas** is ticked. The toolbar and the menu appear.
+3. Open the **Installed** tab and check that **CarbonCreditBuy** is ticked. The toolbar and the menu appear.
 
 For development, `make link` symlinks the plugin folder into your QGIS profile, so you can edit and reload it (for
 example with the Plugin Reloader plugin). `make help` lists the other shortcuts.
 
 ## Configure
 
-Open **Plugins > AgriCarbon Atlas > Settings ...**.
+Open **Plugins > CarbonCreditBuy > Settings ...**.
 
 | Setting | Default | Notes |
 | --- | --- | --- |
@@ -186,14 +186,14 @@ Read more in [carbon credit vs carbon estimate](../../docs/concepts/carbon-credi
 | "... 2 separate parts" | Split the field with **Multipart to Singleparts** and select one part |
 | "coordinates outside the valid range" | The layer CRS is wrong: set the correct CRS, or reproject the layer |
 | "The crown layer has no field called ..." | Choose an existing numeric field, or clear the confidence field |
-| "This server does not offer the AI agent team (HTTP 404)" | Update the AgriCarbon Atlas API to a version that has `POST /api/v1/plots/{plot_id}/agents/run` |
+| "This server does not offer the AI agent team (HTTP 404)" | Update the CarbonCreditBuy API to a version that has `POST /api/v1/plots/{plot_id}/agents/run` |
 | "This plot has no tree inventory yet" | Run **Count trees from segmentation layer** first |
 
 ## For developers
 
 ```text
 integrations/qgis-plugin/
-  agricarbon_atlas_qgis/   the plugin (this folder is what QGIS loads)
+  carboncreditbuy_qgis/   the plugin (this folder is what QGIS loads)
     metadata.txt           plugin metadata for QGIS
     __init__.py            classFactory(iface)
     plugin.py              toolbar, menu and actions        (needs QGIS)
@@ -245,7 +245,7 @@ This folder (`integrations/qgis-plugin/`) is licensed under the **GNU General Pu
 (`GPL-2.0-or-later`; see [LICENSE](LICENSE)). QGIS plugins run inside QGIS, which is GPL-licensed, and the plugin
 imports its Python API, so this subfolder uses a GPL-compatible licence.
 
-The rest of the repository, including the AgriCarbon Atlas API and web application, is licensed under Apache-2.0. The
+The rest of the repository, including the CarbonCreditBuy API and web application, is licensed under Apache-2.0. The
 plugin imports no code from the Apache-licensed parts, and they import nothing from the plugin. The two sides exchange
 only HTTP requests and JSON, so they remain separate programs: the GPL terms of the plugin do not apply to the API or
 the web application, and Apache-2.0 software may call or be called by the plugin over HTTP. This is a summary, not

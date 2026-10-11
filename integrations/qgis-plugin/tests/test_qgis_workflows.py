@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
-"""Tests of the multi-call workflows against a local fake of the AgriCarbon Atlas API."""
+# Copyright (C) 2026 CarbonCreditBuy contributors
+"""Tests of the multi-call workflows against a local fake of the CarbonCreditBuy API."""
 
 from __future__ import annotations
 
@@ -15,9 +15,9 @@ from qgis_plugin_fake_server import (
     problem_answer,
 )
 
-from agricarbon_atlas_qgis import geometry, workflows
-from agricarbon_atlas_qgis.api_client import ApiProblem, ApiResponseError, AtlasClient
-from agricarbon_atlas_qgis.workflows import SpeciesChoice
+from carboncreditbuy_qgis import geometry, workflows
+from carboncreditbuy_qgis.api_client import ApiProblem, ApiResponseError, AtlasClient
+from carboncreditbuy_qgis.workflows import SpeciesChoice
 
 POLYGON = {
     "type": "Polygon",

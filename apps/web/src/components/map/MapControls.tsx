@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import { Crosshair, Minus, Plus } from 'lucide-react';
+import { useEffect, useState, type ReactNode } from 'react';
+import { Clock, Crosshair, Minus, Plus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import type { MapViewMode } from '@/store/uiStore';
 
@@ -68,10 +68,19 @@ export function MapViewSwitch({ value, onChange, satelliteAvailable, satelliteNo
   const { t } = useTranslation();
   const options: { id: MapViewMode; label: string; disabled: boolean; title?: string }[] = [
     { id: 'map', label: t('map.viewMap'), disabled: false },
-    { id: 'satellite', label: t('map.viewSatellite'), disabled: !satelliteAvailable, title: satelliteNote },
+    {
+      id: 'satellite',
+      label: t('map.viewSatellite'),
+      disabled: !satelliteAvailable,
+      title: satelliteNote,
+    },
   ];
   return (
-    <div role="radiogroup" aria-label={t('map.viewSwitch')} className="float-control flex w-fit gap-0.5 p-0.5">
+    <div
+      role="radiogroup"
+      aria-label={t('map.viewSwitch')}
+      className="float-control flex w-fit gap-0.5 p-0.5"
+    >
       {options.map((option) => (
         <button
           key={option.id}
@@ -88,6 +97,30 @@ export function MapViewSwitch({ value, onChange, satelliteAvailable, satelliteNo
           {option.label}
         </button>
       ))}
+    </div>
+  );
+}
+
+/** Live clock (the viewer's local time), next to the zoom and locate buttons. */
+export function LiveClock({ locale }: { locale: string }) {
+  const { t } = useTranslation();
+  const [now, setNow] = useState(() => new Date());
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(new Date()), 15_000);
+    return () => window.clearInterval(timer);
+  }, []);
+  const time = new Intl.DateTimeFormat(locale, { hour: '2-digit', minute: '2-digit' }).format(now);
+  return (
+    <div
+      className="float-control flex items-center gap-1.5 px-2.5 py-1.5 text-[12px]"
+      title={t('map.localTime')}
+    >
+      <span className="h-2 w-2 rounded-full bg-forest" aria-hidden="true" />
+      <Clock size={14} aria-hidden="true" className="text-forest-deep" />
+      <time dateTime={now.toISOString()} className="font-mono font-semibold text-ink">
+        {time}
+      </time>
+      <span className="sr-only">{t('map.localTime')}</span>
     </div>
   );
 }

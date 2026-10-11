@@ -2,15 +2,15 @@
 
 The application never calls a public service directly. Every external API or
 dataset sits behind an adapter in
-[`integrations/atlas_integrations/`](../../integrations/atlas_integrations/) that
+[`integrations/carboncreditbuy_integrations/`](../../integrations/carboncreditbuy_integrations/) that
 states its source, license, attribution, rate limits, caching and failure
 behavior, takes its endpoint from an environment variable, and has an offline
 **demo twin** ([CLAUDE.md](../../CLAUDE.md) principles 5 and 6). This page
 shows the steps, with a skeleton you can copy. The existing adapters are the
 best reference: start with
-[`soilgrids/adapter.py`](../../integrations/atlas_integrations/soilgrids/adapter.py)
+[`soilgrids/adapter.py`](../../integrations/carboncreditbuy_integrations/soilgrids/adapter.py)
 (a plain JSON point query) and
-[`nominatim/adapter.py`](../../integrations/atlas_integrations/nominatim/adapter.py)
+[`nominatim/adapter.py`](../../integrations/carboncreditbuy_integrations/nominatim/adapter.py)
 (a source with strict usage rules).
 [`integrations/README.md`](../../integrations/README.md) lists what exists, and
 [`docs/data-sources/FREE_APIS.md`](../data-sources/FREE_APIS.md) lists every source with its terms.
@@ -19,7 +19,7 @@ best reference: start with
 
 | You want to add | Do this | Where |
 | --- | --- | --- |
-| An API or dataset that returns data for a place (climate, soil, land cover, statistics, geocoding) | An adapter with a demo twin: **this page** | `integrations/atlas_integrations/<name>/` |
+| An API or dataset that returns data for a place (climate, soil, land cover, statistics, geocoding) | An adapter with a demo twin: **this page** | `integrations/carboncreditbuy_integrations/<name>/` |
 | A satellite or aerial map layer for the web map | An entry in the imagery provider list. It is configuration, not an adapter: the API reports which providers are usable and under what license, and the browser loads the tiles | `config/imagery/providers.yaml`, then a row in [`MAP_LICENSES.md`](../licensing/MAP_LICENSES.md) and the [imagery research note](../research/imagery-providers.md) |
 | A new file format for imports (GeoJSON, KML, CSV and LAS/LAZ exist) | A parser in the geo engine. Keep the raw file out of storage, parse XML with `defusedxml`, and respect the size limits | `packages/geo-engine/geo_engine/imports/` |
 | Something an agent can ask for | A tool that calls an existing service. An agent never calls an adapter or computes a number itself | `apps/api/app/agents/tools.py` |
@@ -36,7 +36,7 @@ code. The questions that decide whether the source can be used:
 - **License and terms.** Can the data be fetched, cached and shown, and what
   attribution is required? A source whose terms cannot be documented is out of scope
   ([GOVERNANCE.md](../../GOVERNANCE.md)). Check the terms of the *derived output* too: a
-  share-alike license affects what the Atlas can publish.
+  share-alike license affects what CarbonCreditBuy can publish.
 - **Rate limits and usage policy.** Quote the provider's published limit with a link.
   If you cannot find one, write `TODO(verify)`; never guess a number.
 - **Authentication.** Free key or none. A paid source is not an option for the default
@@ -64,7 +64,7 @@ Add the row before the adapter, so the license question is answered once, in rev
 ## 2. The package
 
 ```text
-integrations/atlas_integrations/<name>/
+integrations/carboncreditbuy_integrations/<name>/
     __init__.py     exports SOURCE, the live adapter, the demo twin and the result type
     adapter.py      SOURCE, result dataclass, live adapter, demo twin
     README.md       the seven items below (CLAUDE.md principle 6)
@@ -94,14 +94,14 @@ from dataclasses import dataclass
 from datetime import UTC, datetime
 from typing import Any
 
-from atlas_integrations.base import (
+from carboncreditbuy_integrations.base import (
     Cache,
     HttpAdapter,
     SourceProvenance,
     UpstreamDataError,
     demo_source,
 )
-from atlas_integrations.demo_support import region_for, unit_noise
+from carboncreditbuy_integrations.demo_support import region_for, unit_noise
 
 SOURCE = SourceProvenance(
     id="example-source",
@@ -157,7 +157,7 @@ class DemoExampleAdapter:
 `__init__.py`:
 
 ```python
-from atlas_integrations.example_source.adapter import (
+from carboncreditbuy_integrations.example_source.adapter import (
     SOURCE,
     DemoExampleAdapter,
     ExampleAdapter,
@@ -237,8 +237,8 @@ import httpx
 import pytest
 from httpmock import json_response, make_client
 
-from atlas_integrations import MemoryTTLCache, UpstreamDataError, UpstreamError
-from atlas_integrations.example_source import DemoExampleAdapter, ExampleAdapter
+from carboncreditbuy_integrations import MemoryTTLCache, UpstreamDataError, UpstreamError
+from carboncreditbuy_integrations.example_source import DemoExampleAdapter, ExampleAdapter
 
 
 def test_parses_the_value_and_records_provenance(recorder):

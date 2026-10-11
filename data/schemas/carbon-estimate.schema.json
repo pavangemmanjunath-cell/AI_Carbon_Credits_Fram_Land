@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://agricarbon-atlas.org/schemas/carbon-estimate.schema.json",
+  "$id": "https://carboncreditbuy.org/schemas/carbon-estimate.schema.json",
   "title": "CarbonEstimate",
   "description": "A modelled carbon removal scenario. Never a single number; never certified.",
   "type": "object",

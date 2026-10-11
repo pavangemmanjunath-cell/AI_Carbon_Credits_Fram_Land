@@ -1,4 +1,4 @@
-# Root tooling configuration for the AgriCarbon Atlas monorepo (Python side).
+# Root tooling configuration for the CarbonCreditBuy monorepo (Python side).
 # Individual packages have their own pyproject.toml for packaging; this file
 # configures pytest, ruff and mypy so everything runs from the repository root
 # without installing the packages (pythonpath below).
@@ -43,8 +43,8 @@ known-first-party = [
   "geo_engine",
   "policy_engine",
   "report_engine",
-  "atlas_integrations",
-  "atlas_agents",
+  "carboncreditbuy_integrations",
+  "carboncreditbuy_agents",
   "app",
 ]
 

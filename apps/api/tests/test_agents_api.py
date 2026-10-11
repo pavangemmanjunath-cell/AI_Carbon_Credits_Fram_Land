@@ -82,7 +82,7 @@ def full_run(client: TestClient) -> dict:
 def test_catalog_describes_team_tools_and_plans(client):
     body = client.get("/api/v1/agents").json()
     assert body["framework"] == {
-        "name": "atlas-agents",
+        "name": "carboncreditbuy-agents",
         "version": "0.1.0",
         "reasoner": "template",
         "llm_enabled": False,

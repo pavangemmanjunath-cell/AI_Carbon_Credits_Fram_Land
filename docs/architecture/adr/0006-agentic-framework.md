@@ -25,11 +25,11 @@ every step calls an LLM.
 
 ## Decision
 
-1. **A small framework of our own, `atlas_agents`**
+1. **A small framework of our own, `carboncreditbuy_agents`**
    ([packages/agent-framework](../../../packages/agent-framework/README.md)): agents, tools, a blackboard,
    plans, an orchestrator, reasoners, guardrails, a trace and a keyword intent router — about 2,900 lines
    including docstrings and the keyword table, with no third-party dependency (`httpx` only for the optional
-   LLM client) and no knowledge of carbon. The AgriCarbon team lives in `apps/api/app/agents/`.
+   LLM client) and no knowledge of carbon. The CarbonCreditBuy team lives in `apps/api/app/agents/`.
 2. **Deterministic by default.** Plans are data written by people; each agent's `run` method is ordinary
    Python; tools call the existing services and engines. The default `TemplateReasoner` keeps each agent's
    template text, so the same inputs give the same transcript.

@@ -12,7 +12,7 @@ from pathlib import Path
 
 from app.context import AppContext
 
-log = logging.getLogger("atlas.seed")
+log = logging.getLogger("carboncreditbuy.seed")
 
 
 def seed_demo_plots(ctx: AppContext, sample_dir: Path | None = None) -> list[str]:

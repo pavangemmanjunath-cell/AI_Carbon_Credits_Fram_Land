@@ -1,16 +1,16 @@
 # syntax=docker/dockerfile:1.7
-# AgriCarbon Atlas — web image (Vite build → nginx static server on :8080)
+# CarbonCreditBuy — web image (Vite build → nginx static server on :8080)
 #
 # Build:
 #   docker build -f infra/docker/Dockerfile.web \
 #     --build-arg VITE_API_BASE_URL=https://api.example.org/api/v1 \
 #     --build-arg VITE_BASEMAP_PMTILES_URL=https://tiles.example.org/basemap.pmtiles \
-#     -t agricarbon-atlas-web .
+#     -t carboncreditbuy-web .
 # Run:
 #   docker run --rm -p 8080:8080 \
 #     -e ATLAS_API_ORIGIN=https://api.example.org \
 #     -e ATLAS_BASEMAP_ORIGINS="https://tiles.example.org" \
-#     agricarbon-atlas-web
+#     carboncreditbuy-web
 #
 # VITE_* values are compiled into the bundle at build time (Vite semantics);
 # the ATLAS_*_ORIGIN variables are read at container start to render the
@@ -23,7 +23,7 @@ WORKDIR /app/apps/web
 
 # Build-time configuration (see .env.example, "Web app" section).
 ARG VITE_API_BASE_URL=http://localhost:8000/api/v1
-ARG VITE_BASEMAP_STYLE_URL=https://demotiles.maplibre.org/style.json
+ARG VITE_BASEMAP_STYLE_URL=https://tiles.openfreemap.org/styles/liberty
 ARG VITE_BASEMAP_PMTILES_URL=
 ARG VITE_SATELLITE_TILES_URL=
 ARG VITE_SATELLITE_ATTRIBUTION=
@@ -55,16 +55,16 @@ RUN npm run build \
 # -------------------------------------------------------------- runtime stage
 FROM nginx:alpine AS runtime
 
-LABEL org.opencontainers.image.title="AgriCarbon Atlas web" \
+LABEL org.opencontainers.image.title="CarbonCreditBuy web" \
       org.opencontainers.image.licenses="Apache-2.0" \
-      org.opencontainers.image.source="https://github.com/<org>/agricarbon-atlas"
+      org.opencontainers.image.source="https://github.com/<org>/carboncreditbuy"
 
 # Runtime CSP inputs, rendered by the nginx image's envsubst entrypoint
 # (templates in /etc/nginx/templates → /etc/nginx/conf.d). Space-separated
 # origins are allowed in ATLAS_BASEMAP_ORIGINS and ATLAS_EXTRA_CONNECT_SRC.
 ENV NGINX_PORT=8080 \
     ATLAS_API_ORIGIN=http://localhost:8000 \
-    ATLAS_BASEMAP_ORIGINS="https://demotiles.maplibre.org" \
+    ATLAS_BASEMAP_ORIGINS="https://tiles.openfreemap.org https://demotiles.maplibre.org" \
     ATLAS_EXTRA_CONNECT_SRC="https://basemap.nationalmap.gov https://data.geopf.fr https://www.ign.es https://service.pdok.nl https://tiles.maps.eox.at https://ibasemaps-api.arcgis.com" \
     ATLAS_EXTRA_IMG_SRC="https://basemap.nationalmap.gov https://data.geopf.fr https://www.ign.es https://service.pdok.nl https://tiles.maps.eox.at https://ibasemaps-api.arcgis.com"
 

@@ -1,6 +1,6 @@
 # Adopters
 
-Organizations and projects that use AgriCarbon Atlas in production, in
+Organizations and projects that use CarbonCreditBuy in production, in
 research, or in a pilot. Knowing who relies on the platform helps us
 prioritize regions, data sources and languages, and helps new users find
 peers.
@@ -10,7 +10,7 @@ peers.
 **Never add an organization without its permission or verifiable public
 evidence.** Acceptable evidence is a public blog post, paper, talk,
 procurement notice or repository published by the organization itself that
-names AgriCarbon Atlas. A private conversation, a screenshot, or "we heard
+names CarbonCreditBuy. A private conversation, a screenshot, or "we heard
 that…" is not evidence. When an entry is based on permission rather than a
 public source, the pull request that adds it must come from, or be approved
 in writing by, someone at that organization, and the entry says so.

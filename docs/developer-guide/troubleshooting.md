@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Problems that come up when you set up, run, test and deploy AgriCarbon Atlas, with the cause and the
+Problems that come up when you set up, run, test and deploy CarbonCreditBuy, with the cause and the
 fix. Start with the checks below, then find your symptom. If you fix something that is not listed,
 add it here.
 
@@ -23,7 +23,7 @@ add it here.
 | Symptom | Likely cause and fix |
 | --- | --- |
 | `ModuleNotFoundError: carbon_engine` (or another package) | The editable installs are missing; run `make install-api` inside your virtual environment |
-| `ModuleNotFoundError: atlas_agents` | The agent framework is not installed. Run `python3 -m pip install -e packages/agent-framework` (older `Makefile` versions do not list it) |
+| `ModuleNotFoundError: carboncreditbuy_agents` | The agent framework is not installed. Run `python3 -m pip install -e packages/agent-framework` (older `Makefile` versions do not list it) |
 | `requires a different Python` while installing | The packages need Python 3.12 or newer. Check `python3 --version`, and create the virtual environment with the right interpreter |
 | API ignores my `.env` | It was started from `apps/api`; see [setup](setup.md#2-configure) |
 | An environment variable has no effect | Check the exact name in [setup](setup.md#environment-variables). Unknown variables are ignored without a warning. `VITE_*` values need a restart of the Vite server, and a rebuild of the Docker web image |
@@ -59,7 +59,7 @@ working without it.
 ### The map is gray or says the basemap is unavailable
 
 The app asks for a basemap style (`VITE_BASEMAP_STYLE_URL`, which defaults to
-`https://demotiles.maplibre.org/style.json`, or your own PMTiles file through
+`https://tiles.openfreemap.org/styles/liberty`, or your own PMTiles file through
 `VITE_BASEMAP_PMTILES_URL`). When that request fails, or nothing has loaded after 7 seconds, the app
 switches to a **plain ground**: a flat pale green background, with the message "Basemap unavailable —
 showing your plot on a plain ground" in the bar at the bottom of the map. Drawing, plots, the satellite
@@ -183,7 +183,7 @@ Restart the API after changing it. Other things worth knowing:
 | markdownlint fails on line length | Prose lines are limited to 120 columns; tables, code blocks and headings are exempt |
 | `ruff format --check` flags a `.md` file | The repository formats Python code blocks in Markdown. Run `python3 -m ruff format <file>` |
 | The `PostgreSQL schema` job fails | Either `schema.sql` and `postgres.py` disagree, or a constraint changed. The failing line names the check. Reproduce it with the commands in [testing](testing.md#testing-the-postgresql-schema) |
-| The `Docker build` job fails at the health check | Start the image locally and read its log: `docker run --rm -p 8000:8000 -e ATLAS_MODE=demo agricarbon-atlas-api` |
+| The `Docker build` job fails at the health check | Start the image locally and read its log: `docker run --rm -p 8000:8000 -e ATLAS_MODE=demo carboncreditbuy-api` |
 | Dependabot opens many pull requests | Updates are grouped by ecosystem and by map stack in `.github/dependabot.yml`; review the groups, not each package |
 
 ## Still stuck

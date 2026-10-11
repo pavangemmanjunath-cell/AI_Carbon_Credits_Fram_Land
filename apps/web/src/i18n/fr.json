@@ -143,6 +143,16 @@
     "toolbarLabel": "Délimitez votre terrain",
     "tool_boundary": "Limite",
     "tool_boundaryHint": "Tracez les bords de votre terrain sur la carte",
+    "tool_pen": "Stylo",
+    "tool_penHint": "Tracez votre terrain à main levée, comme avec un stylo",
+    "tool_rectangle": "Rectangle",
+    "tool_rectangleHint": "Faites glisser un rectangle sur votre terrain",
+    "tool_circle": "Cercle",
+    "tool_circleHint": "Tracez un cercle depuis son centre",
+    "finish_pen": "Maintenez et faites glisser pour suivre le bord du terrain ; relâchez pour terminer. Il est enregistré (verrouillé) comme parcelle.",
+    "finish_rectangle": "Appuyez, faites glisser sur votre terrain et relâchez. Il est enregistré (verrouillé) comme parcelle.",
+    "finish_circle": "Appuyez au centre, faites glisser jusqu’au bord et relâchez. Il est enregistré (verrouillé) comme parcelle.",
+    "localTime": "Heure locale",
     "tool_treeLine": "Ligne d'arbres",
     "tool_treeLineHint": "Tracez une rangée d'arbres le long d'un talus, d'une route ou d'un bord de champ",
     "tool_pin": "Épingle + surface",
@@ -564,7 +574,7 @@
     "apiError": "L'API a renvoyé une erreur ({{status}}) : {{title}}",
     "network": "L'API est injoignable.",
     "unknown": "Erreur inattendue.",
-    "needsApi": "Cette fonction nécessite le serveur AgriCarbon Atlas. Démarrez l'API (make api) et réessayez.",
+    "needsApi": "Cette fonction nécessite le serveur CarbonCreditBuy. Démarrez l'API (make api) et réessayez.",
     "cancelled": "Annulé."
   }
 }

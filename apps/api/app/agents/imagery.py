@@ -6,7 +6,7 @@ from typing import Any
 
 from app.agents import wording
 from app.agents.tools import detect_tree_cover, vegetation_summary
-from atlas_agents import Agent, AgentMessage, Evidence, RunContext
+from carboncreditbuy_agents import Agent, AgentMessage, Evidence, RunContext
 
 
 class ImageryAgent(Agent):

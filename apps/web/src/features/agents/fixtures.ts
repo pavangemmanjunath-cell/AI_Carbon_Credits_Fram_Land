@@ -6,7 +6,7 @@ import type { Plot } from '@/types/api';
 import type { AgentCatalog, AgentMessage, AgentRun } from './types';
 
 export const catalogFixture: AgentCatalog = {
-  framework: { name: 'atlas-agents', version: '0.1.0', reasoner: 'template', llm_enabled: false },
+  framework: { name: 'carboncreditbuy-agents', version: '0.1.0', reasoner: 'template', llm_enabled: false },
   agents: [
     {
       id: 'coordinator',

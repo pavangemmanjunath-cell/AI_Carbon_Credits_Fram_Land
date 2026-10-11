@@ -1,6 +1,6 @@
 @echo off
 REM ============================================================================
-REM  Vriksha Atlas (AgriCarbon Atlas) - one-click setup, test and demo on Windows
+REM  CarbonCreditBuy - one-click setup, test and demo on Windows
 REM
 REM    run_all.bat           install, test, run the agent demo, run the experiments
 REM    run_all.bat serve     ... and then start the API (8000) and web app (5173)
@@ -61,14 +61,14 @@ if errorlevel 1 (
   echo [SKIP] pandoc not found - paper\manuscript.md is the source; install pandoc to build the .docx.
 ) else if exist paper\manuscript.md (
   pushd paper
-  pandoc manuscript.md -o Vriksha_Atlas_paper.docx "--resource-path=.;.."
+  pandoc manuscript.md -o CarbonCreditBuy_paper.docx "--resource-path=.;.."
   popd
-  echo Built paper\Vriksha_Atlas_paper.docx
+  echo Built paper\CarbonCreditBuy_paper.docx
 )
 
 if /i "%~1"=="serve" (
   REM Same launcher as START.bat (STOP.bat ends both servers).
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\windows\atlas.ps1" start
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\windows\launcher.ps1" start
 )
 
 echo.

@@ -1,6 +1,6 @@
 # Web app (apps/web)
 
-The React front end of AgriCarbon Atlas: a map workspace where a landowner marks their land (draw a boundary, draw a
+The React front end of CarbonCreditBuy: a map workspace where a landowner marks their land (draw a boundary, draw a
 tree line, drop a pin and type the size, type coordinates or import a file), adds trees, sees vegetation condition and a
 carbon-removal **scenario range**, and reads which programmes might be relevant. Around the workspace sit a
 Trimble-style left navigation (My land, Data, AI agents, Tree age, Simulation, Reports, Settings), an **Import data**
@@ -118,7 +118,7 @@ Settings); `/app/settings`. `/app/plots` redirects to `/app/data`, and the retir
 ## Behaviour worth knowing
 
 - **Privacy.** Plot polygons are held by the API; the browser stores only settings and the selected plot id in
-  `localStorage` (key `agricarbon-atlas-ui`, store version 2, with a migration from v1). The "Share private link"
+  `localStorage` (key `carboncreditbuy-ui`, store version 2, with a migration from v1). The "Share private link"
   button copies the page URL; it does not create a token. The results JSON export removes the geometry and the exact
   centroid. The explain request is built from derived indicators in `features/results/logic/resultsLogic.ts` and
   contains no location.

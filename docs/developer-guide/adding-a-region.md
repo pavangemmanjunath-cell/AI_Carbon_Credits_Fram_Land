@@ -22,7 +22,7 @@ only worth adding if you can say, with official sources:
 - which programs exist for tree planting, agroforestry or soil carbon, who administers each and where
   the official page is;
 - for each program, whether it issues a **credit** (a tradable unit that needs a methodology, baseline
-  and verification) or is an **incentive** (a payment or subsidy). The Atlas never lets the two blur
+  and verification) or is an **incentive** (a payment or subsidy). CarbonCreditBuy never lets the two blur
   ([carbon credit vs estimate](../concepts/carbon-credit-vs-estimate.md));
 - where an indicative price range could come from;
 - a domain reviewer for the region ([GOVERNANCE.md](../../GOVERNANCE.md)). Policy rules and parameters
@@ -139,7 +139,7 @@ programmes:
 | `requires_methodology_assessment` | A credit scheme: an approved methodology, baseline, additionality, monitoring and third-party verification are needed first |
 | `requires_certification` | Certification by a recognized body is required, as under the EU CRCF |
 | `not_applicable` | The program does not cover this activity |
-| `unknown` | The Atlas has not assessed the combination. This is the honest default for credit schemes |
+| `unknown` | CarbonCreditBuy has not assessed the combination. This is the honest default for credit schemes |
 
 Writing rules that hold up in review:
 
@@ -181,7 +181,7 @@ status of the zone your region defaults to before promising anything to users.
 
 If the region has a government methodology or standard the platform may *reference*, add an entry to
 `config/methodologies/registry.yaml` with `regions: [<ID>]`, a `status` and the official URL. The
-registry only lists what exists; it never means the Atlas applies it.
+registry only lists what exists; it never means CarbonCreditBuy applies it.
 
 ## 6. Tree-age rules and imagery
 
@@ -222,8 +222,8 @@ open an issue for each:
 | File | What to do |
 | --- | --- |
 | `apps/api/app/services/simulate.py` | `PROGRAMME_SUMMARY` has one line per region (empty if missing), and the "same plantation under other rules" comparison loops over `("IN", "US", "EU")` only |
-| `integrations/atlas_integrations/demo_support.py` | Demo climate and place per region. Unknown regions get generic values, so demo mode still works. Add yours for a nicer demo |
-| `integrations/atlas_integrations/nominatim/adapter.py` and `soilgrids/adapter.py` | Demo-twin place list and demo soil values; optional |
+| `integrations/carboncreditbuy_integrations/demo_support.py` | Demo climate and place per region. Unknown regions get generic values, so demo mode still works. Add yours for a nicer demo |
+| `integrations/carboncreditbuy_integrations/nominatim/adapter.py` and `soilgrids/adapter.py` | Demo-twin place list and demo soil values; optional |
 | `packages/policy-engine/policy_engine/tree_age.py` | `SCOPES` lists `GLOBAL`, `IN`, `US` and `EU`; see step 6 |
 | `apps/api/app/services/{plots,carbon,analysis,reports}.py`, `api/v1/routers/plots.py` | A stored plot whose country does not resolve is treated as `IN` |
 

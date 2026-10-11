@@ -1,4 +1,4 @@
-"""AgriCarbon Atlas agents — the domain layer on top of the ``atlas_agents`` framework.
+"""CarbonCreditBuy agents — the domain layer on top of the ``carboncreditbuy_agents`` framework.
 
 ==================  ==============================================================
 ``tools.py``        tools that wrap the existing services (plots, analysis, trees,

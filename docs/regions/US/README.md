@@ -1,6 +1,6 @@
 # United States (US)
 
-This page summarizes how the Atlas behaves for plots in the United States and what a farmer, adviser or researcher in
+This page summarizes how CarbonCreditBuy behaves for plots in the United States and what a farmer, adviser or researcher in
 the US should expect from it. Configuration lives in
 [`config/regions/US.yaml`](../../../config/regions/US.yaml) and
 [`config/policies/US.yaml`](../../../config/policies/US.yaml). The sister regions are [India](../IN/README.md) and the
@@ -17,9 +17,9 @@ the US should expect from it. Configuration lives in
 | Admin levels | state, county | From reverse geocoding when the server looks the place up; the Census Geocoder adapter that would give exact county codes is built but not called yet ([DATA_SOURCES.md](DATA_SOURCES.md)) |
 | Default climate zone | `warm_temperate_moist` | A continental default; the US spans several climate zones. Derived per plot in live mode, otherwise the Evidence chain says "region-default" |
 | Map default | Center 39.5 N, 98.35 W, zoom 3.8 | |
-| Bounding box | West -125.0, south 24.4, east -66.9, north 49.4 | Covers the contiguous states. Alaska, Hawaii and the territories lie outside it, so the Atlas cannot guess the region from a point there: choose the country explicitly |
+| Bounding box | West -125.0, south 24.4, east -66.9, north 49.4 | Covers the contiguous states. Alaska, Hawaii and the territories lie outside it, so CarbonCreditBuy cannot guess the region from a point there: choose the country explicitly |
 
-**Tons.** In the US a "ton" usually means the short ton of 2,000 pounds, which is about 0.907 metric tons. Every Atlas
+**Tons.** In the US a "ton" usually means the short ton of 2,000 pounds, which is about 0.907 metric tons. Every CarbonCreditBuy
 figure is in metric tons (tonnes) of CO₂e. Check which one a program, a price quote or another tool uses before you
 compare numbers.
 
@@ -39,7 +39,7 @@ context stays empty in v0.1. Details, licenses and access notes are in [DATA_SOU
 The map's **Satellite** view starts with the USGS "Imagery Only" layer for US plots. It is mostly National Agricultural
 Imagery Program (NAIP) aerial photography, public domain, and needs no key. Outside the US the default is the global
 Sentinel-2 mosaic from EOX, and a deployer who holds an Esri license can add Esri World Imagery, for viewing only. A
-person can pick another provider under **Settings**, **Map imagery**. Imagery is for viewing: the Atlas's own analysis
+person can pick another provider under **Settings**, **Map imagery**. Imagery is for viewing: CarbonCreditBuy's own analysis
 uses Sentinel-2 scenes and WorldCover, not map tiles. Licenses, attribution texts and zoom limits are in
 [MAP_LICENSES.md](../../licensing/MAP_LICENSES.md) and
 [`config/imagery/providers.yaml`](../../../config/imagery/providers.yaml). The US details, and what is still
@@ -47,7 +47,7 @@ unconfirmed, are in [DATA_SOURCES.md](DATA_SOURCES.md#imagery-for-the-map).
 
 ## Programs screened
 
-| Program | Authority | What the Atlas says |
+| Program | Authority | What CarbonCreditBuy says |
 | --- | --- | --- |
 | USDA COMET-Farm (methodology reference) | USDA and Colorado State University | `potentially_applicable` for tree plantation, agroforestry, cropland practice and grazing: a whole-farm greenhouse-gas tool you can use to cross-check this estimate. It is not a credit scheme |
 | Voluntary-market afforestation and reforestation methodologies | Verra VCS, American Carbon Registry, Climate Action Reserve | `requires_methodology_assessment`: an approved methodology, baseline, additionality, leakage and permanence arrangements, monitoring and third-party verification are needed before any credit exists |
@@ -57,7 +57,7 @@ Each program is described, with its sources and its open questions, in [PROGRAMS
 screening result carries the sentence "Initial screening only — not an eligibility determination. Voluntary-market
 credits require an approved methodology, verification and registry issuance."
 
-The Atlas keeps **credits** (a tradable unit issued by a registry) and **incentives** (a payment or cost-share) apart.
+CarbonCreditBuy keeps **credits** (a tradable unit issued by a registry) and **incentives** (a payment or cost-share) apart.
 A USDA payment is never shown as a carbon value, and a voluntary credit is never implied by a USDA program.
 
 ## Trees of different ages

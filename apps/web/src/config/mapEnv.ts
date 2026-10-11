@@ -7,7 +7,7 @@ function env(name: string): string | undefined {
   return value && value.length > 0 ? value : undefined;
 }
 
-export const DEFAULT_BASEMAP_STYLE_URL = 'https://demotiles.maplibre.org/style.json';
+export const DEFAULT_BASEMAP_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
 
 export const mapEnv = {
   basemapStyleUrl: env('VITE_BASEMAP_STYLE_URL') ?? DEFAULT_BASEMAP_STYLE_URL,

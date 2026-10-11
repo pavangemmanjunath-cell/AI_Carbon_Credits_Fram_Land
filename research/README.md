@@ -1,6 +1,6 @@
 # Research
 
-The `research/` tree holds the scientific work around AgriCarbon Atlas:
+The `research/` tree holds the scientific work around CarbonCreditBuy:
 notebooks that validate inputs and models, experiments that compare
 alternatives, the validation protocol that gates releases, and publication
 drafts. It is kept in the main repository so that every number in a paper

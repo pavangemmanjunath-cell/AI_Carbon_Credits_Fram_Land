@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agricarbon-integrations"
+name = "carboncreditbuy-integrations"
 version = "0.2.0"
-description = "External data adapters (with offline demo twins) for AgriCarbon Atlas"
+description = "External data adapters (with offline demo twins) for CarbonCreditBuy"
 readme = "README.md"
 requires-python = ">=3.12"
 license = {text = "Apache-2.0"}
@@ -15,4 +15,4 @@ dependencies = ["httpx>=0.27", "numpy>=1.26", "shapely>=2"]
 live = ["rasterio>=1.3", "pystac-client>=0.7"]
 
 [tool.setuptools.packages.find]
-include = ["atlas_integrations*"]
+include = ["carboncreditbuy_integrations*"]

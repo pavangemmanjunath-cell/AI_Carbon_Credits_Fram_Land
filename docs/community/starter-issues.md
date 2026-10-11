@@ -220,7 +220,7 @@ For any other language, open a discussion first: name the region that would list
 - If a machine translation tool gave you a first draft, the pull request says so and a fluent speaker has read the
   result.
 
-The agents' question router has keyword lists per language in `packages/agent-framework/atlas_agents/intents.py`. A new
+The agents' question router has keyword lists per language in `packages/agent-framework/carboncreditbuy_agents/intents.py`. A new
 language works without them, because every language is searched for every question, but a few words in yours would
 help. Do that in a separate pull request: it changes behavior and needs tests.
 
@@ -338,7 +338,7 @@ report and in the workspace, while an offline session shows the newer one.
 **Why.** The map's search box shows places from Nominatim or Photon in live mode, and from a demo twin in demo mode. In
 live mode the data is OpenStreetMap's, under the ODbL, and the Nominatim usage policy asks for attribution to be
 displayed ([DATA_LICENSES.md](../licensing/DATA_LICENSES.md)). The API sends the credit with every answer (`attribution`
-in `GET /geocode`, which is "AgriCarbon Atlas demo generator — not an observation" in demo mode), and so does the offline
+in `GET /geocode`, which is "CarbonCreditBuy demo generator — not an observation" in demo mode), and so does the offline
 fallback. The web app has the field in its types and shows each result as a label and coordinates, without it. The map's
 attribution bar credits the basemap, not the search.
 
@@ -418,7 +418,7 @@ anchor defaults to today. On 29 February that raises `ValueError` for every requ
 analysis service catches `ValueError` and reports "satellite vegetation unavailable: ValueError", so in live mode the
 vegetation layer quietly disappears for that day. It happens once every four years, which is why nobody has seen it.
 
-**Where.** `integrations/atlas_integrations/stac_common.py`, `best_scene_for_year`.
+**Where.** `integrations/carboncreditbuy_integrations/stac_common.py`, `best_scene_for_year`.
 
 **Done when.**
 
@@ -471,7 +471,7 @@ synthetic demo coordinates (the demo plot near Doddaballapura), never the locati
 caching and failure handling. None of the ten adapter folders has one. The [integrations README](../../integrations/README.md)
 and [FREE_APIS.md](../data-sources/FREE_APIS.md) stand in ([known gaps](../data-sources/FREE_APIS.md#known-gaps)).
 
-**Where.** `integrations/atlas_integrations/<adapter>/README.md` for one of `open_meteo`, `soilgrids`, `nominatim`,
+**Where.** `integrations/carboncreditbuy_integrations/<adapter>/README.md` for one of `open_meteo`, `soilgrids`, `nominatim`,
 `photon`, `esa_worldcover`, `earth_search`, `copernicus`, `usda_nass`, `census_geocoder` or `data_gov_in`.
 
 **Done when.**

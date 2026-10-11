@@ -19,7 +19,7 @@ copyleft candidates were GPL-3.0, AGPL-3.0 and MPL-2.0.
 
 ## Decision
 
-AgriCarbon Atlas is licensed under the Apache License, Version 2.0
+CarbonCreditBuy is licensed under the Apache License, Version 2.0
 ([LICENSE](../../../LICENSE)). Contributions are accepted under the same
 license with a Developer Certificate of Origin sign-off
 ([CONTRIBUTING.md](../../../CONTRIBUTING.md)); no contributor license

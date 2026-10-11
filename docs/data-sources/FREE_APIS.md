@@ -1,6 +1,6 @@
 # Free and open data APIs
 
-AgriCarbon Atlas reads public data through adapters in [`integrations/`](../../integrations/README.md), and the map's
+CarbonCreditBuy reads public data through adapters in [`integrations/`](../../integrations/README.md), and the map's
 Satellite view loads imagery tiles from public providers. This page is the reference for each one: what it is for,
 whether the API calls it in version 0.1, how to configure it, the terms it is used under, how long answers are cached,
 what happens when it fails, and what location data the provider receives. The [reference tables](#reference-tables)
@@ -42,22 +42,22 @@ hosts ([map imagery and basemaps](#map-imagery-and-basemaps)).
 One row for every source. "Endpoint variable" is the environment variable that holds the URL, so you can point it at
 a mirror or a self-hosted copy; the defaults are in [`.env.example`](../../.env.example). The attribution column holds
 ids from [ATTRIBUTION.md](../licensing/ATTRIBUTION.md), which has the text to display. Adapter paths are relative to
-[`integrations/atlas_integrations/`](../../integrations/atlas_integrations/).
+[`integrations/carboncreditbuy_integrations/`](../../integrations/carboncreditbuy_integrations/).
 
 ### Data adapters
 
 | Source | Endpoint variable | License | Attribution | Key | Rate limit or usage policy | Adapter | Demo twin |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| [ESA WorldCover](#esa-worldcover) | `ESA_WORLDCOVER_BASE_URL`, `ESA_WORLDCOVER_VERSION` | CC BY 4.0 | `esa-worldcover` | None | None quoted in the repository. TODO(verify): the terms of the bucket | [`esa_worldcover/adapter.py`](../../integrations/atlas_integrations/esa_worldcover/adapter.py) | `DemoWorldCoverAdapter` |
-| [Earth Search](#sentinel-2-through-earth-search) (Sentinel-2 L2A STAC) | `EARTH_SEARCH_STAC_URL`; `ATLAS_STAC_PROVIDER=earth-search` selects it | Copernicus Sentinel data terms: free, full and open | `copernicus-sentinel-2` | None | None quoted. TODO(verify): the Earth Search and AWS Open Data terms | [`earth_search/adapter.py`](../../integrations/atlas_integrations/earth_search/adapter.py), on [`stac_common.py`](../../integrations/atlas_integrations/stac_common.py) | `DemoSatelliteAdapter`, shared with Copernicus |
-| [Copernicus Data Space](#sentinel-2-through-copernicus-data-space) (STAC) | `COPERNICUS_STAC_URL`, `COPERNICUS_TOKEN`; `ATLAS_STAC_PROVIDER=copernicus` selects it | Sentinel terms, plus the CDSE terms of use | `copernicus-sentinel-2` | Search is anonymous; a token is needed to download scene files | None quoted. TODO(verify): CDSE quotas | [`copernicus/adapter.py`](../../integrations/atlas_integrations/copernicus/adapter.py) | `DemoSatelliteAdapter` |
-| [Open-Meteo](#open-meteo) (archive and elevation) | `OPEN_METEO_ARCHIVE_URL`, `OPEN_METEO_ELEVATION_URL` | Data CC BY 4.0 | `open-meteo` | None for non-commercial use; the adapter has no setting for a subscription key | Free tier for non-commercial use; the terms cite fewer than 10,000 calls a day. TODO(verify) | [`open_meteo/adapter.py`](../../integrations/atlas_integrations/open_meteo/adapter.py) | `DemoOpenMeteoAdapter` |
-| [SoilGrids](#soilgrids) | `SOILGRIDS_URL` | CC BY 4.0 | `soilgrids` | None | At most 5 requests a minute, as the adapter quotes the ISRIC policy. Nothing throttles it | [`soilgrids/adapter.py`](../../integrations/atlas_integrations/soilgrids/adapter.py) | `DemoSoilGridsAdapter` |
-| [Nominatim](#nominatim) | `NOMINATIM_URL`, `NOMINATIM_USER_AGENT`, `GEOCODER_MIN_INTERVAL_SECONDS` | Data ODbL 1.0 | `nominatim` | None, but an identifying `User-Agent` is mandatory | Public instance: 1 request a second, no bulk geocoding, cache results. The adapter spaces uncached requests | [`nominatim/adapter.py`](../../integrations/atlas_integrations/nominatim/adapter.py) | `DemoNominatimAdapter` |
-| [Photon](#photon) | `PHOTON_URL`; `ATLAS_GEOCODER=photon` selects it | Data ODbL 1.0; software Apache-2.0 | `photon` | None | Fair use on the public instance; self-host for production. Nothing throttles the adapter | [`photon/adapter.py`](../../integrations/atlas_integrations/photon/adapter.py) | None. The Nominatim twin answers |
-| [US Census Geocoder](#us-census-geocoder) | `CENSUS_GEOCODER_URL` | Public domain (US Government work) | `census-geocoder` | None | Single-point lookups; a separate batch endpoint exists for bulk work. TODO(verify) | [`census_geocoder/adapter.py`](../../integrations/atlas_integrations/census_geocoder/adapter.py) | `DemoCensusGeocoderAdapter` |
-| [USDA NASS Quick Stats](#usda-nass-quick-stats) | `USDA_NASS_API_URL`, `USDA_NASS_API_KEY` | Public domain (US Government work) | `usda-nass` | Free key. An empty key selects the demo twin | A response holds at most 50,000 records. Rate limits are not published | [`usda_nass/adapter.py`](../../integrations/atlas_integrations/usda_nass/adapter.py) | `DemoUsdaNassAdapter` |
-| [data.gov.in](#datagovin) | `DATA_GOV_IN_API_URL`, `DATA_GOV_IN_API_KEY`, `DATA_GOV_IN_CROP_RESOURCE_ID` | GODL-India | `data-gov-in` | Free key. An empty key selects the demo twin | Per-key limits per minute and per day. TODO(verify): the numbers | [`data_gov_in/adapter.py`](../../integrations/atlas_integrations/data_gov_in/adapter.py) | `DemoDataGovInAdapter` |
+| [ESA WorldCover](#esa-worldcover) | `ESA_WORLDCOVER_BASE_URL`, `ESA_WORLDCOVER_VERSION` | CC BY 4.0 | `esa-worldcover` | None | None quoted in the repository. TODO(verify): the terms of the bucket | [`esa_worldcover/adapter.py`](../../integrations/carboncreditbuy_integrations/esa_worldcover/adapter.py) | `DemoWorldCoverAdapter` |
+| [Earth Search](#sentinel-2-through-earth-search) (Sentinel-2 L2A STAC) | `EARTH_SEARCH_STAC_URL`; `ATLAS_STAC_PROVIDER=earth-search` selects it | Copernicus Sentinel data terms: free, full and open | `copernicus-sentinel-2` | None | None quoted. TODO(verify): the Earth Search and AWS Open Data terms | [`earth_search/adapter.py`](../../integrations/carboncreditbuy_integrations/earth_search/adapter.py), on [`stac_common.py`](../../integrations/carboncreditbuy_integrations/stac_common.py) | `DemoSatelliteAdapter`, shared with Copernicus |
+| [Copernicus Data Space](#sentinel-2-through-copernicus-data-space) (STAC) | `COPERNICUS_STAC_URL`, `COPERNICUS_TOKEN`; `ATLAS_STAC_PROVIDER=copernicus` selects it | Sentinel terms, plus the CDSE terms of use | `copernicus-sentinel-2` | Search is anonymous; a token is needed to download scene files | None quoted. TODO(verify): CDSE quotas | [`copernicus/adapter.py`](../../integrations/carboncreditbuy_integrations/copernicus/adapter.py) | `DemoSatelliteAdapter` |
+| [Open-Meteo](#open-meteo) (archive and elevation) | `OPEN_METEO_ARCHIVE_URL`, `OPEN_METEO_ELEVATION_URL` | Data CC BY 4.0 | `open-meteo` | None for non-commercial use; the adapter has no setting for a subscription key | Free tier for non-commercial use; the terms cite fewer than 10,000 calls a day. TODO(verify) | [`open_meteo/adapter.py`](../../integrations/carboncreditbuy_integrations/open_meteo/adapter.py) | `DemoOpenMeteoAdapter` |
+| [SoilGrids](#soilgrids) | `SOILGRIDS_URL` | CC BY 4.0 | `soilgrids` | None | At most 5 requests a minute, as the adapter quotes the ISRIC policy. Nothing throttles it | [`soilgrids/adapter.py`](../../integrations/carboncreditbuy_integrations/soilgrids/adapter.py) | `DemoSoilGridsAdapter` |
+| [Nominatim](#nominatim) | `NOMINATIM_URL`, `NOMINATIM_USER_AGENT`, `GEOCODER_MIN_INTERVAL_SECONDS` | Data ODbL 1.0 | `nominatim` | None, but an identifying `User-Agent` is mandatory | Public instance: 1 request a second, no bulk geocoding, cache results. The adapter spaces uncached requests | [`nominatim/adapter.py`](../../integrations/carboncreditbuy_integrations/nominatim/adapter.py) | `DemoNominatimAdapter` |
+| [Photon](#photon) | `PHOTON_URL`; `ATLAS_GEOCODER=photon` selects it | Data ODbL 1.0; software Apache-2.0 | `photon` | None | Fair use on the public instance; self-host for production. Nothing throttles the adapter | [`photon/adapter.py`](../../integrations/carboncreditbuy_integrations/photon/adapter.py) | None. The Nominatim twin answers |
+| [US Census Geocoder](#us-census-geocoder) | `CENSUS_GEOCODER_URL` | Public domain (US Government work) | `census-geocoder` | None | Single-point lookups; a separate batch endpoint exists for bulk work. TODO(verify) | [`census_geocoder/adapter.py`](../../integrations/carboncreditbuy_integrations/census_geocoder/adapter.py) | `DemoCensusGeocoderAdapter` |
+| [USDA NASS Quick Stats](#usda-nass-quick-stats) | `USDA_NASS_API_URL`, `USDA_NASS_API_KEY` | Public domain (US Government work) | `usda-nass` | Free key. An empty key selects the demo twin | A response holds at most 50,000 records. Rate limits are not published | [`usda_nass/adapter.py`](../../integrations/carboncreditbuy_integrations/usda_nass/adapter.py) | `DemoUsdaNassAdapter` |
+| [data.gov.in](#datagovin) | `DATA_GOV_IN_API_URL`, `DATA_GOV_IN_API_KEY`, `DATA_GOV_IN_CROP_RESOURCE_ID` | GODL-India | `data-gov-in` | Free key. An empty key selects the demo twin | Per-key limits per minute and per day. TODO(verify): the numbers | [`data_gov_in/adapter.py`](../../integrations/carboncreditbuy_integrations/data_gov_in/adapter.py) | `DemoDataGovInAdapter` |
 
 ### Imagery providers for the Satellite view
 
@@ -81,7 +81,7 @@ attribution column holds provider ids; the text is in
 | EOX Sentinel-2 cloudless 2025 | Global | CC BY-NC-SA 4.0: non-commercial; commercial use needs a license from EOX | `eox-s2cloudless-2025` | None | As for 2016, and for clearly non-commercial deployments only | Review the terms |
 
 "Analysis" is the `analysis_allowed` flag: whether segmentation, machine learning or feature extraction on the tiles is
-licensed. The Atlas itself runs none, because its vegetation indices and tree-cover detection read Sentinel-2 through
+licensed. CarbonCreditBuy itself runs none, because its vegetation indices and tree-cover detection read Sentinel-2 through
 the STAC adapters, not these tiles.
 
 ## Before you go live
@@ -108,7 +108,7 @@ code that picks a twin or a live adapter.
 
 - **Demo.** Every adapter is its `Demo...` twin. There is no network use and no key. A twin returns deterministic
   synthetic values and reports its source as `synthetic-demo`, named "Synthetic demo data (imitating ...)", with the
-  attribution "AgriCarbon Atlas demo generator — not an observation". There is no Photon twin, and Earth Search and
+  attribution "CarbonCreditBuy demo generator — not an observation". There is no Photon twin, and Earth Search and
   Copernicus share one satellite twin, so in demo mode the Nominatim twin answers place searches whichever geocoder is
   configured.
 - **Live.** Each adapter is built from the settings. For NASS and data.gov.in an empty API key selects the demo twin
@@ -117,13 +117,13 @@ code that picks a twin or a live adapter.
 ### Requests, retries and errors
 
 Seven adapters (Open-Meteo, SoilGrids, Nominatim, Photon, NASS, the Census geocoder and data.gov.in) share
-[`HttpAdapter`](../../integrations/atlas_integrations/base.py):
+[`HttpAdapter`](../../integrations/carboncreditbuy_integrations/base.py):
 
 | Behavior | Detail |
 | --- | --- |
 | Timeout | 20 seconds per request |
 | Retry | One retry after 0.5 seconds on a transport error, including a timeout, or on an HTTP 5xx status. A 4xx status is never retried |
-| Headers | `User-Agent`, by default `agricarbon-atlas/0.1 (+https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land)` (Nominatim sends `NOMINATIM_USER_AGENT`), and `Accept: application/json` |
+| Headers | `User-Agent`, by default `carboncreditbuy/0.1 (+https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land)` (Nominatim sends `NOMINATIM_USER_AGENT`), and `Accept: application/json` |
 | 404 | `NotFoundError` |
 | 429 | `RateLimitedError`, with no retry and no `Retry-After` handling |
 | 401 and 403 | `ConfigurationError` ("authentication failed ... check API key"), whatever the provider's reason |
@@ -160,11 +160,11 @@ asset read failed"), or in `DependencyMissingError` when a library is missing.
 
 ### The API's own rate limit
 
-`ATLAS_RATE_LIMIT` (default `60/minute`) limits calls to the Atlas API per client, by API key prefix or by IP address,
+`ATLAS_RATE_LIMIT` (default `60/minute`) limits calls to CarbonCreditBuy API per client, by API key prefix or by IP address,
 and answers HTTP 429 with `Retry-After: 60`. It protects your server, not the providers. One uncached analysis makes
 about a dozen upstream requests ([next section](#what-one-analysis-calls)), and the limits quoted below are lower than
 60 a minute for SoilGrids (5 a minute) and Nominatim (1 a second). A busy public deployment can exceed a provider's
-limit even when no one exceeds the Atlas limit. Only the Nominatim adapter throttles itself.
+limit even when no one exceeds CarbonCreditBuy limit. Only the Nominatim adapter throttles itself.
 
 ## What one analysis calls
 
@@ -187,13 +187,13 @@ date, so it is refetched after midnight UTC at the latest. The web app gives up 
 
 ### ESA WorldCover
 
-A 10 m global land-cover map for 2021. The Atlas reads only the pixels inside the plot and reports the share of each
+A 10 m global land-cover map for 2021. CarbonCreditBuy reads only the pixels inside the plot and reports the share of each
 class, with the tree-cover and cropland shares as headline values.
 
 | Item | Detail |
 | --- | --- |
 | Status | Called by plot analysis, the land-cover layer |
-| Adapter | [`esa_worldcover`](../../integrations/atlas_integrations/esa_worldcover/adapter.py) and its demo twin; the pixel reading is in [`geo_engine.raster.worldcover`](../../packages/geo-engine/geo_engine/raster/worldcover.py) |
+| Adapter | [`esa_worldcover`](../../integrations/carboncreditbuy_integrations/esa_worldcover/adapter.py) and its demo twin; the pixel reading is in [`geo_engine.raster.worldcover`](../../packages/geo-engine/geo_engine/raster/worldcover.py) |
 | Dataset | ESA WorldCover 2021, version v200. The year is fixed in code. Only the version string and the base URL are settings, and the tile file names use both, so change them together |
 | Endpoint | `ESA_WORLDCOVER_BASE_URL`, default `https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map`, and `ESA_WORLDCOVER_VERSION`, default `v200` |
 | Files | Cloud-optimized GeoTIFF tiles of 3° by 3°, named for the south-west corner, for example `ESA_WorldCover_10m_2021_v200_N12E075_Map.tif`. A plot that crosses a tile edge reads each tile it touches and the shares are merged |
@@ -217,7 +217,7 @@ vegetation cube (map cells, change-over-time chart and tree-cover detection).
 | Item | Detail |
 | --- | --- |
 | Status | Called by plot analysis (vegetation) and the cube endpoint |
-| Adapter | [`earth_search`](../../integrations/atlas_integrations/earth_search/adapter.py), a thin subclass of the shared [`stac_common.py`](../../integrations/atlas_integrations/stac_common.py) that Copernicus also uses. Search is in [`geo_engine/satellite/stac.py`](../../packages/geo-engine/geo_engine/satellite/stac.py) and cube building in `geo_engine/cube/live.py` |
+| Adapter | [`earth_search`](../../integrations/carboncreditbuy_integrations/earth_search/adapter.py), a thin subclass of the shared [`stac_common.py`](../../integrations/carboncreditbuy_integrations/stac_common.py) that Copernicus also uses. Search is in [`geo_engine/satellite/stac.py`](../../packages/geo-engine/geo_engine/satellite/stac.py) and cube building in `geo_engine/cube/live.py` |
 | Endpoint | `EARTH_SEARCH_STAC_URL`, default `https://earth-search.aws.element84.com/v1`; collection `sentinel-2-l2a` |
 | Files read | `red` (B04), `nir` (B08), `swir16` (B11), `rededge1` (B05) and `scl` (scene classification) |
 | Search | Scenes that intersect the plot polygon, within 45 days either side of today's date in each requested year, with `eo:cloud_cover` at or below `MAX_CLOUD_COVER_PCT` (default 20), at most 500 items. The scene with the lowest cloud cover is that year's observation, and ties go to the latest |
@@ -240,7 +240,7 @@ it with `ATLAS_STAC_PROVIDER=copernicus`. Everything in the Earth Search table a
 
 | Item | Detail |
 | --- | --- |
-| Adapter | [`copernicus`](../../integrations/atlas_integrations/copernicus/adapter.py) |
+| Adapter | [`copernicus`](../../integrations/carboncreditbuy_integrations/copernicus/adapter.py) |
 | Endpoint | `COPERNICUS_STAC_URL`, default `https://stac.dataspace.copernicus.eu/v1`; collection `sentinel-2-l2a` |
 | Files read | `B04_10m`, `B08_10m`, `B11_20m`, `B05_20m` and `SCL_20m`. The catalog is still evolving, and the adapter's docstring says to verify these keys against the live catalog. They can be overridden only in code (the constructor takes `asset_keys`), not through an environment variable |
 | Credentials | Searching is anonymous. Downloading scene files needs a CDSE access token in `COPERNICUS_TOKEN`. The adapter sends it as an `Authorization: Bearer` header on the search and, for reads, through GDAL's HTTP headers, and it never refreshes it. TODO(verify): how to obtain a token, and how long it stays valid |
@@ -257,7 +257,7 @@ zone. The zone then selects the growth defaults in the carbon model
 | Item | Detail |
 | --- | --- |
 | Status | Called by plot analysis (climate). `POST /simulate` calls it only when the request carries `lat` and `lon`, and the web Simulation Lab does not send them |
-| Adapter | [`open_meteo`](../../integrations/atlas_integrations/open_meteo/adapter.py) |
+| Adapter | [`open_meteo`](../../integrations/carboncreditbuy_integrations/open_meteo/adapter.py) |
 | Endpoints | `OPEN_METEO_ARCHIVE_URL`, default `https://archive-api.open-meteo.com/v1/archive`, and `OPEN_METEO_ELEVATION_URL`, default `https://api.open-meteo.com/v1/elevation` |
 | Request | The archive is asked for daily mean temperature and precipitation for 2015 to 2024. Mean annual temperature is the mean of the daily values and annual precipitation is the total divided by 10 years. The window is fixed in code; the adapter's docstring says a 30-year normal would be about 11,000 rows per call. A second request returns the elevation, which the adapter's docstring attributes to the Copernicus GLO-90 model. If either request fails, the whole climate step fails |
 | Credentials | None for non-commercial use. The adapter has no setting for a subscription key |
@@ -272,14 +272,14 @@ zone. The zone then selects the growth defaults in the carbon model
 
 ### SoilGrids
 
-ISRIC's global 250 m model of soil properties. The Atlas asks for soil organic carbon at three depth layers and shows
+ISRIC's global 250 m model of soil properties. CarbonCreditBuy asks for soil organic carbon at three depth layers and shows
 the thickness-weighted mean for 0 to 30 cm. It is a context indicator and does not enter the carbon estimate; the
 report calls it a current stock indicator, not a change estimate.
 
 | Item | Detail |
 | --- | --- |
 | Status | Called by plot analysis (soil) |
-| Adapter | [`soilgrids`](../../integrations/atlas_integrations/soilgrids/adapter.py) |
+| Adapter | [`soilgrids`](../../integrations/carboncreditbuy_integrations/soilgrids/adapter.py) |
 | Endpoint | `SOILGRIDS_URL`, default `https://rest.isric.org/soilgrids/v2.0/properties/query` |
 | Request | One request for property `soc`, mean value, depths 0-5 cm, 5-15 cm and 15-30 cm. SoilGrids returns decigrams per kilogram; the adapter weights by layer thickness (5, 10 and 15 cm) and divides by 10 to give g/kg. A layer without a value is skipped and listed in `depths_used` |
 | Credentials | None |
@@ -299,7 +299,7 @@ no country is given, its country.
 | Item | Detail |
 | --- | --- |
 | Status | Called by `GET /geocode`, `GET /reverse-geocode` and `POST /plots`, which in live mode always makes a reverse lookup. Select it with `ATLAS_GEOCODER=nominatim`, the default |
-| Adapter | [`nominatim`](../../integrations/atlas_integrations/nominatim/adapter.py) |
+| Adapter | [`nominatim`](../../integrations/carboncreditbuy_integrations/nominatim/adapter.py) |
 | Endpoint | `NOMINATIM_URL`, default `https://nominatim.openstreetmap.org` |
 | Credentials | `NOMINATIM_USER_AGENT` is mandatory. The adapter raises `ConfigurationError` for an empty value or one that still contains the placeholder `you@example.org`, which is what `.env.example` ships with, so a live deployment must edit it |
 | Request | Search sends the text, `format=jsonv2`, `addressdetails`, up to 5 results (the adapter allows 1 to 10) and, if known, a lowercase `countrycodes`. Reverse sends the latitude, the longitude and zoom 10. Country, state and district come from the address fields, which vary by country |
@@ -319,7 +319,7 @@ A second geocoder over the same OpenStreetMap data, run by komoot. Select it wit
 | Item | Detail |
 | --- | --- |
 | Status | Called wherever Nominatim would be, when selected in live mode |
-| Adapter | [`photon`](../../integrations/atlas_integrations/photon/adapter.py) |
+| Adapter | [`photon`](../../integrations/carboncreditbuy_integrations/photon/adapter.py) |
 | Endpoint | `PHOTON_URL`, default `https://photon.komoot.io`. Search is `/api` with the text, a limit and `lang=en`; reverse is `/reverse` with the coordinates |
 | Credentials | None. Requests carry the default `User-Agent`; no setting changes it |
 | Country | The country code is not sent. The adapter filters the results by country after they arrive and returns all of them when none match |
@@ -339,7 +339,7 @@ users are in [US data sources](../regions/US/DATA_SOURCES.md).
 | Item | Detail |
 | --- | --- |
 | Status | Built and tested. `ModeRouter` can construct it, but no service calls it in v0.1 |
-| Adapter | [`usda_nass`](../../integrations/atlas_integrations/usda_nass/adapter.py) |
+| Adapter | [`usda_nass`](../../integrations/carboncreditbuy_integrations/usda_nass/adapter.py) |
 | Endpoint | `USDA_NASS_API_URL`, default `https://quickstats.nass.usda.gov/api/api_GET/` |
 | Credentials | A free key in `USDA_NASS_API_KEY` ([request one](https://quickstats.nass.usda.gov/api)). The adapter refuses an empty key, and in live mode the router substitutes the demo twin. The key travels as a query parameter; error messages never include it |
 | Request | Survey data, crops sector, county level, for a commodity (upper-cased), a two-digit state code, a three-digit county code and a range of years, optionally one statistic |
@@ -358,7 +358,7 @@ Turns a coordinate pair into state and county codes, which Quick Stats needs.
 | Item | Detail |
 | --- | --- |
 | Status | Built and tested, and not called in v0.1. County labels come from Nominatim or Photon |
-| Adapter | [`census_geocoder`](../../integrations/atlas_integrations/census_geocoder/adapter.py) |
+| Adapter | [`census_geocoder`](../../integrations/carboncreditbuy_integrations/census_geocoder/adapter.py) |
 | Endpoint | `CENSUS_GEOCODER_URL`, default `https://geocoding.geo.census.gov/geocoder/geographies/coordinates` |
 | Credentials | None |
 | Request | One coordinate pair for the current benchmark and vintage, asking for the county and state layers. A point outside US counties raises `NotFoundError` |
@@ -377,7 +377,7 @@ for India are in [India data sources](../regions/IN/DATA_SOURCES.md).
 | Item | Detail |
 | --- | --- |
 | Status | Built and tested. `ModeRouter` can construct it, but no service calls it in v0.1 |
-| Adapter | [`data_gov_in`](../../integrations/atlas_integrations/data_gov_in/adapter.py) |
+| Adapter | [`data_gov_in`](../../integrations/carboncreditbuy_integrations/data_gov_in/adapter.py) |
 | Endpoint | `DATA_GOV_IN_API_URL`, default `https://api.data.gov.in/resource`, plus the resource id in `DATA_GOV_IN_CROP_RESOURCE_ID`. The default id is marked "verify" in `.env.example`: resource ids change when datasets are republished |
 | Credentials | A free key in `DATA_GOV_IN_API_KEY` ([data.gov.in](https://data.gov.in/)). The adapter refuses an empty key, and in live mode the router substitutes the demo twin |
 | Request | The key, `format=json`, a limit of 1 to 1,000, an offset and `filters[field]=value`. The field names (`state_name`, `district_name`, `crop`) are constructor arguments, which the router does not set, so check them against the resource's field list before use |
@@ -399,7 +399,7 @@ That includes the imagery provider the map uses by default.
 
 | Variable | Purpose | Notes |
 | --- | --- | --- |
-| `VITE_BASEMAP_STYLE_URL` | MapLibre style for the basemap | Default `https://demotiles.maplibre.org/style.json`, for development only ([MAP_LICENSES.md](../licensing/MAP_LICENSES.md)) |
+| `VITE_BASEMAP_STYLE_URL` | MapLibre style for the basemap | Default `https://tiles.openfreemap.org/styles/liberty`, for development only ([MAP_LICENSES.md](../licensing/MAP_LICENSES.md)) |
 | `VITE_BASEMAP_PMTILES_URL` | A Protomaps archive you host | OpenStreetMap data under the ODbL; the attribution is required |
 
 These are read when the web app is built. In the Docker image the web server also has to allow each tile host, or the
@@ -449,7 +449,7 @@ variable that the application uses for another integration (such as `LLM_API_KEY
 `.env.example` does not list `ESRI_API_KEY` yet; [setup](../developer-guide/setup.md#api) does.
 
 Analysis rule. Imagery on screen is for viewing. Run segmentation, machine learning or feature extraction only on
-providers with `analysis_allowed: true`, or on the user's own imagery. The Atlas runs none of it on these tiles.
+providers with `analysis_allowed: true`, or on the user's own imagery. CarbonCreditBuy runs none of it on these tiles.
 
 Before a new provider ships, CLAUDE.md principles 5 and 6 apply: a row in [DATA_LICENSES.md](../licensing/DATA_LICENSES.md)
 and [MAP_LICENSES.md](../licensing/MAP_LICENSES.md), a string in [ATTRIBUTION.md](../licensing/ATTRIBUTION.md), a row in
@@ -465,7 +465,7 @@ they differ. Display the master copy in your own interface and publications unti
 | Source | Master id | Adapter `SOURCE.id` | What the adapter's text changes |
 | --- | --- | --- | --- |
 | ESA WorldCover | `esa-worldcover` | `esa-worldcover` | Nothing |
-| Sentinel-2 | `copernicus-sentinel-2` | `sentinel-2-l2a-earth-search`, `sentinel-2-l2a-copernicus` | Uses the current year, not the acquisition year, and adds "processed by AgriCarbon Atlas" and "catalogue by Element 84" or "catalogue by ESA/CDSE" |
+| Sentinel-2 | `copernicus-sentinel-2` | `sentinel-2-l2a-earth-search`, `sentinel-2-l2a-copernicus` | Uses the current year, not the acquisition year, and adds "processed by CarbonCreditBuy" and "catalogue by Element 84" or "catalogue by ESA/CDSE" |
 | Open-Meteo | `open-meteo` | `open-meteo` | Adds "(CC BY 4.0); ERA5 © ECMWF/Copernicus; elevation © Copernicus DEM GLO-90". The master list's Copernicus DEM entry (`copernicus-dem`) names GLO-30 |
 | SoilGrids | `soilgrids` | `soilgrids` | Adds "2.0" and the Poggio et al. citation |
 | Nominatim | `nominatim` | `osm-nominatim` | Omits "Search by Nominatim" |

@@ -1,6 +1,6 @@
-# Contributing to AgriCarbon Atlas
+# Contributing to CarbonCreditBuy
 
-Thank you for considering a contribution. AgriCarbon Atlas produces numbers
+Thank you for considering a contribution. CarbonCreditBuy produces numbers
 that farmers, landowners and reviewers may act on, so the bar for a change is
 higher than "it works": every calculation must be traceable to a published
 source, every dataset must carry a license, and every result must stay

@@ -17,7 +17,7 @@ from __future__ import annotations
 from collections.abc import Iterable, Mapping, Sequence
 from typing import Any
 
-from atlas_agents import Evidence
+from carboncreditbuy_agents import Evidence
 
 NOT_A_CREDIT = "This is an estimate, not a carbon credit."
 SCENARIO_NOT_A_CREDIT = "This is a scenario, not a carbon credit."

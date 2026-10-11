@@ -1,7 +1,7 @@
 # Methodologies — European Union
 
-This page explains how the Atlas estimates carbon for a plot in the European Union, where that estimate is weakest for
-European trees, and how far it is from what a certification under the CRCF requires. The Atlas **references**
+This page explains how CarbonCreditBuy estimates carbon for a plot in the European Union, where that estimate is weakest for
+European trees, and how far it is from what a certification under the CRCF requires. CarbonCreditBuy **references**
 methodologies; it never **applies** one, and nothing here turns an estimate into a certified unit
 ([carbon credit vs estimate](../../concepts/carbon-credit-vs-estimate.md)).
 
@@ -13,12 +13,12 @@ in [policy-references.md](../../research/policy-references.md).
 
 | Question | Answer |
 | --- | --- |
-| What does the Atlas calculate for an EU plot? | A scenario of the carbon the trees you describe remove each year, as a range, from the IPCC 2006 Tier 1 gain-loss method, or from a trunk-diameter equation when you give an average diameter |
-| Is that what the CRCF certifies? | No. The CRCF certifies a net benefit above a baseline, over an activity period of at least five years, with monitoring and verification by a recognized scheme. The Atlas does none of these ([below](#the-crcf-compared-with-the-atlas-estimate)) |
+| What does CarbonCreditBuy calculate for an EU plot? | A scenario of the carbon the trees you describe remove each year, as a range, from the IPCC 2006 Tier 1 gain-loss method, or from a trunk-diameter equation when you give an average diameter |
+| Is that what the CRCF certifies? | No. The CRCF certifies a net benefit above a baseline, over an activity period of at least five years, with monitoring and verification by a recognized scheme. CarbonCreditBuy does none of these ([below](#the-crcf-compared-with-the-atlas-estimate)) |
 | Is there a CRCF methodology for agroforestry? | The Commission adopted carbon-farming certification methodologies on 10 July 2026, including agriculture and agroforestry on mineral soils and afforestation. They were not confirmed in force as of 2026-10-05 ([Commission news](https://climate.ec.europa.eu/news-other-reads/news/commission-adopts-certification-methodologies-carbon-farming-under-crcf-regulation-2026-07-10_en)) |
-| What is the weak point for European trees? | The diameter equation was built for tropical trees, and the zone the Atlas assumes without live climate data may not suit olive or eucalyptus ([below](#the-temperate-allometry-gap)) |
+| What is the weak point for European trees? | The diameter equation was built for tropical trees, and the zone CarbonCreditBuy assumes without live climate data may not suit olive or eucalyptus ([below](#the-temperate-allometry-gap)) |
 
-## What the Atlas calculates
+## What CarbonCreditBuy calculates
 
 The model is `tree-biomass` version 0.1 in [`packages/carbon-engine`](../../../packages/carbon-engine/README.md), the same
 for every region. Every number comes from [`config/`](../../../config/) with a source, a unit and a verification
@@ -119,12 +119,12 @@ oak, apple, olive and poplar. Stored carbon is not carbon a program would credit
 false`, and the rules in [PROGRAMS.md](PROGRAMS.md#rules-by-tree-age) show how programs treat trees that already
 stand.
 
-## The CRCF compared with the Atlas estimate
+## The CRCF compared with CarbonCreditBuy estimate
 
 The right-hand column comes from a research reading of Regulation (EU) 2024/3012. Article numbers can carry
 transcription errors, so open the text before you quote it ([EUR-Lex](https://eur-lex.europa.eu/eli/reg/2024/3012/oj)).
 
-| Topic | What the CRCF requires | What the Atlas does |
+| Topic | What the CRCF requires | What CarbonCreditBuy does |
 | --- | --- | --- |
 | Quantity | A net carbon-farming benefit: total removals minus baseline removals and associated emissions (Article 4) | Gross growth of the trees you describe; no baseline, no associated emissions |
 | Additionality | Goes beyond Union and national statutory requirements and relies on the incentive effect of certification (Article 5) | Not assessed |
@@ -134,7 +134,7 @@ transcription errors, so open the text before you quote it ([EUR-Lex](https://eu
 
 Sources for the unit types and the registry are in [PROGRAMS.md](PROGRAMS.md#the-crcf). The Regulation's text does not
 address existing carbon stocks explicitly; treating them as part of the baseline follows from the net-benefit formula
-([research note](../../research/tree-age-carbon-rules.md#european-union)). The Atlas's own wording is the sentence on
+([research note](../../research/tree-age-carbon-rules.md#european-union)). CarbonCreditBuy's own wording is the sentence on
 every EU result: an estimate is never automatically certifiable.
 
 ## Other methodologies a project could use

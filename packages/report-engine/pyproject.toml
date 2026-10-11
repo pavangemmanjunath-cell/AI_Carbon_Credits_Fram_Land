@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agricarbon-report-engine"
+name = "carboncreditbuy-report-engine"
 version = "0.2.0"
-description = "HTML / Markdown / JSON (optional PDF) report rendering for AgriCarbon Atlas"
+description = "HTML / Markdown / JSON (optional PDF) report rendering for CarbonCreditBuy"
 readme = "README.md"
 requires-python = ">=3.12"
 license = {text = "Apache-2.0"}

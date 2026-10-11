@@ -32,7 +32,7 @@ def install_rate_limiting(app: FastAPI, settings: Settings) -> Limiter:
     async def _rate_limited(request: Request, exc: RateLimitExceeded) -> JSONResponse:
         return JSONResponse(
             {
-                "type": "https://agricarbon-atlas.org/problems/rate-limited",
+                "type": "https://carboncreditbuy.org/problems/rate-limited",
                 "title": "Too Many Requests",
                 "status": 429,
                 "detail": f"Rate limit exceeded: {exc.detail}",

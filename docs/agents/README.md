@@ -1,6 +1,6 @@
-# Agents in AgriCarbon Atlas — a learning guide
+# Agents in CarbonCreditBuy — a learning guide
 
-AgriCarbon Atlas has a small team of software **agents** that look at one plot together and explain, in plain
+CarbonCreditBuy has a small team of software **agents** that look at one plot together and explain, in plain
 language, what the project's engines found: the land, the satellite picture, the trees, the estimated carbon
 removal, the programmes that might apply, the value scenarios, what evidence is still missing — and a report.
 
@@ -60,10 +60,10 @@ curl -s 'localhost:8000/api/v1/agents/runs?plot_id=PLT-DEMOIN' | jq '.items[0]'
 
 ## 2. The building blocks
 
-The framework is the package [`atlas_agents`](../../packages/agent-framework/README.md) (no dependencies, no
-knowledge of carbon). The AgriCarbon team lives in [`apps/api/app/agents/`](../../apps/api/app/agents/).
+The framework is the package [`carboncreditbuy_agents`](../../packages/agent-framework/README.md) (no dependencies, no
+knowledge of carbon). The CarbonCreditBuy team lives in [`apps/api/app/agents/`](../../apps/api/app/agents/).
 
-| Concept | In one sentence | Framework module | AgriCarbon example |
+| Concept | In one sentence | Framework module | CarbonCreditBuy example |
 |---|---|---|---|
 | **Agent** | A named piece of code with one job, a list of tools and declared reads and writes | `agent.py` | `land.py`: size, place, land cover |
 | **Tool** | A described function an agent calls; every call is timed and recorded | `tools.py` | `measure_plot`, `estimate_carbon` |
@@ -166,7 +166,7 @@ with a summary).
 
 ### Orchestrator
 
-A `for` loop you can read in [orchestrator.py](../../packages/agent-framework/atlas_agents/orchestrator.py). For
+A `for` loop you can read in [orchestrator.py](../../packages/agent-framework/carboncreditbuy_agents/orchestrator.py). For
 each step it checks the skip rules, gives the agent a fresh `RunContext`, times `run`, catches any exception
 (the step becomes `failed`, the team gets a warning message, the run continues), numbers the messages
 `M1, M2, …` and records the step as `done`, `warning`, `skipped` or `failed`. Then it runs the guardrails and
@@ -186,9 +186,9 @@ model to rephrase it and then checks the answer — see [section 7](#7-templates
 
 ### Guardrail
 
-Six checks run after every AgriCarbon run (wired in
+Six checks run after every CarbonCreditBuy run (wired in
 [`app/agents/service.py`](../../apps/api/app/agents/service.py), implemented as pure functions in
-[`guardrails.py`](../../packages/agent-framework/atlas_agents/guardrails.py)):
+[`guardrails.py`](../../packages/agent-framework/carboncreditbuy_agents/guardrails.py)):
 
 | Id | Checks | Can |
 |---|---|---|
@@ -386,7 +386,7 @@ What to notice:
 6. **Why `completed-with-warnings`?** Two IPCC parameters are still `pending` verification. That is a real
    caveat about the estimate, so the run says so instead of looking perfectly green.
 
-Asking a question picks a plan with the [intent router](../../packages/agent-framework/atlas_agents/intents.py):
+Asking a question picks a plan with the [intent router](../../packages/agent-framework/carboncreditbuy_agents/intents.py):
 
 ```text
 $ python3 examples/agents/run_team.py --ask "How much carbon if I add 200 trees?"
@@ -480,7 +480,7 @@ export LLM_MODEL=llama3.1:8b
 export LLM_TIMEOUT_SECONDS=20          # optional, default 20
 make api
 curl -s localhost:8000/api/v1/agents | jq .framework
-# {"name": "atlas-agents", "version": "0.1.0", "reasoner": "llm", "llm_enabled": true}
+# {"name": "carboncreditbuy-agents", "version": "0.1.0", "reasoner": "llm", "llm_enabled": true}
 ```
 
 Other servers: LM Studio `http://localhost:1234/v1`, llama.cpp server `http://localhost:8080/v1`, vLLM
@@ -568,7 +568,7 @@ missing, warn and let the plan's skip rules do the rest; never put coordinates i
 The concepts here exist, under other names, in the popular frameworks — which makes this code a good stepping
 stone:
 
-| atlas_agents | LangGraph | CrewAI | AutoGen (AgentChat) | PydanticAI / OpenAI Agents SDK |
+| carboncreditbuy_agents | LangGraph | CrewAI | AutoGen (AgentChat) | PydanticAI / OpenAI Agents SDK |
 |---|---|---|---|---|
 | `Agent.run(ctx)` | a node function | `Agent(role, goal, backstory)` + its `Task` | `AssistantAgent` | `Agent` |
 | `Tool` (`deps` first) | tool / `ToolNode` | tool (`@tool`) | `FunctionTool` | `@agent.tool` with `RunContext.deps` |
@@ -591,7 +591,7 @@ as a state update; turn each plan into a chain of edges, with `skip_if` rules as
 tools as plain functions (wrap them as LangChain tools if a model should call them); keep the transcript as a
 `messages` state key with an append reducer; and run the guardrails as a final node. Keep two things whatever
 the framework: numbers come from tools, and any model output passes `review_rephrase` and the redaction
-helpers in `atlas_agents`, which have no framework dependency. CrewAI's *Flows* and AutoGen's round-robin
+helpers in `carboncreditbuy_agents`, which have no framework dependency. CrewAI's *Flows* and AutoGen's round-robin
 teams map the same way; their default agents call a model on every turn, so you would keep the deterministic
 steps as plain functions and use the model only for narration.
 
@@ -601,7 +601,7 @@ steps as plain functions and use the model only for narration.
    with which tool? Then create a plot without trees through the API, run `full-assessment` on it, and explain
    from the `steps` array why Market, Review and Report are `skipped`.
 2. **Teach the router a language.** Add a few Marathi or Tamil keywords to `DEFAULT_INTENTS` in
-   [`intents.py`](../../packages/agent-framework/atlas_agents/intents.py) and a test in
+   [`intents.py`](../../packages/agent-framework/carboncreditbuy_agents/intents.py) and a test in
    [`test_agent_framework_intents.py`](../../packages/agent-framework/tests/test_agent_framework_intents.py).
    Why are non-Latin keywords matched as substrings and Latin ones as whole words?
 3. **Write a guardrail.** Add `readiness-present` (warn when a run has an estimate without a readiness score)
@@ -620,8 +620,8 @@ compare the transcripts.
 
 | File | What it holds |
 |---|---|
-| [`packages/agent-framework/`](../../packages/agent-framework/README.md) | the framework `atlas_agents` (agents, tools, blackboard, plans, orchestrator, reasoners, guardrails, trace, intents, LLM client, redaction) |
-| [`apps/api/app/agents/tools.py`](../../apps/api/app/agents/tools.py) | the AgriCarbon tools, wrapping the existing services |
+| [`packages/agent-framework/`](../../packages/agent-framework/README.md) | the framework `carboncreditbuy_agents` (agents, tools, blackboard, plans, orchestrator, reasoners, guardrails, trace, intents, LLM client, redaction) |
+| [`apps/api/app/agents/tools.py`](../../apps/api/app/agents/tools.py) | the CarbonCreditBuy tools, wrapping the existing services |
 | [`apps/api/app/agents/`](../../apps/api/app/agents/) `coordinator.py` … `report.py` | one module per agent |
 | [`apps/api/app/agents/wording.py`](../../apps/api/app/agents/wording.py) | the sentence templates |
 | [`apps/api/app/agents/plans.py`](../../apps/api/app/agents/plans.py) | the three plans |

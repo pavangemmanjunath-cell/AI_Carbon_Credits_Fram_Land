@@ -1,4 +1,4 @@
-# AgriCarbon Atlas — Python back end, pinned (security: reproducible builds).
+# CarbonCreditBuy — Python back end, pinned (security: reproducible builds).
 # Install:  python3 -m pip install -r requirements.txt
 # Python 3.12+ required.
 

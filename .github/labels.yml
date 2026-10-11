@@ -64,7 +64,7 @@
 
 - name: area/integrations
   color: "bfd200"
-  description: "Data adapters and their demo twins in integrations/atlas_integrations."
+  description: "Data adapters and their demo twins in integrations/carboncreditbuy_integrations."
 
 - name: area/earth-observation
   color: "6a4c93"

@@ -7,7 +7,7 @@ from typing import Any
 from app.agents import wording
 from app.agents.carbon import estimate_evidence
 from app.agents.tools import review_estimate
-from atlas_agents import Agent, AgentMessage, RunContext
+from carboncreditbuy_agents import Agent, AgentMessage, RunContext
 
 
 class ReviewAgent(Agent):

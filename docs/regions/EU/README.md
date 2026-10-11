@@ -1,12 +1,12 @@
 # European Union (EU)
 
-This page summarizes how the Atlas behaves for plots in the European Union and what a farmer, adviser or researcher in
+This page summarizes how CarbonCreditBuy behaves for plots in the European Union and what a farmer, adviser or researcher in
 a member state should expect from it. Configuration lives in
 [`config/regions/EU.yaml`](../../../config/regions/EU.yaml) and
 [`config/policies/EU.yaml`](../../../config/policies/EU.yaml). The sister regions are [India](../IN/README.md) and the
 [United States](../US/README.md).
 
-The EU is a bloc, not a country. The Atlas keeps one set of rules for the bloc and maps each member state to it, so a
+The EU is a bloc, not a country. CarbonCreditBuy keeps one set of rules for the bloc and maps each member state to it, so a
 farmer in Germany and one in Spain see the same EU programs. National rules, such as a member state's Common
 Agricultural Policy (CAP) plan, are not screened.
 
@@ -22,7 +22,7 @@ Agricultural Policy (CAP) plan, are not screened.
 | Admin levels | country, NUTS 2, NUTS 3 | Listed in the region file; version 0.1 does not use them. NUTS is Eurostat's regional classification |
 | Default climate zone | `cool_temperate_moist` | A temperate default. Derived per plot in live mode, otherwise the Evidence chain says "region-default". See the note on olive and eucalyptus in [METHODOLOGIES.md](METHODOLOGIES.md) |
 | Map default | Center 50.0 N, 10.0 E, zoom 3.8 | |
-| Bounding box | West -10.5, south 34.5, east 31.6, north 71.2 | Covers the member states in Europe, from Portugal to Finland. Cyprus and the outermost regions (for example Madeira, the Azores and the Canary Islands) lie outside it, so the Atlas cannot guess the region from a point there: choose the country explicitly |
+| Bounding box | West -10.5, south 34.5, east 31.6, north 71.2 | Covers the member states in Europe, from Portugal to Finland. Cyprus and the outermost regions (for example Madeira, the Azores and the Canary Islands) lie outside it, so CarbonCreditBuy cannot guess the region from a point there: choose the country explicitly |
 
 **Place search.** When the selected country is the European Union, the search box does not restrict the geocoder to one
 country, and it starts after three characters. Results may therefore include places outside the EU.
@@ -37,11 +37,11 @@ access notes are in [DATA_SOURCES.md](DATA_SOURCES.md) and
 
 ## Map imagery
 
-The map's **Satellite** view starts with a national open orthophoto where the Atlas has a verified one: France (IGN
+The map's **Satellite** view starts with a national open orthophoto where CarbonCreditBuy has a verified one: France (IGN
 BD ORTHO, 20 cm), Spain (IGN PNOA, 25 to 50 cm) and the Netherlands (PDOK, 8 cm). For every other member state it starts
 with the global Sentinel-2 mosaic from EOX, which has 10 m pixels and shows 2016: a village or a large field is visible,
 individual trees are not. A deployer who holds an Esri license can add Esri World Imagery, for viewing only. A person
-can pick another provider under **Settings**, **Map imagery**. Imagery is for viewing: the Atlas's own analysis uses
+can pick another provider under **Settings**, **Map imagery**. Imagery is for viewing: CarbonCreditBuy's own analysis uses
 Sentinel-2 scenes and WorldCover, not map tiles. Licenses, attribution texts and zoom limits are in
 [MAP_LICENSES.md](../../licensing/MAP_LICENSES.md) and
 [`config/imagery/providers.yaml`](../../../config/imagery/providers.yaml). The EU details, and what is still
@@ -49,7 +49,7 @@ unconfirmed, are in [DATA_SOURCES.md](DATA_SOURCES.md#imagery-for-the-map).
 
 ## Programs screened
 
-| Program | Authority | What the Atlas says |
+| Program | Authority | What CarbonCreditBuy says |
 | --- | --- | --- |
 | Carbon Removals and Carbon Farming Certification Framework (CRCF) | European Commission, Regulation (EU) 2024/3012 | `requires_certification` for tree plantation, agroforestry, soil carbon and cropland practice: activities must meet the quantification, additionality, long-term storage and sustainability criteria and be certified by a recognized scheme |
 | CAP eco-schemes and agri-environment-climate measures | Member-state paying agencies | `potentially_applicable` for tree plantation, agroforestry and cropland practice: national plans include eco-schemes and investment support. These are incentives, not carbon credits |
@@ -59,7 +59,7 @@ Each program is described, with its sources and open questions, in [PROGRAMS.md]
 result carries the sentence "Initial screening only — not an eligibility determination. Under the CRCF a calculated
 estimate is never automatically certifiable; certification by a recognised scheme is required."
 
-**An Atlas estimate is never automatically certifiable under the CRCF.** The Atlas does no baseline, no monitoring, no
+**A CarbonCreditBuy estimate is never automatically certifiable under the CRCF.** CarbonCreditBuy does no baseline, no monitoring, no
 verification and no certification, and it is not a recognized certification scheme. A CRCF unit exists only after a
 recognized scheme certifies an activity. As of the research date, 2026-10-05, the Commission had adopted the
 carbon-farming certification methodologies on 10 July 2026 and they were not confirmed in force; certification schemes
@@ -107,7 +107,7 @@ estimate is never automatically certifiable. The full list, with sources and the
 - **Your location.** The design keeps the exact boundary out of public views and uses a point rounded to roughly 5 km
   ([farmer data](../../privacy/farmer-data.md)). Version 0.1 has no sign-in, so read
   [Privacy and your data](../../user-guide/faq.md#privacy-and-your-data) before you enter a real boundary on a shared
-  server. An organization that operates the Atlas in the EU is responsible for its own data-protection obligations;
+  server. An organization that operates CarbonCreditBuy in the EU is responsible for its own data-protection obligations;
   the privacy pages are not legal advice.
 - **A caution for temperate trees.** The growth values are broad Tier 1 working values, and the equation used when you
   enter a trunk diameter was built for tropical trees. See [METHODOLOGIES.md](METHODOLOGIES.md).

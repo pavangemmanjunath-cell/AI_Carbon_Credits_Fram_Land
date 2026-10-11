@@ -1,6 +1,6 @@
 # Carbon credit vs carbon estimate
 
-AgriCarbon Atlas produces **estimates**. A **carbon credit** is something
+CarbonCreditBuy produces **estimates**. A **carbon credit** is something
 else entirely, and the difference is the single most important idea in
 this documentation.
 
@@ -35,7 +35,7 @@ and a **registry** issued serialized units and retired them when claimed.
 ## What an estimate is
 
 An estimate is a model's answer to "roughly how much carbon might trees on
-this land be accumulating, given what we know?" The Atlas computes it from
+this land be accumulating, given what we know?" CarbonCreditBuy computes it from
 your plot area, climate zone, species, tree count and age using IPCC Tier
 1 defaults and, where measurements exist, allometric equations
 ([../architecture/carbon-engine.md](../architecture/carbon-engine.md)).
@@ -56,12 +56,12 @@ constant `certified: false`.
 | Can it be sold? | No | Yes, subject to the programme's rules |
 | Legal status | Information | Defined by the programme and jurisdiction |
 
-## Why the Atlas insists on the distinction
+## Why CarbonCreditBuy insists on the distinction
 
 Presenting an estimate as a credit would mislead a farmer about income,
 mislead a buyer about a claim, and expose everyone to the double-counting
 and greenwashing problems the CCPs and the CRCF were written to prevent.
-The Atlas therefore never uses the words "credit", "offset" or "issued"
+CarbonCreditBuy therefore never uses the words "credit", "offset" or "issued"
 for its own numbers; shows the readiness checklist that names the
 evidence a programme would still need; and labels market figures as
 scenarios ([esg.md](esg.md)).

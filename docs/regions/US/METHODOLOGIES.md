@@ -1,7 +1,7 @@
 # Methodologies — United States
 
-This page explains how the Atlas estimates carbon for a plot in the United States, where that estimate is weakest for
-US trees, and how it differs from what a USDA tool or a voluntary-market project would produce. The Atlas
+This page explains how CarbonCreditBuy estimates carbon for a plot in the United States, where that estimate is weakest for
+US trees, and how it differs from what a USDA tool or a voluntary-market project would produce. CarbonCreditBuy
 **references** methodologies; it never **applies** one, and nothing here turns an estimate into a credit
 ([carbon credit vs estimate](../../concepts/carbon-credit-vs-estimate.md)).
 
@@ -13,12 +13,12 @@ this page is in [policy-references.md](../../research/policy-references.md).
 
 | Question | Answer |
 | --- | --- |
-| What does the Atlas calculate for a US plot? | A scenario of the carbon the trees you describe remove each year, as a range, from the IPCC 2006 Tier 1 gain-loss method, or from a trunk-diameter equation when you give an average diameter |
+| What does CarbonCreditBuy calculate for a US plot? | A scenario of the carbon the trees you describe remove each year, as a range, from the IPCC 2006 Tier 1 gain-loss method, or from a trunk-diameter equation when you give an average diameter |
 | What is the weak point for US trees? | The diameter equation (Chave et al. 2014) was built for tropical trees. The equation the config names for US species, `temperate_generic`, has no verified equation yet, so the tropical one is used and the result says so |
 | Is the number comparable to COMET-Planner or COMET-Farm? | Not directly: different time window, pools, models and units ([below](#comparing-with-other-us-tools)) |
 | Which methodologies could a project use? | Verra VM0047 for new planting, VM0042 for farming practices, and protocols for existing forest ([PROGRAMS.md](PROGRAMS.md#voluntary-market-methodologies)) |
 
-## What the Atlas calculates
+## What CarbonCreditBuy calculates
 
 The model is `tree-biomass` version 0.1 in [`packages/carbon-engine`](../../../packages/carbon-engine/README.md), the same
 for every region. Every number comes from [`config/`](../../../config/) with a source, a unit and a verification
@@ -124,14 +124,14 @@ stand.
 
 | Tool | Time window | Pools | Basis |
 | --- | --- | --- | --- |
-| Atlas | Mean annual removal over 30 years (Tier 1), or stock divided by age (Tier 2) | Living above-ground and below-ground biomass | IPCC 2006 Tier 1 working values, Chave et al. 2014 |
+| CarbonCreditBuy | Mean annual removal over 30 years (Tier 1), or stock divided by age (Tier 2) | Living above-ground and below-ground biomass | IPCC 2006 Tier 1 working values, Chave et al. 2014 |
 | COMET-Planner v4.0 | 10-year averages | Standing tree carbon only, without dead wood or litter | Diameter-from-age models by taxon group and Land Resource Region from FIA data ([COMET-Planner report](https://comet-planner.com/api/resource/pdf/COMET-Planner_Report.pdf)) |
 | COMET-Farm | Set by the tool | Agroforestry assessments use tree numbers and sizes with FIA-based growth equations *(unverified; the site could not be opened)* | [comet-farm.com](https://comet-farm.com/) |
 
 Before you compare numbers, check acres or hectares, metric or short tons (one short ton is about 0.907 metric tons),
 tons of carbon or of CO₂ (multiply carbon by 44/12 for CO₂), the time window, and the trees entered.
 
-## What a real project asks for that the Atlas does not do
+## What a real project asks for that CarbonCreditBuy does not do
 
 | Step | Why it matters |
 | --- | --- |

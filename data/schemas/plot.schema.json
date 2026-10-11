@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://agricarbon-atlas.org/schemas/plot.schema.json",
+  "$id": "https://carboncreditbuy.org/schemas/plot.schema.json",
   "title": "Plot",
   "description": "A user-defined land parcel. Exact geometry is private by default; public views use public_centroid only.",
   "type": "object",

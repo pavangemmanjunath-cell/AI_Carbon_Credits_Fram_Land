@@ -1,6 +1,6 @@
 # integrations
 
-Adapters for every external API and dataset AgriCarbon Atlas uses, each with an
+Adapters for every external API and dataset CarbonCreditBuy uses, each with an
 offline **demo twin**. This is where the project's data-source rules are
 enforced (CLAUDE.md principles 5 and 6): the API never calls a public service
 directly; it goes through an adapter that states its source, licence,
@@ -11,11 +11,11 @@ This folder holds three kinds of integration:
 
 | Part | What it is | Where it runs |
 | --- | --- | --- |
-| `atlas_integrations/` | The Python adapters in the table below | In the API |
+| `carboncreditbuy_integrations/` | The Python adapters in the table below | In the API |
 | [`imagery/`](imagery/README.md) | Display imagery providers (Esri, USGS, EOX, national orthophotos): configuration and documentation, not a Python adapter. The browser loads the tiles | In the web app's map |
 | [`qgis-plugin/`](qgis-plugin/README.md) | A QGIS 3 plugin that sends a field polygon and a tree count to the API ([user guide](../docs/user-guide/qgis-plugin.md)) | In QGIS, talking to the API over HTTP |
 
-The Python package is `atlas_integrations` (install name `agricarbon-integrations`).
+The Python package is `carboncreditbuy_integrations` (install name `carboncreditbuy-integrations`).
 
 ## Install
 
@@ -81,7 +81,7 @@ limitations: [plugin README](qgis-plugin/README.md).
 Every adapter package has the same shape:
 
 ```text
-atlas_integrations/<name>/
+carboncreditbuy_integrations/<name>/
     __init__.py     exports SOURCE, the live adapter, the Demo twin and result types
     adapter.py      SOURCE (SourceProvenance), live class, Demo twin
 ```

@@ -56,7 +56,7 @@
         "name": "Synthetic demo data (imitating Sentinel-2 L2A (Earth Search STAC, Element 84 / AWS))",
         "version": "L2A",
         "license": "Apache-2.0 (generated)",
-        "attribution": "AgriCarbon Atlas demo generator — not an observation",
+        "attribution": "CarbonCreditBuy demo generator — not an observation",
         "url": null,
         "accessed_at": "2026-10-05T19:53:49.700062Z",
         "scene_ids": [

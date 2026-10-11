@@ -1,4 +1,4 @@
-# Code owners for AgriCarbon Atlas.
+# Code owners for CarbonCreditBuy.
 #
 # Why this file exists: carbon parameters, policy rules, the privacy boundary and the
 # supply chain are the parts of the repository that people act on or that can leak data,
@@ -7,73 +7,73 @@
 #
 # The team handles below are PLACEHOLDERS. GitHub reports an owner that does not exist
 # as an error and ignores the line, so this file does nothing until you either create
-# these teams in the agricarbon-atlas organization or point every line at real handles.
+# these teams in the carboncreditbuy organization or point every line at real handles.
 # A single-maintainer project can name one handle on every line and still benefit from
 # the explicit mapping.
 #
-#   @agricarbon-atlas/maintainers        everything not listed below, supply chain, licensing
-#   @agricarbon-atlas/carbon-reviewers   parameters, equations, tree-age rules
-#   @agricarbon-atlas/policy-india       IN program rules and notes
-#   @agricarbon-atlas/policy-usa         US program rules and notes
-#   @agricarbon-atlas/policy-eu          EU program rules and notes
-#   @agricarbon-atlas/privacy-reviewers  geometry handling, logging, explain, agents, schema
+#   @carboncreditbuy/maintainers        everything not listed below, supply chain, licensing
+#   @carboncreditbuy/carbon-reviewers   parameters, equations, tree-age rules
+#   @carboncreditbuy/policy-india       IN program rules and notes
+#   @carboncreditbuy/policy-usa         US program rules and notes
+#   @carboncreditbuy/policy-eu          EU program rules and notes
+#   @carboncreditbuy/privacy-reviewers  geometry handling, logging, explain, agents, schema
 #
 # Rules: the LAST matching pattern wins, so keep general patterns first.
 # Area labels for the same paths come from .github/labeler.yml.
 
 # Default owner for everything
-*                                       @agricarbon-atlas/maintainers
+*                                       @carboncreditbuy/maintainers
 
 # Numbers people act on: require a carbon domain reviewer
-/config/species/                        @agricarbon-atlas/carbon-reviewers
-/config/methodologies/                  @agricarbon-atlas/carbon-reviewers
-/config/tree-age/                       @agricarbon-atlas/carbon-reviewers
-/config/readiness.yaml                  @agricarbon-atlas/carbon-reviewers
-/config/detection.yaml                  @agricarbon-atlas/carbon-reviewers
-/packages/carbon-engine/                @agricarbon-atlas/carbon-reviewers
-/data/schemas/carbon-estimate.schema.json   @agricarbon-atlas/carbon-reviewers
-/docs/research/                         @agricarbon-atlas/carbon-reviewers
+/config/species/                        @carboncreditbuy/carbon-reviewers
+/config/methodologies/                  @carboncreditbuy/carbon-reviewers
+/config/tree-age/                       @carboncreditbuy/carbon-reviewers
+/config/readiness.yaml                  @carboncreditbuy/carbon-reviewers
+/config/detection.yaml                  @carboncreditbuy/carbon-reviewers
+/packages/carbon-engine/                @carboncreditbuy/carbon-reviewers
+/data/schemas/carbon-estimate.schema.json   @carboncreditbuy/carbon-reviewers
+/docs/research/                         @carboncreditbuy/carbon-reviewers
 
 # Policy screening: one reviewer group per region
-/config/regions/IN.yaml                 @agricarbon-atlas/policy-india
-/config/policies/IN.yaml                @agricarbon-atlas/policy-india
-/docs/regions/IN/                       @agricarbon-atlas/policy-india
-/config/regions/US.yaml                 @agricarbon-atlas/policy-usa
-/config/policies/US.yaml                @agricarbon-atlas/policy-usa
-/docs/regions/US/                       @agricarbon-atlas/policy-usa
-/config/regions/EU.yaml                 @agricarbon-atlas/policy-eu
-/config/policies/EU.yaml                @agricarbon-atlas/policy-eu
-/docs/regions/EU/                       @agricarbon-atlas/policy-eu
-/packages/policy-engine/                @agricarbon-atlas/maintainers @agricarbon-atlas/policy-india @agricarbon-atlas/policy-usa @agricarbon-atlas/policy-eu
-/config/market/                         @agricarbon-atlas/policy-india @agricarbon-atlas/policy-usa @agricarbon-atlas/policy-eu
+/config/regions/IN.yaml                 @carboncreditbuy/policy-india
+/config/policies/IN.yaml                @carboncreditbuy/policy-india
+/docs/regions/IN/                       @carboncreditbuy/policy-india
+/config/regions/US.yaml                 @carboncreditbuy/policy-usa
+/config/policies/US.yaml                @carboncreditbuy/policy-usa
+/docs/regions/US/                       @carboncreditbuy/policy-usa
+/config/regions/EU.yaml                 @carboncreditbuy/policy-eu
+/config/policies/EU.yaml                @carboncreditbuy/policy-eu
+/docs/regions/EU/                       @carboncreditbuy/policy-eu
+/packages/policy-engine/                @carboncreditbuy/maintainers @carboncreditbuy/policy-india @carboncreditbuy/policy-usa @carboncreditbuy/policy-eu
+/config/market/                         @carboncreditbuy/policy-india @carboncreditbuy/policy-usa @carboncreditbuy/policy-eu
 
 # Privacy boundary: geometry handling, public views, logging, the explain endpoint,
 # imports and agents (both can carry coordinates), and the database schema
-/docs/privacy/                          @agricarbon-atlas/privacy-reviewers
-/apps/api/app/services/explain.py       @agricarbon-atlas/privacy-reviewers
-/apps/api/app/services/plots.py         @agricarbon-atlas/privacy-reviewers
-/apps/api/app/core/logging.py           @agricarbon-atlas/privacy-reviewers
-/apps/api/app/repositories/             @agricarbon-atlas/privacy-reviewers
-/apps/api/app/agents/                   @agricarbon-atlas/privacy-reviewers @agricarbon-atlas/maintainers
-/packages/agent-framework/              @agricarbon-atlas/privacy-reviewers @agricarbon-atlas/maintainers
-/docs/agents/                           @agricarbon-atlas/privacy-reviewers @agricarbon-atlas/maintainers
-/data/schemas/schema.sql                @agricarbon-atlas/privacy-reviewers
-/packages/geo-engine/geo_engine/geometry/   @agricarbon-atlas/privacy-reviewers
+/docs/privacy/                          @carboncreditbuy/privacy-reviewers
+/apps/api/app/services/explain.py       @carboncreditbuy/privacy-reviewers
+/apps/api/app/services/plots.py         @carboncreditbuy/privacy-reviewers
+/apps/api/app/core/logging.py           @carboncreditbuy/privacy-reviewers
+/apps/api/app/repositories/             @carboncreditbuy/privacy-reviewers
+/apps/api/app/agents/                   @carboncreditbuy/privacy-reviewers @carboncreditbuy/maintainers
+/packages/agent-framework/              @carboncreditbuy/privacy-reviewers @carboncreditbuy/maintainers
+/docs/agents/                           @carboncreditbuy/privacy-reviewers @carboncreditbuy/maintainers
+/data/schemas/schema.sql                @carboncreditbuy/privacy-reviewers
+/packages/geo-engine/geo_engine/geometry/   @carboncreditbuy/privacy-reviewers
 
 # Licensing metadata, data adapters, imagery providers and the GPL boundary
-/docs/licensing/                        @agricarbon-atlas/maintainers
-/docs/data-sources/                     @agricarbon-atlas/maintainers
-/integrations/                          @agricarbon-atlas/maintainers
-/integrations/qgis-plugin/              @agricarbon-atlas/maintainers
-/config/imagery/                        @agricarbon-atlas/maintainers
-/LICENSE                                @agricarbon-atlas/maintainers
+/docs/licensing/                        @carboncreditbuy/maintainers
+/docs/data-sources/                     @carboncreditbuy/maintainers
+/integrations/                          @carboncreditbuy/maintainers
+/integrations/qgis-plugin/              @carboncreditbuy/maintainers
+/config/imagery/                        @carboncreditbuy/maintainers
+/LICENSE                                @carboncreditbuy/maintainers
 
 # Supply chain and repository automation
-/.github/                               @agricarbon-atlas/maintainers
-/infra/                                 @agricarbon-atlas/maintainers
-/requirements.txt                       @agricarbon-atlas/maintainers
-/apps/web/package.json                  @agricarbon-atlas/maintainers
-/apps/web/package-lock.json             @agricarbon-atlas/maintainers
-/SECURITY.md                            @agricarbon-atlas/maintainers
-/GOVERNANCE.md                          @agricarbon-atlas/maintainers
-/CLAUDE.md                              @agricarbon-atlas/maintainers
+/.github/                               @carboncreditbuy/maintainers
+/infra/                                 @carboncreditbuy/maintainers
+/requirements.txt                       @carboncreditbuy/maintainers
+/apps/web/package.json                  @carboncreditbuy/maintainers
+/apps/web/package-lock.json             @carboncreditbuy/maintainers
+/SECURITY.md                            @carboncreditbuy/maintainers
+/GOVERNANCE.md                          @carboncreditbuy/maintainers
+/CLAUDE.md                              @carboncreditbuy/maintainers

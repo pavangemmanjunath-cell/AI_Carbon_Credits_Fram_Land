@@ -1,6 +1,6 @@
 # API (apps/api)
 
-The FastAPI service behind AgriCarbon Atlas. It validates and stores plots, asks the adapters for land cover,
+The FastAPI service behind CarbonCreditBuy. It validates and stores plots, asks the adapters for land cover,
 vegetation, climate and soil, runs the deterministic engines, screens programmes, renders reports, turns files and
 typed input into boundaries and trees, detects tree cover from satellite data, answers tree-age questions, lists
 imagery providers and runs the agent team. It contains no carbon arithmetic and no policy rules of its own: those live
@@ -243,7 +243,7 @@ their key handling in [`integrations/imagery/`](../../integrations/imagery/READM
 
 ## Errors
 
-Errors are RFC 7807 `application/problem+json` with `type` (`https://agricarbon-atlas.org/problems/<slug>`), `title`,
+Errors are RFC 7807 `application/problem+json` with `type` (`https://carboncreditbuy.org/problems/<slug>`), `title`,
 `status`, `detail` and `instance`. Validation failures add an `errors` list of `{field, message}`; some problems add a
 machine-readable `code`. Every response carries an `X-Request-ID` (the caller's, or a generated one). The slugs:
 

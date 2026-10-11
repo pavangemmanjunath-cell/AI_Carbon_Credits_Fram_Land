@@ -1,11 +1,11 @@
 cff-version: 1.2.0
 message: >-
-  If you use AgriCarbon Atlas in research, teaching or a report, please cite
+  If you use CarbonCreditBuy in research, teaching or a report, please cite
   it using the metadata below. Estimates produced with the software are
   scenario estimates, not certified carbon credits; please keep that
   distinction in any publication.
 type: software
-title: Vriksha Atlas (AgriCarbon Atlas)
+title: "CarbonCreditBuy: An Open, Explainable Platform for Estimating Tree-Based Carbon Removal and Its Indicative Credit Value on Farmland"
 abstract: >-
   An open-source geospatial platform that helps farmers, landowners and
   researchers understand tree cover, agricultural conditions and potential
@@ -18,7 +18,8 @@ abstract: >-
 authors:
   - family-names: Manjunath
     given-names: Pavan
-    affiliation: Independent / AgriCarbon Atlas project
+    orcid: "https://orcid.org/0000-0002-2694-8807"
+    affiliation: Independent / CarbonCreditBuy project
 license: Apache-2.0
 repository-code: https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land
 url: https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land

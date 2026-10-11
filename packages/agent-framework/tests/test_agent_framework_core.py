@@ -6,7 +6,7 @@ import json
 
 import pytest
 
-from atlas_agents import (
+from carboncreditbuy_agents import (
     Agent,
     AgentMessage,
     Blackboard,

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
+# Copyright (C) 2026 CarbonCreditBuy contributors
 """Minimal stand-ins for the parts of PyQGIS that the plugin uses.
 
 QGIS is not installed in CI, so these fakes let the tests import and run the QGIS-dependent
@@ -746,9 +746,9 @@ def forget_plugin_modules() -> None:
     ``from . import qgis_helpers`` consults the attribute on the package before ``sys.modules``,
     so the package attribute has to go as well.
     """
-    package = sys.modules.get("agricarbon_atlas_qgis")
+    package = sys.modules.get("carboncreditbuy_qgis")
     for name in PLUGIN_MODULES:
-        sys.modules.pop(f"agricarbon_atlas_qgis.{name}", None)
+        sys.modules.pop(f"carboncreditbuy_qgis.{name}", None)
         if package is not None and hasattr(package, name):
             delattr(package, name)
 

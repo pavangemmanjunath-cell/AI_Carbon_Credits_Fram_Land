@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
+# Copyright (C) 2026 CarbonCreditBuy contributors
 """Shared fixtures of the QGIS plugin tests.
 
-The plugin package is imported as ``agricarbon_atlas_qgis``; its parent directory
+The plugin package is imported as ``carboncreditbuy_qgis``; its parent directory
 (``integrations/qgis-plugin``) goes on ``sys.path`` here because that directory name contains a
 hyphen and cannot be a package. QGIS itself is never needed: the pure-Python modules are
 tested directly and the QGIS-dependent ones run against the fakes in ``qgis_fakes.py``.
@@ -19,7 +19,7 @@ import pytest
 
 TESTS_DIR = Path(__file__).resolve().parent
 PLUGIN_ROOT = TESTS_DIR.parent
-PACKAGE_DIR = PLUGIN_ROOT / "agricarbon_atlas_qgis"
+PACKAGE_DIR = PLUGIN_ROOT / "carboncreditbuy_qgis"
 
 for entry in (str(PLUGIN_ROOT), str(TESTS_DIR)):
     if entry not in sys.path:
@@ -51,7 +51,7 @@ def fake_qgis_qt(monkeypatch: pytest.MonkeyPatch, offscreen_qt: object) -> Itera
 
 @pytest.fixture
 def atlas_server() -> Iterator[FakeAtlasServer]:
-    """A local HTTP server that plays the AgriCarbon Atlas API."""
+    """A local HTTP server that plays the CarbonCreditBuy API."""
     server = FakeAtlasServer()
     try:
         yield server
@@ -81,7 +81,7 @@ def offscreen_qt(monkeypatch: pytest.MonkeyPatch) -> Iterator[object]:
 
     app = QApplication.instance()
     if app is None:
-        app = QApplication(["agricarbon-atlas-tests"])
+        app = QApplication(["carboncreditbuy-tests"])
         _QT_APP.append(app)  # keep it alive: a garbage-collected QApplication cannot be reused
     yield app
     app.processEvents()

@@ -1,7 +1,7 @@
 # Methodologies — India
 
-This page explains how the Atlas estimates carbon for a plot in India, which methodologies a real carbon or
-green-credit project in India would use instead, and how far apart the two are. The Atlas **references**
+This page explains how CarbonCreditBuy estimates carbon for a plot in India, which methodologies a real carbon or
+green-credit project in India would use instead, and how far apart the two are. CarbonCreditBuy **references**
 methodologies; it never **applies** one, and nothing here turns an estimate into a credit
 ([carbon credit vs estimate](../../concepts/carbon-credit-vs-estimate.md)).
 
@@ -14,13 +14,13 @@ in [policy-references.md](../../research/policy-references.md) and
 
 | Question | Answer |
 |---|---|
-| What does the Atlas calculate for an Indian plot? | A scenario of the carbon the trees you describe remove each year, as a range, from the IPCC 2006 Tier 1 gain-loss method, or from Chave et al. (2014) when you give an average trunk diameter |
+| What does CarbonCreditBuy calculate for an Indian plot? | A scenario of the carbon the trees you describe remove each year, as a range, from the IPCC 2006 Tier 1 gain-loss method, or from Chave et al. (2014) when you give an average trunk diameter |
 | Does that method issue credits? | No. It is national-inventory guidance, used here only for default parameters ([registry entry](../../../config/methodologies/registry.yaml)) |
 | What could a carbon project for trees on land in India use? | The CCTS offset mechanism has an approved afforestation and reforestation methodology, BM FR05.002 ([BEE](https://beeindia.gov.in/sites/default/files/BM_FR05.002_Afforestation_and_reforestation_of_lands_except_wetlands.pdf)). Whether it covers trees planted among crops is not stated in its applicability text *(unverified)* |
 | What could a Green Credit project use? | The Green Credit tree-plantation methodology, which concerns degraded forest land under state forest departments, not a farmer's own land ([GCP FAQ](https://www.moefcc-gcp.in/faq)) |
 | What about the voluntary market? | Verra VM0047 (afforestation, reforestation and revegetation) has a census-based approach for scattered planting ([Verra](https://verra.org/methodologies/vm0047-afforestation-reforestation-and-revegetation-v1-1/)). VM0042 covers farming practices, not trees |
 
-## What the Atlas calculates for an Indian plot
+## What CarbonCreditBuy calculates for an Indian plot
 
 The model is `tree-biomass` version 0.1 in [`packages/carbon-engine`](../../../packages/carbon-engine/README.md). Every
 number it uses comes from [`config/`](../../../config/), with a source, a unit and a verification status.
@@ -123,14 +123,14 @@ sources a real implementation needs.
 | Green Credit tree-plantation methodology | Government programme (MoEFCC) | Degraded forest land parcels of at least 5 ha under state or union-territory forest departments; credits are non-tradable and are counted per surviving tree, not per tonne of CO₂e | First notified 22 February 2024, revised 29 August 2025: credits only after at least five years and 40% canopy density. The G.S.R. number comes from a secondary source and the gazette text was not opened *(unverified)* | [GCP FAQ](https://www.moefcc-gcp.in/faq); [SCC Online analysis](https://www.scconline.com/blog/post/2026/02/11/ecological-concerns-green-credit-programme-india-analysis/) |
 | Verra VM0047, Afforestation, Reforestation and Revegetation | Voluntary standard | Area-based approach; census-based approach for dispersed planting with no more than 50 planting units per hectare and no change of land use | Version 1.1 active since 14 May 2025. The registry in `config/` still lists version 1.0 | [Verra VM0047 v1.1](https://verra.org/methodologies/vm0047-afforestation-reforestation-and-revegetation-v1-1/) |
 | Verra VM0042, Improved Agricultural Land Management | Voluntary standard | Tillage, fertilizer, residue, water, cover crop and grazing practices; not tree planting | Version 2.2 active since 21 October 2025 | [Verra VM0042 v2.2](https://verra.org/methodologies/vm0042-improved-agricultural-land-management-v2-2/) |
-| IPCC 2006 Guidelines, Vol. 4, Ch. 4 (Forest Land), with the 2019 Refinement | National-inventory guidance | Default factors for carbon fraction, root-to-shoot ratio and growth; the source of the Atlas's Tier 1 parameters | Active guidance; not a credit methodology | [IPCC NGGIP](https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html) |
+| IPCC 2006 Guidelines, Vol. 4, Ch. 4 (Forest Land), with the 2019 Refinement | National-inventory guidance | Default factors for carbon fraction, root-to-shoot ratio and growth; the source of CarbonCreditBuy's Tier 1 parameters | Active guidance; not a credit methodology | [IPCC NGGIP](https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html) |
 
 The pages [CCTS.md](CCTS.md) and [GREEN_CREDIT.md](GREEN_CREDIT.md) describe the two schemes and ask readers to verify
 whether an afforestation methodology exists (CCTS) and what the current Green Credit rules say. The research note
 records BM FR05.002 and the 2025 revision of the Green Credit methodology as above; confirm both against the
 notifications.
 
-### What a real methodology asks for that the Atlas does not do
+### What a real methodology asks for that CarbonCreditBuy does not do
 
 | Step | Why it matters |
 |---|---|
@@ -141,7 +141,7 @@ notifications.
 | Verification | By an Accredited Carbon Verification Agency listed by BEE ([BEE register](https://beeindia.gov.in/view_content.php?lid=568&lang=1)) |
 | Registration and issuance | Through the scheme's registry; only then does a unit exist |
 
-BM FR05.002 and the Atlas both cover the above-ground and below-ground biomass pools. That does not make an Atlas
+BM FR05.002 and CarbonCreditBuy both cover the above-ground and below-ground biomass pools. That does not make a CarbonCreditBuy
 estimate comparable to a methodology result: it has no baseline, no deductions and no verification.
 
 ## Green Credits count trees
@@ -149,7 +149,7 @@ estimate comparable to a methodology result: it has no baseline, no deductions a
 The Green Credit Programme measures activity, not tonnes. For tree plantation it counts surviving trees on a
 programme parcel ([GCP FAQ](https://www.moefcc-gcp.in/faq)), and the official wording is that Green Credit generation
 "is independent of the carbon credit under Carbon Credit Trading Scheme 2023"
-([PIB](https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1989495&reg=48&lang=2)). The Atlas never converts an
+([PIB](https://www.pib.gov.in/PressReleaseIframePage.aspx?PRID=1989495&reg=48&lang=2)). CarbonCreditBuy never converts an
 estimate into a Green Credit count or the other way round: "Green Credits (GCP) and carbon credits (CCTS) are
 separate mechanisms."
 
@@ -157,7 +157,7 @@ separate mechanisms."
 
 - **Diameter.** Measure trunk diameter at breast height, 1.3 m above the ground, on a sample of at least 30 trees, and
   enter the average. If your records give the girth (the distance around the trunk), divide by π (3.14) to get the
-  diameter. The Atlas then uses Tier 2 and shows a narrower range.
+  diameter. CarbonCreditBuy then uses Tier 2 and shows a narrower range.
 - **Height.** Add the average height; with diameter and height together the confidence grade becomes high.
 - **Survival.** Count trees that died or were removed each year. The default of 0.85 is an assumption, not a
   measurement.

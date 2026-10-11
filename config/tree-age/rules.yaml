@@ -51,7 +51,7 @@ rules:
       - {title: "Core Carbon Principles", publisher: "Integrity Council for the Voluntary Carbon Market", url: "https://icvcm.org/core-carbon-principles/", accessed: "2026-10-05"}
     verification_status: verified
     notes: >-
-      The plain-language reading for existing trees (growth that happens anyway is not additional, which is why methodologies use baselines) is the Atlas's interpretation of Principle 5, not ICVCM text. See docs/concepts/additionality.md.
+      The plain-language reading for existing trees (growth that happens anyway is not additional, which is why methodologies use baselines) is CarbonCreditBuy's interpretation of Principle 5, not ICVCM text. See docs/concepts/additionality.md.
 
   - id: global-verra-vm0047-arr
     scope: GLOBAL
@@ -492,7 +492,7 @@ rules:
       - {title: "Regulation (EU) 2024/3012 establishing a Union certification framework for permanent carbon removals, carbon farming and carbon storage in products", publisher: "EUR-Lex (Official Journal of the European Union)", url: "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202403012", accessed: "2026-10-05"}
     verification_status: verified
     notes: >-
-      The Regulation text read does not address existing carbon stocks explicitly; treating them as part of the baseline follows from Article 4's net-benefit formula. An Atlas estimate is never automatically CRCF-certifiable: certification by a recognised scheme is required. Article references were read through a page-summarising tool.
+      The Regulation text read does not address existing carbon stocks explicitly; treating them as part of the baseline follows from Article 4's net-benefit formula. A CarbonCreditBuy estimate is never automatically CRCF-certifiable: certification by a recognised scheme is required. Article references were read through a page-summarising tool.
 
   - id: eu-crcf-carbon-farming-delegated-act-2026
     scope: EU

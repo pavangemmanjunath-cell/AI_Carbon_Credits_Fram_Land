@@ -43,7 +43,7 @@ area/agents:
 area/integrations:
   - changed-files:
       - any-glob-to-any-file:
-          - "integrations/atlas_integrations/**"
+          - "integrations/carboncreditbuy_integrations/**"
           - "integrations/tests/**"
           - "integrations/README.md"
           - "docs/data-sources/**"
@@ -51,10 +51,10 @@ area/integrations:
 area/earth-observation:
   - changed-files:
       - any-glob-to-any-file:
-          - "integrations/atlas_integrations/esa_worldcover/**"
-          - "integrations/atlas_integrations/earth_search/**"
-          - "integrations/atlas_integrations/copernicus/**"
-          - "integrations/atlas_integrations/stac_common.py"
+          - "integrations/carboncreditbuy_integrations/esa_worldcover/**"
+          - "integrations/carboncreditbuy_integrations/earth_search/**"
+          - "integrations/carboncreditbuy_integrations/copernicus/**"
+          - "integrations/carboncreditbuy_integrations/stac_common.py"
           - "config/imagery/**"
 
 area/config:

@@ -21,7 +21,7 @@ export type LanguageCode = (typeof LANGUAGES)[number]['code'];
 
 function initialLanguage(): string {
   try {
-    const persisted = localStorage.getItem('agricarbon-atlas-ui');
+    const persisted = localStorage.getItem('carboncreditbuy-ui');
     if (persisted) {
       const parsed = JSON.parse(persisted) as { state?: { language?: string } };
       const code = parsed.state?.language;

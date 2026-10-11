@@ -1,6 +1,6 @@
 # Setup
 
-How to get AgriCarbon Atlas running on your machine, in demo mode first and then in live mode, with
+How to get CarbonCreditBuy running on your machine, in demo mode first and then in live mode, with
 PostgreSQL, or in Docker. When something does not work, go to [troubleshooting](troubleshooting.md).
 
 ## Prerequisites
@@ -19,8 +19,8 @@ PostgreSQL, or in Docker. When something does not work, go to [troubleshooting](
 ## 1. Install
 
 ```bash
-git clone https://github.com/<org>/agricarbon-atlas.git    # replace <org> with the organization
-cd agricarbon-atlas
+git clone https://github.com/<org>/carboncreditbuy.git    # replace <org> with the organization
+cd carboncreditbuy
 python3 -m venv .venv && . .venv/bin/activate              # recommended
 make install
 ```
@@ -35,7 +35,7 @@ make install
 
 The API imports the agent framework, which is a seventh editable package. If the `install-api` target
 in your `Makefile` does not list it yet, install it yourself, or the API and its tests fail with
-`ModuleNotFoundError: atlas_agents`:
+`ModuleNotFoundError: carboncreditbuy_agents`:
 
 ```bash
 python3 -m pip install -e packages/agent-framework
@@ -108,7 +108,7 @@ For live mode set at least:
 
 ```bash
 ATLAS_MODE=live
-NOMINATIM_USER_AGENT="agricarbon-atlas/0.1 (contact: your-real-address@your-domain)"
+NOMINATIM_USER_AGENT="carboncreditbuy/0.1 (contact: your-real-address@your-domain)"
 ```
 
 The Nominatim usage policy requires an identifying User-Agent, and the adapter rejects the
@@ -178,7 +178,7 @@ the app is built. They end up in the public bundle.
 | --- | --- | --- |
 | `VITE_API_BASE_URL` | `http://localhost:8000/api/v1` | Where the app finds the API |
 | `VITE_API_KEY` | none | Sent as `X-API-Key`. Public, because it is compiled in. Use it only for a low-value key |
-| `VITE_BASEMAP_STYLE_URL` | `https://demotiles.maplibre.org/style.json` | A MapLibre style. The default is for demos only |
+| `VITE_BASEMAP_STYLE_URL` | `https://tiles.openfreemap.org/styles/liberty` | A MapLibre style. The default is for demos only |
 | `VITE_BASEMAP_PMTILES_URL` | none | Your own PMTiles basemap (OpenStreetMap-based builds need ODbL attribution) |
 | `VITE_SATELLITE_TILES_URL`, `VITE_SATELLITE_ATTRIBUTION` | none | Forces one imagery tile template and its attribution. Respect its license; see [MAP_LICENSES.md](../licensing/MAP_LICENSES.md) |
 | `VITE_DEFAULT_COUNTRY`, `VITE_DEFAULT_LANGUAGE` | `IN`, `en` | First-run country and language |

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Watch the AgriCarbon agent team work — no server, no network, no API key.
+"""Watch the CarbonCreditBuy agent team work — no server, no network, no API key.
 
 Run from the repository root::
 
@@ -50,7 +50,7 @@ os.environ.setdefault("ATLAS_LOG_LEVEL", "warning")
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Run the AgriCarbon agent team on a demo plot.")
+    parser = argparse.ArgumentParser(description="Run the CarbonCreditBuy agent team on a demo plot.")
     parser.add_argument("--plot", default="PLT-DEMOIN", help="demo plot id (default PLT-DEMOIN)")
     parser.add_argument(
         "--plan",
@@ -68,7 +68,7 @@ def main(argv: list[str] | None = None) -> int:
     from app.context import build_context
     from app.core.config import Settings
     from app.demo_seed import seed_demo_plots
-    from atlas_agents import render_transcript
+    from carboncreditbuy_agents import render_transcript
 
     settings = Settings(ATLAS_MODE="demo", ATLAS_RATE_LIMIT_ENABLED=False)  # type: ignore[call-arg]
     context = build_context(settings)

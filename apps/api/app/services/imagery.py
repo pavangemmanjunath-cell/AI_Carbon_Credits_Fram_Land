@@ -31,7 +31,7 @@ from app.core.errors import ProblemError
 if TYPE_CHECKING:  # pragma: no cover
     from app.context import AppContext
 
-log = logging.getLogger("atlas.imagery")
+log = logging.getLogger("carboncreditbuy.imagery")
 
 PROVIDERS_FILE = Path("imagery") / "providers.yaml"
 _PLACEHOLDER = re.compile(r"\$\{([A-Za-z_][A-Za-z0-9_]*)\}")

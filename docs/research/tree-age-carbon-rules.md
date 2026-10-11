@@ -17,7 +17,7 @@ felling-permission and heritage-tree laws, compensatory-planting rules, and in H
 
 | Instrument | What it credits or does | Existing trees | Rule id |
 |---|---|---|---|
-| ICVCM Core Carbon Principles 5 to 7 | Only removals that would not have happened without carbon revenue | Growth that happens anyway is not additional (Atlas reading) | `global-icvcm-ccp-additionality` |
+| ICVCM Core Carbon Principles 5 to 7 | Only removals that would not have happened without carbon revenue | Growth that happens anyway is not additional (CarbonCreditBuy reading) | `global-icvcm-ccp-additionality` |
 | Verra VM0047 (ARR) v1.1 | Trees a project plants or restores | The t = 0 stock of pre-existing woody biomass is measured, not credited | `global-verra-vm0047-arr` |
 | Gold Standard A/R (LUF) | Planting on land that was not forest 10 years before the start | No credits for existing forests | `global-gold-standard-luf-ar` |
 | India, Green Credit Programme | Restoration of degraded forest land of 5 ha or more under a Forest Department | Not a route for farm or town trees; credits are non-tradable | `in-gcp-tree-plantation` |
@@ -50,7 +50,7 @@ Notes. The 20-year boundary is a growth-science boundary, so its numbers are in
 [ipcc-age-class-growth.md](ipcc-age-class-growth.md), where the IPCC table values are explicitly not verified. The 50 and
 75-year boundaries are Indian rules and say nothing about trees in the United States or the EU, whose protection rules
 use size and species. The refined tropical growth classes in the scientific literature place old-growth at 100 years or
-more without disturbance; the Atlas does not add a 100-year class.
+more without disturbance; CarbonCreditBuy does not add a 100-year class.
 
 ## Global standards
 
@@ -60,7 +60,7 @@ The Integrity Council's principle 5 (additionality) says removals "shall be addi
 occurred in the absence of the incentive created by carbon credit revenues". Principle 6 (permanence) requires them to be
 "permanent or, where there is a risk of reversal, there shall be measures in place to address those risks and compensate
 reversals", and principle 7 requires them to be "robustly quantified, based on conservative approaches, completeness and
-scientific methods". Reading these for existing trees is the Atlas's interpretation, not ICVCM text: growth that trees
+scientific methods". Reading these for existing trees is CarbonCreditBuy's interpretation, not ICVCM text: growth that trees
 would make anyway is not additional, which is why every methodology below works against a baseline. See
 [../concepts/additionality.md](../concepts/additionality.md).
 
@@ -119,7 +119,7 @@ say how existing trees are treated, so no rule was written for it.
   silent on agroforestry and cropland, so neither should be assumed eligible; ask the Bureau of Energy Efficiency. No
   Carbon Credit Certificate trade or price signal was confirmed.
 - The official line, as quoted in [policy-references.md](policy-references.md), is that the generation of Green Credit "is
-  independent of the carbon credit under Carbon Credit Trading Scheme 2023". The Atlas never mixes the two.
+  independent of the carbon credit under Carbon Credit Trading Scheme 2023". CarbonCreditBuy never mixes the two.
 
 ### Haryana: Pran Vayu Devta Pension Scheme (pending)
 
@@ -276,7 +276,7 @@ practices". Article 5(1) requires that the activity goes "beyond Union and natio
 of an individual operator" and needs "the incentive effect of the certification" to be financially viable, and Article 5(2)
 presumes additionality when a standardised baseline is used. Article 6 requires monitoring for at least the activity
 period, with operators liable for releases during monitoring. The text read does not address existing carbon stocks
-explicitly; treating them as part of the baseline follows from Article 4's net-benefit formula. **An Atlas estimate is
+explicitly; treating them as part of the baseline follows from Article 4's net-benefit formula. **A CarbonCreditBuy estimate is
 never automatically CRCF-certifiable**: certification by a recognised scheme is required.
 
 ### Carbon-farming delegated act, adopted 10 July 2026 (pending)
@@ -536,4 +536,4 @@ Each source is listed once, under the region of the first rule that cites it, wi
 | Carbon cycling and storage in world forests: biome patterns related to forest age | Global Change Biology 10(12) | <https://api.crossref.org/works/10.1111/j.1365-2486.2004.00866.x> | Science notes (Crossref abstract read) |
 | Old-growth forests as global carbon sinks | Nature 455: 213-215 | <https://api.crossref.org/works/10.1038/nature07276> | Further reading (record only) |
 | Estimating aboveground net biomass change for tropical and subtropical forests (Requena Suarez et al. 2019) | Global Change Biology 25(11) | <https://pmc.ncbi.nlm.nih.gov/articles/PMC6852081/> | IPCC age classes |
-| Policy references (repository note) | AgriCarbon Atlas | [policy-references.md](policy-references.md) | GCP and CCTS background, COMET-Planner and EQIP/CSP entries, G.S.R. number |
+| Policy references (repository note) | CarbonCreditBuy | [policy-references.md](policy-references.md) | GCP and CCTS background, COMET-Planner and EQIP/CSP entries, G.S.R. number |

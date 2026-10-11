@@ -1,4 +1,4 @@
-"""Make ``atlas_agents`` importable straight from a source checkout (no install needed)."""
+"""Make ``carboncreditbuy_agents`` importable straight from a source checkout (no install needed)."""
 
 from __future__ import annotations
 

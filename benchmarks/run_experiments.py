@@ -23,13 +23,13 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import yaml
-from atlas_agents.guardrails import (
+from carboncreditbuy_agents.guardrails import (
     check_no_coordinates,
     check_not_a_credit,
     check_pending_parameters,
     check_values_separated,
 )
-from atlas_agents.messages import AgentMessage
+from carboncreditbuy_agents.messages import AgentMessage
 from carbon_engine import (
     ClimateInput,
     InventoryInput,

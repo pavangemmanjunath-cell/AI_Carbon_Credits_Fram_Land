@@ -1065,7 +1065,7 @@
         }
       ],
       "verification_status": "verified",
-      "notes": "The Regulation text read does not address existing carbon stocks explicitly; treating them as part of the baseline follows from Article 4's net-benefit formula. An Atlas estimate is never automatically CRCF-certifiable: certification by a recognised scheme is required. Article references were read through a page-summarising tool.",
+      "notes": "The Regulation text read does not address existing carbon stocks explicitly; treating them as part of the baseline follows from Article 4's net-benefit formula. A CarbonCreditBuy estimate is never automatically CRCF-certifiable: certification by a recognised scheme is required. Article references were read through a page-summarising tool.",
       "applies": true,
       "why": "Applies in the EU at any age",
       "outcome_for_you": "conditional"
@@ -1235,7 +1235,7 @@
         }
       ],
       "verification_status": "verified",
-      "notes": "The plain-language reading for existing trees (growth that happens anyway is not additional, which is why methodologies use baselines) is the Atlas's interpretation of Principle 5, not ICVCM text. See docs/concepts/additionality.md.",
+      "notes": "The plain-language reading for existing trees (growth that happens anyway is not additional, which is why methodologies use baselines) is CarbonCreditBuy's interpretation of Principle 5, not ICVCM text. See docs/concepts/additionality.md.",
       "applies": true,
       "why": "Applies worldwide at any age",
       "outcome_for_you": "conditional"
@@ -1301,10 +1301,10 @@
       },
       {
         "id": "species-table",
-        "name": "AgriCarbon Atlas species table",
+        "name": "CarbonCreditBuy species table",
         "version": "0.1.0",
         "license": "Apache-2.0 (project configuration)",
-        "attribution": "AgriCarbon Atlas contributors; wood density working values after Zanne et al. (2009) Global Wood Density Database (Dryad, CC0)",
+        "attribution": "CarbonCreditBuy contributors; wood density working values after Zanne et al. (2009) Global Wood Density Database (Dryad, CC0)",
         "url": "https://doi.org/10.5061/dryad.234"
       },
       {
@@ -1317,11 +1317,11 @@
       },
       {
         "id": "tree-age-rules",
-        "name": "AgriCarbon Atlas tree-age rules (config/tree-age/rules.yaml)",
+        "name": "CarbonCreditBuy tree-age rules (config/tree-age/rules.yaml)",
         "version": "0.1.0",
         "updated": "2026-10-05",
         "license": "Apache-2.0 (project configuration); each rule cites its own public sources",
-        "attribution": "AgriCarbon Atlas contributors; each rule lists its sources and the date they were accessed",
+        "attribution": "CarbonCreditBuy contributors; each rule lists its sources and the date they were accessed",
         "url": null
       }
     ],

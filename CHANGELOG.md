@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to AgriCarbon Atlas are documented in this file.
+All notable changes to CarbonCreditBuy are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -33,7 +33,7 @@ estimate that uses a `pending` parameter. Pending in this release:
 
 ### Added
 
-- **AI agent team.** A small in-house framework, `packages/agent-framework` (`atlas_agents`), and nine agents in
+- **AI agent team.** A small in-house framework, `packages/agent-framework` (`carboncreditbuy_agents`), and nine agents in
   `apps/api/app/agents`: `coordinator`, `land`, `imagery`, `trees`, `carbon`, `policy`, `market`, `review` and
   `report`. Three plans (`full-assessment`, `quick-estimate`, `tree-age-check`) and the endpoints `GET /agents`,
   `POST /plots/{plot_id}/agents/run`, `POST /agents/ask`, `GET /agents/runs` and `GET /agents/runs/{run_id}`. Agents call
@@ -91,7 +91,7 @@ estimate that uses a `pending` parameter. Pending in this release:
   imagery provider recommended for the country, or the one chosen in Settings; `VITE_SATELLITE_TILES_URL` still
   overrides it. The vegetation cube is drawn as a flat NDVI layer. The map has two new layers, "Tree cover (AI
   detected)" and "Imported trees".
-  *Migration:* saved settings (`agricarbon-atlas-ui` in the browser, store version 2) are migrated on first load: the old
+  *Migration:* saved settings (`carboncreditbuy-ui` in the browser, store version 2) are migrated on first load: the old
   `cube3d` and `drawMode` fields are dropped and the old satellite layer flag becomes the Map | Satellite switch.
   `/app/cube` and `/app/plots/:id/cube` redirect to the results page.
 - **`POST /plots` takes two new optional fields**, `source` (`manual-drawing`, `upload`, `import`, `pin-and-area`,
@@ -160,5 +160,5 @@ The first scaffold of the repository, the base that 0.2.0 builds on. It was not 
   ([infra/docker/nginx.conf](infra/docker/nginx.conf)); non-root API
   container; CodeQL, `pip-audit`, `npm audit` and gitleaks in CI.
 
-[Unreleased]: https://github.com/<org>/agricarbon-atlas/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/<org>/agricarbon-atlas/releases/tag/v0.2.0
+[Unreleased]: https://github.com/<org>/carboncreditbuy/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/<org>/carboncreditbuy/releases/tag/v0.2.0

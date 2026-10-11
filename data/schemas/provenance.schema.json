@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://agricarbon-atlas.org/schemas/provenance.schema.json",
+  "$id": "https://carboncreditbuy.org/schemas/provenance.schema.json",
   "title": "Provenance",
   "description": "Evidence chain attached to every dataset-derived or modelled result.",
   "type": "object",

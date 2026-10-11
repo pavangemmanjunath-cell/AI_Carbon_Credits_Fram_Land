@@ -17,19 +17,30 @@ import type {
 } from '@/types/api';
 import { HECTARES_PER_ACRE } from './format';
 
-export type LandInputMode = 'none' | 'boundary' | 'tree-line' | 'pin' | 'coordinates' | 'edit';
+export type LandInputMode =
+  'none' | 'boundary' | 'tree-line' | 'pin' | 'coordinates' | 'edit' | ShapeOption;
+
+/** Paint-style shapes: each finishes as a polygon and is saved (locked) as the plot boundary. */
+export const SHAPE_OPTIONS = ['pen', 'rectangle', 'circle'] as const;
+export type ShapeOption = (typeof SHAPE_OPTIONS)[number];
+export function isShapeMode(mode: LandInputMode): mode is ShapeOption {
+  return (SHAPE_OPTIONS as readonly string[]).includes(mode);
+}
 
 /** The ways to add land, in toolbar and welcome-card order. `import` opens the Import dialog. */
 export const ADD_LAND_OPTIONS = ['boundary', 'tree-line', 'pin', 'coordinates', 'import'] as const;
 export type AddLandOption = (typeof ADD_LAND_OPTIONS)[number];
 
 /** Everything the map toolbar can do: the add-land options plus Edit and Delete of the selected plot. */
-export type LandToolAction = AddLandOption | 'edit' | 'delete';
+export type LandToolAction = AddLandOption | ShapeOption | 'edit' | 'delete';
 
 /** i18n key suffix per tool (`map.tool_<key>` label and `map.tool_<key>Hint` tooltip). */
 export const LAND_TOOL_KEYS: Record<LandToolAction, string> = {
   boundary: 'boundary',
   'tree-line': 'treeLine',
+  pen: 'pen',
+  rectangle: 'rectangle',
+  circle: 'circle',
   pin: 'pin',
   coordinates: 'coordinates',
   import: 'import',
@@ -54,9 +65,16 @@ export type InputAreaUnit = Extract<AreaUnit, 'acre' | 'hectare'>;
  * hectares, so the size field starts there. A unit chosen in Settings wins.
  * TODO(config): move to `units.area_input` in config/regions/<ISO>.yaml.
  */
-const INPUT_UNIT_BY_REGION: Record<string, InputAreaUnit> = { IN: 'acre', US: 'acre', EU: 'hectare' };
+const INPUT_UNIT_BY_REGION: Record<string, InputAreaUnit> = {
+  IN: 'acre',
+  US: 'acre',
+  EU: 'hectare',
+};
 
-export function defaultInputAreaUnit(country: string | null | undefined, preference: AreaUnit | 'auto' = 'auto'): InputAreaUnit {
+export function defaultInputAreaUnit(
+  country: string | null | undefined,
+  preference: AreaUnit | 'auto' = 'auto',
+): InputAreaUnit {
   if (preference !== 'auto') return preference;
   return INPUT_UNIT_BY_REGION[regionIdFor(country)] ?? 'hectare';
 }
@@ -76,7 +94,10 @@ export function hectaresToUnit(hectares: number, unit: InputAreaUnit): number {
 export type SizeProblem = 'not_a_number' | 'not_positive' | 'too_large';
 
 /** Mirrors the server rule: area > 0 and ≤ ATLAS_MAX_PLOT_AREA_HA (10 000 ha by default). */
-export function validatePinSize(value: number | null | undefined, unit: InputAreaUnit): SizeProblem | null {
+export function validatePinSize(
+  value: number | null | undefined,
+  unit: InputAreaUnit,
+): SizeProblem | null {
   if (value === null || value === undefined || !Number.isFinite(value)) return 'not_a_number';
   if (value <= 0) return 'not_positive';
   if (areaToHectares(value, unit) > MAX_PLOT_AREA_HA) return 'too_large';
@@ -85,17 +106,29 @@ export function validatePinSize(value: number | null | undefined, unit: InputAre
 
 export type LineSettingProblem = 'spacing' | 'width';
 
-export function validateTreeLineSettings(spacing: number, width: number): LineSettingProblem | null {
+export function validateTreeLineSettings(
+  spacing: number,
+  width: number,
+): LineSettingProblem | null {
   if (!(spacing >= 0.5 && spacing <= 50)) return 'spacing';
   if (!(width >= 1 && width <= 50)) return 'width';
   return null;
 }
 
 export function fromPointBody(pin: LatLon, value: number, unit: InputAreaUnit): FromPointBody {
-  return { lat: pin.lat, lon: pin.lon, area: { value, unit: toApiAreaUnit(unit) }, shape: 'square' };
+  return {
+    lat: pin.lat,
+    lon: pin.lon,
+    area: { value, unit: toApiAreaUnit(unit) },
+    shape: 'square',
+  };
 }
 
-export function fromLineBody(line: LineStringGeometry, spacing: number, width: number): FromLineBody {
+export function fromLineBody(
+  line: LineStringGeometry,
+  spacing: number,
+  width: number,
+): FromLineBody {
   return { line, spacing_m: spacing, width_m: width };
 }
 
@@ -146,6 +179,8 @@ export function nextPlotName(existing: { name: string }[], prefix = 'Plot'): str
   return `${prefix} ${existing.length + 1}`;
 }
 
-export function isApproximate(plot: { boundary_quality?: BoundaryQuality | null } | null | undefined): boolean {
+export function isApproximate(
+  plot: { boundary_quality?: BoundaryQuality | null } | null | undefined,
+): boolean {
   return plot?.boundary_quality === 'approximate';
 }

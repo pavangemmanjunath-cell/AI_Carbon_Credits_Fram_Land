@@ -58,7 +58,7 @@ class RequestContextMiddleware(BaseHTTPMiddleware):
         if length and length.isdigit() and int(length) > limit:
             return JSONResponse(
                 {
-                    "type": "https://agricarbon-atlas.org/problems/payload-too-large",
+                    "type": "https://carboncreditbuy.org/problems/payload-too-large",
                     "title": "Payload Too Large",
                     "status": 413,
                     "detail": f"Request body exceeds {limit} bytes.",

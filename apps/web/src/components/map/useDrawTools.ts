@@ -1,8 +1,46 @@
 import { useCallback, useEffect, useRef } from 'react';
 import type { Map as MapLibreMap } from 'maplibre-gl';
-import { TerraDraw, TerraDrawLineStringMode, TerraDrawPolygonMode, TerraDrawSelectMode } from 'terra-draw';
+import { simplify } from '@turf/turf';
+import {
+  TerraDraw,
+  TerraDrawCircleMode,
+  TerraDrawFreehandMode,
+  TerraDrawLineStringMode,
+  TerraDrawPolygonMode,
+  TerraDrawRectangleMode,
+  TerraDrawSelectMode,
+} from 'terra-draw';
 import { TerraDrawMapLibreGLAdapter } from 'terra-draw-maplibre-gl-adapter';
+import type { ShapeOption } from '@/lib/landInput';
 import type { LineStringGeometry, PolygonGeometry } from '@/types/api';
+
+/** terra-draw mode name for each Paint-style tool. */
+const SHAPE_MODE: Record<ShapeOption, string> = {
+  pen: 'freehand',
+  rectangle: 'rectangle',
+  circle: 'circle',
+};
+const POLYGON_MODES = new Set(['polygon', 'freehand', 'rectangle', 'circle']);
+/** The API accepts at most 500 vertices (ATLAS_MAX_PLOT_VERTICES); a pen stroke can produce more. */
+const MAX_VERTICES = 500;
+
+const SHAPE_STYLE = {
+  fillColor: '#2FA85B',
+  fillOpacity: 0.18,
+  outlineColor: '#1E6B41',
+  outlineWidth: 3,
+} as const;
+
+/** A freehand stroke is simplified (about 0.5 m tolerance) until it fits the API's vertex limit. */
+function withinVertexLimit(geometry: PolygonGeometry): PolygonGeometry {
+  let out = geometry;
+  for (const tolerance of [0.000005, 0.00001, 0.00002, 0.00005, 0.0001]) {
+    if ((out.coordinates[0]?.length ?? 0) <= MAX_VERTICES) break;
+    out = simplify({ type: 'Feature', geometry, properties: {} }, { tolerance, highQuality: true })
+      .geometry as PolygonGeometry;
+  }
+  return out;
+}
 
 interface Options {
   map: MapLibreMap | null;
@@ -11,7 +49,7 @@ interface Options {
   onLine: (geometry: LineStringGeometry) => void;
 }
 
-/** terra-draw on top of MapLibre: polygon drawing (Boundary), line drawing (Tree line) and vertex editing (Edit). */
+/** terra-draw on top of MapLibre: Boundary, Pen, Rectangle and Circle (all polygons), Tree line, and vertex editing (Edit). */
 export function useDrawTools({ map, ready, onPolygon, onLine }: Options) {
   const drawRef = useRef<TerraDraw | null>(null);
   const handlers = useRef({ onPolygon, onLine });
@@ -36,6 +74,19 @@ export function useDrawTools({ map, ready, onPolygon, onLine }: Options) {
             closingPointOutlineWidth: 2,
           },
         }),
+        // Paint-like: press and drag (or click, move, click) for Pen, Rectangle and Circle.
+        new TerraDrawFreehandMode({
+          drawInteraction: 'click-move-or-drag',
+          styles: {
+            ...SHAPE_STYLE,
+            closingPointColor: '#FFFFFF',
+            closingPointOutlineColor: '#1E6B41',
+            closingPointWidth: 6,
+            closingPointOutlineWidth: 2,
+          },
+        }),
+        new TerraDrawRectangleMode({ drawInteraction: 'click-move-or-drag', styles: SHAPE_STYLE }),
+        new TerraDrawCircleMode({ drawInteraction: 'click-move-or-drag', styles: SHAPE_STYLE }),
         new TerraDrawLineStringMode({
           styles: {
             lineStringColor: '#1E6B41',
@@ -78,8 +129,8 @@ export function useDrawTools({ map, ready, onPolygon, onLine }: Options) {
       if (context.action !== 'draw') return;
       const feature = draw.getSnapshotFeature(id);
       if (!feature) return;
-      if (context.mode === 'polygon' && feature.geometry.type === 'Polygon') {
-        handlers.current.onPolygon(feature.geometry as PolygonGeometry);
+      if (POLYGON_MODES.has(context.mode) && feature.geometry.type === 'Polygon') {
+        handlers.current.onPolygon(withinVertexLimit(feature.geometry as PolygonGeometry));
       } else if (context.mode === 'linestring' && feature.geometry.type === 'LineString') {
         handlers.current.onLine(feature.geometry as LineStringGeometry);
       } else {
@@ -106,6 +157,13 @@ export function useDrawTools({ map, ready, onPolygon, onLine }: Options) {
     draw.setMode('polygon');
   }, []);
 
+  const startShape = useCallback((shape: ShapeOption) => {
+    const draw = drawRef.current;
+    if (!draw) return;
+    draw.clear();
+    draw.setMode(SHAPE_MODE[shape]);
+  }, []);
+
   const startLine = useCallback(() => {
     const draw = drawRef.current;
     if (!draw) return;
@@ -118,7 +176,11 @@ export function useDrawTools({ map, ready, onPolygon, onLine }: Options) {
     if (!draw) return;
     draw.clear();
     draw.addFeatures([
-      { type: 'Feature', geometry: { type: 'Polygon', coordinates: geometry.coordinates }, properties: { mode: 'polygon' } },
+      {
+        type: 'Feature',
+        geometry: { type: 'Polygon', coordinates: geometry.coordinates },
+        properties: { mode: 'polygon' },
+      },
     ]);
     draw.setMode('select');
     const first = draw.getSnapshot()[0];
@@ -139,5 +201,5 @@ export function useDrawTools({ map, ready, onPolygon, onLine }: Options) {
     draw.setMode('static');
   }, []);
 
-  return { startDrawing, startLine, startEditing, editedGeometry, cancel };
+  return { startDrawing, startShape, startLine, startEditing, editedGeometry, cancel };
 }

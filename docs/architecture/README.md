@@ -1,6 +1,6 @@
 # Architecture
 
-AgriCarbon Atlas is a monorepo with a Python back end, a TypeScript web app, a QGIS plugin and a set of configuration
+CarbonCreditBuy is a monorepo with a Python back end, a TypeScript web app, a QGIS plugin and a set of configuration
 files that carry all regional, species, methodology, policy, detection, tree-age and imagery knowledge. The architecture
 follows from the principles in [CLAUDE.md](../../CLAUDE.md): engines calculate, adapters fetch, components render,
 configuration decides, and every result carries provenance and an uncertainty range.

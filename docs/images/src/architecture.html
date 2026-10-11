@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>AgriCarbon Atlas: system architecture</title>
+<title>CarbonCreditBuy: system architecture</title>
 <meta name="viewport" content="width=1200">
 <!-- README diagram, 1200 x 750 CSS px, rendered at 2x to docs/images/architecture.png by render.mjs.
      Layout is absolute on purpose: the arrows in <svg class="wires"> use the same page coordinates, and
@@ -112,7 +112,7 @@ svg.wires > path.opt { stroke-dasharray: 4 3; }
 </head>
 <body>
 
-<div class="title"><b>AgriCarbon Atlas</b><i></i><span>System architecture</span></div>
+<div class="title"><b>CarbonCreditBuy</b><i></i><span>System architecture</span></div>
 <div class="tagline">Components render, engines calculate, adapters fetch</div>
 
 <!-- 1 · clients: the web app and the QGIS plugin both talk to the same API -->
@@ -157,7 +157,7 @@ svg.wires > path.opt { stroke-dasharray: 4 3; }
       </div>
     </div>
     <div class="grp" id="agents" style="width:286px">
-      <span class="cap">Agent framework<code>atlas_agents</code></span>
+      <span class="cap">Agent framework<code>carboncreditbuy_agents</code></span>
       <div class="agent" id="agentcard"><b>Coordinator + 8 agents</b><span>tools · blackboard · guardrails</span></div>
       <div class="llm" id="llm"><b><span class="tag">optional</span>LLM rephrase</b><span>off by default · receives no coordinates</span></div>
     </div>

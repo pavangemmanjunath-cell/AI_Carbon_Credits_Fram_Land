@@ -1,5 +1,5 @@
 -- =============================================================================
--- AgriCarbon Atlas -- PostgreSQL + PostGIS schema, revision 0.2.0
+-- CarbonCreditBuy -- PostgreSQL + PostGIS schema, revision 0.2.0
 -- =============================================================================
 --
 -- Target: PostgreSQL 15 or newer with PostGIS 3. Verified on PostgreSQL 16 with

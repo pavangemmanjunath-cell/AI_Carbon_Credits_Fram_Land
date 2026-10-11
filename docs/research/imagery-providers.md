@@ -33,7 +33,7 @@ legal advice, and the provider's current terms always apply.
 5. **Analysis rule.** Run segmentation or ML only on providers with `analysis_allowed: true` or on the user's own
    imagery. `review-terms` means "not until someone has read the terms".
 6. **Always show the attribution string** from the config in the map's attribution control, and label the imagery
-   source and year in the UI. A 2016 mosaic does not show a plantation made in 2020; the Atlas never claims it does.
+   source and year in the UI. A 2016 mosaic does not show a plantation made in 2020; CarbonCreditBuy never claims it does.
 
 Before a provider ships, `CLAUDE.md` rules 5 and 6 still apply: add it to `docs/licensing/DATA_LICENSES.md` and give it
 an adapter with a README, licence, attribution, rate limits, caching and failure handling, taking the endpoint from an

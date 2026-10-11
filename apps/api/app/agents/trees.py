@@ -7,7 +7,7 @@ from typing import Any
 
 from app.agents import wording
 from app.agents.tools import imported_trees, tree_inventory
-from atlas_agents import Agent, AgentMessage, Evidence, RunContext
+from carboncreditbuy_agents import Agent, AgentMessage, Evidence, RunContext
 
 
 def _import_sentence(item: Mapping[str, Any]) -> str:

@@ -4,7 +4,7 @@ import { ApiError, api, importFormData, isUnreachable, NetworkError, request } f
 import { client } from './client';
 import { FeatureNeedsApiError } from './demoFallback';
 
-const problem = { type: 'https://agricarbon-atlas.org/problems/plot-not-found', title: 'Not Found', status: 404, detail: 'Plot X was not found.', instance: '/api/v1/plots/X' };
+const problem = { type: 'https://carboncreditbuy.org/problems/plot-not-found', title: 'Not Found', status: 404, detail: 'Plot X was not found.', instance: '/api/v1/plots/X' };
 
 describe('api client', () => {
   afterEach(() => vi.restoreAllMocks());

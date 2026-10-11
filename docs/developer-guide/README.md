@@ -1,6 +1,6 @@
 # Developer guide
 
-Everything you need to build, change and extend AgriCarbon Atlas. The platform produces numbers that farmers, advisors
+Everything you need to build, change and extend CarbonCreditBuy. The platform produces numbers that farmers, advisors
 and reviewers may act on, so the guide is as much about *how to change things safely* as about how to run them. If you
 only read one page first, read the rules below and then [setup](setup.md).
 

@@ -1,7 +1,7 @@
 SPDX-License-Identifier: GPL-2.0-or-later
 
-AgriCarbon Atlas QGIS plugin
-Copyright (C) 2026 AgriCarbon Atlas contributors
+CarbonCreditBuy QGIS plugin
+Copyright (C) 2026 CarbonCreditBuy contributors
 
 This program is free software; you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
@@ -20,13 +20,13 @@ Scope of this licence
 ---------------------
 
 This licence covers only the contents of the directory integrations/qgis-plugin/
-of the AgriCarbon Atlas repository. The rest of the repository (the API, the
+of the CarbonCreditBuy repository. The rest of the repository (the API, the
 engines, the web application and the documentation) is licensed under the
 Apache License, Version 2.0; see the LICENSE file in the repository root.
 
 The plugin is GPL-licensed because it runs inside QGIS and uses the PyQGIS and
-Qt libraries, which are distributed under the GPL. It talks to the AgriCarbon
-Atlas API over HTTP only and contains no code from the Apache-2.0 parts of the
+Qt libraries, which are distributed under the GPL. It talks to the CarbonCreditBuy
+CarbonCreditBuy API over HTTP only and contains no code from the Apache-2.0 parts of the
 repository. Software under the Apache-2.0 licence that is called by the plugin
 over HTTP (the API) or that calls the same API is not affected by this licence.
 

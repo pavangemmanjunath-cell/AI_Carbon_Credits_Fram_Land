@@ -1,6 +1,6 @@
 # QGIS plugin
 
-If you already work in QGIS, the AgriCarbon Atlas plugin lets you send a field polygon to the app's server without
+If you already work in QGIS, the CarbonCreditBuy plugin lets you send a field polygon to the app's server without
 leaving QGIS. It can also count the trees that an AI segmentation plugin found inside the field, and it shows the same
 carbon potential results in a QGIS window. This page is the short version. The
 [plugin README](../../integrations/qgis-plugin/README.md) has every setting, the troubleshooting table and the
@@ -14,7 +14,7 @@ developer notes.
 ## What you need
 
 - **QGIS 3.28 or newer** in the 3.x series. QGIS 4 is not supported yet.
-- **An AgriCarbon Atlas server.** This is the API of your own copy of the app, for example
+- **A CarbonCreditBuy server.** This is the API of your own copy of the app, for example
   `http://localhost:8000/api/v1` on your own computer, or the address someone gave you. If it asks for an API key,
   you need that too.
 - **A field polygon** in a QGIS layer, one polygon per field.
@@ -23,15 +23,15 @@ developer notes.
 
 ## Install
 
-1. Get the ZIP file `agricarbon_atlas_qgis-0.1.0.zip` from whoever runs your copy of the app, or build it yourself from
+1. Get the ZIP file `carboncreditbuy_qgis-0.1.0.zip` from whoever runs your copy of the app, or build it yourself from
    the repository with `make package` in the folder `integrations/qgis-plugin` (the
    [README](../../integrations/qgis-plugin/README.md) explains how).
 2. In QGIS choose **Plugins > Manage and Install Plugins ... > Install from ZIP**, pick the file and press
    **Install Plugin**.
-3. Choose **Plugins > AgriCarbon Atlas > Settings ...**, type the API address (and the key, if you have one) and press
+3. Choose **Plugins > CarbonCreditBuy > Settings ...**, type the API address (and the key, if you have one) and press
    **Test connection**. A line starting with "Connected" means it works. Press **Save**.
 
-The plugin adds an **AgriCarbon Atlas** toolbar and menu. The default country in Settings (`IN`, `US` or an EU country
+The plugin adds an **CarbonCreditBuy** toolbar and menu. The default country in Settings (`IN`, `US` or an EU country
 code such as `DE`) is only a starting point for the dialogs.
 
 ## Try it in five steps
@@ -51,7 +51,7 @@ code such as `DE`) is only a starting point for the dialogs.
 5. **Save your QGIS project.** The link between the project and the plot (the plot ID and a few non-spatial details) is
    stored in the project file.
 
-**Send selected polygon to AgriCarbon Atlas** does only the first part of step 2: it creates the plot and shows the
+**Send selected polygon to CarbonCreditBuy** does only the first part of step 2: it creates the plot and shows the
 analysis of land cover, vegetation, climate and soil.
 
 A plot made this way also shows up in the web app, on the **Data** page, with the source **QGIS plugin**. Once it has

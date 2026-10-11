@@ -1,4 +1,4 @@
-# AgriCarbon Atlas — development rules for AI-assisted contributions
+# CarbonCreditBuy — development rules for AI-assisted contributions
 
 These rules bind every contribution, human or AI-assisted. They exist because
 this software produces numbers that farmers, researchers and reviewers may
@@ -64,7 +64,7 @@ code, e.g. `DE`, `FR`, `ES`, `IT`, mapped to `EU` rules).
 - Backend: Python 3.12+, FastAPI, Pydantic v2, Shapely, PyProj, NumPy,
   Rasterio, pystac-client, httpx, PyYAML, laspy (+lazrs) for point clouds,
   defusedxml for KML, pytest, ruff, mypy.
-- Agents: `packages/agent-framework` (`atlas_agents`) — agents, tools, plans,
+- Agents: `packages/agent-framework` (`carboncreditbuy_agents`) — agents, tools, plans,
   blackboard, guardrails; deterministic templates by default; an optional
   OpenAI-compatible LLM may only rephrase text from redacted facts (ADR-0006).
 - QGIS plugin: `integrations/qgis-plugin` (GPL-2.0-or-later, calls the API).

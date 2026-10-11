@@ -143,6 +143,16 @@
     "toolbarLabel": "Fläche markieren",
     "tool_boundary": "Grenze",
     "tool_boundaryHint": "Die Grenzen Ihrer Fläche auf der Karte einzeichnen",
+    "tool_pen": "Stift",
+    "tool_penHint": "Fläche freihand zeichnen, wie mit einem Stift",
+    "tool_rectangle": "Rechteck",
+    "tool_rectangleHint": "Ein Rechteck über die Fläche ziehen",
+    "tool_circle": "Kreis",
+    "tool_circleHint": "Einen Kreis vom Mittelpunkt aus ziehen",
+    "finish_pen": "Gedrückt halten und den Rand Ihrer Fläche nachzeichnen; loslassen zum Beenden. Sie wird als Fläche gespeichert (fixiert).",
+    "finish_rectangle": "Drücken, über die Fläche ziehen und loslassen. Sie wird als Fläche gespeichert (fixiert).",
+    "finish_circle": "Im Mittelpunkt drücken, bis zum Rand ziehen und loslassen. Sie wird als Fläche gespeichert (fixiert).",
+    "localTime": "Ortszeit",
     "tool_treeLine": "Baumreihe",
     "tool_treeLineHint": "Eine Baumreihe entlang eines Walls, Wegs oder Feldrands zeichnen",
     "tool_pin": "Nadel + Größe",
@@ -556,7 +566,7 @@
     "apiError": "Die API hat einen Fehler zurückgegeben ({{status}}): {{title}}",
     "network": "Die API konnte nicht erreicht werden.",
     "unknown": "Unerwarteter Fehler.",
-    "needsApi": "Dafür wird der AgriCarbon-Atlas-Server benötigt. Starten Sie die API (make api) und versuchen Sie es erneut.",
+    "needsApi": "Dafür wird der CarbonCreditBuy-Server benötigt. Starten Sie die API (make api) und versuchen Sie es erneut.",
     "cancelled": "Abgebrochen."
   }
 }

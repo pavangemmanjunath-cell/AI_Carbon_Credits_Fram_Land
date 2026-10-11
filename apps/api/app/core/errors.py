@@ -10,9 +10,9 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-log = logging.getLogger("atlas.api")
+log = logging.getLogger("carboncreditbuy.api")
 
-PROBLEM_TYPE_BASE = "https://agricarbon-atlas.org/problems/"
+PROBLEM_TYPE_BASE = "https://carboncreditbuy.org/problems/"
 _TITLES = {
     400: "Bad Request",
     401: "Unauthorized",

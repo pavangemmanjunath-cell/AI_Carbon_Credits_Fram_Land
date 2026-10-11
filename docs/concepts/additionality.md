@@ -2,7 +2,7 @@
 
 Additionality asks a counterfactual question: **would this carbon removal
 have happened anyway, without the incentive the programme provides?** A
-credit is only meaningful if the answer is no. The Atlas does not assess
+credit is only meaningful if the answer is no. CarbonCreditBuy does not assess
 additionality — it cannot, from satellite data and a tree count — and
 says so in every screening result.
 
@@ -49,7 +49,7 @@ baseline scenario — what the land would have carried without the project
 — is the key input, and establishing it needs land-use history, economic
 information and often a comparison with regional practice.
 
-## What the Atlas can and cannot do
+## What CarbonCreditBuy can and cannot do
 
 | Can | Cannot |
 |---|---|

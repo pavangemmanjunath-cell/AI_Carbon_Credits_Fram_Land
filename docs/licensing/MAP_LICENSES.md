@@ -15,6 +15,7 @@ inventory is in [THIRD_PARTY.md](THIRD_PARTY.md); the strings to display are in 
 | **Protomaps basemap builds** (`protomaps/basemaps`) | Tile schema and build tooling for the archive you host. The app reads the schema's layer names with its own minimal style (`apps/web/src/components/map/mapStyle.ts`) and does not bundle the Protomaps style package | BSD-3-Clause | Keep notice, if you use the tooling | <https://github.com/protomaps/basemaps> |
 | **terra-draw** and its MapLibre adapter | Drawing and editing polygons on MapLibre | MIT | Keep notice | <https://github.com/JamesLMilner/terra-draw> |
 | **Natural Earth** (inside Protomaps builds at low zoom) | Country and coastline geometry | Public domain | None; courtesy credit "Made with Natural Earth" | <https://www.naturalearthdata.com/about/terms-of-use/> |
+| **OpenFreeMap** (`tiles.openfreemap.org`, style `liberty`) | Default global basemap (streets, places, buildings) | Free public instance, no key, no registration; provided as-is and may change (checked 2026-10-11, <https://openfreemap.org>). Tiles are OpenMapTiles-schema vector tiles built from OpenStreetMap (ODbL 1.0) | "OpenFreeMap © OpenMapTiles Data from OpenStreetMap" (shown by MapLibre from the tile source) | <https://openfreemap.org> |
 | **MapLibre demo tiles and glyphs** (`demotiles.maplibre.org`) | Development-only basemap style, and the label glyphs ("Open Sans Regular") that the app's built-in PMTiles style requests | Served by MapLibre for demos; data attribution as stated in the style JSON | Do not use as a production basemap; check the style's attribution field. TODO(verify): the license of the glyph font files | <https://demotiles.maplibre.org/style.json> |
 
 The licenses of MapLibre GL JS, PMTiles and terra-draw were confirmed from the installed `package.json` files
@@ -66,7 +67,7 @@ confirmed. Providers change their terms; the provider's current text always appl
 "Analysis or ML" means running segmentation, machine learning or feature extraction on the tiles, which is a licensing
 question and says nothing about whether the resolution shows trees. The rule is the one in the config file: do it only
 on providers marked `analysis_allowed: true`, or on the user's own imagery. `Review the terms` means "not until someone
-has read the terms". The Atlas itself runs no analysis on these tiles: its vegetation indices and tree-cover detection
+has read the terms". CarbonCreditBuy itself runs no analysis on these tiles: its vegetation indices and tree-cover detection
 read Sentinel-2 through the STAC adapters. A data-quality test keeps open-data providers analysis-allowed and
 display-only providers display-only.
 

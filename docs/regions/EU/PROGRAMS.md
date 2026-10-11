@@ -1,6 +1,6 @@
 # Programs — European Union
 
-This page describes the three programs the Atlas screens for plots in the European Union and what is still
+This page describes the three programs CarbonCreditBuy screens for plots in the European Union and what is still
 unconfirmed. The rules themselves live in [`config/policies/EU.yaml`](../../../config/policies/EU.yaml). The screening
 is never an eligibility determination: "Initial screening only — not an eligibility determination. Under the CRCF a
 calculated estimate is never automatically certifiable; certification by a recognised scheme is required."
@@ -19,7 +19,7 @@ research behind this page is in [policy-references.md](../../research/policy-ref
 | Voluntary standards and national labels | Voluntary standard | Credits issued after verification | Yes |
 
 Source: the taxonomy in [policy-references.md](../../research/policy-references.md#7-carbon-credit-vs-incentive-taxonomy-the-engine-should-use).
-The Atlas shows an incentive as other farm income and an estimate as an environmental benefit. Neither is a credit
+CarbonCreditBuy shows an incentive as other farm income and an estimate as an environmental benefit. Neither is a credit
 ([carbon credit vs estimate](../../concepts/carbon-credit-vs-estimate.md)).
 
 ## What the engine returns
@@ -71,7 +71,7 @@ transcription errors, so open the text before you quote it
 | Monitoring | Monitoring runs for at least the activity period, and operators are liable for releases during monitoring (Article 6) |
 | Existing carbon stocks | Not addressed explicitly; treating them as part of the baseline follows from the net-benefit formula in Article 4 |
 
-### What the Atlas rule says
+### What CarbonCreditBuy rule says
 
 Status `requires_certification` for tree plantation, agroforestry, soil carbon and cropland practice, otherwise
 `unknown`. The requirements it lists: an activity covered by an adopted CRCF certification methodology; a baseline and an
@@ -86,7 +86,7 @@ no scheme could yet be recognized to issue units for them, so we found no scheme
 
 ### What this means for a farmer
 
-- **The Atlas estimate is not a CRCF unit and cannot become one by itself.** A scheme recognized under the CRCF has to
+- **CarbonCreditBuy estimate is not a CRCF unit and cannot become one by itself.** A scheme recognized under the CRCF has to
   certify your activity against a certification methodology, with a baseline, monitoring and verification.
 - **Ask which scheme, and when.** Because recognition follows entry into force, a scheme that accepts agroforestry may not
   exist yet where you farm. Ask your adviser or your forestry authority.
@@ -101,12 +101,12 @@ no scheme could yet be recognized to issue units for them, so we found no scheme
 eco-schemes and investment support. They are incentives, not carbon credits
 ([Commission, CAP Strategic Plans](https://agriculture.ec.europa.eu/cap-my-country/cap-strategic-plans_en)).
 
-**What the Atlas rule says.** Status `potentially_applicable` for tree plantation, agroforestry and cropland practice,
+**What CarbonCreditBuy rule says.** Status `potentially_applicable` for tree plantation, agroforestry and cropland practice,
 otherwise `not_applicable`. The reason: national plans include eco-schemes and investment support for agroforestry and
 afforestation. Requirements listed: active-farmer status and CAP registration in the member state; compliance with the
 national eco-scheme conditions.
 
-**What it does not say.** The Atlas does not know your member state's plan, so it lists no national scheme, payment rate,
+**What it does not say.** CarbonCreditBuy does not know your member state's plan, so it lists no national scheme, payment rate,
 deadline or eligibility condition. These differ from one member state to the next. Ask your paying agency. TODO(verify):
 a per-country page for each member state, each with an official source, would close this gap; see
 [roadmap ideas](../../community/roadmap-ideas.md#regions-and-policy).
@@ -117,7 +117,7 @@ statutory requirements and rely on the incentive effect of certification (readin
 
 ## Voluntary standards and national labels
 
-**What the Atlas rule says.** Status `requires_methodology_assessment` for tree plantation, agroforestry, soil carbon and
+**What CarbonCreditBuy rule says.** Status `requires_methodology_assessment` for tree plantation, agroforestry, soil carbon and
 cropland practice, otherwise `unknown`. Requirements listed: an approved methodology for the activity; a baseline,
 additionality, leakage and permanence assessment; third-party verification and registry issuance.
 
@@ -125,9 +125,9 @@ additionality, leakage and permanence assessment; third-party verification and r
 | --- | --- | --- |
 | Verra VM0047, Afforestation, Reforestation and Revegetation | Version 1.1 active since 14 May 2025, with an area-based approach and a census-based approach for dispersed planting. Details are on the [United States programs page](../US/PROGRAMS.md#new-planting-and-cropland-practices); the methodology is global. The EU policy file still points to version 1.0 | [Verra, VM0047 v1.1](https://verra.org/methodologies/vm0047-afforestation-reforestation-and-revegetation-v1-1/) |
 | Gold Standard, Land Use and Forests, afforestation and reforestation | The eligible area must not have met the definition of forest 10 years before the project start date (Activity Requirements v1.2.1, Section 2.1.1(b)), so credits are not issued for existing forests. The baseline is the tree and non-tree biomass present just before planting (methodology v2.1). A successor framework, STARR, was consulted on from 22 April to 22 May 2026; final publication was not confirmed | [Gold Standard Activity Requirements v1.2.1](https://globalgoals.goldstandard.org/standards/203_V1.2.1_AR_LUF-Activity-Requirements.pdf); [STARR consultation](https://www.goldstandard.org/consultations/sustainable-transformation-afforestation-reforestation-revegetation-starr) |
-| Label Bas-Carbone (France) | A French national label, named in the Atlas rule. TODO(verify): its approved methods, eligibility and payment arrangements were not researched | [Ministry of Ecological Transition](https://www.ecologie.gouv.fr/label-bas-carbone) |
+| Label Bas-Carbone (France) | A French national label, named in CarbonCreditBuy rule. TODO(verify): its approved methods, eligibility and payment arrangements were not researched | [Ministry of Ecological Transition](https://www.ecologie.gouv.fr/label-bas-carbone) |
 
-Other national labels and schemes exist or may exist in other member states. None has been researched, and the Atlas
+Other national labels and schemes exist or may exist in other member states. None has been researched, and CarbonCreditBuy
 names only the French label.
 
 ## Rules by tree age
@@ -163,7 +163,7 @@ not read, and entry into force was not confirmed on 2026-10-05. In development t
 confirmed" flag. A production deployment withholds it and lists its id in `withheld_rule_ids` until a reviewer has read
 the primary source and set it to `verified`.
 
-## What the Atlas does not screen
+## What CarbonCreditBuy does not screen
 
 Member-state programs and national forestry or afforestation grants; national and local tree-protection rules; and any
 standard other than the ones above. Tree protection varies widely: the tree-age rules hold one municipal example,

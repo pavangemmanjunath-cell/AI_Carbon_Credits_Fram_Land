@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
+# Copyright (C) 2026 CarbonCreditBuy contributors
 """Tests of the settings model: URL, key, country and timeout validation."""
 
 from __future__ import annotations
@@ -8,8 +8,8 @@ from typing import Any
 
 import pytest
 
-from agricarbon_atlas_qgis import config
-from agricarbon_atlas_qgis.config import (
+from carboncreditbuy_qgis import config
+from carboncreditbuy_qgis.config import (
     ConfigError,
     PluginConfig,
     coerce_config,

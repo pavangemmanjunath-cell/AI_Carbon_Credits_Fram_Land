@@ -1,6 +1,6 @@
 # India (IN)
 
-India is the first region the Atlas was designed for. This page summarizes
+India is the first region CarbonCreditBuy was designed for. This page summarizes
 how the platform behaves for Indian plots and what a farmer, advisor or
 researcher in India should expect from it. Configuration lives in
 [`config/regions/IN.yaml`](../../../config/regions/IN.yaml) and
@@ -29,7 +29,7 @@ are in [DATA_SOURCES.md](DATA_SOURCES.md) and
 
 ## Programmes screened
 
-| Programme | Authority | What the Atlas says |
+| Programme | Authority | What CarbonCreditBuy says |
 |---|---|---|
 | Green Credit Programme (GCP) | MoEFCC; administrator ICFRE | `requires_assessment` for tree plantation and agroforestry: the notified tree-plantation methodology targets identified degraded land parcels made available through the programme, so applicability to private farmland must be confirmed with the administrator. See [GREEN_CREDIT.md](GREEN_CREDIT.md) |
 | Carbon Credit Trading Scheme (CCTS), offset mechanism | Bureau of Energy Efficiency, Ministry of Power | `requires_methodology_assessment`: a project needs an approved offset methodology, baseline, additionality, monitoring and verification by an accredited agency before any Carbon Credit Certificate exists. See [CCTS.md](CCTS.md) |

@@ -32,7 +32,7 @@ promise.
 | `packages/agent-framework/tests/` | pytest | 100 | Agents, tools, blackboard, plans, guardrails, intent routing, the template reasoner and redaction |
 | `apps/api/tests/` | pytest + `TestClient` | 285 | The whole API in demo mode: errors, API keys, limits, privacy, geometry, imports, detection, tree age, imagery and agents; also keeps the agent docs in step with the code (`test_agents_docs.py`) |
 | `integrations/tests/` | pytest + `httpx.MockTransport` | 19 | Adapter base (retry, status mapping, cache, provenance) and the point and statistics adapters |
-| `integrations/qgis-plugin/tests/` | pytest | 620 | The QGIS plugin, against fakes of the QGIS API and a fake Atlas server; no QGIS needed (one smoke test is skipped when PyQt5 is missing) |
+| `integrations/qgis-plugin/tests/` | pytest | 620 | The QGIS plugin, against fakes of the QGIS API and a fake CarbonCreditBuy server; no QGIS needed (one smoke test is skipped when PyQt5 is missing) |
 | `tests/integration/` | pytest | 6 | Sample-response contract (above) |
 | `tests/data-quality/` | pytest | 526 | Configuration gates (below) |
 | `apps/web/src/**/*.test.ts(x)` | Vitest + Testing Library | 459 in 45 files | Pure logic, the API client and its offline fallback, the UI store and key components |

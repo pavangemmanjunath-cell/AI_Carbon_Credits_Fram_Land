@@ -42,7 +42,7 @@ from policy_engine.tree_age import (
 if TYPE_CHECKING:  # pragma: no cover
     from app.context import AppContext
 
-log = logging.getLogger("atlas.tree_age")
+log = logging.getLogger("carboncreditbuy.tree_age")
 
 ESTIMATE_DISCLAIMER = "Scenario estimate only. This is not an issued carbon credit."
 
@@ -269,11 +269,11 @@ class TreeAgeService:
     def _rules_source(self) -> dict[str, Any]:
         return {
             "id": "tree-age-rules",
-            "name": "AgriCarbon Atlas tree-age rules (config/tree-age/rules.yaml)",
+            "name": "CarbonCreditBuy tree-age rules (config/tree-age/rules.yaml)",
             "version": self._doc["version"],
             "updated": self._doc["updated"],
             "license": "Apache-2.0 (project configuration); each rule cites its own public sources",
-            "attribution": "AgriCarbon Atlas contributors; each rule lists its sources and the "
+            "attribution": "CarbonCreditBuy contributors; each rule lists its sources and the "
             "date they were accessed",
             "url": None,
         }

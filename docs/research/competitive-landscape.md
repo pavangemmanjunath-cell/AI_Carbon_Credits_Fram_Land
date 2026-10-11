@@ -1,4 +1,4 @@
-# Similar platforms and open-source projects — and how AgriCarbon Atlas differs
+# Similar platforms and open-source projects — and how CarbonCreditBuy differs
 
 Research of 2026-10-05/06 for the project brief ("check similar carbon credit sites and GitHub, and how to
 differentiate"). The descriptions below are deliberately short and only say what the cited pages show; they are not
@@ -18,15 +18,15 @@ reviews, and product details change. Check each source before quoting it.
 | **CarbonPlan** | Non-profit, open-source research | Open data and code on carbon removal and offsets, e.g. OffsetsDB and a retrospective analysis of compliance forest-offset projects | [carbonplan on GitHub](https://github.com/carbonplan) · [offsets-db-api](https://github.com/carbonplan/offsets-db-api) · [forest-offsets](https://github.com/carbonplan/forest-offsets) |
 | **QGIS "AI Segmentation" plugin** | Free desktop plugin | Text-prompted segmentation of imagery into separate polygons with confidence scores (the example the project owner shared) | QGIS Plugin Manager (search "AI Segmentation") |
 
-## Where AgriCarbon Atlas fits
+## Where CarbonCreditBuy fits
 
 The commercial platforms above run carbon **projects**: they aggregate farmers, apply a registry methodology and sell
 credits. The open platforms (Global Forest Watch, Restor, Open Foris, CarbonPlan) map forests, restoration or offsets at
-landscape and programme scale. AgriCarbon Atlas sits in a gap between them: a **self-hostable, farmer-facing screening
+landscape and programme scale. CarbonCreditBuy sits in a gap between them: a **self-hostable, farmer-facing screening
 tool for one plot**, which says honestly what trees on that plot might remove, which programmes or laws could apply,
 and what evidence is still missing — before anyone signs a contract.
 
-| | AgriCarbon Atlas | Typical commercial project developer | Typical open monitoring platform |
+| | CarbonCreditBuy | Typical commercial project developer | Typical open monitoring platform |
 |---|---|---|---|
 | Unit of work | One farmer's plot, tree line or orchard | A project of many farms | A landscape, country or project portfolio |
 | Output | Scenario **estimate** with low–central–high range, `certified: false`, provenance | Issued credits after verification | Maps and statistics |

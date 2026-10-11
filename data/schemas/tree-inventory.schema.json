@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://agricarbon-atlas.org/schemas/tree-inventory.schema.json",
+  "$id": "https://carboncreditbuy.org/schemas/tree-inventory.schema.json",
   "title": "TreeInventory",
   "description": "Trees reported for a plot. Every measurement has a source.",
   "type": "object",

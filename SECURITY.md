@@ -1,6 +1,6 @@
 # Security Policy
 
-AgriCarbon Atlas handles two things that deserve protection: the exact
+CarbonCreditBuy handles two things that deserve protection: the exact
 geometry of farm plots (which identifies a person's land and, often, the
 person) and the integrity of the numbers the platform publishes. We treat a
 leak of private geometry with the same seriousness as remote code execution.

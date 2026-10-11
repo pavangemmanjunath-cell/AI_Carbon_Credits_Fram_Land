@@ -3,18 +3,18 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agricarbon-agent-framework"
+name = "carboncreditbuy-agent-framework"
 version = "0.1.0"
-description = "atlas_agents: a small, deterministic-by-default agent framework (agents, tools, plans, blackboard, guardrails) for AgriCarbon Atlas"
+description = "carboncreditbuy_agents: a small, deterministic-by-default agent framework (agents, tools, plans, blackboard, guardrails) for CarbonCreditBuy"
 readme = "README.md"
 requires-python = ">=3.12"
 license = {text = "Apache-2.0"}
 # The core has no third-party dependencies. httpx is needed only for the optional
-# OpenAI-compatible LLM client (atlas_agents.llm.openai_compatible).
+# OpenAI-compatible LLM client (carboncreditbuy_agents.llm.openai_compatible).
 dependencies = []
 
 [project.optional-dependencies]
 llm = ["httpx>=0.27"]
 
 [tool.setuptools.packages.find]
-include = ["atlas_agents*"]
+include = ["carboncreditbuy_agents*"]

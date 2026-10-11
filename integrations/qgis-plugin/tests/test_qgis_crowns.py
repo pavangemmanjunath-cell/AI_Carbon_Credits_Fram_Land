@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
+# Copyright (C) 2026 CarbonCreditBuy contributors
 """Tests of the crown counter: point-in-polygon, confidence filter and field-name detection."""
 
 from __future__ import annotations
@@ -10,8 +10,8 @@ from typing import Any
 
 import pytest
 
-from agricarbon_atlas_qgis import crowns
-from agricarbon_atlas_qgis.crowns import (
+from carboncreditbuy_qgis import crowns
+from carboncreditbuy_qgis.crowns import (
     Crown,
     CrownCount,
     PreparedPolygon,

@@ -24,7 +24,7 @@ none of them turns a tree into a credit.
 | A program a farm might apply to, screened by land use, size or practice rather than tree age | The region's policy file `config/policies/<ISO>.yaml`: [adding a region, step 2](adding-a-region.md#2-the-policy-file) |
 | A growth, biomass or carbon-fraction number | A parameter with a source and `verification_status`: [adding a species or parameter](adding-a-species-or-parameter.md) |
 | A rule you have seen only in the press, or whose text you could not open | This file, as `pending` with `notes` that say what is missing. The file already does this for a few rules. Never mark it `verified` |
-| A rule you cannot source at all | Nowhere. The Atlas never invents policy eligibility ([CLAUDE.md](../../CLAUDE.md) principle 13). Open a "Data source proposal" issue instead |
+| A rule you cannot source at all | Nowhere. CarbonCreditBuy never invents policy eligibility ([CLAUDE.md](../../CLAUDE.md) principle 13). Open a "Data source proposal" issue instead |
 
 ## The fields
 

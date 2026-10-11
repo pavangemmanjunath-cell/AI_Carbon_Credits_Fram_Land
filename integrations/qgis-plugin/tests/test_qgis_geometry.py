@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
+# Copyright (C) 2026 CarbonCreditBuy contributors
 """Tests of the GeoJSON polygon checks that run before anything is sent to the API."""
 
 from __future__ import annotations
@@ -11,8 +11,8 @@ from typing import Any
 
 import pytest
 
-from agricarbon_atlas_qgis import geometry
-from agricarbon_atlas_qgis.geometry import GeometryError, normalize_polygon
+from carboncreditbuy_qgis import geometry
+from carboncreditbuy_qgis.geometry import GeometryError, normalize_polygon
 
 SQUARE_RING = [[77.5, 13.2], [77.6, 13.2], [77.6, 13.3], [77.5, 13.3], [77.5, 13.2]]
 HOLE_RING = [[77.52, 13.22], [77.54, 13.22], [77.54, 13.24], [77.52, 13.22]]

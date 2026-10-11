@@ -8,7 +8,13 @@ import { metresPerPixel, scaleBarSpec, type ScaleBarSpec } from '@/lib/scale';
 import type { LatLon } from '@/types/api';
 
 /** Metric scale bar that follows the map's zoom and latitude. */
-export function ScaleBar({ map, maxWidthPx = 96 }: { map: MapLibreMap | null; maxWidthPx?: number }) {
+export function ScaleBar({
+  map,
+  maxWidthPx = 96,
+}: {
+  map: MapLibreMap | null;
+  maxWidthPx?: number;
+}) {
   const { t } = useTranslation();
   const [spec, setSpec] = useState<ScaleBarSpec | null>(null);
 
@@ -34,7 +40,11 @@ export function ScaleBar({ map, maxWidthPx = 96 }: { map: MapLibreMap | null; ma
 
   if (!spec || spec.widthPx <= 0) return null;
   return (
-    <span role="img" aria-label={t('map.scaleLabel', { distance: spec.label })} className="flex shrink-0 items-end gap-1.5">
+    <span
+      role="img"
+      aria-label={t('map.scaleLabel', { distance: spec.label })}
+      className="flex shrink-0 items-end gap-1.5"
+    >
       <span
         aria-hidden="true"
         className="block h-[7px] border-x-2 border-b-2 border-ink-2"
@@ -56,7 +66,14 @@ interface AttributionBarProps {
 }
 
 /** Our own attribution bar (replaces MapLibre's controls): scale bar · licences · plot centre. */
-export function AttributionBar({ map, ready, imageryAttribution, basemapFallback, imageryFailed, centroid }: AttributionBarProps) {
+export function AttributionBar({
+  map,
+  ready,
+  imageryAttribution,
+  basemapFallback,
+  imageryFailed,
+  centroid,
+}: AttributionBarProps) {
   const { t } = useTranslation();
   const [basemap, setBasemap] = useState<string[]>([]);
   const [expanded, setExpanded] = useState(false);
@@ -64,34 +81,65 @@ export function AttributionBar({ map, ready, imageryAttribution, basemapFallback
   useEffect(() => {
     if (!map || !ready) return;
     const update = () => {
-      const next = styleAttributions(map.getStyle());
+      // Some styles (e.g. OpenFreeMap) leave `attribution` out of the style JSON and
+      // declare it in each source's TileJSON instead; read it from the loaded source too.
+      const style = map.getStyle();
+      const sources = Object.fromEntries(
+        Object.entries(style?.sources ?? {}).map(([id, source]) => [
+          id,
+          {
+            attribution:
+              (source as { attribution?: string }).attribution ??
+              (map.getSource(id) as { attribution?: string } | undefined)?.attribution,
+          },
+        ]),
+      );
+      const next = styleAttributions({ sources });
       setBasemap((prev) => (prev.join('|') === next.join('|') ? prev : next));
     };
     update();
-    // Basemap sources arrive with the style; tile loads (`sourcedata`) never change attribution.
+    // Sources arrive with the style; a TileJSON source's attribution arrives with its
+    // metadata. Plain tile loads never change attribution.
+    const onSource = (event: { sourceDataType?: string }) => {
+      if (event.sourceDataType === 'metadata') update();
+    };
     map.on('styledata', update);
+    map.on('sourcedata', onSource);
     return () => {
       map.off('styledata', update);
+      map.off('sourcedata', onSource);
     };
   }, [map, ready]);
 
-  const parts = useMemo(() => attributionParts({ basemap, imagery: imageryAttribution, data: dataAttributions() }), [basemap, imageryAttribution]);
+  const parts = useMemo(
+    () => attributionParts({ basemap, imagery: imageryAttribution, data: dataAttributions() }),
+    [basemap, imageryAttribution],
+  );
 
   return (
     <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-line bg-surface px-3 py-1.5 text-[11px] text-ink-2">
       <ScaleBar map={ready ? map : null} />
       {basemapFallback && (
-        <span role="status" className="rounded-full bg-amber-tint px-2 py-0.5 font-medium text-amber-text">
+        <span
+          role="status"
+          className="rounded-full bg-amber-tint px-2 py-0.5 font-medium text-amber-text"
+        >
           {t('map.basemapUnavailable')}
         </span>
       )}
       {imageryFailed && (
-        <span role="status" className="rounded-full bg-amber-tint px-2 py-0.5 font-medium text-amber-text">
+        <span
+          role="status"
+          className="rounded-full bg-amber-tint px-2 py-0.5 font-medium text-amber-text"
+        >
           {t('map.imageryFailed')}
         </span>
       )}
       <span className="flex min-w-0 flex-[1_1_360px] items-start gap-1.5">
-        <span className={`min-w-0 flex-1 ${expanded ? '' : 'line-clamp-1 md:line-clamp-2'}`} title={parts.join(' · ')}>
+        <span
+          className={`min-w-0 flex-1 ${expanded ? '' : 'line-clamp-1 md:line-clamp-2'}`}
+          title={parts.join(' · ')}
+        >
           <span className="sr-only">{t('map.attributionLabel')}: </span>
           {parts.join(' · ')}
         </span>
@@ -105,7 +153,9 @@ export function AttributionBar({ map, ready, imageryAttribution, basemapFallback
           <Info size={13} aria-hidden="true" />
         </button>
       </span>
-      {centroid && <span className="hidden shrink-0 font-mono sm:inline">{formatLatLon(centroid)}</span>}
+      {centroid && (
+        <span className="hidden shrink-0 font-mono sm:inline">{formatLatLon(centroid)}</span>
+      )}
     </div>
   );
 }

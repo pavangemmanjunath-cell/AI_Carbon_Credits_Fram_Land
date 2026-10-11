@@ -143,6 +143,16 @@
     "toolbarLabel": "Marca tu terreno",
     "tool_boundary": "Límite",
     "tool_boundaryHint": "Dibuja los bordes de tu terreno en el mapa",
+    "tool_pen": "Lápiz",
+    "tool_penHint": "Dibuje su terreno a mano alzada, como con un lápiz",
+    "tool_rectangle": "Rectángulo",
+    "tool_rectangleHint": "Arrastre un rectángulo sobre su terreno",
+    "tool_circle": "Círculo",
+    "tool_circleHint": "Arrastre un círculo desde su centro",
+    "finish_pen": "Mantenga pulsado y arrastre por el borde de su terreno; suelte para terminar. Se guarda (bloquea) como su parcela.",
+    "finish_rectangle": "Pulse, arrastre sobre su terreno y suelte. Se guarda (bloquea) como su parcela.",
+    "finish_circle": "Pulse en el centro, arrastre hasta el borde y suelte. Se guarda (bloquea) como su parcela.",
+    "localTime": "Hora local",
     "tool_treeLine": "Hilera de árboles",
     "tool_treeLineHint": "Dibuja una hilera de árboles junto a un bancal, un camino o el borde del campo",
     "tool_pin": "Pin + tamaño",
@@ -564,7 +574,7 @@
     "apiError": "La API devolvió un error ({{status}}): {{title}}",
     "network": "No se pudo contactar con la API.",
     "unknown": "Error inesperado.",
-    "needsApi": "Esto necesita el servidor de AgriCarbon Atlas. Inicia la API (make api) y vuelve a intentarlo.",
+    "needsApi": "Esto necesita el servidor de CarbonCreditBuy. Inicia la API (make api) y vuelve a intentarlo.",
     "cancelled": "Cancelado."
   }
 }

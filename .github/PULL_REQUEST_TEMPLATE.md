@@ -1,5 +1,5 @@
 <!--
-Thank you for contributing to AgriCarbon Atlas.
+Thank you for contributing to CarbonCreditBuy.
 Every section below is required by CLAUDE.md ("Pull request rule"):
 why · inputs · outputs · data source · licensing impact · privacy impact · testing performed.
 Write "none" where a section genuinely does not apply; a reviewer will check.

@@ -5,7 +5,7 @@ market framework. It has a **compliance mechanism** for designated
 industrial sectors and an **offset mechanism** for voluntary projects,
 including, in principle, agriculture and forestry. This page summarizes
 the scheme, names the institutions, lists what a project would need, and
-states how the Atlas treats it. Details marked *verify* must be checked
+states how CarbonCreditBuy treats it. Details marked *verify* must be checked
 against the current notifications and BEE procedures, which have been
 evolving quickly.
 
@@ -51,7 +51,7 @@ afforestation, reforestation or agroforestry methodology for private
 agricultural land has been approved).
 
 Until a methodology covering the activity is approved, no project of that
-type can be registered, which is why the Atlas returns
+type can be registered, which is why CarbonCreditBuy returns
 `requires_methodology_assessment` for tree plantation, agroforestry and
 soil carbon rather than anything more encouraging.
 
@@ -86,7 +86,7 @@ projects run by cooperatives, companies or NGOs.
   Certificates**: predecessor and parallel instruments administered by
   BEE and the power sector; not relevant to farms.
 
-## What the Atlas shows
+## What CarbonCreditBuy shows
 
 A programme card "Carbon Credit Trading Scheme (offset mechanism)" with
 status `requires_methodology_assessment`, the requirements above,

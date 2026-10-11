@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from atlas_agents import (
+from carboncreditbuy_agents import (
     AgentMessage,
     Blackboard,
     Evidence,
@@ -18,7 +18,7 @@ from atlas_agents import (
     check_values_separated,
     credit_claims,
 )
-from atlas_agents.llm.redaction import sensitive_number_strings
+from carboncreditbuy_agents.llm.redaction import sensitive_number_strings
 
 
 def msg(text: str, kind: str = "finding", **kwargs: object) -> AgentMessage:

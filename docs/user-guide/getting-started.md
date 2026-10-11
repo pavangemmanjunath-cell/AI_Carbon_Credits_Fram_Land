@@ -194,7 +194,7 @@ or go straight to its results. There is no sign-in in this version, so the list 
 | "Location unavailable — check browser permissions." | Allow location in the browser for this site, or search for your place instead |
 | The estimate does not change when you change your trees | Look for the "API offline" banner. Offline, the app shows fixed example numbers |
 | A red or amber message with a number, such as "The API returned an error (422)…" | Read the text after it. It usually says what to fix, for example a boundary that crosses itself |
-| "This needs the AgriCarbon Atlas server. Start the API (make api) and try again." | That part, for example importing a file, works only when the server is running. Ask whoever runs your copy of the app |
+| "This needs the CarbonCreditBuy server. Start the API (make api) and try again." | That part, for example importing a file, works only when the server is running. Ask whoever runs your copy of the app |
 | The results page says "Add trees to the plot to get an estimate." | Go back to **My land** and fill in **Number of trees**, **Tree type** and **Plantation year** |
 
 ## Words used in the app

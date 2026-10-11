@@ -1,6 +1,6 @@
 # Release process
 
-How a version of AgriCarbon Atlas is cut. A release is a checklist that a maintainer follows by hand. The workflows
+How a version of CarbonCreditBuy is cut. A release is a checklist that a maintainer follows by hand. The workflows
 test, scan and package, and none of them tags, publishes or pushes anything. The project lead releases versions and
 maintainers rotate release duty ([GOVERNANCE.md](../../GOVERNANCE.md)). Two ideas run through the whole page:
 
@@ -17,7 +17,7 @@ maintainers rotate release duty ([GOVERNANCE.md](../../GOVERNANCE.md)). Two idea
 | `Lint` | Pull requests, `main`, on demand | Prettier and ESLint for the web app, `ruff format --check`, yamllint on `config/` and the workflows |
 | `Security` | Pull requests, `main`, weekly, on demand | CodeQL for Python and JavaScript/TypeScript, pip-audit, npm audit, gitleaks, dependency review on pull requests |
 | `Docs` | Markdown changes, weekly | markdownlint, internal links (blocking), external links (advisory) |
-| `QGIS plugin` | Changes under `integrations/qgis-plugin/` | Plugin tests on Python 3.9 and 3.12, then the installable ZIP as the artifact `agricarbon-atlas-qgis-plugin`, kept for 30 days |
+| `QGIS plugin` | Changes under `integrations/qgis-plugin/` | Plugin tests on Python 3.9 and 3.12, then the installable ZIP as the artifact `carboncreditbuy-qgis-plugin`, kept for 30 days |
 | `Labeler` | Pull requests | Area labels |
 
 Not automated, so on the checklist: the version bump, the changelog, the tag, the GitHub release, publishing the
@@ -168,8 +168,8 @@ The version appears in several places. Change them together, in one commit, and 
 | --- | --- |
 | `apps/api/pyproject.toml` and `apps/api/app/__init__.py` | API version (reported by `GET /api/v1/health` and in provenance) |
 | `packages/{carbon-engine,geo-engine,policy-engine,report-engine,agent-framework}/pyproject.toml` and each package's `__init__.py` | Engine and agent-framework versions |
-| `integrations/pyproject.toml` and `integrations/atlas_integrations/__init__.py` | Adapter package |
-| `integrations/qgis-plugin/agricarbon_atlas_qgis/metadata.txt` (`version=`, `changelog=`) and `version.py` | QGIS plugin, if released together. The two versions must match |
+| `integrations/pyproject.toml` and `integrations/carboncreditbuy_integrations/__init__.py` | Adapter package |
+| `integrations/qgis-plugin/carboncreditbuy_qgis/metadata.txt` (`version=`, `changelog=`) and `version.py` | QGIS plugin, if released together. The two versions must match |
 | `apps/web/package.json` (and the lock file via `npm install`) | Web app |
 | `config/**/version:` keys | Only those whose content changed |
 | `data/schemas/schema.sql` | Header revision and the `schema_version` insert, only if the schema changed |
@@ -191,7 +191,7 @@ grep -rn --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist --excl
 2. Tag the merge commit and push the tag. A signed tag is recommended:
 
    ```bash
-   git tag -s vX.Y.Z -m "AgriCarbon Atlas X.Y.Z"
+   git tag -s vX.Y.Z -m "CarbonCreditBuy X.Y.Z"
    git push origin vX.Y.Z
    ```
 
@@ -200,15 +200,15 @@ grep -rn --exclude-dir=node_modules --exclude-dir=.git --exclude-dir=dist --excl
    parameters and tree-age rules. Credit contributors and reporters (reporters of security issues unless they prefer to
    stay anonymous).
 4. If the plugin is part of the release, open the `QGIS plugin` workflow run for the tagged commit, download the
-   artifact `agricarbon-atlas-qgis-plugin` (it expires after 30 days), check that the file name carries the release
+   artifact `carboncreditbuy-qgis-plugin` (it expires after 30 days), check that the file name carries the release
    version, and attach the ZIP to the GitHub release. The plugin is licensed GPL-2.0-or-later and stays in its own
    folder ([why](../licensing/THIRD_PARTY.md#the-qgis-plugin-and-the-gpl)). Publishing it elsewhere is a separate
    decision that this repository does not automate.
 5. Build the images from the tag if you publish them:
 
    ```bash
-   docker build -f infra/docker/Dockerfile.api -t agricarbon-atlas-api:X.Y.Z .
-   docker build -f infra/docker/Dockerfile.web -t agricarbon-atlas-web:X.Y.Z .
+   docker build -f infra/docker/Dockerfile.api -t carboncreditbuy-api:X.Y.Z .
+   docker build -f infra/docker/Dockerfile.web -t carboncreditbuy-web:X.Y.Z .
    ```
 
    Where to push is a deployment decision. Never bake secrets into an image. `VITE_*` values are compiled into the web

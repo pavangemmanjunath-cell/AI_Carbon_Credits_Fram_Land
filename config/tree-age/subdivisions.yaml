@@ -7,7 +7,7 @@
 # Uttarakhand IN-UK, and Dadra and Nagar Haveli and Daman and Diu is the single territory IN-DH.
 #
 # Only the countries that have a subdivision-specific tree-age rule today are listed: India and the
-# United States (the Atlas's MVP countries) and Germany (the Berlin example in rules.yaml). Add
+# United States (CarbonCreditBuy's MVP countries) and Germany (the Berlin example in rules.yaml). Add
 # another country by adding a block; a rule's `subdivision` must exist here (checked in
 # tests/data-quality/test_tree_age_rules.py). Nothing here is a legal or administrative boundary;
 # it only labels the places a rule names. An optional `article: the` on a country block is used

@@ -1,6 +1,6 @@
 # Authors
 
-This file lists the people who hold authorship of AgriCarbon Atlas in the
+This file lists the people who hold authorship of CarbonCreditBuy in the
 copyright sense: those who created the project or wrote substantial,
 original parts of it. For the broader list of people who have contributed
 changes, see [CONTRIBUTORS.md](CONTRIBUTORS.md). For how to cite the
@@ -8,7 +8,7 @@ software, see [CITATION.cff](CITATION.cff).
 
 ## Original author and project lead
 
-- **Pavan Manjunath** — project lead and original author. Conceived the
+- **Pavan Manjunath** ([ORCID 0000-0002-2694-8807](https://orcid.org/0000-0002-2694-8807)) — project lead and original author. Conceived the
   platform, designed the architecture (config-driven regions and policies,
   deterministic carbon engine, privacy boundary) and wrote the initial
   implementation and documentation.
@@ -25,7 +25,7 @@ attribution is specific.
 
 ## Copyright
 
-Copyright © 2026 Pavan Manjunath and the AgriCarbon Atlas contributors.
+Copyright © 2026 Pavan Manjunath and the CarbonCreditBuy contributors.
 Licensed under the Apache License, Version 2.0 ([LICENSE](LICENSE)). Each
 contributor retains copyright in their contributions; the project does not
 require copyright assignment.

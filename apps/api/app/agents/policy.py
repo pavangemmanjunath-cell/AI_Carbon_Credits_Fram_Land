@@ -14,7 +14,7 @@ from typing import Any
 
 from app.agents import wording
 from app.agents.tools import assess_tree_age, screen_programmes
-from atlas_agents import Agent, AgentMessage, Evidence, RunContext
+from carboncreditbuy_agents import Agent, AgentMessage, Evidence, RunContext
 
 TREE_AGE_PLAN = "tree-age-check"
 

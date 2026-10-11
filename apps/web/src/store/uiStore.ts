@@ -69,7 +69,7 @@ export interface UiState {
 
 export const DEFAULT_LAYERS: LayerState = { landuse: true, ndvi: true, soil: false, treeCover: false, importedTrees: false };
 
-/** Fields kept in localStorage (`agricarbon-atlas-ui`). */
+/** Fields kept in localStorage (`carboncreditbuy-ui`). */
 type PersistedUi = Pick<UiState, 'selectedPlotId' | 'layers' | 'language' | 'areaUnit' | 'country' | 'mapView' | 'imageryChoice'>;
 
 export const UI_STORE_VERSION = 2;
@@ -170,7 +170,7 @@ export const useUiStore = create<UiState>()(
       dismissWelcome: () => set({ welcomeDismissed: true }),
     }),
     {
-      name: 'agricarbon-atlas-ui',
+      name: 'carboncreditbuy-ui',
       version: UI_STORE_VERSION,
       storage: createJSONStorage(() => localStorage),
       partialize: (s): PersistedUi => ({

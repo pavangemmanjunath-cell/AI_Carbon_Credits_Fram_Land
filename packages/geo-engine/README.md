@@ -1,6 +1,6 @@
 # geo-engine
 
-Geospatial primitives for AgriCarbon Atlas: polygon validation and geodesic measurement, privacy-safe centroid
+Geospatial primitives for CarbonCreditBuy: polygon validation and geodesic measurement, privacy-safe centroid
 generalisation, plot geometry built from a pin and a size or from a tree line, a parser for typed coordinates, ESA
 WorldCover class handling, Sentinel-2 STAC search helpers, vegetation indices, an approximate IPCC climate-zone
 classifier, the space-time vegetation cube, readers for GeoJSON, KML, KMZ, CSV and LAS or LAZ point clouds, tree-top

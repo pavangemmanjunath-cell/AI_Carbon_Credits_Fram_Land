@@ -1,6 +1,6 @@
 # Reference infrastructure layout (Terraform)
 
-This directory documents a **reference** deployment of AgriCarbon Atlas on
+This directory documents a **reference** deployment of CarbonCreditBuy on
 any cloud that offers S3-compatible object storage and container hosting. It
 contains no secrets and, at the moment, no `.tf` files: the layout below is
 the agreed shape so that a contributor can write modules for a specific
@@ -13,9 +13,9 @@ this; `docker compose up` is enough
 
 | Component | Purpose | Notes |
 |---|---|---|
-| Object bucket `agricarbon-atlas-tiles` | Protomaps PMTiles basemap, optional terrain and satellite mosaics | Public read, HTTP Range requests, CORS exposing `ETag` and `Content-Range`; served through a CDN with a long cache. ODbL attribution is mandatory for OSM-derived tiles ([MAP_LICENSES.md](../../docs/licensing/MAP_LICENSES.md)). |
-| Object bucket `agricarbon-atlas-cache` | Cached WorldCover clips, Sentinel-2 band windows, SoilGrids and Open-Meteo responses | **Private.** Clips are bounded by plot bounding boxes and therefore reveal location; treat as personal data ([data-retention.md](../../docs/privacy/data-retention.md)). |
-| Object bucket `agricarbon-atlas-reports` | Rendered reports (HTML/PDF) | Private; expiring pre-signed URLs only. |
+| Object bucket `carboncreditbuy-tiles` | Protomaps PMTiles basemap, optional terrain and satellite mosaics | Public read, HTTP Range requests, CORS exposing `ETag` and `Content-Range`; served through a CDN with a long cache. ODbL attribution is mandatory for OSM-derived tiles ([MAP_LICENSES.md](../../docs/licensing/MAP_LICENSES.md)). |
+| Object bucket `carboncreditbuy-cache` | Cached WorldCover clips, Sentinel-2 band windows, SoilGrids and Open-Meteo responses | **Private.** Clips are bounded by plot bounding boxes and therefore reveal location; treat as personal data ([data-retention.md](../../docs/privacy/data-retention.md)). |
+| Object bucket `carboncreditbuy-reports` | Rendered reports (HTML/PDF) | Private; expiring pre-signed URLs only. |
 | Container service `api` | `infra/docker/Dockerfile.api`, port 8000 | Non-root (uid 10001). Environment from a secret store, never from a committed file. Horizontal scaling is safe when `ATLAS_REPOSITORY=postgres`. |
 | Container service `web` | `infra/docker/Dockerfile.web`, port 8080 | Stateless. Set `ATLAS_API_ORIGIN` and `ATLAS_BASEMAP_ORIGINS` so the CSP matches the deployment. |
 | PostgreSQL 16 + PostGIS 3.4 | Plot, inventory and estimate repository | Encrypted at rest; daily backups with a retention that matches the privacy policy; `DATABASE_URL` from the secret store. |
@@ -76,7 +76,7 @@ settings.
 
 ## Privacy and retention in infrastructure terms
 
-- Lifecycle rules on `agricarbon-atlas-cache` and `agricarbon-atlas-reports`
+- Lifecycle rules on `carboncreditbuy-cache` and `carboncreditbuy-reports`
   implement the defaults in
   [data-retention.md](../../docs/privacy/data-retention.md).
 - Database backups inherit deletion obligations: document the backup

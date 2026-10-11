@@ -43,6 +43,10 @@ class ResizeObserverMock {
   unobserve() {}
   disconnect() {}
 }
-if (!window.ResizeObserver) window.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
+if (!window.ResizeObserver)
+  window.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
+
+// jsdom has no scrolling; the app scrolls to the top on page changes.
+window.scrollTo = vi.fn() as unknown as typeof window.scrollTo;
 
 afterEach(() => cleanup());

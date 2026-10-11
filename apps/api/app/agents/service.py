@@ -1,11 +1,11 @@
 """AgentService: the one class the API router talks to.
 
-It wires the generic framework (``atlas_agents``) to AgriCarbon Atlas:
+It wires the generic framework (``carboncreditbuy_agents``) to CarbonCreditBuy:
 
 * builds the team (:mod:`app.agents.catalog`) and the orchestrator once;
 * picks a reasoner per run — templates by default, an LLM only when
   ``ATLAS_AGENT_REASONER=llm`` and ``LLM_API_BASE_URL`` + ``LLM_MODEL`` are set;
-* adds the six AgriCarbon guardrails, including a search for this plot's own
+* adds the six CarbonCreditBuy guardrails, including a search for this plot's own
   coordinates;
 * stores every run through the generic repository record API
   (``kind="agent-run"``, linked to the plot, so deleting the plot deletes it).
@@ -25,7 +25,7 @@ from app.agents.wording import RUN_DISCLAIMER
 from app.core.config import Settings
 from app.core.errors import ProblemError
 from app.services.common import base_provenance
-from atlas_agents import (
+from carboncreditbuy_agents import (
     FRAMEWORK_NAME,
     Blackboard,
     Guardrail,
@@ -47,13 +47,13 @@ from atlas_agents import (
     default_router,
     new_run_id,
 )
-from atlas_agents.llm import LLMProvider, OpenAICompatibleProvider, redact_text
-from atlas_agents.llm.redaction import sensitive_number_strings
+from carboncreditbuy_agents.llm import LLMProvider, OpenAICompatibleProvider, redact_text
+from carboncreditbuy_agents.llm.redaction import sensitive_number_strings
 
 if TYPE_CHECKING:  # pragma: no cover
     from app.context import AppContext
 
-log = logging.getLogger("atlas.agents")
+log = logging.getLogger("carboncreditbuy.agents")
 
 RUN_KIND = "agent-run"
 """Record kind used with ``Repository.save_record`` / ``list_records``."""
@@ -83,7 +83,7 @@ def _carbon_records(board: Blackboard) -> list[tuple[str, Mapping[str, Any] | No
 
 
 def guardrails_for(plot: Mapping[str, Any]) -> list[Guardrail]:
-    """The six AgriCarbon guardrails, bound to this plot's private coordinates."""
+    """The six CarbonCreditBuy guardrails, bound to this plot's private coordinates."""
     centroid = plot.get("centroid") or {}
     private_numbers = [v for v in (centroid.get("lat"), centroid.get("lon")) if v is not None]
     private_numbers += list(plot.get("bbox") or [])

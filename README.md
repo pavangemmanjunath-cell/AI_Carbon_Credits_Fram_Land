@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="docs/images/logo.png" width="88" alt="AgriCarbon Atlas logo">
+  <img src="docs/images/logo.png" width="88" alt="CarbonCreditBuy logo">
 </p>
 
-<h1 align="center">Vriksha Atlas</h1>
+<h1 align="center">CarbonCreditBuy</h1>
 
-<p align="center"><em>(project code name: AgriCarbon Atlas &middot; <strong>vriksha</strong> = "tree" in Sanskrit)</em></p>
+<p align="center"><em>See what your land and trees could return in carbon — with every number explained. Estimates and price scenarios only: a credit exists only after a recognised programme verifies and issues it.</em></p>
 
 <p align="center">
   <strong>Open geospatial intelligence for tree planting, agricultural carbon potential and sustainable land analysis.</strong><br>
@@ -35,11 +35,12 @@ growing from 2023 to 2053 → a clicked tree → "Why this number?" → your cos
 team at work.</em></p>
 
 <p align="center">
-  <img src="docs/images/demo/atlas-demo.gif" width="900" alt="Animated tour: the landing page, the workspace map, a 3D view of a 2.13 ha mango plot whose 420 trees grow from saplings in 2023 to a closed canopy in 2053, a tree card showing 10 m height and 23 kg CO2e removal this year, the explainable-AI panel, the cost panel and the agents' conversation">
+  <img src="docs/images/demo/carboncreditbuy-demo.gif" width="900" alt="Animated tour: the landing page, the workspace map, a 3D view of a 2.13 ha mango plot whose 420 trees grow from saplings in 2023 to a closed canopy in 2053, a tree card showing 10 m height and 23 kg CO2e removal this year, the explainable-AI panel, the cost panel and the agents' conversation">
 </p>
 
 | Scene | What you see | Where the numbers come from |
 |---|---|---|
+| **Mark and lock your land** | A real global street map (OpenStreetMap via OpenFreeMap); draw with Boundary, Pen, Rectangle or Circle, or walk in with coordinates; the saved plot lists every corner's latitude and longitude | Your drawing; trees that fit = area × the species' reference density (config/species) |
 | **3D land** | Your saved boundary with every tree; drag to turn, click a tree or the plot | Tree size: species config × growth · carbon: the engine's yearly series |
 | **Growth over time** | Slide or play 2023 → 2053; saplings become a closed canopy | `typical_height_m_at_maturity`, reference spacing (config/species) |
 | **Why this number?** | What moves the estimate and every factor with its source and status | Engine re-runs (±10 %) — no AI model |
@@ -47,11 +48,11 @@ team at work.</em></p>
 | **Your costs** | Total cost and the carbon price that would cover it | Only the costs you type — no built-in values |
 | **Agents** | Nine agents, each message with its tools and evidence | Tool calls into the engines; six guardrails per run |
 
-![The AgriCarbon Atlas workspace: map with the plot and its vegetation cells, the selected plot details and three result cards](docs/images/screenshots/02-workspace.png)
+![The CarbonCreditBuy workspace: map with the plot and its vegetation cells, the selected plot details and three result cards](docs/images/screenshots/02-workspace.png)
 
 ## What it does
 
-AgriCarbon Atlas helps farmers, landowners, advisors and researchers answer four questions about **one piece of land**,
+CarbonCreditBuy helps farmers, landowners, advisors and researchers answer four questions about **one piece of land**,
 honestly and in plain language:
 
 1. **Where is my land?** Draw the boundary, draw a **tree line** along a bund or field edge, drop a **pin and type the
@@ -123,7 +124,7 @@ tree crowns as GeoJSON and a small LAZ point cloud — all synthetic).
 
 ![The agent team for a full assessment: coordinator, land, imagery, tree, carbon, policy, market, review and report agents with their tools, a shared blackboard and guardrails](docs/images/agents-team.png)
 
-A small, readable framework in [`packages/agent-framework`](packages/agent-framework/) (`atlas_agents`): **agents**
+A small, readable framework in [`packages/agent-framework`](packages/agent-framework/) (`carboncreditbuy_agents`): **agents**
 with one job each, **tools** that call the engines, **plans** that order the agents, a **blackboard** that records who
 wrote what, a **reviewer** with guardrails, and a **reasoner** that turns facts into sentences.
 
@@ -164,7 +165,7 @@ how to add an agent, how to switch on an LLM, and how it maps to LangGraph, Crew
 apps/api/               FastAPI service (routers, services, agents, repositories)
 apps/web/               React 19 + Vite web app (MapLibre, i18n, Vitest)
 packages/
-  agent-framework/      atlas_agents — agents, tools, plans, blackboard, guardrails, optional LLM
+  agent-framework/      carboncreditbuy_agents — agents, tools, plans, blackboard, guardrails, optional LLM
   carbon-engine/        tree biomass, uncertainty, readiness, carbon by tree age
   geo-engine/           geometry, imports, point clouds, detection, indices, vegetation cube
   policy-engine/        programme screening and tree-age rules
@@ -183,8 +184,8 @@ ESLint. CI, CodeQL, dependency and secret scanning are in [.github/workflows](.g
 
 ## How it differs
 
-Commercial platforms run carbon *projects* and sell credits; open platforms map forests at landscape scale. AgriCarbon
-Atlas is a self-hostable, farmer-facing **screening tool for one plot**, with honest ranges, region-aware rules (including
+Commercial platforms run carbon *projects* and sell credits; open platforms map forests at landscape scale. CarbonCreditBuy
+is a self-hostable, farmer-facing **screening tool for one plot**, with honest ranges, region-aware rules (including
 rules by tree age), many friendly ways to mark land, and an explainable agent team. Details and sources:
 [docs/research/competitive-landscape.md](docs/research/competitive-landscape.md).
 
@@ -207,6 +208,13 @@ the project, citations of the software, linked papers and preprints, benchmark r
 that the maintainers generated themselves. Current state: early release (v0.2.0), no external adoption recorded yet.
 
 ## Cite
+
+| Use | Title |
+|---|---|
+| Software and paper | *CarbonCreditBuy: An Open, Explainable Platform for Estimating Tree-Based Carbon Removal and Its Indicative Credit Value on Farmland* |
+| Book | *CarbonCreditBuy: From Growing Trees to Verified Carbon Value — A Practical Guide for Farmers, Advisors and Researchers* |
+
+Author: Pavan Manjunath · ORCID [0000-0002-2694-8807](https://orcid.org/0000-0002-2694-8807)
 
 See [CITATION.cff](CITATION.cff). A DOI will be added after the first archived release
 ([how](docs/community/zenodo-doi.md)). Reproducible checks: [benchmarks/](benchmarks/README.md).

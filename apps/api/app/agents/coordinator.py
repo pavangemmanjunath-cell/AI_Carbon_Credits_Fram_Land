@@ -13,8 +13,8 @@ from collections.abc import Mapping
 from typing import Any
 
 from app.agents import wording
-from atlas_agents import Agent, AgentMessage, Evidence, RunContext, StepRecord
-from atlas_agents.messages import MessageKind
+from carboncreditbuy_agents import Agent, AgentMessage, Evidence, RunContext, StepRecord
+from carboncreditbuy_agents.messages import MessageKind
 
 INTENT_TOPICS = {
     "what_if": "a what-if with a different number of trees",

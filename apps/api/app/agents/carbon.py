@@ -12,7 +12,7 @@ from typing import Any
 
 from app.agents import wording
 from app.agents.tools import estimate_carbon, simulate_what_if
-from atlas_agents import Agent, AgentMessage, Evidence, RunContext
+from carboncreditbuy_agents import Agent, AgentMessage, Evidence, RunContext
 
 
 def estimate_evidence(estimate: Mapping[str, Any]) -> list[Evidence]:

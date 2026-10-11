@@ -143,6 +143,16 @@
     "toolbarLabel": "Mark your land",
     "tool_boundary": "Boundary",
     "tool_boundaryHint": "Draw the edges of your land on the map",
+    "tool_pen": "Pen",
+    "tool_penHint": "Draw your land freehand, like a pen on paper",
+    "tool_rectangle": "Rectangle",
+    "tool_rectangleHint": "Drag a rectangle over your land",
+    "tool_circle": "Circle",
+    "tool_circleHint": "Drag out a circle from its centre",
+    "finish_pen": "Hold and drag to trace the edge of your land; let go to finish. It is saved (locked) as your plot.",
+    "finish_rectangle": "Press, drag across your land and let go to finish the rectangle. It is saved (locked) as your plot.",
+    "finish_circle": "Press at the centre, drag out to the edge and let go. It is saved (locked) as your plot.",
+    "localTime": "Local time",
     "tool_treeLine": "Tree line",
     "tool_treeLineHint": "Draw a row of trees along a bund, road or field edge",
     "tool_pin": "Pin + size",
@@ -556,7 +566,7 @@
     "apiError": "The API returned an error ({{status}}): {{title}}",
     "network": "The API could not be reached.",
     "unknown": "Unexpected error.",
-    "needsApi": "This needs the AgriCarbon Atlas server. Start the API (make api) and try again.",
+    "needsApi": "This needs the CarbonCreditBuy server. Start the API (make api) and try again.",
     "cancelled": "Cancelled."
   }
 }

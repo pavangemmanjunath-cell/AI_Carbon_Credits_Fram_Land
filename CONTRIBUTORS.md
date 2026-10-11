@@ -1,6 +1,6 @@
 # Contributors
 
-AgriCarbon Atlas exists because people give their time to it. This file
+CarbonCreditBuy exists because people give their time to it. This file
 recognizes that work. It is maintained by hand, by pull request, under a
 simple policy: **real contributions only, no inflation.**
 

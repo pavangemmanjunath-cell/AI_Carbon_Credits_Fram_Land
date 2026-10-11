@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Every external dataset needs licensing metadata in `docs/licensing/DATA_LICENSES.md`
-        and an adapter under `integrations/atlas_integrations/` with README, source, license,
+        and an adapter under `integrations/carboncreditbuy_integrations/` with README, source, license,
         attribution, rate limits, caching and failure handling (CLAUDE.md principles 5 and 6).
         Endpoints come from environment variables, never from literals in application code.
         See `docs/developer-guide/adding-an-integration.md` and `docs/data-sources/FREE_APIS.md`
@@ -32,8 +32,8 @@ body:
   - type: textarea
     id: purpose
     attributes:
-      label: Purpose in the Atlas
-      description: Which analysis block or feature it would feed (landcover, vegetation, climate, soil, terrain, crop statistics, geocoding, basemap).
+      label: Purpose in CarbonCreditBuy
+description: Which analysis block or feature it would feed (landcover, vegetation, climate, soil, terrain, crop statistics, geocoding, basemap).
     validations:
       required: true
   - type: input
@@ -118,7 +118,7 @@ body:
     attributes:
       label: Failure behavior
       description: >-
-        What should the Atlas show when the service is down, slow or rate-limiting? The adapter raises a
+        What should CarbonCreditBuy show when the service is down, slow or rate-limiting? The adapter raises a
         typed error and the analysis reports the layer as unavailable; it never invents values.
   - type: textarea
     id: notes

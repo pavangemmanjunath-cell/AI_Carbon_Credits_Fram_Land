@@ -1,6 +1,6 @@
 # User guide
 
-AgriCarbon Atlas lets you mark your land on a map, say which trees grow on it, and see a cautious estimate of how much
+CarbonCreditBuy lets you mark your land on a map, say which trees grow on it, and see a cautious estimate of how much
 carbon those trees may be taking out of the air each year. It also shows what evidence you would still need before you
 could approach a carbon or environmental programme. This guide is written for farmers, landowners, extension workers
 and advisors. You do not need a technical background.

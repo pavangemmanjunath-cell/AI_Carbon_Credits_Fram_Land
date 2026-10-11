@@ -12,7 +12,7 @@ Short answers to the questions people ask most. Each answer points to the page t
 
 ## The basics
 
-### What is AgriCarbon Atlas?
+### What is CarbonCreditBuy?
 
 A free, open-source web app for looking at your land and your trees. You mark the boundary of a plot on a map, or
 import it from a file, and say what you planted. The app combines your answers with open satellite, climate and soil

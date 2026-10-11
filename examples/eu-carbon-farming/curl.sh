@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# AgriCarbon Atlas — end-to-end walkthrough for the synthetic EU (Andalusia) olive grove.
+# CarbonCreditBuy — end-to-end walkthrough for the synthetic EU (Andalusia) olive grove.
 #
 # Usage:
 #   ATLAS_API=http://localhost:8000/api/v1 ./curl.sh

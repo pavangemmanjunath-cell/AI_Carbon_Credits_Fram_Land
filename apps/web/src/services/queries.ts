@@ -32,13 +32,15 @@ export const queryKeys = {
   analysis: (id: string) => ['analysis', id] as const,
   cube: (id: string, index: CubeIndex) => ['cube', id, index] as const,
   trees: (id: string) => ['trees', id] as const,
-  estimate: (id: string, inventoryId?: string | null) => ['estimate', id, inventoryId ?? 'latest'] as const,
+  estimate: (id: string, inventoryId?: string | null) =>
+    ['estimate', id, inventoryId ?? 'latest'] as const,
   policy: (id: string) => ['policy', id] as const,
   market: (id: string, estimateId?: string) => ['market', id, estimateId ?? 'latest'] as const,
   simulate: (body: SimulateBody) => ['simulate', body] as const,
   explain: (body: ExplainBody) => ['explain', body] as const,
   geocode: (q: string, country?: string) => ['geocode', q, country ?? ''] as const,
-  report: (id: string, language: string, estimateId?: string) => ['report', id, language, estimateId ?? 'latest'] as const,
+  report: (id: string, language: string, estimateId?: string) =>
+    ['report', id, language, estimateId ?? 'latest'] as const,
   imports: (plotId?: string | null) => ['imports', plotId ?? 'all'] as const,
   importRecord: (id: string) => ['import', id] as const,
   detection: (plotId: string) => ['detection', plotId] as const,
@@ -62,7 +64,11 @@ export function useHealth() {
 }
 
 export function useRegions() {
-  return useQuery({ queryKey: queryKeys.regions, queryFn: () => client.regions(), staleTime: Infinity });
+  return useQuery({
+    queryKey: queryKeys.regions,
+    queryFn: () => client.regions(),
+    staleTime: Infinity,
+  });
 }
 
 export function useSpecies(country?: string) {
@@ -74,7 +80,11 @@ export function useSpecies(country?: string) {
 }
 
 export function usePlots() {
-  return useQuery({ queryKey: queryKeys.plots, queryFn: () => client.listPlots(), staleTime: 5 * MINUTE });
+  return useQuery({
+    queryKey: queryKeys.plots,
+    queryFn: () => client.listPlots(),
+    staleTime: 5 * MINUTE,
+  });
 }
 
 export function usePlot(plotId: string | null | undefined) {
@@ -85,7 +95,8 @@ export function usePlot(plotId: string | null | undefined) {
     enabled: Boolean(plotId),
     staleTime: 5 * MINUTE,
     // Reuse the list entry while the detail request is in flight.
-    placeholderData: () => queryClient.getQueryData<PlotList>(queryKeys.plots)?.items.find((p) => p.plot_id === plotId),
+    placeholderData: () =>
+      queryClient.getQueryData<PlotList>(queryKeys.plots)?.items.find((p) => p.plot_id === plotId),
   });
 }
 
@@ -93,14 +104,21 @@ export function usePlot(plotId: string | null | undefined) {
 export function useAnalysis(plotId: string | null | undefined) {
   return useQuery({
     queryKey: queryKeys.analysis(plotId ?? ''),
-    queryFn: () => client.analyze(plotId as string, { layers: ['landcover', 'vegetation', 'climate', 'soil', 'terrain'] }),
+    queryFn: () =>
+      client.analyze(plotId as string, {
+        layers: ['landcover', 'vegetation', 'climate', 'soil', 'terrain'],
+      }),
     enabled: Boolean(plotId),
     staleTime: Infinity,
     retry: 1,
   });
 }
 
-export function useCube(plotId: string | null | undefined, index: CubeIndex = 'ndvi', enabled = true) {
+export function useCube(
+  plotId: string | null | undefined,
+  index: CubeIndex = 'ndvi',
+  enabled = true,
+) {
   return useQuery({
     queryKey: queryKeys.cube(plotId ?? '', index),
     queryFn: () => client.cube(plotId as string, index, 36),
@@ -119,10 +137,15 @@ export function useTrees(plotId: string | null | undefined) {
   });
 }
 
-export function useCarbonEstimate(plotId: string | null | undefined, inventoryId?: string | null, enabled = true) {
+export function useCarbonEstimate(
+  plotId: string | null | undefined,
+  inventoryId?: string | null,
+  enabled = true,
+) {
   return useQuery({
     queryKey: queryKeys.estimate(plotId ?? '', inventoryId),
-    queryFn: () => client.carbonEstimate(plotId as string, inventoryId ? { inventory_id: inventoryId } : {}),
+    queryFn: () =>
+      client.carbonEstimate(plotId as string, inventoryId ? { inventory_id: inventoryId } : {}),
     enabled: Boolean(plotId) && enabled,
     staleTime: 10 * MINUTE,
     placeholderData: keepPreviousData,
@@ -177,7 +200,11 @@ export function useGeocode(q: string, country?: string) {
   });
 }
 
-export function useReportDocument(plotId: string | null | undefined, language: string, estimateId?: string) {
+export function useReportDocument(
+  plotId: string | null | undefined,
+  language: string,
+  estimateId?: string,
+) {
   return useQuery({
     queryKey: queryKeys.report(plotId ?? '', language, estimateId),
     queryFn: async () => {
@@ -200,6 +227,13 @@ export function useCreatePlot() {
     mutationFn: (body: PlotCreateBody) => client.createPlot(body),
     onSuccess: (plot) => {
       queryClient.setQueryData(queryKeys.plot(plot.plot_id), plot);
+      // Put the new plot in the cached list at once: selecting it before the list
+      // refetch lands would otherwise look like a stale id and fall back to another plot.
+      queryClient.setQueryData<PlotList>(queryKeys.plots, (old) =>
+        old
+          ? { ...old, items: [...old.items.filter((p) => p.plot_id !== plot.plot_id), plot] }
+          : old,
+      );
       void queryClient.invalidateQueries({ queryKey: queryKeys.plots });
     },
   });
@@ -222,7 +256,10 @@ export function useCreateTrees(plotId: string | null | undefined) {
     mutationFn: (body: TreeInventoryBody) => client.createTrees(plotId as string, body),
     onSuccess: (inventory) => {
       queryClient.setQueryData<TreeInventoryList>(queryKeys.trees(inventory.plot_id), (prev) => ({
-        items: [inventory, ...(prev?.items ?? []).filter((i) => i.inventory_id !== inventory.inventory_id)],
+        items: [
+          inventory,
+          ...(prev?.items ?? []).filter((i) => i.inventory_id !== inventory.inventory_id),
+        ],
       }));
     },
   });
@@ -231,10 +268,14 @@ export function useCreateTrees(plotId: string | null | undefined) {
 export function useAddTrees() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ plotId, body }: { plotId: string; body: TreeInventoryBody }) => client.createTrees(plotId, body),
+    mutationFn: ({ plotId, body }: { plotId: string; body: TreeInventoryBody }) =>
+      client.createTrees(plotId, body),
     onSuccess: (inventory) => {
       queryClient.setQueryData<TreeInventoryList>(queryKeys.trees(inventory.plot_id), (prev) => ({
-        items: [inventory, ...(prev?.items ?? []).filter((i) => i.inventory_id !== inventory.inventory_id)],
+        items: [
+          inventory,
+          ...(prev?.items ?? []).filter((i) => i.inventory_id !== inventory.inventory_id),
+        ],
       }));
     },
   });
@@ -301,7 +342,8 @@ export function useImportRecord(importId: string | null | undefined) {
 export function useUploadImport() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ file, options }: { file: File; options?: ImportUploadOptions }) => client.uploadImport(file, options),
+    mutationFn: ({ file, options }: { file: File; options?: ImportUploadOptions }) =>
+      client.uploadImport(file, options),
     onSuccess: (record) => {
       queryClient.setQueryData(queryKeys.importRecord(record.import_id), record);
       void queryClient.invalidateQueries({ queryKey: ['imports'] });

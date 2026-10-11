@@ -1,7 +1,7 @@
 # ESG and the three separated values
 
 Early sketches of tools like this one tend to end in a single headline:
-"your ESG amount is ₹ 48,000". The Atlas does not do that, for a reason
+"your ESG amount is ₹ 48,000". CarbonCreditBuy does not do that, for a reason
 that is conceptual before it is stylistic: **"ESG amount" is not a unit.**
 
 ## What ESG means
@@ -27,7 +27,7 @@ everyone who reads it.
 
 ## The three separated values
 
-Everywhere the Atlas presents results — the results view, the Simulation
+Everywhere CarbonCreditBuy presents results — the results view, the Simulation
 Lab, reports and the `/market-scenario` response — it shows three values
 separately, never summed:
 

@@ -11,7 +11,7 @@ do not use. Licenses are consolidated in
 The Open Government Data platform publishes agricultural statistics from
 the Ministry of Agriculture and Farmers Welfare under the Government Open
 Data License – India (GODL,
-<https://data.gov.in/government-open-data-license-india>). The Atlas uses
+<https://data.gov.in/government-open-data-license-india>). CarbonCreditBuy uses
 the district-wise, season-wise crop production dataset to populate the
 "other farm income" context (area, production and derived yield for the
 plot's district and crop).
@@ -37,7 +37,7 @@ Bhuvan (<https://bhuvan.nrsc.gov.in/>) provides thematic geospatial
 services for India, including land use / land cover at 1:250,000 and
 1:50,000 scales, wasteland atlases and some high-resolution imagery.
 Access to many layers requires registration and, for APIs, a token; terms
-are layer-specific. The Atlas does not integrate Bhuvan in v0.1; a
+are layer-specific. CarbonCreditBuy does not integrate Bhuvan in v0.1; a
 contributor adding it must document the layer's terms in the data-source
 issue template and respect that Bhuvan imagery is not generally licensed
 for redistribution. Bhuvan's wasteland and LULC layers are relevant to
@@ -55,7 +55,7 @@ shares from WorldCover but not integrated.
 | State | Portal | Relevance | Status |
 |---|---|---|---|
 | Karnataka | Karnataka Forest Department (<https://aranya.gov.in/>) — Krishi Aranya Protsaha Yojane details and nursery locations | Incentive screening ([INCENTIVES.md](INCENTIVES.md)) | referenced |
-| Karnataka | FRUITS farmer registration, Bhoomi land records | Identity and land records — **not used**: privacy; the Atlas never asks for survey numbers or farmer ids | excluded by design |
+| Karnataka | FRUITS farmer registration, Bhoomi land records | Identity and land records — **not used**: privacy; CarbonCreditBuy never asks for survey numbers or farmer ids | excluded by design |
 | All states | Soil Health Card portal (<https://soilhealth.dac.gov.in/>) | Farmer-held soil test results could replace SoilGrids context if the farmer enters them | planned as user input, not integration |
 | All states | State horticulture mission pages (MIDH) | Orchard establishment subsidies | referenced in incentives |
 

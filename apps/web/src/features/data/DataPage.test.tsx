@@ -82,6 +82,6 @@ describe('DataPage', () => {
   it('explains that imported files need the API when it is offline', async () => {
     mocks.listImports.mockRejectedValue(new FeatureNeedsApiError('Imported files'));
     renderWithProviders(<DataPage />, { route: '/app/data?tab=files' });
-    expect(await screen.findByRole('alert')).toHaveTextContent('This needs the AgriCarbon Atlas server');
+    expect(await screen.findByRole('alert')).toHaveTextContent('This needs the CarbonCreditBuy server');
   });
 });

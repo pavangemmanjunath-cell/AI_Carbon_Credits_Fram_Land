@@ -1,7 +1,7 @@
 # Data sources — European Union
 
 Global datasets (ESA WorldCover, Sentinel-2, Open-Meteo, SoilGrids, OpenStreetMap) serve EU plots exactly as they serve
-plots elsewhere. This page covers what is specific to the EU: the Copernicus data the Atlas relies on, the sources it
+plots elsewhere. This page covers what is specific to the EU: the Copernicus data CarbonCreditBuy relies on, the sources it
 does not yet have, and what we deliberately do not use. Licenses are consolidated in
 [`docs/licensing/DATA_LICENSES.md`](../../licensing/DATA_LICENSES.md), and every source's endpoint, key, cache and
 failure behavior is in [FREE_APIS.md](../../data-sources/FREE_APIS.md).
@@ -13,7 +13,7 @@ version 0.1.
 
 ## Copernicus Sentinel-2
 
-The EU's Copernicus program is the source of the vegetation indices the Atlas uses everywhere. Two catalogs are
+The EU's Copernicus program is the source of the vegetation indices CarbonCreditBuy uses everywhere. Two catalogs are
 available, chosen by `ATLAS_STAC_PROVIDER`:
 
 | Option | Endpoint variable | Credentials | Notes |
@@ -21,7 +21,7 @@ available, chosen by `ATLAS_STAC_PROVIDER`:
 | Earth Search (AWS), the default | `EARTH_SEARCH_STAC_URL` | None | Cloud-optimized files on AWS Open Data |
 | Copernicus Data Space Ecosystem | `COPERNICUS_STAC_URL` | `COPERNICUS_TOKEN` for asset downloads; search is anonymous | Applies its own terms of use in addition to the Sentinel data terms |
 
-Sentinel data are free, full and open under the Copernicus legal notice, and the Atlas shows "Contains modified Copernicus
+Sentinel data are free, full and open under the Copernicus legal notice, and CarbonCreditBuy shows "Contains modified Copernicus
 Sentinel data [year]" wherever it displays values derived from them
 ([ATTRIBUTION.md](../../licensing/ATTRIBUTION.md)). Cloud cover varies by season and region, and the 36-month vegetation
 cube shows how many pixels were valid in each month instead of hiding gaps
@@ -51,7 +51,7 @@ The map's **Satellite** view loads raster tiles from a provider that the API rec
 (`GET /api/v1/imagery/providers?country=FR`, from
 [`config/imagery/providers.yaml`](../../../config/imagery/providers.yaml)). Three member states have a verified national
 orthophoto and use it by default. Every other member state starts with the global Sentinel-2 mosaic. A person can choose
-another provider under **Settings**, **Map imagery**. Imagery is for viewing: the Atlas does not analyze these tiles. The
+another provider under **Settings**, **Map imagery**. Imagery is for viewing: CarbonCreditBuy does not analyze these tiles. The
 license, attribution and analysis rule of every provider are in
 [MAP_LICENSES.md](../../licensing/MAP_LICENSES.md), and the research is in
 [imagery-providers.md](../../research/imagery-providers.md).
@@ -66,7 +66,7 @@ license, attribution and analysis rule of every provider are in
 
 The EOX 2017 layer has the same terms as 2016. The EOX 2025 layer is CC BY-NC-SA 4.0 and only for clearly
 non-commercial deployments. Esri's terms prohibit using its tiles as input to automated extraction, and whether a free
-open-source deployment counts as commercial use is not confirmed, so the config keeps `review-terms`. The Atlas shows
+open-source deployment counts as commercial use is not confirmed, so the config keeps `review-terms`. CarbonCreditBuy shows
 the attribution text of whichever provider is on screen.
 
 Notes and what is not confirmed, from the research of 2026-10-05:
@@ -89,14 +89,14 @@ source for fruit, olive and nut yield. The licenses table lists Eurostat as opti
 policy is generally CC BY 4.0, with the attribution "Source: Eurostat"
 ([Eurostat copyright policy](https://ec.europa.eu/eurostat/about-us/policies/copyright);
 [DATA_LICENSES.md](../../licensing/DATA_LICENSES.md)). Before an adapter is written, TODO(verify): the dataset and its
-license, the NUTS level that is available for each crop, and how codes map to the Atlas. Eurostat and NUTS codes
-reportedly use `EL` for Greece, while the Atlas uses the ISO 3166-1 code `GR` (verify), so a lookup table is needed.
+license, the NUTS level that is available for each crop, and how codes map to CarbonCreditBuy. Eurostat and NUTS codes
+reportedly use `EL` for Greece, while CarbonCreditBuy uses the ISO 3166-1 code `GR` (verify), so a lookup table is needed.
 Follow [adding an integration](../../developer-guide/adding-an-integration.md) and the "Data source" issue form
 ([`data_source.yml`](../../../.github/ISSUE_TEMPLATE/data_source.yml)).
 
 ## Other candidates
 
-None has been researched for the Atlas; the license, endpoint, coverage and privacy impact of each are TODO(verify).
+None has been researched for CarbonCreditBuy; the license, endpoint, coverage and privacy impact of each are TODO(verify).
 
 | Candidate | What it could add |
 | --- | --- |
@@ -109,7 +109,7 @@ None has been researched for the Atlas; the license, endpoint, coverage and priv
 
 Land-parcel and farmer registers kept for CAP payments, and any record tied to a person, are out of scope: the platform
 needs no identity and must not become a reason to collect it ([farmer data](../../privacy/farmer-data.md)). An
-organization that operates the Atlas in the EU is responsible for its own data-protection obligations; the privacy
+organization that operates CarbonCreditBuy in the EU is responsible for its own data-protection obligations; the privacy
 pages are not legal advice.
 
 ## Related pages

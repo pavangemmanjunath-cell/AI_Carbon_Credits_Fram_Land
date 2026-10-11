@@ -54,7 +54,7 @@ def find_config_dir(start: Path | None = None) -> Path:
             if probe.is_file():
                 return probe.parent.parent
     raise FileNotFoundError(
-        "could not locate the AgriCarbon Atlas config/ directory; set ATLAS_CONFIG_DIR"
+        "could not locate the CarbonCreditBuy config/ directory; set ATLAS_CONFIG_DIR"
     )
 
 

@@ -1,4 +1,4 @@
-"""The AgriCarbon toolbox: tools that wrap the existing services.
+"""The CarbonCreditBuy toolbox: tools that wrap the existing services.
 
 Each tool is a thin, documented adapter from an agent's request to one or two
 service calls (``app.plots``, ``app.analysis``, ``app.carbon`` …). Tools return
@@ -31,8 +31,8 @@ from typing import TYPE_CHECKING, Any
 
 from app.core.errors import ProblemError
 from app.services.registry import service
-from atlas_agents import ToolRegistry, ToolSkipped
 from carbon_engine import DEFAULT_MODEL_ID
+from carboncreditbuy_agents import ToolRegistry, ToolSkipped
 from geo_engine.errors import GeometryError
 from geo_engine.geometry import ValidationLimits, validate_polygon
 
@@ -40,7 +40,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from app.context import AppContext
 
 TOOLS = ToolRegistry()
-"""Every tool the AgriCarbon agents can use (``GET /agents`` lists them per agent)."""
+"""Every tool the CarbonCreditBuy agents can use (``GET /agents`` lists them per agent)."""
 
 MAX_TREE_CHANGE = 1_000_000
 

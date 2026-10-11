@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from atlas_agents.llm.redaction import (
+from carboncreditbuy_agents.llm.redaction import (
     MASK,
     find_coordinates,
     looks_like_position,

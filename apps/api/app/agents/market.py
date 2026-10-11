@@ -13,7 +13,7 @@ from typing import Any
 
 from app.agents import wording
 from app.agents.tools import cost_scenario, market_scenarios
-from atlas_agents import Agent, AgentMessage, Evidence, RunContext
+from carboncreditbuy_agents import Agent, AgentMessage, Evidence, RunContext
 
 
 class MarketAgent(Agent):

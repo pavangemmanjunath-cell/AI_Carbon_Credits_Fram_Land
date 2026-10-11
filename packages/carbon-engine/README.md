@@ -1,7 +1,7 @@
 # carbon-engine
 
-Deterministic, parameter-cited carbon removal **scenarios** for AgriCarbon
-Atlas. Given a plot, a tree inventory and a climate zone, it returns a range
+Deterministic, parameter-cited carbon removal **scenarios** for CarbonCreditBuy.
+Given a plot, a tree inventory and a climate zone, it returns a range
 (`low`, `central`, `high`), a confidence grade, an evidence-readiness score and
 the full list of parameters behind the number. A second entry point,
 [`carbon_engine.age`](#carbon-by-tree-age), answers a different question: how

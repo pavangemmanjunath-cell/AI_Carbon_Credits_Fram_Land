@@ -1,8 +1,8 @@
-# AgriCarbon Atlas QGIS plugin - developer shortcuts (run from this directory).
+# CarbonCreditBuy QGIS plugin - developer shortcuts (run from this directory).
 # SPDX-License-Identifier: GPL-2.0-or-later
 
 PY ?= python
-PLUGIN := agricarbon_atlas_qgis
+PLUGIN := carboncreditbuy_qgis
 REPO_ROOT := ../..
 QGIS_PLUGINS_DIR ?= $(HOME)/.local/share/QGIS/QGIS3/profiles/default/python/plugins
 
@@ -12,7 +12,7 @@ QGIS_PLUGINS_DIR ?= $(HOME)/.local/share/QGIS/QGIS3/profiles/default/python/plug
 help: ## list the targets
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | sed -E 's/:.*## /\t/'
 
-package: ## build dist/agricarbon_atlas_qgis-<version>.zip for "Install from ZIP"
+package: ## build dist/carboncreditbuy_qgis-<version>.zip for "Install from ZIP"
 	$(PY) scripts/package.py
 
 test: ## run the plugin tests (QGIS is not needed)

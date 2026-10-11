@@ -1,5 +1,5 @@
 <#
-  Vriksha Atlas - encrypted API keys and AI (LLM) provider settings on Windows.
+  CarbonCreditBuy - encrypted API keys and AI (LLM) provider settings on Windows.
 
   Double-click API-KEYS.bat at the repository root for the menu, or:
     secrets.ps1            menu
@@ -7,7 +7,7 @@
     secrets.ps1 test-llm   send one tiny test message to the chosen LLM
 
   Where and how:
-    %APPDATA%\VrikshaAtlas\settings.json - outside the repository, so it can never be committed.
+    %APPDATA%\CarbonCreditBuy\settings.json - outside the repository, so it can never be committed.
     Keys and tokens are encrypted with Windows DPAPI (ConvertFrom-SecureString): only this Windows
     user on this computer can decrypt them. Provider name, URL and model are not secret and are
     stored as plain text. START.bat decrypts the values into the API's environment only (never
@@ -19,7 +19,7 @@
 param([ValidateSet('menu', 'list', 'test-llm', 'load')][string]$Action = 'menu')
 
 $ErrorActionPreference = 'Stop'
-$StoreDir = Join-Path $env:APPDATA 'VrikshaAtlas'
+$StoreDir = Join-Path $env:APPDATA 'CarbonCreditBuy'
 $StoreFile = Join-Path $StoreDir 'settings.json'
 
 # Secret values the API reads (see .env.example). Anything else in the store is plain config.
@@ -72,7 +72,7 @@ function Set-Secret($store, [string]$name, [string]$prompt) {
   if ($value.Length -gt 0) { $store[$name] = @{ secret = $true; data = (Protect $value) } }
 }
 
-# Everything the API needs as environment variables, decrypted. Used by atlas.ps1.
+# Everything the API needs as environment variables, decrypted. Used by launcher.ps1.
 function Get-Environment {
   $store = Read-Store
   $envs = @{}

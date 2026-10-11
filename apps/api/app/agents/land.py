@@ -6,7 +6,7 @@ from typing import Any
 
 from app.agents import wording
 from app.agents.tools import climate_zone, land_cover_shares, measure_plot
-from atlas_agents import Agent, AgentMessage, Evidence, RunContext
+from carboncreditbuy_agents import Agent, AgentMessage, Evidence, RunContext
 
 
 class LandAgent(Agent):

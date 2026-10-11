@@ -11,9 +11,9 @@ from app.services.common import base_provenance, current_year
 from app.services.market import MarketService
 from app.services.policy import PolicyService
 from app.services.regions import RegionConfig
-from atlas_integrations import AdapterError
 from carbon_engine import ClimateInput, InventoryInput, ModelParams, PlotInput
 from carbon_engine.economics import CostInputs, cost_scenario
+from carboncreditbuy_integrations import AdapterError
 from geo_engine.climate import classify_climate_zone, zone_label
 
 DEFAULT_AREA_HA = 2.13

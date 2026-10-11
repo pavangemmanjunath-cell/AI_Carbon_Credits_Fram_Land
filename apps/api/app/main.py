@@ -1,4 +1,4 @@
-"""AgriCarbon Atlas API — FastAPI application factory.
+"""CarbonCreditBuy API — FastAPI application factory.
 
 Run locally::
 
@@ -85,7 +85,7 @@ TAGS = [
 def create_app(settings: Settings | None = None) -> FastAPI:
     settings = settings or get_settings()
     configure_logging(settings.atlas_log_level)
-    log = logging.getLogger("atlas.api")
+    log = logging.getLogger("carboncreditbuy.api")
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
@@ -98,7 +98,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         ctx.repo.close()
 
     app = FastAPI(
-        title="AgriCarbon Atlas API",
+        title="CarbonCreditBuy API",
         version=__version__,
         description=DESCRIPTION,
         openapi_tags=TAGS,

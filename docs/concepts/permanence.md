@@ -3,7 +3,7 @@
 Carbon stored in trees can return to the atmosphere: a felled orchard, a
 fire, a drought, a pest outbreak or a change of owner's plans reverses the
 removal. **Permanence** (sometimes "durability") is the set of rules by
-which programmes handle that **reversal risk**. The Atlas models no
+which programmes handle that **reversal risk**. CarbonCreditBuy models no
 losses and makes no permanence commitment on anyone's behalf; this page
 explains what the programmes expect so that the readiness checklist makes
 sense.
@@ -60,7 +60,7 @@ realities ([../regions/IN/INCENTIVES.md](../regions/IN/INCENTIVES.md),
 [../regions/US/PROGRAMS.md](../regions/US/PROGRAMS.md#usda-nrcs-conservation-programs-eqip-and-csp),
 [../regions/EU/PROGRAMS.md](../regions/EU/PROGRAMS.md#cap-eco-schemes-and-agri-environment-climate-measures)).
 
-## How the Atlas handles it
+## How CarbonCreditBuy handles it
 
 - The carbon engine's stock is a running sum of annual gains with **no
   loss term**; the result's `notes` say so. A 30-year series should be

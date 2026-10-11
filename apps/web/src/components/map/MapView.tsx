@@ -8,10 +8,26 @@ import { detectionSummary, patchInfo } from '@/lib/detection';
 import { landUseShares, soilInsight } from '@/lib/insights';
 import { formatArea } from '@/lib/format';
 import { boundsOf, validatePolygon } from '@/lib/geo';
-import { plotRequestFor, type LandToolAction, type NewPlotRequest } from '@/lib/landInput';
+import {
+  isShapeMode,
+  plotRequestFor,
+  type LandToolAction,
+  type NewPlotRequest,
+} from '@/lib/landInput';
 import { activeYear, cubeSliceToGeoJson, cubeYears, timeIndexForYear } from '@/lib/ndviGrid';
 import { useUiStore } from '@/store/uiStore';
-import type { Analysis, Cube, Detection, GeocodeResult, ImageryProvider, ImportRecord, LatLon, LineStringGeometry, Plot, PolygonGeometry } from '@/types/api';
+import type {
+  Analysis,
+  Cube,
+  Detection,
+  GeocodeResult,
+  ImageryProvider,
+  ImportRecord,
+  LatLon,
+  LineStringGeometry,
+  Plot,
+  PolygonGeometry,
+} from '@/types/api';
 import { AttributionBar } from './AttributionBar';
 import {
   DETECT_FILL,
@@ -32,10 +48,16 @@ import {
   setOverlayData,
   syncImageryLayer,
 } from './layers';
-import { CoordinatesPanel, DrawHintPanel, PinSizePanel, TreeLinePanel, type PreviewGeometry } from './LandInputPanels';
+import {
+  CoordinatesPanel,
+  DrawHintPanel,
+  PinSizePanel,
+  TreeLinePanel,
+  type PreviewGeometry,
+} from './LandInputPanels';
 import { LandInputToolbar } from './LandInputToolbar';
 import { LandInputWelcome } from './LandInputWelcome';
-import { MapViewSwitch, ViewControls } from './MapControls';
+import { LiveClock, MapViewSwitch, ViewControls } from './MapControls';
 import { LayerPanel, MapSearch, YearSlider } from './MapPanels';
 import { useDrawTools } from './useDrawTools';
 import { useMapLibre } from './useMapLibre';
@@ -53,7 +75,12 @@ export interface MapViewProps {
   initialQuery?: string;
   imagery: { provider: ImageryProvider | null; loading: boolean };
   detection: { data?: Detection; loading: boolean; error: unknown };
-  importedTrees: { record?: ImportRecord | null; loading: boolean; error: unknown; fitOnLoad?: boolean };
+  importedTrees: {
+    record?: ImportRecord | null;
+    loading: boolean;
+    error: unknown;
+    fitOnLoad?: boolean;
+  };
   onSelectPlot: (plotId: string) => void;
   onCreatePlot: (request: NewPlotRequest) => void;
   onDeletePlot: (plotId: string) => void;
@@ -128,7 +155,11 @@ export function MapView({
     live.current = { mode, layers, onSelectPlot, selectedPlot, locale, country, areaUnit, t };
   });
 
-  const reasonText = useCallback((reason: string) => t('map.polygonInvalid', { reason: t(`map.reason_${reason}`, { defaultValue: reason }) }), [t]);
+  const reasonText = useCallback(
+    (reason: string) =>
+      t('map.polygonInvalid', { reason: t(`map.reason_${reason}`, { defaultValue: reason }) }),
+    [t],
+  );
 
   // -- drawing (Boundary, Tree line, Edit) -------------------------------------------
   const finishPolygon = useCallback(
@@ -143,8 +174,12 @@ export function MapView({
     },
     [onCreatePlot, reasonText, setMode],
   );
-  const onPolygon = useCallback((geometry: PolygonGeometry) => finishPolygon(geometry, 'boundary'), [finishPolygon]);
-  const { startDrawing, startLine, startEditing, editedGeometry, cancel } = useDrawTools({ map, ready, onPolygon, onLine: setLine });
+  const onPolygon = useCallback(
+    (geometry: PolygonGeometry) => finishPolygon(geometry, 'boundary'),
+    [finishPolygon],
+  );
+  const { startDrawing, startShape, startLine, startEditing, editedGeometry, cancel } =
+    useDrawTools({ map, ready, onPolygon, onLine: setLine });
 
   useEffect(() => {
     if (!ready) return;
@@ -153,13 +188,14 @@ export function MapView({
     setPin(null);
     setPreview(null);
     if (mode === 'boundary') startDrawing();
+    else if (isShapeMode(mode)) startShape(mode);
     else if (mode === 'tree-line') startLine();
     else if (mode === 'edit') {
       const geometry = live.current.selectedPlot?.geometry;
       if (geometry) startEditing(geometry);
       else setMode('none');
     }
-  }, [mode, ready, cancel, startDrawing, startLine, startEditing, setMode]);
+  }, [mode, ready, cancel, startDrawing, startShape, startLine, startEditing, setMode]);
 
   // Leaving the workspace ends any input mode.
   useEffect(() => () => setMode('none'), [setMode]);
@@ -177,7 +213,8 @@ export function MapView({
       return;
     }
     if (action === 'delete') {
-      if (selectedPlot && window.confirm(t('map.deleteConfirm'))) onDeletePlot(selectedPlot.plot_id);
+      if (selectedPlot && window.confirm(t('map.deleteConfirm')))
+        onDeletePlot(selectedPlot.plot_id);
       return;
     }
     setMode(mode === action ? 'none' : action);
@@ -201,7 +238,10 @@ export function MapView({
   const years = useMemo(() => cubeYears(cube), [cube]);
   const year = activeYear(cube, observationYear);
   const timeIndex = timeIndexForYear(cube, year);
-  const ndviCells = useMemo(() => (cube ? cubeSliceToGeoJson(cube, timeIndex) : null), [cube, timeIndex]);
+  const ndviCells = useMemo(
+    () => (cube ? cubeSliceToGeoJson(cube, timeIndex) : null),
+    [cube, timeIndex],
+  );
   useEffect(() => {
     if (!map || !ready) return;
     const visible = layers.ndvi && Boolean(selectedPlot) && Boolean(ndviCells);
@@ -212,7 +252,11 @@ export function MapView({
   useEffect(() => {
     if (!map || !ready) return;
     const visible = layers.treeCover && Boolean(selectedPlot) && Boolean(detection.data);
-    setOverlayData(map, DETECT_SOURCE, visible ? (detection.data?.features as unknown as FeatureCollection) : null);
+    setOverlayData(
+      map,
+      DETECT_SOURCE,
+      visible ? (detection.data?.features as unknown as FeatureCollection) : null,
+    );
     setLayersVisible(map, [DETECT_FILL, DETECT_LINE], visible);
   }, [map, ready, layers.treeCover, selectedPlot, detection.data]);
 
@@ -220,7 +264,11 @@ export function MapView({
   useEffect(() => {
     if (!map || !ready) return;
     const visible = layers.importedTrees && Boolean(importPreview);
-    setOverlayData(map, IMPORT_SOURCE, visible ? (importPreview as unknown as FeatureCollection) : null);
+    setOverlayData(
+      map,
+      IMPORT_SOURCE,
+      visible ? (importPreview as unknown as FeatureCollection) : null,
+    );
     setLayersVisible(map, [IMPORT_CROWNS, IMPORT_POINTS], visible);
   }, [map, ready, layers.importedTrees, importPreview]);
 
@@ -228,7 +276,14 @@ export function MapView({
   const fittedImport = useRef<string | null>(null);
   useEffect(() => {
     const record = importedTrees.record;
-    if (!map || !ready || !importedTrees.fitOnLoad || !record?.preview || fittedImport.current === record.import_id) return;
+    if (
+      !map ||
+      !ready ||
+      !importedTrees.fitOnLoad ||
+      !record?.preview ||
+      fittedImport.current === record.import_id
+    )
+      return;
     fittedImport.current = record.import_id;
     fitTo(map, boundsOf(record.preview), 18);
   }, [map, ready, importedTrees.fitOnLoad, importedTrees.record]);
@@ -236,13 +291,22 @@ export function MapView({
   useEffect(() => {
     if (!map || !ready) return;
     const features: Feature[] = [...geometryToCollection(preview).features];
-    if (pin && preview?.type !== 'Point') features.push({ type: 'Feature', geometry: { type: 'Point', coordinates: [pin.lon, pin.lat] }, properties: {} });
-    if (line && preview?.type !== 'LineString') features.push({ type: 'Feature', geometry: line, properties: {} });
+    if (pin && preview?.type !== 'Point')
+      features.push({
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [pin.lon, pin.lat] },
+        properties: {},
+      });
+    if (line && preview?.type !== 'LineString')
+      features.push({ type: 'Feature', geometry: line, properties: {} });
     setOverlayData(map, PREVIEW_SOURCE, { type: 'FeatureCollection', features });
   }, [map, ready, preview, pin, line]);
 
   // Typed coordinates can be anywhere: frame the preview whenever its extent changes.
-  const previewBounds = useMemo(() => (mode === 'coordinates' && preview ? boundsOf(preview) : null), [mode, preview]);
+  const previewBounds = useMemo(
+    () => (mode === 'coordinates' && preview ? boundsOf(preview) : null),
+    [mode, preview],
+  );
   const previewKey = previewBounds ? previewBounds.join(',') : null;
   const framedPreview = useRef<string | null>(null);
   useEffect(() => {
@@ -289,15 +353,25 @@ export function MapView({
         const info = patchInfo(patch?.properties);
         if (info) {
           popup.current?.remove();
-          const area = formatArea(info.hectares, current.selectedPlot?.country ?? current.country, current.locale, current.areaUnit).primary;
-          popup.current = new maplibregl.Popup({ closeButton: true, maxWidth: '280px', className: 'atlas-popup' })
+          const area = formatArea(
+            info.hectares,
+            current.selectedPlot?.country ?? current.country,
+            current.locale,
+            current.areaUnit,
+          ).primary;
+          popup.current = new maplibregl.Popup({
+            closeButton: true,
+            maxWidth: '280px',
+            className: 'atlas-popup',
+          })
             .setLngLat(event.lngLat)
             .setText(current.t('map.treeCoverPopup', { confidence: info.confidence, area }))
             .addTo(map);
           return;
         }
       }
-      const id = map.queryRenderedFeatures(event.point, { layers: [PLOT_FILL] })[0]?.properties?.plot_id as string | undefined;
+      const id = map.queryRenderedFeatures(event.point, { layers: [PLOT_FILL] })[0]?.properties
+        ?.plot_id as string | undefined;
       if (id) current.onSelectPlot(id);
     };
     map.on('click', onClick);
@@ -310,7 +384,8 @@ export function MapView({
   // -- fly to the selected plot -----------------------------------------------------------
   const lastFlown = useRef<string | null>(null);
   useEffect(() => {
-    if (!map || !ready || !selectedPlot?.geometry || lastFlown.current === selectedPlot.plot_id) return;
+    if (!map || !ready || !selectedPlot?.geometry || lastFlown.current === selectedPlot.plot_id)
+      return;
     lastFlown.current = selectedPlot.plot_id;
     popup.current?.remove();
     fitTo(map, boundsOf(selectedPlot.geometry));
@@ -342,14 +417,21 @@ export function MapView({
     else setMode('none');
   };
 
-  const area = selectedPlot ? formatArea(selectedPlot.area_hectares, selectedPlot.country, locale, areaUnit) : null;
+  const area = selectedPlot
+    ? formatArea(selectedPlot.area_hectares, selectedPlot.country, locale, areaUnit)
+    : null;
   const stats = cube?.stats_per_time[timeIndex];
   const showWelcome = !plotsLoading && plots.length === 0 && mode === 'none' && !welcomeDismissed;
   const inputActive = mode !== 'none';
-  const satelliteNote = imagery.provider ? imagery.provider.name : imagery.loading ? t('app.loading') : t('map.satelliteUnavailable');
+  const satelliteNote = imagery.provider
+    ? imagery.provider.name
+    : imagery.loading
+      ? t('app.loading')
+      : t('map.satelliteUnavailable');
 
   let panel: ReactNode = null;
-  if (mode === 'boundary' || mode === 'edit') panel = <DrawHintPanel mode={mode} onApply={applyEdit} onCancel={() => setMode('none')} />;
+  if (mode === 'boundary' || mode === 'edit' || isShapeMode(mode))
+    panel = <DrawHintPanel mode={mode} onApply={applyEdit} onCancel={() => setMode('none')} />;
   else if (mode === 'tree-line')
     panel = (
       <TreeLinePanel
@@ -365,16 +447,45 @@ export function MapView({
         onPreview={setPreview}
       />
     );
-  else if (mode === 'pin') panel = <PinSizePanel pin={pin} country={country} locale={locale} onUseCentre={useCentre} onCreate={create} onCancel={() => setMode('none')} onPreview={setPreview} />;
-  else if (mode === 'coordinates') panel = <CoordinatesPanel country={country} locale={locale} onCreate={create} onCancel={() => setMode('none')} onPreview={setPreview} />;
+  else if (mode === 'pin')
+    panel = (
+      <PinSizePanel
+        pin={pin}
+        country={country}
+        locale={locale}
+        onUseCentre={useCentre}
+        onCreate={create}
+        onCancel={() => setMode('none')}
+        onPreview={setPreview}
+      />
+    );
+  else if (mode === 'coordinates')
+    panel = (
+      <CoordinatesPanel
+        country={country}
+        locale={locale}
+        onCreate={create}
+        onCancel={() => setMode('none')}
+        onPreview={setPreview}
+      />
+    );
 
   return (
     <div>
       <div className="relative flex h-[600px] max-h-[72vh] min-h-[420px] flex-col overflow-hidden rounded-[14px] border border-line bg-[#E7EEE4]">
         <div className="relative min-h-0 flex-1">
           {/* `.maplibregl-map` forces position: relative, so the container is sized with h-full w-full (never inset-0). */}
-          <div ref={container} className="h-full w-full" aria-label={t('map.mapLabel')} role="application" />
-          {error === 'webgl' && <div className="absolute inset-0 flex items-center justify-center p-6 text-center text-sm text-ink-2">{t('map.webglUnsupported')}</div>}
+          <div
+            ref={container}
+            className="h-full w-full"
+            aria-label={t('map.mapLabel')}
+            role="application"
+          />
+          {error === 'webgl' && (
+            <div className="absolute inset-0 flex items-center justify-center p-6 text-center text-sm text-ink-2">
+              {t('map.webglUnsupported')}
+            </div>
+          )}
 
           {/* Left column: search, then the labelled land tools (scrolls if the map is short). */}
           <div className="pointer-events-none absolute bottom-[66px] left-3.5 top-3.5 z-10 flex flex-col gap-2.5">
@@ -383,7 +494,11 @@ export function MapView({
             </div>
             {!showWelcome && (
               <div className="pointer-events-auto min-h-0 self-start overflow-y-auto rounded-[10px]">
-                <LandInputToolbar mode={mode} canEdit={Boolean(selectedPlot?.geometry)} onAction={onToolbar} />
+                <LandInputToolbar
+                  mode={mode}
+                  canEdit={Boolean(selectedPlot?.geometry)}
+                  onAction={onToolbar}
+                />
               </div>
             )}
           </div>
@@ -391,7 +506,12 @@ export function MapView({
           {/* Bottom row: Map | Satellite, then the observation year (kept clear of the layer column). */}
           <div className="pointer-events-none absolute bottom-3.5 left-3.5 right-3.5 z-10 flex items-end gap-2.5 lg:right-[300px]">
             <div className="pointer-events-auto shrink-0">
-              <MapViewSwitch value={satelliteOn ? 'satellite' : 'map'} onChange={setMapView} satelliteAvailable={Boolean(imagery.provider)} satelliteNote={satelliteNote} />
+              <MapViewSwitch
+                value={satelliteOn ? 'satellite' : 'map'}
+                onChange={setMapView}
+                satelliteAvailable={Boolean(imagery.provider)}
+                satelliteNote={satelliteNote}
+              />
             </div>
             {years.length > 1 && !inputActive && layers.ndvi && selectedPlot && (
               <div className="pointer-events-auto hidden min-w-0 flex-1 lg:block">
@@ -399,29 +519,44 @@ export function MapView({
                   years={years}
                   value={year}
                   onChange={setObservationYear}
-                  caption={stats?.mean != null ? `${year} · NDVI ${stats.mean.toFixed(2)}` : String(year)}
+                  caption={
+                    stats?.mean != null ? `${year} · NDVI ${stats.mean.toFixed(2)}` : String(year)
+                  }
                 />
               </div>
             )}
           </div>
 
           <div className="pointer-events-none absolute bottom-3.5 right-3.5 top-3.5 z-10 flex flex-col items-end gap-2.5">
-            <div className="pointer-events-auto shrink-0">
-              <ViewControls onZoomIn={() => map?.zoomIn()} onZoomOut={() => map?.zoomOut()} onLocate={locate} />
+            <div className="pointer-events-auto flex shrink-0 items-start gap-2">
+              <LiveClock locale={locale} />
+              <ViewControls
+                onZoomIn={() => map?.zoomIn()}
+                onZoomOut={() => map?.zoomOut()}
+                onLocate={locate}
+              />
             </div>
             {!inputActive && (
               <div className="pointer-events-auto hidden min-h-0 md:flex">
                 <LayerPanel
                   hasPlot={Boolean(selectedPlot)}
                   locale={locale}
-                  treeCover={{ summary: detectionSummary(detection.data), loading: detection.loading, error: detection.error }}
+                  treeCover={{
+                    summary: detectionSummary(detection.data),
+                    loading: detection.loading,
+                    error: detection.error,
+                  }}
                   importedTrees={{
                     count: importedTrees.record?.trees?.count ?? null,
                     filename: importedTrees.record?.filename ?? null,
                     loading: importedTrees.loading,
                     error: importedTrees.error,
                   }}
-                  insights={{ landUse: landUseShares(analysis), soil: soilInsight(analysis), loading: analysisLoading }}
+                  insights={{
+                    landUse: landUseShares(analysis),
+                    soil: soilInsight(analysis),
+                    loading: analysisLoading,
+                  }}
                   showLegend={!satelliteOn}
                 />
               </div>
@@ -429,7 +564,10 @@ export function MapView({
           </div>
 
           {selectedPlot && area && !inputActive && !notice && (
-            <div data-testid="plot-chip" className="pointer-events-none absolute left-1/2 top-[68px] z-10 max-w-[calc(100%-188px)] -translate-x-1/2 truncate rounded-[10px] bg-panel-dark px-3 py-2 text-center text-[13px] font-semibold text-white shadow-float">
+            <div
+              data-testid="plot-chip"
+              className="pointer-events-none absolute left-1/2 top-[68px] z-10 max-w-[calc(100%-188px)] -translate-x-1/2 truncate rounded-[10px] bg-panel-dark px-3 py-2 text-center text-[13px] font-semibold text-white shadow-float"
+            >
               {selectedPlot.name}
               <span className="block font-mono text-[12px] font-normal text-mint-on-dark">
                 {area.primary} · {area.secondary}
@@ -438,16 +576,25 @@ export function MapView({
           )}
 
           {notice && (
-            <div role="alert" className="absolute left-1/2 top-[68px] z-20 max-w-[calc(100%-188px)] -translate-x-1/2 rounded-[10px] border border-amber-tint bg-amber-tint px-4 py-2 text-[13px] text-amber-text shadow-float">
+            <div
+              role="alert"
+              className="absolute left-1/2 top-[68px] z-20 max-w-[calc(100%-188px)] -translate-x-1/2 rounded-[10px] border border-amber-tint bg-amber-tint px-4 py-2 text-[13px] text-amber-text shadow-float"
+            >
               {notice}
-              <button type="button" className="ml-3 font-semibold underline" onClick={() => setNotice(null)}>
+              <button
+                type="button"
+                className="ml-3 font-semibold underline"
+                onClick={() => setNotice(null)}
+              >
                 {t('app.close')}
               </button>
             </div>
           )}
 
           {panel && wide && (
-            <div className="absolute left-[92px] top-[68px] z-20 max-h-[calc(100%-130px)] w-[316px] overflow-y-auto rounded-[10px]">{panel}</div>
+            <div className="absolute left-[156px] top-[68px] z-20 max-h-[calc(100%-130px)] w-[316px] overflow-y-auto rounded-[10px]">
+              {panel}
+            </div>
           )}
 
           {showWelcome && (

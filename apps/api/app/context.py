@@ -24,7 +24,7 @@ from app.services.trees import TreeService
 from carbon_engine import ParameterStore, get_store
 from policy_engine import PolicyEngine
 
-log = logging.getLogger("atlas.context")
+log = logging.getLogger("carboncreditbuy.context")
 
 
 @dataclass

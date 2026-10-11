@@ -6,6 +6,9 @@ export default defineConfig({
   testDir: './e2e',
   timeout: 60_000,
   fullyParallel: true,
+  // The real vector basemap is heavy to draw in headless (software) GL; more parallel
+  // browsers than this make map pages time out on an ordinary laptop.
+  workers: process.env.CI ? 1 : 2,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? 'github' : 'list',
   use: {

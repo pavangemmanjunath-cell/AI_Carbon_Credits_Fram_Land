@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
+# Copyright (C) 2026 CarbonCreditBuy contributors
 """Tests of the plugin package: metadata, licence headers, import rules, ZIP and documentation."""
 
 from __future__ import annotations
@@ -21,7 +21,7 @@ from types import ModuleType
 import pytest
 
 PLUGIN_ROOT = Path(__file__).resolve().parents[1]
-PACKAGE_DIR = PLUGIN_ROOT / "agricarbon_atlas_qgis"
+PACKAGE_DIR = PLUGIN_ROOT / "carboncreditbuy_qgis"
 REPO_ROOT = PLUGIN_ROOT.parents[1]
 README = PLUGIN_ROOT / "README.md"
 USER_GUIDE = REPO_ROOT / "docs" / "user-guide" / "qgis-plugin.md"
@@ -75,7 +75,7 @@ def imported_names(tree: ast.AST) -> set[str]:
 def packager() -> ModuleType:
     """``scripts/package.py`` loaded by path (``scripts`` is not a package)."""
     spec = importlib.util.spec_from_file_location(
-        "agricarbon_atlas_qgis_package_script", PLUGIN_ROOT / "scripts" / "package.py"
+        "carboncreditbuy_qgis_package_script", PLUGIN_ROOT / "scripts" / "package.py"
     )
     assert spec is not None and spec.loader is not None
     module = importlib.util.module_from_spec(spec)
@@ -92,7 +92,7 @@ def metadata() -> dict[str, str]:
 
 # =========================================================================== metadata
 def test_metadata_has_the_documented_identity(metadata: dict[str, str]) -> None:
-    assert metadata["name"] == "AgriCarbon Atlas"
+    assert metadata["name"] == "CarbonCreditBuy"
     assert metadata["qgisminimumversion"] == "3.28"
     assert re.fullmatch(r"\d+\.\d+\.\d+", metadata["version"])
     assert metadata["experimental"].lower() == "true"
@@ -120,7 +120,7 @@ def test_metadata_text_is_safe_for_qgis() -> None:
 def test_the_version_in_metadata_matches_the_code(
     packager: ModuleType, metadata: dict[str, str]
 ) -> None:
-    from agricarbon_atlas_qgis import version
+    from carboncreditbuy_qgis import version
 
     assert packager.check_sources(PACKAGE_DIR) == metadata["version"] == version.__version__
     assert version.REPOSITORY_URL == metadata["repository"]
@@ -189,9 +189,9 @@ def test_pure_modules_import_in_an_interpreter_without_qgis() -> None:
         import importlib, sys
         sys.modules["qgis"] = None  # "import qgis" now raises ImportError
         sys.path.insert(0, {str(PLUGIN_ROOT)!r})
-        import agricarbon_atlas_qgis
+        import carboncreditbuy_qgis
         for name in {PURE_MODULES!r}:
-            importlib.import_module("agricarbon_atlas_qgis." + name)
+            importlib.import_module("carboncreditbuy_qgis." + name)
         print("ok")
         """
     )
@@ -338,20 +338,20 @@ def test_the_zip_has_one_top_level_folder_and_the_expected_files(
     packager: ModuleType, tmp_path: Path, metadata: dict[str, str], monkeypatch: pytest.MonkeyPatch
 ) -> None:
     archive = build_zip(packager, tmp_path, monkeypatch)
-    assert archive.name == f"agricarbon_atlas_qgis-{metadata['version']}.zip"
+    assert archive.name == f"carboncreditbuy_qgis-{metadata['version']}.zip"
     with zipfile.ZipFile(archive) as zf:
         assert zf.testzip() is None
         names = zf.namelist()
-    assert {name.split("/")[0] for name in names} == {"agricarbon_atlas_qgis"}
+    assert {name.split("/")[0] for name in names} == {"carboncreditbuy_qgis"}
     expected = {
-        f"agricarbon_atlas_qgis/{path.relative_to(PACKAGE_DIR).as_posix()}"
+        f"carboncreditbuy_qgis/{path.relative_to(PACKAGE_DIR).as_posix()}"
         for path in PACKAGE_DIR.rglob("*")
         if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc"
-    } | {"agricarbon_atlas_qgis/LICENSE", "agricarbon_atlas_qgis/README.md"}
+    } | {"carboncreditbuy_qgis/LICENSE", "carboncreditbuy_qgis/README.md"}
     assert set(names) == expected
     assert names == sorted(names)
     for needed in ("metadata.txt", "__init__.py", "plugin.py", "icon.svg", "icons/send.svg"):
-        assert f"agricarbon_atlas_qgis/{needed}" in names
+        assert f"carboncreditbuy_qgis/{needed}" in names
     forbidden = ("tests/", "scripts/", "Makefile", "ruff.toml", ".pyc", "__pycache__", "dist/")
     assert not [n for n in names if any(part in n for part in forbidden)]
 
@@ -384,7 +384,7 @@ def test_the_unpacked_zip_imports_without_the_source_tree(
         import sys
         sys.modules["qgis"] = None
         sys.path.insert(0, {str(target)!r})
-        from agricarbon_atlas_qgis import api_client, version
+        from carboncreditbuy_qgis import api_client, version
         print(version.__version__, api_client.__file__)
         """
     )
@@ -399,7 +399,7 @@ def copy_sources(tmp_path: Path) -> Path:
     """A throw-away copy of the plugin directory to break on purpose."""
     root = tmp_path / "copy"
     shutil.copytree(
-        PACKAGE_DIR, root / "agricarbon_atlas_qgis", ignore=shutil.ignore_patterns("__pycache__")
+        PACKAGE_DIR, root / "carboncreditbuy_qgis", ignore=shutil.ignore_patterns("__pycache__")
     )
     for name in ("LICENSE", "README.md"):
         shutil.copy(PLUGIN_ROOT / name, root / name)
@@ -410,7 +410,7 @@ def test_caches_and_editor_files_are_left_out(
     packager: ModuleType, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
 ) -> None:
     root = copy_sources(tmp_path)
-    package = root / "agricarbon_atlas_qgis"
+    package = root / "carboncreditbuy_qgis"
     (package / "__pycache__").mkdir()
     (package / "__pycache__" / "x.cpython-312.pyc").write_bytes(b"x")
     (package / ".DS_Store").write_bytes(b"x")
@@ -420,12 +420,12 @@ def test_caches_and_editor_files_are_left_out(
     with zipfile.ZipFile(packager.build(tmp_path / "out", root=root)) as zf:
         names = zf.namelist()
     assert not [n for n in names if "pycache" in n or n.endswith(("~", ".orig", ".DS_Store"))]
-    assert "agricarbon_atlas_qgis/plugin.py" in names
+    assert "carboncreditbuy_qgis/plugin.py" in names
 
 
 def test_a_version_mismatch_stops_the_build(packager: ModuleType, tmp_path: Path) -> None:
     root = copy_sources(tmp_path)
-    version_file = root / "agricarbon_atlas_qgis" / "version.py"
+    version_file = root / "carboncreditbuy_qgis" / "version.py"
     version_file.write_text(
         version_file.read_text(encoding="utf-8").replace('__version__ = "', '__version__ = "9.'),
         encoding="utf-8",
@@ -440,7 +440,7 @@ def test_missing_metadata_keys_stop_the_build(
     packager: ModuleType, tmp_path: Path, key: str
 ) -> None:
     root = copy_sources(tmp_path)
-    metadata_file = root / "agricarbon_atlas_qgis" / "metadata.txt"
+    metadata_file = root / "carboncreditbuy_qgis" / "metadata.txt"
     lines = metadata_file.read_text(encoding="utf-8").splitlines()
     metadata_file.write_text(
         "\n".join(line for line in lines if not line.startswith(f"{key}=")), encoding="utf-8"
@@ -453,11 +453,11 @@ def test_a_missing_icon_or_class_factory_stops_the_build(
     packager: ModuleType, tmp_path: Path
 ) -> None:
     root = copy_sources(tmp_path)
-    (root / "agricarbon_atlas_qgis" / "icon.svg").unlink()
+    (root / "carboncreditbuy_qgis" / "icon.svg").unlink()
     with pytest.raises(packager.PackagingError, match="icon"):
         packager.build(tmp_path / "out", root=root)
     root = copy_sources(tmp_path / "again")
-    (root / "agricarbon_atlas_qgis" / "__init__.py").write_text("", encoding="utf-8")
+    (root / "carboncreditbuy_qgis" / "__init__.py").write_text("", encoding="utf-8")
     with pytest.raises(packager.PackagingError, match="classFactory"):
         packager.build(tmp_path / "out2", root=root)
 
@@ -466,7 +466,7 @@ def test_the_command_line_builds_into_the_chosen_folder(
     packager: ModuleType, tmp_path: Path, capsys: pytest.CaptureFixture[str]
 ) -> None:
     assert packager.main(["--out", str(tmp_path)]) == 0
-    assert list(tmp_path.glob("agricarbon_atlas_qgis-*.zip"))
+    assert list(tmp_path.glob("carboncreditbuy_qgis-*.zip"))
     assert "Install from ZIP" in capsys.readouterr().out
 
 

@@ -4,7 +4,7 @@ import httpx
 import pytest
 from httpmock import json_response, make_client
 
-from atlas_integrations import (
+from carboncreditbuy_integrations import (
     ConfigurationError,
     MemoryTTLCache,
     NotFoundError,
@@ -12,12 +12,15 @@ from atlas_integrations import (
     UpstreamDataError,
     UpstreamError,
 )
-from atlas_integrations.base import HttpAdapter, SourceProvenance, cache_key, demo_source
-from atlas_integrations.census_geocoder import CensusGeocoderAdapter, DemoCensusGeocoderAdapter
-from atlas_integrations.data_gov_in import DataGovInAdapter, DemoDataGovInAdapter
-from atlas_integrations.open_meteo import DemoOpenMeteoAdapter, OpenMeteoAdapter
-from atlas_integrations.soilgrids import DemoSoilGridsAdapter, SoilGridsAdapter
-from atlas_integrations.usda_nass import DemoUsdaNassAdapter, UsdaNassAdapter
+from carboncreditbuy_integrations.base import HttpAdapter, SourceProvenance, cache_key, demo_source
+from carboncreditbuy_integrations.census_geocoder import (
+    CensusGeocoderAdapter,
+    DemoCensusGeocoderAdapter,
+)
+from carboncreditbuy_integrations.data_gov_in import DataGovInAdapter, DemoDataGovInAdapter
+from carboncreditbuy_integrations.open_meteo import DemoOpenMeteoAdapter, OpenMeteoAdapter
+from carboncreditbuy_integrations.soilgrids import DemoSoilGridsAdapter, SoilGridsAdapter
+from carboncreditbuy_integrations.usda_nass import DemoUsdaNassAdapter, UsdaNassAdapter
 
 # --------------------------------------------------------------------------- base
 
@@ -74,7 +77,7 @@ def test_cache_prevents_second_request(recorder):
     adapter.get_json("https://example.test/x", params={"a": 1})
     adapter.get_json("https://example.test/x", params={"a": 2})
     assert len(recorder.requests) == 2
-    assert recorder.requests[0].headers["user-agent"].startswith("agricarbon-atlas")
+    assert recorder.requests[0].headers["user-agent"].startswith("carboncreditbuy")
 
 
 def test_cache_key_is_stable_and_opaque():
@@ -88,7 +91,7 @@ def test_memory_ttl_cache_expiry(monkeypatch):
     cache.set("b", 2, ttl_s=100)
     cache.set("c", 3, ttl_s=100)  # evicts the oldest
     assert cache.get("a") is None and cache.get("c") == 3
-    import atlas_integrations.base as base
+    import carboncreditbuy_integrations.base as base
 
     now = base.time.monotonic()
     monkeypatch.setattr(base.time, "monotonic", lambda: now + 1000)

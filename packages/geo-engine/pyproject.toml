@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "agricarbon-geo-engine"
+name = "carboncreditbuy-geo-engine"
 version = "0.2.0"
-description = "Geometry validation and construction, land-cover, Sentinel-2 indices, climate zones, the vegetation cube, file imports, point-cloud tree detection and tree-cover detection for AgriCarbon Atlas"
+description = "Geometry validation and construction, land-cover, Sentinel-2 indices, climate zones, the vegetation cube, file imports, point-cloud tree detection and tree-cover detection for CarbonCreditBuy"
 readme = "README.md"
 requires-python = ">=3.12"
 license = {text = "Apache-2.0"}

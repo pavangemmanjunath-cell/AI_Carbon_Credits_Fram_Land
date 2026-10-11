@@ -540,10 +540,10 @@ class TreeBiomassModel:
             },
             {
                 "id": "species-table",
-                "name": "AgriCarbon Atlas species table",
+                "name": "CarbonCreditBuy species table",
                 "version": self.store.species_version,
                 "license": "Apache-2.0 (project configuration)",
-                "attribution": "AgriCarbon Atlas contributors; wood density working values after "
+                "attribution": "CarbonCreditBuy contributors; wood density working values after "
                 "Zanne et al. (2009) Global Wood Density Database (Dryad, CC0)",
                 "url": "https://doi.org/10.5061/dryad.234",
             },

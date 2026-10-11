@@ -4,7 +4,7 @@ PY ?= python3
 PIP ?= $(PY) -m pip
 
 help:
-	@echo "AgriCarbon Atlas — common tasks"
+	@echo "CarbonCreditBuy — common tasks"
 	@echo "  make install      install Python packages (editable) and web dependencies"
 	@echo "  make dev          run API (8000) and web (5173) together"
 	@echo "  make api          run the FastAPI server with reload"

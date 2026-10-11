@@ -108,7 +108,7 @@ train on inputs unless you opt out). **GitHub Models** was retired on 30 July 20
 and **Hugging Face** no longer offer an ongoing free tier.
 
 Even with an LLM on, what it receives is the template sentence and redacted facts — never the plot boundary,
-coordinates, names, e-mails or phone numbers (`atlas_agents/llm/redaction.py`).
+coordinates, names, e-mails or phone numbers (`carboncreditbuy_agents/llm/redaction.py`).
 
 ## The 3D land view, costs and "Why this number?"
 
@@ -155,7 +155,7 @@ attribution is in [DATA_LICENSES.md](../licensing/DATA_LICENSES.md) and [FREE_AP
 
 ## How keys are kept safe
 
-- **Windows:** `API-KEYS.bat` stores keys encrypted with Windows DPAPI in `%APPDATA%\VrikshaAtlas\settings.json`
+- **Windows:** `API-KEYS.bat` stores keys encrypted with Windows DPAPI in `%APPDATA%\CarbonCreditBuy\settings.json`
   — outside the repository, readable only by your Windows user on your computer. `START.bat` decrypts them into
   the API process's environment only: not onto a command line, not into the web app, not into logs.
 - **Everywhere:** keys go in environment variables or the `.env` file at the repository root (copy

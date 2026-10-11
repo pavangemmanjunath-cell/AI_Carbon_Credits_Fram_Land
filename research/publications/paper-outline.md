@@ -1,6 +1,6 @@
 # Paper outline
 
-**Working title.** AgriCarbon Atlas: An Open Geospatial MRV Framework for
+**Working title.** CarbonCreditBuy: An Open Geospatial MRV Framework for
 Evidence-Based Agricultural Carbon Assessment Using Earth Observation and
 Regional Carbon Policies
 
@@ -19,7 +19,7 @@ itself.
 Smallholders and landowners who consider tree planting for climate benefit
 face a gap between what public Earth-observation data can show about their
 land and what a recognized carbon or environmental programme requires as
-evidence. We present AgriCarbon Atlas, an open-source (Apache-2.0)
+evidence. We present CarbonCreditBuy, an open-source (Apache-2.0)
 geospatial platform that combines land-cover (ESA WorldCover), Sentinel-2
 vegetation indices, climate and soil data with a deterministic,
 configuration-driven carbon engine (IPCC 2006 Tier 1 gain-loss; Chave 2014

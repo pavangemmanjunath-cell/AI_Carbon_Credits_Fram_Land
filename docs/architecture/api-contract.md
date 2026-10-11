@@ -442,7 +442,7 @@ else `default`.
 
 `GET /agents` →
 ```json
-{"framework": {"name": "atlas-agents", "version": "0.1.0", "reasoner": "template", "llm_enabled": false},
+{"framework": {"name": "carboncreditbuy-agents", "version": "0.1.0", "reasoner": "template", "llm_enabled": false},
  "agents": [{"id": "carbon", "title": "Carbon agent", "role": "…", "says": "what this agent reports",
              "tools": [{"name": "estimate_carbon", "description": "…"}], "reads": ["plot", "inventory"], "writes": ["estimate"]}],
  "plans": [{"id": "full-assessment", "title": "Full assessment", "steps": ["coordinator", "land", "imagery", "trees", "carbon", "policy", "market", "review", "report", "coordinator"]}]}
@@ -502,7 +502,7 @@ estimate.
 
 ### Problem types added in v0.2
 
-Every problem body is RFC 7807, with `type` set to `https://agricarbon-atlas.org/problems/<slug>`. A `code` member
+Every problem body is RFC 7807, with `type` set to `https://carboncreditbuy.org/problems/<slug>`. A `code` member
 carries a stable, machine-readable reason where the table says so.
 
 | Slug | Status | When |

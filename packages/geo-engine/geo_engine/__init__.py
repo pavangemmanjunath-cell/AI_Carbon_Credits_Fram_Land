@@ -1,4 +1,4 @@
-"""geo_engine — geospatial primitives for AgriCarbon Atlas.
+"""geo_engine — geospatial primitives for CarbonCreditBuy.
 
 Sub-packages:
 

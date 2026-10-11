@@ -2,7 +2,7 @@
 
 This page is written for the people whose land the platform describes and
 for the organizations that deploy it on their behalf. It explains, in
-plain terms, what the Atlas collects, why, who can see it and what control
+plain terms, what CarbonCreditBuy collects, why, who can see it and what control
 you keep. Deployers should adapt it into their own privacy notice; the
 legal obligations differ between India's Digital Personal Data Protection
 Act, 2023 (<https://www.meity.gov.in/data-protection-framework>), US
@@ -21,7 +21,7 @@ legal advice.
 | Language preference | To show the interface in your language | Stored in your browser only |
 | An API key or account (if the deployment uses one) | To make sure only you can see your plots | Deployment-dependent |
 
-The Atlas does **not** ask for your name, phone number, land record
+CarbonCreditBuy does **not** ask for your name, phone number, land record
 numbers (such as survey or khata numbers), bank details or ownership
 documents. A deployer who adds such fields takes on the obligations that
 come with them and must say so in their notice.
@@ -45,7 +45,7 @@ come with them and must say so in their notice.
   counts, index values, the estimate range), never the boundary.
 - **Governments, registries, buyers**: nothing is sent to any programme,
   registry or market. Applying to a programme is a separate step you take
-  with your own documents; the Atlas can produce a report you may choose
+  with your own documents; CarbonCreditBuy can produce a report you may choose
   to attach.
 
 ## What the results are and are not
@@ -55,7 +55,7 @@ you will receive ([../concepts/carbon-credit-vs-estimate.md](../concepts/carbon-
 The programme list is a screening that says what you would need to
 investigate, not a decision that you qualify. Market values are
 scenarios, not offers. Please do not sign agreements, take loans or
-change land use on the basis of the Atlas alone; use it to ask better
+change land use on the basis of CarbonCreditBuy alone; use it to ask better
 questions of an advisor or a programme office.
 
 ## Your controls
@@ -69,7 +69,7 @@ questions of an advisor or a programme office.
 | Use without any network | Ask the deployer for demo mode or an offline workshop build |
 | Ask questions or complain | The deployer's contact in their privacy notice; for the open-source project itself, [SECURITY.md](../../SECURITY.md) for privacy defects |
 
-## For cooperatives, NGOs and advisors deploying the Atlas
+## For cooperatives, NGOs and advisors deploying CarbonCreditBuy
 
 You are the data controller for your farmers' plots. Before going live:
 set `ATLAS_API_KEYS` or an authentication layer; set retention defaults;

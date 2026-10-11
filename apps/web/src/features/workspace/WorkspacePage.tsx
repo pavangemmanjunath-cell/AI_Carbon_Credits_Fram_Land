@@ -5,6 +5,7 @@ import { MapView } from '@/components/map/MapView';
 import { errorMessage } from '@/lib/errors';
 import { intlLocale } from '@/lib/format';
 import { useUiStore } from '@/store/uiStore';
+import { LockedLandCard } from './LockedLandCard';
 import { PlotDetailsPanel } from './PlotDetailsPanel';
 import { ResultCards } from './ResultCards';
 import { useWorkspaceFlow } from './useWorkspaceFlow';
@@ -45,7 +46,10 @@ export default function WorkspacePage() {
           onDeletePlot={flow.onDeletePlot}
         />
         {flow.createPlotError && (
-          <p role="alert" className="m-0 rounded-[10px] border border-amber-tint bg-amber-tint px-3 py-2 text-[13px] text-amber-text">
+          <p
+            role="alert"
+            className="m-0 rounded-[10px] border border-amber-tint bg-amber-tint px-3 py-2 text-[13px] text-amber-text"
+          >
             {t('map.createFailed', { reason: errorMessage(flow.createPlotError, t) })}
           </p>
         )}
@@ -56,6 +60,12 @@ export default function WorkspacePage() {
           analysis={flow.analysis}
           locale={locale}
           loading={flow.analysisLoading || flow.estimateLoading}
+        />
+        <LockedLandCard
+          plot={flow.selectedPlot}
+          species={flow.species}
+          defaultSpeciesId={flow.form.species_id}
+          locale={locale}
         />
       </div>
       <div className="w-full flex-[1_1_340px] lg:max-w-[400px]">

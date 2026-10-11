@@ -40,7 +40,7 @@ boundaries, places) points its source at `pmtiles://https://<bucket>/basemap.pmt
 attribution "© OpenStreetMap contributors".
 
 Without `VITE_BASEMAP_PMTILES_URL`, the map loads the style at `VITE_BASEMAP_STYLE_URL`, which defaults to the MapLibre
-demo tiles (`https://demotiles.maplibre.org/style.json`). They are low-detail and meant for demos, so use your own
+demo tiles (`https://tiles.openfreemap.org/styles/liberty`). They are low-detail and meant for demos, so use your own
 archive in production. If the style cannot be loaded (an error, or no answer within seven seconds), the map falls back
 to a plain ground colour and says so, and the plots, drawing tools and data layers keep working.
 
@@ -69,7 +69,7 @@ applies to Nominatim: the public instance has a strict usage policy (one request
 ```bash
 # Protomaps basemap for one country extract (example: India)
 pmtiles extract https://build.protomaps.com/<date>.pmtiles india.pmtiles --bbox=68.1,6.5,97.4,35.7
-aws s3 cp india.pmtiles s3://agricarbon-atlas-tiles/basemap.pmtiles --content-type application/octet-stream
+aws s3 cp india.pmtiles s3://carboncreditbuy-tiles/basemap.pmtiles --content-type application/octet-stream
 ```
 
 Protomaps publishes daily planet builds; extracting a country or region keeps the archive at a few hundred megabytes. The

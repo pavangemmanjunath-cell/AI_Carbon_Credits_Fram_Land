@@ -38,7 +38,7 @@ from geo_engine.pointcloud import (
 if TYPE_CHECKING:  # pragma: no cover
     from app.context import AppContext
 
-log = logging.getLogger("atlas.imports")
+log = logging.getLogger("carboncreditbuy.imports")
 
 KIND = "import"
 VECTOR_EXTENSIONS = ("geojson", "json", "kml", "kmz", "csv")

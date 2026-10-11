@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
-"""A tiny threaded HTTP server that plays the AgriCarbon Atlas API in the plugin tests.
+# Copyright (C) 2026 CarbonCreditBuy contributors
+"""A tiny threaded HTTP server that plays the CarbonCreditBuy API in the plugin tests.
 
 Register canned answers with :meth:`FakeAtlasServer.route`; every request that reaches the
 server is recorded in :attr:`FakeAtlasServer.requests` so tests can check headers and bodies.
@@ -58,9 +58,9 @@ def problem_answer(
     errors: list[dict[str, str]] | None = None,
     headers: Mapping[str, str] | None = None,
 ) -> Answer:
-    """An RFC 7807 ``application/problem+json`` answer shaped like the Atlas API's."""
+    """An RFC 7807 ``application/problem+json`` answer shaped like CarbonCreditBuy API's."""
     payload: dict[str, Any] = {
-        "type": f"https://agricarbon-atlas.example/problems/{slug}" if slug else "about:blank",
+        "type": f"https://carboncreditbuy.example/problems/{slug}" if slug else "about:blank",
         "title": title,
         "status": status,
         "detail": detail,

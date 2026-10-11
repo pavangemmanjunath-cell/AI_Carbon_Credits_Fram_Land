@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from atlas_agents import default_router, parse_age_years, parse_tree_change
+from carboncreditbuy_agents import default_router, parse_age_years, parse_tree_change
 
 ROUTER = default_router()
 

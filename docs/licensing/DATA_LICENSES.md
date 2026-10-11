@@ -30,10 +30,10 @@ software and of the imagery providers are summarized in
 
 ## Imagery providers (map tiles)
 
-The Satellite view loads these from the browser, so the Atlas stores no tiles. The entries are in
+The Satellite view loads these from the browser, so CarbonCreditBuy stores no tiles. The entries are in
 [`config/imagery/providers.yaml`](../../config/imagery/providers.yaml) and each was verified from the provider's own
 terms on 2026-10-05 ([research](../research/imagery-providers.md), which also lists what could not be confirmed).
-"Analysis" means segmentation, machine learning or feature extraction on the tiles. The Atlas runs none; its vegetation
+"Analysis" means segmentation, machine learning or feature extraction on the tiles. CarbonCreditBuy runs none; its vegetation
 indices come from Sentinel-2 through the STAC adapters. Only the providers marked analysis-allowed may be used that
 way, and only the user's own imagery otherwise.
 

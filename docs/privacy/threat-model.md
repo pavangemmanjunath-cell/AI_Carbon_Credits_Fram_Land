@@ -1,6 +1,6 @@
 # Threat model
 
-A brief STRIDE analysis of AgriCarbon Atlas, focused on the two assets
+A brief STRIDE analysis of CarbonCreditBuy, focused on the two assets
 that matter most: the confidentiality of plot geometry and the integrity
 of the numbers the platform publishes. It is a living document; findings
 reported under [SECURITY.md](../../SECURITY.md) update it.

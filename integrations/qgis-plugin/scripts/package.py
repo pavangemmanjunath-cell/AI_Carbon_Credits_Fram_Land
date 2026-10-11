@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
-"""Build ``dist/agricarbon_atlas_qgis-<version>.zip`` for QGIS "Install from ZIP".
+# Copyright (C) 2026 CarbonCreditBuy contributors
+"""Build ``dist/carboncreditbuy_qgis-<version>.zip`` for QGIS "Install from ZIP".
 
-The archive has one top-level folder, ``agricarbon_atlas_qgis/``, which is what QGIS expects.
+The archive has one top-level folder, ``carboncreditbuy_qgis/``, which is what QGIS expects.
 It contains the plugin package plus the LICENSE and README of this directory. Bytecode caches
 and editor files are left out. The archive is not meant to be committed (``dist/`` is ignored).
 
@@ -25,7 +25,7 @@ import time
 import zipfile
 from pathlib import Path
 
-PACKAGE = "agricarbon_atlas_qgis"
+PACKAGE = "carboncreditbuy_qgis"
 ROOT = Path(__file__).resolve().parent.parent
 REQUIRED_METADATA = (
     "name",

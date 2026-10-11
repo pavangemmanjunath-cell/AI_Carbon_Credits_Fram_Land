@@ -2,7 +2,7 @@
 
 A farm boundary is personal data. In many places it identifies the owner
 as surely as a name, and it reveals assets, land disputes and livelihoods.
-AgriCarbon Atlas is therefore built so that exact geometry stays with its
+CarbonCreditBuy is therefore built so that exact geometry stays with its
 owner, public views see a generalized location, calculations never need
 coordinates, and the optional AI explanation never receives them.
 CLAUDE.md principle 11 states the rule; this page shows how it is applied.

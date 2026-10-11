@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
+# Copyright (C) 2026 CarbonCreditBuy contributors
 """Tests of the HTML/text formatting: disclaimers, three separate values, escaping, robustness."""
 
 from __future__ import annotations
@@ -15,15 +15,15 @@ from typing import Any
 
 import pytest
 
-from agricarbon_atlas_qgis import formatting
-from agricarbon_atlas_qgis.api_client import (
+from carboncreditbuy_qgis import formatting
+from carboncreditbuy_qgis.api_client import (
     ApiConfigError,
     ApiConnectionError,
     ApiProblem,
     ApiResponseError,
 )
-from agricarbon_atlas_qgis.crowns import CrownCount
-from agricarbon_atlas_qgis.formatting import (
+from carboncreditbuy_qgis.crowns import CrownCount
+from carboncreditbuy_qgis.formatting import (
     describe_confidence_range,
     describe_crown_count,
     describe_error,
@@ -40,8 +40,8 @@ from agricarbon_atlas_qgis.formatting import (
     pretty_unit,
     safe_url,
 )
-from agricarbon_atlas_qgis.geometry import GeometryError
-from agricarbon_atlas_qgis.version import DISCLAIMER
+from carboncreditbuy_qgis.geometry import GeometryError
+from carboncreditbuy_qgis.version import DISCLAIMER
 
 SAMPLES = Path(__file__).resolve().parents[3] / "data" / "sample" / "responses"
 XSS = '<script>alert("x")</script><img src=x onerror=alert(1)>'
@@ -663,7 +663,7 @@ def test_confidence_range_hint() -> None:
 
 def test_health_text() -> None:
     assert describe_health({"status": "ok", "version": "0.1.0", "mode": "live"}) == (
-        "Connected: AgriCarbon Atlas API 0.1.0, mode live."
+        "Connected: CarbonCreditBuy API 0.1.0, mode live."
     )
     assert "synthetic data" in describe_health({"version": "0.1.0", "mode": "demo"})
     assert "not with the usual health information" in describe_health(None)

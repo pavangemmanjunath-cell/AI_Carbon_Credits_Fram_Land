@@ -400,7 +400,7 @@ Two buttons sit under the paragraph:
 A carbon credit is a unit issued by a registry after a defined chain of steps: an approved methodology was applied, a
 baseline was set (what would have happened anyway), additionality was shown, leakage was assessed, permanence was
 secured, monitoring data were collected, an accredited third party verified them, and a registry issued a serial
-number. AgriCarbon Atlas does none of these steps. It reads open data and applies published growth values to the
+number. CarbonCreditBuy does none of these steps. It reads open data and applies published growth values to the
 trees you describe, so it can only say what **might** be happening.
 
 That is why every result carries "certified: no" until a registry serial number exists, and why India's Green Credits

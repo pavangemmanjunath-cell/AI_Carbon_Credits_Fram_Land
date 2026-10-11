@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
+# Copyright (C) 2026 CarbonCreditBuy contributors
 """Tests of ``qgis_helpers`` and ``tasks`` against the fake ``qgis.core`` (no Qt needed).
 
 The fakes implement the documented behaviour of the PyQGIS calls the plugin makes, so these
@@ -19,9 +19,9 @@ from typing import Any
 import pytest
 from qgis_fakes import LayerBuilder
 
-from agricarbon_atlas_qgis import config, crowns
-from agricarbon_atlas_qgis.diagnostics import exception_summary
-from agricarbon_atlas_qgis.geometry import GeometryError
+from carboncreditbuy_qgis import config, crowns
+from carboncreditbuy_qgis.diagnostics import exception_summary
+from carboncreditbuy_qgis.geometry import GeometryError
 
 SQUARE = [(77.50, 13.20), (77.52, 13.20), (77.52, 13.22), (77.50, 13.22)]
 HOLE = [(77.505, 13.205), (77.515, 13.205), (77.515, 13.215), (77.505, 13.215)]
@@ -39,12 +39,12 @@ def mercator(lon: float, lat: float) -> tuple[float, float]:
 
 @pytest.fixture
 def helpers(fake_qgis: ModuleType) -> ModuleType:
-    return importlib.import_module("agricarbon_atlas_qgis.qgis_helpers")
+    return importlib.import_module("carboncreditbuy_qgis.qgis_helpers")
 
 
 @pytest.fixture
 def tasks(fake_qgis: ModuleType) -> ModuleType:
-    return importlib.import_module("agricarbon_atlas_qgis.tasks")
+    return importlib.import_module("carboncreditbuy_qgis.tasks")
 
 
 @pytest.fixture
@@ -70,10 +70,10 @@ def test_settings_live_under_the_plugin_prefix(helpers: ModuleType, fake_qgis: M
     helpers.save_config(config.PluginConfig(api_key="k"))
     keys = set(fake_qgis.QgsSettings._store)
     assert keys == {
-        "AgriCarbonAtlas/api_base_url",
-        "AgriCarbonAtlas/api_key",
-        "AgriCarbonAtlas/default_country",
-        "AgriCarbonAtlas/timeout_s",
+        "CarbonCreditBuy/api_base_url",
+        "CarbonCreditBuy/api_key",
+        "CarbonCreditBuy/default_country",
+        "CarbonCreditBuy/timeout_s",
     }
 
 
@@ -81,10 +81,10 @@ def test_damaged_stored_settings_fall_back_to_defaults(
     helpers: ModuleType, fake_qgis: ModuleType
 ) -> None:
     store = fake_qgis.QgsSettings()
-    store.setValue("AgriCarbonAtlas/api_base_url", "ftp://nope")
-    store.setValue("AgriCarbonAtlas/api_key", "bad\nkey")
-    store.setValue("AgriCarbonAtlas/default_country", "ZZ")
-    store.setValue("AgriCarbonAtlas/timeout_s", "not a number")
+    store.setValue("CarbonCreditBuy/api_base_url", "ftp://nope")
+    store.setValue("CarbonCreditBuy/api_key", "bad\nkey")
+    store.setValue("CarbonCreditBuy/default_country", "ZZ")
+    store.setValue("CarbonCreditBuy/timeout_s", "not a number")
     assert helpers.load_config() == config.PluginConfig()
 
 
@@ -93,12 +93,12 @@ def test_one_damaged_setting_does_not_discard_the_others(
 ) -> None:
     """A hand-edited timeout makes PyQt raise TypeError; the other values must survive."""
     store = fake_qgis.QgsSettings()
-    store.setValue("AgriCarbonAtlas/api_base_url", "https://atlas.example.org/api/v1")
-    store.setValue("AgriCarbonAtlas/api_key", "key-1")
-    store.setValue("AgriCarbonAtlas/default_country", "DE")
-    store.setValue("AgriCarbonAtlas/timeout_s", "thirty")
+    store.setValue("CarbonCreditBuy/api_base_url", "https://atlas.example.org/api/v1")
+    store.setValue("CarbonCreditBuy/api_key", "key-1")
+    store.setValue("CarbonCreditBuy/default_country", "DE")
+    store.setValue("CarbonCreditBuy/timeout_s", "thirty")
     with pytest.raises(TypeError):  # the fake converts like PyQt: this is what load_config meets
-        store.value("AgriCarbonAtlas/timeout_s", 30.0, type=float)
+        store.value("CarbonCreditBuy/timeout_s", 30.0, type=float)
     assert helpers.load_config() == config.PluginConfig(
         "https://atlas.example.org/api/v1", "key-1", "DE", config.DEFAULT_TIMEOUT_S
     )
@@ -125,7 +125,7 @@ def test_the_project_stores_only_non_spatial_fields(
     helpers: ModuleType, fake_qgis: ModuleType
 ) -> None:
     helpers.write_current_plot(PLOT)
-    text, found = fake_qgis.QgsProject.instance().readEntry("AgriCarbonAtlas", "current_plot", "")
+    text, found = fake_qgis.QgsProject.instance().readEntry("CarbonCreditBuy", "current_plot", "")
     assert found
     for forbidden in ("coordinates", 'geometry"', "centroid", "77.5", "13.2", "analysis"):
         assert forbidden not in text, forbidden
@@ -156,7 +156,7 @@ def test_unlinking_removes_the_entry(helpers: ModuleType) -> None:
 def test_damaged_project_entries_mean_no_plot(
     helpers: ModuleType, fake_qgis: ModuleType, stored: str
 ) -> None:
-    fake_qgis.QgsProject.instance().writeEntry("AgriCarbonAtlas", "current_plot", stored)
+    fake_qgis.QgsProject.instance().writeEntry("CarbonCreditBuy", "current_plot", stored)
     assert helpers.read_current_plot() is None
 
 
@@ -577,7 +577,7 @@ API_PLOT = {
 
 def test_the_plot_is_added_as_a_memory_layer(helpers: ModuleType, fake_qgis: ModuleType) -> None:
     layer = helpers.add_plot_layer(API_PLOT)
-    assert layer.name() == "AgriCarbon plot plot_xyz"
+    assert layer.name() == "CarbonCreditBuy plot plot_xyz"
     assert layer.crs().authid() == "EPSG:4326"
     assert layer.id() in fake_qgis.QgsProject.instance().mapLayers()
     (feature,) = list(layer.getFeatures())
@@ -593,7 +593,7 @@ def test_the_plot_is_added_as_a_memory_layer(helpers: ModuleType, fake_qgis: Mod
 def test_the_plot_layer_tolerates_missing_attributes(helpers: ModuleType) -> None:
     plot = {"geometry": API_PLOT["geometry"]}
     layer = helpers.add_plot_layer(plot)
-    assert layer.name() == "AgriCarbon plot plot"
+    assert layer.name() == "CarbonCreditBuy plot plot"
     (feature,) = list(layer.getFeatures())
     assert feature["name"] == "" and feature["area_ha"] is None
 
@@ -606,7 +606,7 @@ def test_a_plot_without_a_usable_geometry_is_refused(helpers: ModuleType) -> Non
 # --------------------------------------------------------------------------- QGIS log panel
 @pytest.fixture
 def plugin_logger() -> Any:
-    logger = logging.getLogger("agricarbon_atlas_qgis")
+    logger = logging.getLogger("carboncreditbuy_qgis")
     level, handlers = logger.level, list(logger.handlers)
     yield logger
     logger.setLevel(level)
@@ -617,7 +617,7 @@ def test_log_records_reach_the_qgis_log_panel(
     helpers: ModuleType, fake_qgis: ModuleType, plugin_logger: Any
 ) -> None:
     handler = helpers.install_log_handler()
-    child = logging.getLogger("agricarbon_atlas_qgis.api_client")
+    child = logging.getLogger("carboncreditbuy_qgis.api_client")
     child.info("GET /plots/p1 -> 200 (12 ms)")
     child.warning("slow")
     child.error("broken")
@@ -625,9 +625,9 @@ def test_log_records_reach_the_qgis_log_panel(
     helpers.remove_log_handler(handler)
     child.info("after removal")
     assert fake_qgis.QgsMessageLog.messages == [
-        ("GET /plots/p1 -> 200 (12 ms)", "AgriCarbon Atlas", helpers.LEVEL_INFO),
-        ("slow", "AgriCarbon Atlas", helpers.LEVEL_WARNING),
-        ("broken", "AgriCarbon Atlas", helpers.LEVEL_CRITICAL),
+        ("GET /plots/p1 -> 200 (12 ms)", "CarbonCreditBuy", helpers.LEVEL_INFO),
+        ("slow", "CarbonCreditBuy", helpers.LEVEL_WARNING),
+        ("broken", "CarbonCreditBuy", helpers.LEVEL_CRITICAL),
     ]
 
 
@@ -640,7 +640,7 @@ def test_the_log_handler_never_raises(
         raise RuntimeError("log panel unavailable")
 
     monkeypatch.setattr(fake_qgis.QgsMessageLog, "logMessage", staticmethod(explode))
-    logging.getLogger("agricarbon_atlas_qgis.x").error("still fine")
+    logging.getLogger("carboncreditbuy_qgis.x").error("still fine")
 
 
 def test_the_log_handler_supports_a_log_function_without_the_notify_argument(
@@ -653,8 +653,8 @@ def test_the_log_handler_supports_a_log_function_without_the_notify_argument(
 
     monkeypatch.setattr(fake_qgis.QgsMessageLog, "logMessage", staticmethod(three_arguments))
     helpers.install_log_handler()
-    logging.getLogger("agricarbon_atlas_qgis.x").warning("old QGIS")
-    assert seen == [("old QGIS", "AgriCarbon Atlas", helpers.LEVEL_WARNING)]
+    logging.getLogger("carboncreditbuy_qgis.x").warning("old QGIS")
+    assert seen == [("old QGIS", "CarbonCreditBuy", helpers.LEVEL_WARNING)]
 
 
 # --------------------------------------------------------------------------- background tasks
@@ -703,7 +703,7 @@ def test_a_failing_callback_is_logged_without_its_message(
     def show(_result: Any) -> None:
         raise RuntimeError("secret field data 77.5123,13.2456")
 
-    with caplog.at_level(logging.INFO, logger="agricarbon_atlas_qgis"):
+    with caplog.at_level(logging.INFO, logger="carboncreditbuy_qgis"):
         tasks.submit("show result", lambda: 1, show, lambda _e: None)
         fake_qgis.QgsApplication.taskManager().run_all()
     text = caplog.text
@@ -716,9 +716,9 @@ def test_a_failing_callback_is_logged_without_its_message(
 def test_the_task_log_line_has_only_the_description(
     tasks: ModuleType, caplog: pytest.LogCaptureFixture
 ) -> None:
-    with caplog.at_level(logging.INFO, logger="agricarbon_atlas_qgis"):
-        tasks.submit("AgriCarbon Atlas: estimating carbon", lambda: 1, print, print)
-    assert "started task: AgriCarbon Atlas: estimating carbon" in caplog.text
+    with caplog.at_level(logging.INFO, logger="carboncreditbuy_qgis"):
+        tasks.submit("CarbonCreditBuy: estimating carbon", lambda: 1, print, print)
+    assert "started task: CarbonCreditBuy: estimating carbon" in caplog.text
 
 
 def test_tasks_stay_referenced_until_they_finish(tasks: ModuleType, fake_qgis: ModuleType) -> None:

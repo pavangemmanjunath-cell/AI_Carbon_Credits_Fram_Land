@@ -156,7 +156,7 @@ PNG and look at it before you commit it. These pictures carry the same license a
 | File | What it is |
 | --- | --- |
 | `apps/web/public/favicon.svg` | The web app's tab icon: a white leaf on a green rounded square |
-| `integrations/qgis-plugin/agricarbon_atlas_qgis/icon.svg` and `icons/*.svg` | The QGIS plugin's icon and its four toolbar icons (`agents`, `carbon`, `count`, `send`) |
+| `integrations/qgis-plugin/carboncreditbuy_qgis/icon.svg` and `icons/*.svg` | The QGIS plugin's icon and its four toolbar icons (`agents`, `carbon`, `count`, `send`) |
 
 The plugin icons carry the comment "Original glyph", which means they were drawn for the project and are not copied from
 an icon set. The interface icons in the web app are not image files: they come from the `lucide-react` package

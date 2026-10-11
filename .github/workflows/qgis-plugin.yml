@@ -91,9 +91,9 @@ jobs:
 
           (path,) = glob.glob("dist/*.zip")
           names = zipfile.ZipFile(path).namelist()
-          assert {n.split("/")[0] for n in names} == {"agricarbon_atlas_qgis"}, "one top-level folder"
+          assert {n.split("/")[0] for n in names} == {"carboncreditbuy_qgis"}, "one top-level folder"
           for required in ("metadata.txt", "__init__.py", "LICENSE", "README.md"):
-              assert f"agricarbon_atlas_qgis/{required}" in names, f"{required} is missing"
+              assert f"carboncreditbuy_qgis/{required}" in names, f"{required} is missing"
           bad = [n for n in names if "__pycache__" in n or n.endswith((".pyc", ".pyo"))]
           assert not bad, f"bytecode in the archive: {bad}"
           print(f"{path}: {len(names)} files, layout OK")
@@ -102,7 +102,7 @@ jobs:
       - name: Upload the plugin ZIP
         uses: actions/upload-artifact@v4
         with:
-          name: agricarbon-atlas-qgis-plugin
+          name: carboncreditbuy-qgis-plugin
           path: dist/*.zip
           if-no-files-found: error
           retention-days: 30

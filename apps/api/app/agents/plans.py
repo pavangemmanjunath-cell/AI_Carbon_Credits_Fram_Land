@@ -17,7 +17,7 @@ Plans are data. Each one is an ordered list of agent ids with a few rules:
 
 from __future__ import annotations
 
-from atlas_agents import Plan, PlanStep, missing
+from carboncreditbuy_agents import Plan, PlanStep, missing
 
 NO_INVENTORY = missing(
     "inventory", reason="skipped: no tree inventory, so there is nothing to estimate"

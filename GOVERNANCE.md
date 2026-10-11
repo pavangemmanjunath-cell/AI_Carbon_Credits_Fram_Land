@@ -1,6 +1,6 @@
 # Governance
 
-AgriCarbon Atlas is an open-source project licensed under Apache-2.0. This
+CarbonCreditBuy is an open-source project licensed under Apache-2.0. This
 document describes how decisions are made today and how the structure is
 expected to evolve as the contributor base grows. It is deliberately
 lightweight; the project is young and a heavyweight process would slow it

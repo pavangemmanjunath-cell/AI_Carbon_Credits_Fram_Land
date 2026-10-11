@@ -61,7 +61,7 @@ results page, which leaves out the boundary and the exact centre. Send the PDF, 
 
 ## What is in a report
 
-The top of the first page shows "AgriCarbon Atlas · Evidence report", the plot name, the **report ID**, the time the
+The top of the first page shows "CarbonCreditBuy · Evidence report", the plot name, the **report ID**, the time the
 report was made, and a line such as "mode: demo · api v1". The report ID looks like `RPT-2026-10-05-0001`: the date,
 then a running number for that day. The mode says whether the satellite, climate and soil values are made up
 (**demo**) or looked up (**live**).

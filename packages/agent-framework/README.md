@@ -1,12 +1,12 @@
-# agent-framework (`atlas_agents`)
+# agent-framework (`carboncreditbuy_agents`)
 
 A small, readable framework for **teams of deterministic agents**: agents with declared tools and data access,
 a shared blackboard that remembers who wrote what, plans with skip rules, an orchestrator that never lets one
 agent sink a run, guardrails over the finished transcript — and an *optional* language model that may only
 rephrase what the agents already said.
 
-It was written for [AgriCarbon Atlas](../../docs/README.md) and for people who want to learn how agentic systems
-are put together. It knows nothing about carbon: the AgriCarbon team is in
+It was written for [CarbonCreditBuy](../../docs/README.md) and for people who want to learn how agentic systems
+are put together. It knows nothing about carbon: the CarbonCreditBuy team is in
 [`apps/api/app/agents/`](../../apps/api/app/agents/), and the learning guide is
 [docs/agents/README.md](../../docs/agents/README.md).
 
@@ -32,8 +32,16 @@ Python 3.12 or newer.
 ## A team in forty lines
 
 ```python
-from atlas_agents import Agent, Evidence, Orchestrator, Plan, PlanStep, ToolRegistry, missing
-from atlas_agents import render_transcript
+from carboncreditbuy_agents import (
+    Agent,
+    Evidence,
+    Orchestrator,
+    Plan,
+    PlanStep,
+    ToolRegistry,
+    missing,
+)
+from carboncreditbuy_agents import render_transcript
 
 tools = ToolRegistry()
 
@@ -104,8 +112,8 @@ print(render_transcript({**result.to_dict(), "plot_id": "demo"}))
 ## Optional LLM
 
 ```python
-from atlas_agents import LLMReasoner
-from atlas_agents.llm import OpenAICompatibleProvider
+from carboncreditbuy_agents import LLMReasoner
+from carboncreditbuy_agents.llm import OpenAICompatibleProvider
 
 provider = OpenAICompatibleProvider("http://localhost:11434/v1", "llama3.1:8b", timeout_seconds=20)
 result = orchestrator.run(plan, inputs=..., reasoner=LLMReasoner(provider))
@@ -127,4 +135,4 @@ The tests need no network: the LLM client is exercised with `httpx.MockTransport
 
 ## License
 
-Apache-2.0, like the rest of AgriCarbon Atlas.
+Apache-2.0, like the rest of CarbonCreditBuy.

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2026 AgriCarbon Atlas contributors
+# Copyright (C) 2026 CarbonCreditBuy contributors
 """Smoke tests of the dialogs and the plugin object with real PyQt5 widgets (offscreen).
 
 These need PyQt5 (``pip install PyQt5``) and are skipped when it is missing, so they do not
@@ -33,9 +33,9 @@ from qgis_plugin_fake_server import (  # noqa: E402
     problem_answer,
 )
 
-from agricarbon_atlas_qgis import config, geometry  # noqa: E402
-from agricarbon_atlas_qgis.crowns import CrownCount  # noqa: E402
-from agricarbon_atlas_qgis.version import DISCLAIMER  # noqa: E402
+from carboncreditbuy_qgis import config, geometry  # noqa: E402
+from carboncreditbuy_qgis.crowns import CrownCount  # noqa: E402
+from carboncreditbuy_qgis.version import DISCLAIMER  # noqa: E402
 
 QDialog = QtWidgets.QDialog
 QMessageBox = QtWidgets.QMessageBox
@@ -195,12 +195,12 @@ class Env:
         monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         self.core, self.server, self.app = core, server, app
-        self.helpers = importlib.import_module("agricarbon_atlas_qgis.qgis_helpers")
-        self.dialogs = importlib.import_module("agricarbon_atlas_qgis.dialogs")
-        self.plugin_mod = importlib.import_module("agricarbon_atlas_qgis.plugin")
+        self.helpers = importlib.import_module("carboncreditbuy_qgis.qgis_helpers")
+        self.dialogs = importlib.import_module("carboncreditbuy_qgis.dialogs")
+        self.plugin_mod = importlib.import_module("carboncreditbuy_qgis.plugin")
         self.iface = make_iface()
         self.helpers.save_config(config.PluginConfig(server.base_url, API_KEY, "IN", 10.0))
-        self.plugin = self.plugin_mod.AgriCarbonAtlasPlugin(self.iface)
+        self.plugin = self.plugin_mod.CarbonCreditBuyPlugin(self.iface)
         self.plugin.initGui()
 
         #: class name of a dialog -> function that fills it in and returns its result code
@@ -327,10 +327,10 @@ def fill_count_dialog(
 
 # =========================================================================== plugin life cycle
 def test_menu_toolbar_and_log_handler_are_added_and_removed(env: Env) -> None:
-    logger = logging.getLogger("agricarbon_atlas_qgis")
-    menu = env.iface.menu_actions["&AgriCarbon Atlas"]
+    logger = logging.getLogger("carboncreditbuy_qgis")
+    menu = env.iface.menu_actions["&CarbonCreditBuy"]
     assert [a.text() for a in menu if not a.isSeparator()] == [
-        "Send selected polygon to AgriCarbon Atlas",
+        "Send selected polygon to CarbonCreditBuy",
         "Count trees from segmentation layer",
         "Estimate carbon (scenario)",
         "Run AI agent team",
@@ -339,11 +339,11 @@ def test_menu_toolbar_and_log_handler_are_added_and_removed(env: Env) -> None:
         "Unlink current plot",
         "Export selected field as GeoJSON ...",
         "Settings ...",
-        "About AgriCarbon Atlas",
+        "About CarbonCreditBuy",
     ]
-    assert env.plugin.toolbar.objectName() == "AgriCarbonAtlasToolbar"
+    assert env.plugin.toolbar.objectName() == "CarbonCreditBuyToolbar"
     assert [a.text() for a in env.plugin.toolbar.actions() if not a.isSeparator()] == [
-        "Send selected polygon to AgriCarbon Atlas",
+        "Send selected polygon to CarbonCreditBuy",
         "Count trees from segmentation layer",
         "Estimate carbon (scenario)",
         "Run AI agent team",
@@ -358,14 +358,14 @@ def test_menu_toolbar_and_log_handler_are_added_and_removed(env: Env) -> None:
     env.plugin.unload()  # unloading twice is harmless
 
     env.plugin.initGui()  # and the plugin can be loaded again (QGIS "reload plugin")
-    assert len(env.iface.menu_actions["&AgriCarbon Atlas"]) == 12  # 10 actions + 2 separators
+    assert len(env.iface.menu_actions["&CarbonCreditBuy"]) == 12  # 10 actions + 2 separators
 
 
 def test_class_factory_returns_the_plugin(env: Env) -> None:
-    import agricarbon_atlas_qgis
+    import carboncreditbuy_qgis
 
-    created = agricarbon_atlas_qgis.classFactory(env.iface)
-    assert isinstance(created, env.plugin_mod.AgriCarbonAtlasPlugin)
+    created = carboncreditbuy_qgis.classFactory(env.iface)
+    assert isinstance(created, env.plugin_mod.CarbonCreditBuyPlugin)
     assert created.iface is env.iface
 
 
@@ -383,8 +383,8 @@ def test_unexpected_errors_become_a_plain_message_without_details(
         raise RuntimeError("secret detail 77.1234,13.6543")
 
     monkeypatch.setattr(env.helpers, "find_field_layer", explode)
-    with caplog.at_level(logging.INFO, logger="agricarbon_atlas_qgis"):
-        env.find_action("Send selected polygon to AgriCarbon Atlas").trigger()
+    with caplog.at_level(logging.INFO, logger="carboncreditbuy_qgis"):
+        env.find_action("Send selected polygon to CarbonCreditBuy").trigger()
     assert env.boxes and "Unexpected error (RuntimeError)" in env.boxes[0]
     shown = env.everything_shown() + caplog.text
     assert "secret" not in shown and "77.1234" not in shown
@@ -456,7 +456,7 @@ def test_nothing_but_the_polygon_leaves_the_machine_and_nothing_private_is_logge
     for digits in COORDINATE_DIGITS:
         assert digits not in shown
     project_text, _found = env.core.QgsProject.instance().readEntry(
-        "AgriCarbonAtlas", "current_plot", ""
+        "CarbonCreditBuy", "current_plot", ""
     )
     assert not any(digits in project_text for digits in COORDINATE_DIGITS)
     assert "coordinates" not in project_text and API_KEY not in project_text
@@ -734,7 +734,7 @@ def test_set_import_and_unlink_the_current_plot(
     env.pump()
     layers = env.core.QgsProject.instance().mapLayers()
     assert len(layers) == layers_before + 1
-    assert any(layer.name() == f"AgriCarbon plot {PLOT_ID}" for layer in layers.values())
+    assert any(layer.name() == f"CarbonCreditBuy plot {PLOT_ID}" for layer in layers.values())
 
     env.plugin.clear_current_plot()
     assert env.helpers.read_current_plot() is None
@@ -810,7 +810,7 @@ def test_the_settings_dialog_tests_the_connection_and_saves(env: Env) -> None:
         dialog._on_test()
         assert dialog.status_label.text().startswith("Testing")
         env.pump()
-        assert dialog.status_label.text().startswith("Connected: AgriCarbon Atlas API 0.1.0")
+        assert dialog.status_label.text().startswith("Connected: CarbonCreditBuy API 0.1.0")
         assert "Demo mode" in dialog.status_label.text()
         dialog.country_combo.setCurrentIndex(dialog.country_combo.findData("DE"))
         dialog.timeout_spin.setValue(45)
@@ -856,12 +856,12 @@ def test_about_names_the_licences_and_the_disclaimer(
 # =========================================================================== the dialogs alone
 @pytest.fixture
 def dialogs(fake_qgis_qt: ModuleType) -> ModuleType:
-    return importlib.import_module("agricarbon_atlas_qgis.dialogs")
+    return importlib.import_module("carboncreditbuy_qgis.dialogs")
 
 
 @pytest.fixture
 def helpers(fake_qgis_qt: ModuleType) -> ModuleType:
-    return importlib.import_module("agricarbon_atlas_qgis.qgis_helpers")
+    return importlib.import_module("carboncreditbuy_qgis.qgis_helpers")
 
 
 @pytest.fixture
@@ -932,7 +932,7 @@ def test_settings_dialog_connection_test_flow(dialogs: ModuleType) -> None:
     assert not dialog.test_button.isEnabled()
     assert dialog.status_label.text() == "Testing the connection ..."
 
-    calls[0][1](True, "Connected: AgriCarbon Atlas API 1.0.")
+    calls[0][1](True, "Connected: CarbonCreditBuy API 1.0.")
     assert dialog.status_label.text().startswith("Connected") and dialog.test_button.isEnabled()
 
 
@@ -1002,7 +1002,7 @@ def crown_count(counted: int, threshold: float | None = None, below: int = 0) ->
 
 @pytest.fixture
 def choices() -> list[Any]:
-    from agricarbon_atlas_qgis.workflows import SpeciesChoice
+    from carboncreditbuy_qgis.workflows import SpeciesChoice
 
     return [
         SpeciesChoice("mango", "Mango (Mangifera indica)", 600.0),
@@ -1180,7 +1180,7 @@ def test_the_results_window_copies_and_saves(
 ) -> None:
     page = "<html><body><h2>Carbon estimate</h2><p>certified: false</p></body></html>"
     window = dialogs.ResultsDialog("Carbon estimate", page)
-    assert window.windowTitle() == "AgriCarbon Atlas - Carbon estimate"
+    assert window.windowTitle() == "CarbonCreditBuy - Carbon estimate"
     assert not window.isModal()
     buttons = {b.text(): b for b in window.findChildren(QtWidgets.QPushButton)}
     assert set(buttons) == {"Copy as text", "Save as HTML ...", "Close"}

@@ -1,6 +1,6 @@
 # Third-party software
 
-AgriCarbon Atlas is Apache-2.0 ([ADR-0005](../architecture/adr/0005-apache-2-license.md)) and depends on permissively
+CarbonCreditBuy is Apache-2.0 ([ADR-0005](../architecture/adr/0005-apache-2-license.md)) and depends on permissively
 licensed software, with one LGPL library used as a dynamically linked dependency. One folder is licensed differently:
 the QGIS plugin in `integrations/qgis-plugin/` is GPL-2.0-or-later
 ([why](#the-qgis-plugin-and-the-gpl)). This page gives the overview and the commands that regenerate the full
@@ -107,7 +107,7 @@ is not legal advice):
   copyright line and the OFL address in their metadata (checked on the `latin-400` files of the three families).
   The v0.1 build does not copy the `LICENSE` files into its output, so attach the license text with a release
   ([notices](#notices)).
-- The fonts are not sold on their own, and a modified font may not use a reserved font name. The Atlas does not modify
+- The fonts are not sold on their own, and a modified font may not use a reserved font name. CarbonCreditBuy does not modify
   them: `src/styles/globals.css` imports the Latin subsets that `@fontsource` ships (Space Grotesk 500, 600 and 700;
   IBM Plex Sans 400, 500 and 600; IBM Plex Mono 400 and 500).
 - The OFL covers the font files, not the documents or the software that use them.
@@ -130,8 +130,8 @@ license ([`integrations/qgis-plugin/LICENSE`](../../integrations/qgis-plugin/LIC
 
 - Every Python file in the folder starts with `SPDX-License-Identifier: GPL-2.0-or-later`.
 - The plugin imports only `qgis`, `qgis.PyQt` and the Python standard library. It imports nothing from `apps/`,
-  `packages/` or `integrations/atlas_integrations/`, and nothing outside the folder imports the plugin.
-- The two sides exchange only HTTP requests and JSON. The plugin calls the Atlas API like any other client, so they
+  `packages/` or `integrations/carboncreditbuy_integrations/`, and nothing outside the folder imports the plugin.
+- The two sides exchange only HTTP requests and JSON. The plugin calls CarbonCreditBuy API like any other client, so they
   remain separate programs. The plugin's `LICENSE` says that Apache-2.0 software called by the plugin, or calling it,
   is not affected.
 - `scripts/package.py` builds the installable ZIP from the plugin folder alone, plus its `LICENSE` and `README.md`.

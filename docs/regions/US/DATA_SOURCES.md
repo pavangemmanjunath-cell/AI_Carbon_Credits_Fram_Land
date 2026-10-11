@@ -1,7 +1,7 @@
 # Data sources — United States
 
 Global datasets (ESA WorldCover, Sentinel-2, Open-Meteo, SoilGrids, OpenStreetMap) serve US plots exactly as they serve
-plots elsewhere. This page covers the US-specific sources: how to get access, what the Atlas does with them today, and
+plots elsewhere. This page covers the US-specific sources: how to get access, what CarbonCreditBuy does with them today, and
 what it does not use. Licenses are consolidated in
 [`docs/licensing/DATA_LICENSES.md`](../../licensing/DATA_LICENSES.md), and every source's endpoint, key, cache and
 failure behavior is in [FREE_APIS.md](../../data-sources/FREE_APIS.md).
@@ -13,13 +13,13 @@ for a plot comes from reverse geocoding, not from the Census Geocoder
 
 ## USDA NASS Quick Stats: county crop statistics
 
-The National Agricultural Statistics Service publishes crop statistics through its Quick Stats API. The Atlas would use
+The National Agricultural Statistics Service publishes crop statistics through its Quick Stats API. CarbonCreditBuy would use
 them for the "other farm income" context: area, production and yield for a county and a crop such as pecan, walnut or
 apple ([`config/regions/US.yaml`](../../../config/regions/US.yaml)).
 
 | Item | Detail |
 | --- | --- |
-| Adapter | [`usda_nass`](../../../integrations/atlas_integrations/usda_nass/adapter.py), with an offline demo twin that returns synthetic values labeled `synthetic-demo` |
+| Adapter | [`usda_nass`](../../../integrations/carboncreditbuy_integrations/usda_nass/adapter.py), with an offline demo twin that returns synthetic values labeled `synthetic-demo` |
 | Endpoint | `USDA_NASS_API_URL`, default `https://quickstats.nass.usda.gov/api/api_GET/` |
 | Key | Free. Request one on the [Quick Stats API page](https://quickstats.nass.usda.gov/api) and set `USDA_NASS_API_KEY`. In live mode an empty key silently selects the demo twin, so check the `mode` and the source in what you receive |
 | Query | Survey data, crops sector, county level; a commodity name (the adapter upper-cases it), a two-digit state code, a three-digit county code and a range of years |
@@ -34,7 +34,7 @@ apple ([`config/regions/US.yaml`](../../../config/regions/US.yaml)).
 | Item | Detail |
 | --- | --- |
 | Purpose | Turn a coordinate pair into state and county codes, which Quick Stats needs |
-| Adapter | [`census_geocoder`](../../../integrations/atlas_integrations/census_geocoder/adapter.py), with a demo twin that answers for points inside the US bounding box only |
+| Adapter | [`census_geocoder`](../../../integrations/carboncreditbuy_integrations/census_geocoder/adapter.py), with a demo twin that answers for points inside the US bounding box only |
 | Endpoint | `CENSUS_GEOCODER_URL`, default `https://geocoding.geo.census.gov/geocoder/geographies/coordinates` |
 | Key | None |
 | Query | One coordinate pair per request, for the current benchmark and vintage, asking for the county and state layers. The adapter raises "not found" for a point outside US counties |
@@ -73,7 +73,7 @@ and requires an identifying `User-Agent`; a deployment with heavy use should sel
 The map's **Satellite** view loads raster tiles from a provider that the API recommends for the plot's country
 (`GET /api/v1/imagery/providers?country=US`, from [`config/imagery/providers.yaml`](../../../config/imagery/providers.yaml)).
 For the United States the recommended provider is USGS Imagery Only. A person can choose another one under **Settings**,
-**Map imagery**. Imagery is for viewing: the Atlas does not analyze these tiles. The license, attribution and analysis
+**Map imagery**. Imagery is for viewing: CarbonCreditBuy does not analyze these tiles. The license, attribution and analysis
 rule of every provider are in [MAP_LICENSES.md](../../licensing/MAP_LICENSES.md), and the research is in
 [imagery-providers.md](../../research/imagery-providers.md).
 
@@ -101,7 +101,7 @@ Notes on the USGS layer, from the research of 2026-10-05:
 
 ## Candidates not integrated
 
-These are datasets contributors could evaluate. None has been researched for the Atlas: the license, endpoint,
+These are datasets contributors could evaluate. None has been researched for CarbonCreditBuy: the license, endpoint,
 coverage and privacy impact of each are TODO(verify). Use the "Data source" issue form
 ([`data_source.yml`](../../../.github/ISSUE_TEMPLATE/data_source.yml)) and
 [adding an integration](../../developer-guide/adding-an-integration.md).

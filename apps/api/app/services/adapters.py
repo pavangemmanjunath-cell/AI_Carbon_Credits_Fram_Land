@@ -11,18 +11,21 @@ from functools import cached_property
 from typing import Any
 
 from app.core.config import Settings
-from atlas_integrations import MemoryTTLCache
-from atlas_integrations.census_geocoder import CensusGeocoderAdapter, DemoCensusGeocoderAdapter
-from atlas_integrations.copernicus import CopernicusAdapter
-from atlas_integrations.data_gov_in import DataGovInAdapter, DemoDataGovInAdapter
-from atlas_integrations.earth_search import EarthSearchAdapter
-from atlas_integrations.esa_worldcover import DemoWorldCoverAdapter, WorldCoverAdapter
-from atlas_integrations.nominatim import DemoNominatimAdapter, NominatimAdapter
-from atlas_integrations.open_meteo import DemoOpenMeteoAdapter, OpenMeteoAdapter
-from atlas_integrations.photon import PhotonAdapter
-from atlas_integrations.soilgrids import DemoSoilGridsAdapter, SoilGridsAdapter
-from atlas_integrations.stac_common import DemoSatelliteAdapter
-from atlas_integrations.usda_nass import DemoUsdaNassAdapter, UsdaNassAdapter
+from carboncreditbuy_integrations import MemoryTTLCache
+from carboncreditbuy_integrations.census_geocoder import (
+    CensusGeocoderAdapter,
+    DemoCensusGeocoderAdapter,
+)
+from carboncreditbuy_integrations.copernicus import CopernicusAdapter
+from carboncreditbuy_integrations.data_gov_in import DataGovInAdapter, DemoDataGovInAdapter
+from carboncreditbuy_integrations.earth_search import EarthSearchAdapter
+from carboncreditbuy_integrations.esa_worldcover import DemoWorldCoverAdapter, WorldCoverAdapter
+from carboncreditbuy_integrations.nominatim import DemoNominatimAdapter, NominatimAdapter
+from carboncreditbuy_integrations.open_meteo import DemoOpenMeteoAdapter, OpenMeteoAdapter
+from carboncreditbuy_integrations.photon import PhotonAdapter
+from carboncreditbuy_integrations.soilgrids import DemoSoilGridsAdapter, SoilGridsAdapter
+from carboncreditbuy_integrations.stac_common import DemoSatelliteAdapter
+from carboncreditbuy_integrations.usda_nass import DemoUsdaNassAdapter, UsdaNassAdapter
 
 
 @dataclass

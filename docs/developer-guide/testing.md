@@ -27,7 +27,7 @@ is tested, and what CI does.
 | Format | `make format` (ruff format, Prettier) |
 
 The root `pyproject.toml` sets `pythonpath` for the engines, `integrations` and `apps/api`, so pytest
-finds them from a clean checkout. The API imports `atlas_agents`, so install the agent framework as
+finds them from a clean checkout. The API imports `carboncreditbuy_agents`, so install the agent framework as
 well: `make install-api` does it, and so does `python3 -m pip install -e packages/agent-framework` if
 your `Makefile` predates the framework. `testpaths` are `packages`, `apps/api/tests`, `integrations`
 and `tests`. `--strict-markers` is on: a marker must be registered in `pyproject.toml` before you use
@@ -43,7 +43,7 @@ it. `asyncio_mode` is `auto`.
 | `packages/report-engine/tests/` | HTML, Markdown and JSON rendering, escaping, placeholders for missing blocks, report ids, and the clean refusal of PDF when WeasyPrint is missing |
 | `packages/agent-framework/tests/` | The generic framework: agents, tools, blackboard, plans, guardrails, intent routing, the reasoner and redaction |
 | `integrations/tests/` | Adapter base (retry, status mapping, cache, provenance) and the point and statistics adapters, over `httpx.MockTransport` |
-| `integrations/qgis-plugin/tests/` | The QGIS plugin, against fakes of the QGIS API and a fake Atlas server |
+| `integrations/qgis-plugin/tests/` | The QGIS plugin, against fakes of the QGIS API and a fake CarbonCreditBuy server |
 | `apps/api/tests/` | The whole API in demo mode through `TestClient`: privacy, errors, API keys, body limits, tree age, imagery and agents |
 | `tests/integration/` | Contract drift: the committed sample responses in `data/sample/responses/` against the field names the API produces now |
 | `tests/data-quality/` | Configuration invariants (below), including the tree-age rules |
@@ -125,7 +125,7 @@ with the five tests every adapter needs, is in [adding an integration](adding-an
 ### Agents
 
 Agents are tested at two levels. The generic framework in `packages/agent-framework/tests/` needs no
-Atlas code: its `conftest.py` puts the package on `sys.path`. The Atlas agents are tested through the
+CarbonCreditBuy code: its `conftest.py` puts the package on `sys.path`. CarbonCreditBuy agents are tested through the
 API in `apps/api/tests/test_agents_api.py`, which runs the three plans on the demo plot
 ([adding a new agent](../agents/README.md#10-adding-a-new-agent) shows the steps). The invariants
 to keep when you add or change an agent:
@@ -238,7 +238,7 @@ the config file.
 ## QGIS plugin tests
 
 The plugin tests need only `pytest`. They use fakes of the QGIS classes (`qgis_fakes.py`) and a fake
-Atlas server (`qgis_plugin_fake_server.py`), so no QGIS installation is involved, and one smoke test
+CarbonCreditBuy server (`qgis_plugin_fake_server.py`), so no QGIS installation is involved, and one smoke test
 that needs PyQt5 is skipped when it is missing. Run them from the repository root so that
 `pyproject.toml` supplies the pytest settings:
 `python3 -m pytest integrations/qgis-plugin/tests -q`, or `make test` inside

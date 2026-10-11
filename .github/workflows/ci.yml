@@ -212,7 +212,7 @@ jobs:
         working-directory: apps/web
     env:
       VITE_API_BASE_URL: http://localhost:8000/api/v1
-      VITE_BASEMAP_STYLE_URL: https://demotiles.maplibre.org/style.json
+      VITE_BASEMAP_STYLE_URL: https://tiles.openfreemap.org/styles/liberty
       VITE_DEFAULT_COUNTRY: IN
       VITE_DEFAULT_LANGUAGE: en
     steps:
@@ -270,7 +270,7 @@ jobs:
           file: infra/docker/Dockerfile.api
           push: false
           load: true
-          tags: agricarbon-atlas-api:ci
+          tags: carboncreditbuy-api:ci
           cache-from: type=gha,scope=api
           cache-to: type=gha,scope=api,mode=max
 
@@ -281,32 +281,32 @@ jobs:
           file: infra/docker/Dockerfile.web
           push: false
           load: true
-          tags: agricarbon-atlas-web:ci
+          tags: carboncreditbuy-web:ci
           build-args: |
             VITE_API_BASE_URL=http://localhost:8000/api/v1
-            VITE_BASEMAP_STYLE_URL=https://demotiles.maplibre.org/style.json
+            VITE_BASEMAP_STYLE_URL=https://tiles.openfreemap.org/styles/liberty
           cache-from: type=gha,scope=web
           cache-to: type=gha,scope=web,mode=max
 
       - name: Smoke-test API container (demo mode, /api/v1/health)
         run: |
-          docker run -d --rm --name atlas-api -e ATLAS_MODE=demo -p 8000:8000 agricarbon-atlas-api:ci
+          docker run -d --rm --name carboncreditbuy-api -e ATLAS_MODE=demo -p 8000:8000 carboncreditbuy-api:ci
           for i in $(seq 1 30); do
             if curl -fsS http://127.0.0.1:8000/api/v1/health; then echo; exit 0; fi
             sleep 2
           done
-          echo "API did not become healthy"; docker logs atlas-api; exit 1
+          echo "API did not become healthy"; docker logs carboncreditbuy-api; exit 1
 
       - name: Smoke-test web container (/healthz and Content-Security-Policy)
         run: |
-          docker run -d --rm --name atlas-web -p 8080:8080 agricarbon-atlas-web:ci
+          docker run -d --rm --name carboncreditbuy-web -p 8080:8080 carboncreditbuy-web:ci
           for i in $(seq 1 15); do
             if curl -fsS http://127.0.0.1:8080/healthz; then break; fi
             sleep 2
           done
           curl -fsSI http://127.0.0.1:8080/ | grep -i '^content-security-policy:' \
-            || { echo "CSP header missing"; docker logs atlas-web; exit 1; }
+            || { echo "CSP header missing"; docker logs carboncreditbuy-web; exit 1; }
 
       - name: Stop containers
         if: always()
-        run: docker stop atlas-api atlas-web || true
+        run: docker stop carboncreditbuy-api carboncreditbuy-web || true

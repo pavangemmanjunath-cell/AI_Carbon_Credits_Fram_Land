@@ -5,7 +5,7 @@ boundary that is caused by the project. If planting trees on a field
 pushes the previous crop onto newly cleared land elsewhere, the removal
 inside the boundary is partly or wholly offset by emissions outside it.
 Programmes require leakage to be assessed and, where it is material,
-deducted. The Atlas does not assess leakage; its screening statuses carry
+deducted. CarbonCreditBuy does not assess leakage; its screening statuses carry
 that requirement forward.
 
 ## Definitions
@@ -54,7 +54,7 @@ Smallholder orchards planted for fruit usually have low activity-shifting
 leakage because the land use is the farm's own plan; the larger question
 for them is additionality ([additionality.md](additionality.md)).
 
-## What the Atlas does and does not do
+## What CarbonCreditBuy does and does not do
 
 - Policy rules in `config/policies/` list "leakage assessment" among the
   requirements of crediting pathways (CCTS offsets, voluntary ARR

@@ -21,7 +21,7 @@ from app.agents.report import ReportAgent
 from app.agents.review import ReviewAgent
 from app.agents.trees import TreesAgent
 from app.core.config import Settings
-from atlas_agents import FRAMEWORK_NAME, Agent, __version__
+from carboncreditbuy_agents import FRAMEWORK_NAME, Agent, __version__
 
 AGENT_TYPES: tuple[type[Agent], ...] = (
     CoordinatorAgent,

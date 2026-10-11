@@ -10,7 +10,9 @@ let protocolRegistered = false;
 export const FALLBACK_STYLE: StyleSpecification = {
   version: 8,
   sources: {},
-  layers: [{ id: 'atlas-fallback-ground', type: 'background', paint: { 'background-color': '#E7EEE4' } }],
+  layers: [
+    { id: 'atlas-fallback-ground', type: 'background', paint: { 'background-color': '#E7EEE4' } },
+  ],
 };
 const BASEMAP_TIMEOUT_MS = 7000;
 
@@ -50,7 +52,9 @@ export function useMapLibre(containerRef: RefObject<HTMLDivElement | null>, opti
       return;
     }
     ensurePmtilesProtocol();
-    const style = mapEnv.basemapPmtilesUrl ? pmtilesStyle(mapEnv.basemapPmtilesUrl) : mapEnv.basemapStyleUrl;
+    const style = mapEnv.basemapPmtilesUrl
+      ? pmtilesStyle(mapEnv.basemapPmtilesUrl)
+      : mapEnv.basemapStyleUrl;
     const instance = new maplibregl.Map({
       container: containerRef.current,
       style,
@@ -75,17 +79,25 @@ export function useMapLibre(containerRef: RefObject<HTMLDivElement | null>, opti
       setBasemapFallback(true);
       instance.setStyle(FALLBACK_STYLE);
     };
+    const timer = window.setTimeout(useFallback, BASEMAP_TIMEOUT_MS);
     instance.on('load', () => {
       loaded = true;
       setReady(true);
     });
+    // Once the style itself has arrived the basemap works; a full street map can take
+    // longer than the timeout to draw (slow network, phone, software GL), so only a
+    // style that never arrives falls back to the plain ground.
+    instance.once('styledata', () => window.clearTimeout(timer));
     instance.on('error', (event) => {
       // A failed style fetch means no tiles at all: fall back to a plain ground so
       // the plot, drawing tools and data layers still work. Tile errors are ignored.
       const message = event.error?.message ?? '';
-      if (!loaded && (/style/i.test(message) || /Failed to fetch|NetworkError|AJAXError/i.test(message))) useFallback();
+      if (
+        !loaded &&
+        (/style/i.test(message) || /Failed to fetch|NetworkError|AJAXError/i.test(message))
+      )
+        useFallback();
     });
-    const timer = window.setTimeout(useFallback, BASEMAP_TIMEOUT_MS);
     mapRef.current = instance;
     setMap(instance);
     // Debug hook (dev server or `?debug=map`): lets the browser console / Playwright inspect the map.

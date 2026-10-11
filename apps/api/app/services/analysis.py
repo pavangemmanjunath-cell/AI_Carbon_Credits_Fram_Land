@@ -12,10 +12,10 @@ from app.repositories.base import Repository
 from app.services.adapters import ModeRouter
 from app.services.common import base_provenance, current_year, now_iso
 from app.services.regions import RegionConfig
-from atlas_integrations import AdapterError
+from carboncreditbuy_integrations import AdapterError
 from geo_engine.climate import classify_climate_zone
 
-log = logging.getLogger("atlas.analysis")
+log = logging.getLogger("carboncreditbuy.analysis")
 
 
 class AnalysisService:

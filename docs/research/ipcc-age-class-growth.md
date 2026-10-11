@@ -150,8 +150,8 @@ percent unless marked):
 
 Rows for temperate oceanic Oceania and temperate continental mountain Asia (0.224 to 0.307) were also returned. Boreal
 rows (coniferous, tundra woodland and mountain systems): up to 75 t ha⁻¹, 0.390 (range 0.23 to 0.96); over 75 t ha⁻¹,
-0.240 (range 0.15 to 0.37). Subtropical steppe rows (1.338 and 2.158) were returned as well and are not used by the
-Atlas.
+0.240 (range 0.15 to 0.37). Subtropical steppe rows (1.338 and 2.158) were returned as well and are not used by 
+CarbonCreditBuy.
 
 ## Relation to the repository's parameter file (read only)
 
