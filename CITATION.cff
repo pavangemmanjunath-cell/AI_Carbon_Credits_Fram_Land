@@ -8,19 +8,19 @@ authors:
     orcid: "https://orcid.org/0000-0002-2694-8807"
   # Co-author. Family name, ORCID and affiliation to be added when provided.
   - given-names: "Thomas"
-version: "1.1"
+version: "1.1.1"
 date-released: "2026-10-11"
-doi: "10.5281/zenodo.23298049"
+doi: "10.5281/zenodo.23298048"
 identifiers:
-  - type: doi
-    value: "10.5281/zenodo.23298049"
-    description: "Zenodo archive of release V_1.1 (this version)"
   - type: doi
     value: "10.5281/zenodo.23298048"
     description: "Zenodo concept DOI (all versions; resolves to the latest)"
+  - type: doi
+    value: "10.5281/zenodo.23298049"
+    description: "Zenodo archive of the previous release V_1.1"
   - type: url
-    value: "https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/releases/tag/V_1.1"
-    description: "GitHub release archived by Zenodo"
+    value: "https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/releases/tag/v1.1.1"
+    description: "GitHub release v1.1.1"
 repository-code: "https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land"
 url: "https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land"
 license: "Apache-2.0"

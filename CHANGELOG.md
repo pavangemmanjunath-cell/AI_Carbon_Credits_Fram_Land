@@ -13,8 +13,11 @@ set `verification_status: verified`.
 
 ## [Unreleased]
 
-Prepared for the next release (proposed `v1.1.1`). No change to carbon parameters, equations, policy rules or
-results.
+Nothing yet.
+
+## [1.1.1] — 2026-10-11
+
+Reproducibility, documentation and CI release. No change to carbon parameters, equations, policy rules or results.
 
 ### Changed
 
@@ -223,5 +226,6 @@ The first scaffold of the repository, the base that 0.2.0 builds on. It was not 
   ([infra/docker/nginx.conf](infra/docker/nginx.conf)); non-root API
   container; CodeQL, `pip-audit`, `npm audit` and gitleaks in CI.
 
-[Unreleased]: https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/compare/V_1.1...HEAD
+[Unreleased]: https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/releases/tag/v1.1.1
 [1.1]: https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/releases/tag/V_1.1

@@ -8,7 +8,7 @@ programme would still need.
 ![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-14211A)
 ![React 19](https://img.shields.io/badge/react-19-14211A)
 ![Regions IN · US · EU](https://img.shields.io/badge/regions-IN%20%C2%B7%20US%20%C2%B7%20EU-2FA85B)
-![Release V_1.1](https://img.shields.io/badge/release-V__1.1-8A4B08)
+![Release v1.1.1](https://img.shields.io/badge/release-v1.1.1-8A4B08)
 
 > **Estimates, not credits.** Every carbon number is a *scenario estimate* with a low–central–high range, a confidence
 > grade and its sources (`certified: false`). Nothing here is an issued carbon credit, nothing decides eligibility for
