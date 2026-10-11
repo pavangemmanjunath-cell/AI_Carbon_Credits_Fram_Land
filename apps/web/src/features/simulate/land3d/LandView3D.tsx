@@ -366,7 +366,7 @@ export default function LandView3D(props: LandView3DProps) {
       </Canvas>
 
       {/* KPI cards */}
-      <div className="pointer-events-none absolute left-3 top-3 grid grid-cols-2 gap-2 md:grid-cols-4">
+      <div className="pointer-events-none absolute left-3 right-14 top-3 grid grid-cols-2 gap-2 2xl:grid-cols-4">
         <Kpi
           label={t('land3d.kpiTrees')}
           value={formatNumber(treeCount, locale, { maximumFractionDigits: 0 })}
@@ -422,7 +422,7 @@ export default function LandView3D(props: LandView3DProps) {
       {/* Selection card */}
       {selected && (
         <aside
-          className="absolute right-14 top-[92px] w-[280px] max-w-[calc(100%-4.5rem)] rounded-[14px] border border-line bg-white p-3.5 shadow-lg"
+          className="absolute right-14 top-[172px] z-30 w-[280px] 2xl:top-[92px] max-w-[calc(100%-4.5rem)] rounded-[14px] border border-line bg-white p-3.5 shadow-lg"
           aria-live="polite"
         >
           <div className="mb-2 flex items-start justify-between gap-2">
@@ -508,14 +508,16 @@ export default function LandView3D(props: LandView3DProps) {
         </aside>
       )}
 
-      <div className="pointer-events-none absolute bottom-3 left-3 flex flex-wrap gap-2 text-[11px]">
-        <span className="rounded-full bg-white/90 px-2.5 py-1 text-ink-2 shadow-sm">
-          {t('land3d.hint')}
-        </span>
-        <span className="rounded-full bg-white/90 px-2.5 py-1 text-ink-2 shadow-sm">
-          {t('land3d.grid')}
-        </span>
-      </div>
+      {!selected && (
+        <div className="pointer-events-none absolute bottom-3 left-3 flex flex-wrap gap-2 text-[11px]">
+          <span className="rounded-full bg-white/90 px-2.5 py-1 text-ink-2 shadow-sm">
+            {t('land3d.hint')}
+          </span>
+          <span className="rounded-full bg-white/90 px-2.5 py-1 text-ink-2 shadow-sm">
+            {t('land3d.grid')}
+          </span>
+        </div>
+      )}
     </div>
   );
 }

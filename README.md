@@ -17,11 +17,35 @@
   <img alt="React 19" src="https://img.shields.io/badge/react-19-14211A">
   <img alt="Regions IN · US · EU" src="https://img.shields.io/badge/regions-IN%20%C2%B7%20US%20%C2%B7%20EU-2FA85B">
   <img alt="Version 0.2.0" src="https://img.shields.io/badge/version-0.2.0-8A4B08">
+  <br>
+  <img alt="3D land view: three.js" src="https://img.shields.io/badge/3D%20land-three.js%20%C2%B7%20React%20Three%20Fiber-14211A">
+  <img alt="Explainable AI: engine sensitivity" src="https://img.shields.io/badge/explainable%20AI-engine%20sensitivity-2FA85B">
+  <img alt="Agents: 9, deterministic" src="https://img.shields.io/badge/agents-9%20%C2%B7%20deterministic-1E6B41">
+  <img alt="LLM: optional" src="https://img.shields.io/badge/LLM-optional%20%C2%B7%20off%20by%20default-8A4B08">
+  <a href="#quick-start"><img alt="Run locally: START.bat" src="https://img.shields.io/badge/run%20locally-START.bat-1E6B41"></a>
 </p>
 
 > **Estimates, not credits.** Every carbon number in this project is a *scenario estimate* with a low–central–high
 > range, a confidence grade and its sources (`certified: false`). Nothing here is an issued carbon credit, and nothing
 > here decides eligibility for a programme.
+
+<h3 align="center">Preview</h3>
+<p align="center"><em>Recorded from the running app in demo mode (synthetic data) — landing page → workspace → the 3D plot
+growing from 2023 to 2053 → a clicked tree → "Why this number?" → your costs and the break-even carbon price → the agent
+team at work.</em></p>
+
+<p align="center">
+  <img src="docs/images/demo/atlas-demo.gif" width="900" alt="Animated tour: the landing page, the workspace map, a 3D view of a 2.13 ha mango plot whose 420 trees grow from saplings in 2023 to a closed canopy in 2053, a tree card showing 10 m height and 23 kg CO2e removal this year, the explainable-AI panel, the cost panel and the agents' conversation">
+</p>
+
+| Scene | What you see | Where the numbers come from |
+|---|---|---|
+| **3D land** | Your saved boundary with every tree; drag to turn, click a tree or the plot | Tree size: species config × growth · carbon: the engine's yearly series |
+| **Growth over time** | Slide or play 2023 → 2053; saplings become a closed canopy | `typical_height_m_at_maturity`, reference spacing (config/species) |
+| **Why this number?** | What moves the estimate and every factor with its source and status | Engine re-runs (±10 %) — no AI model |
+| **From growth to a credit** | The five programme steps before any credit exists | Programme links from `config/policies/` |
+| **Your costs** | Total cost and the carbon price that would cover it | Only the costs you type — no built-in values |
+| **Agents** | Nine agents, each message with its tools and evidence | Tool calls into the engines; six guardrails per run |
 
 ![The AgriCarbon Atlas workspace: map with the plot and its vegetation cells, the selected plot details and three result cards](docs/images/screenshots/02-workspace.png)
 
