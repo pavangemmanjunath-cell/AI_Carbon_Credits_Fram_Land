@@ -15,7 +15,7 @@ import time
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from datetime import UTC, datetime
-from typing import Any, Protocol
+from typing import Any, Protocol, cast
 from urllib.parse import urlsplit
 
 import httpx
@@ -199,8 +199,10 @@ class HttpAdapter:
         attempt = 0
         while True:
             try:
+                # httpx accepts any mapping or sequence of pairs at runtime; its type hints
+                # are narrower than this adapter's public QueryParams alias.
                 response = self.client.request(
-                    method, url, params=params, headers=merged_headers, json=json_body
+                    method, url, params=cast(Any, params), headers=merged_headers, json=json_body
                 )
             except httpx.TransportError as exc:
                 if attempt < self.retries:

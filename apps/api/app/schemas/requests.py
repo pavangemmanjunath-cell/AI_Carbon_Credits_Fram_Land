@@ -48,11 +48,16 @@ class PlotCreate(BaseModel):
         return value.upper() if value else value
 
 
+AnalysisLayer = Literal["landcover", "vegetation", "climate", "soil", "terrain"]
+
+
+def _default_layers() -> list[AnalysisLayer]:
+    return ["landcover", "vegetation", "climate", "soil"]
+
+
 class AnalyzeRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    layers: list[Literal["landcover", "vegetation", "climate", "soil", "terrain"]] = Field(
-        default_factory=lambda: ["landcover", "vegetation", "climate", "soil"]
-    )
+    layers: list[AnalysisLayer] = Field(default_factory=_default_layers)
     years: list[int] | None = Field(None, min_length=1, max_length=10)
 
     @field_validator("years")

@@ -37,6 +37,10 @@ ignore = [
   "E501",  # `ruff format` owns line length; long user-facing strings stay unbroken
 ]
 
+[tool.ruff.lint.per-file-ignores]
+# Sets sys.path to the in-repo packages before importing them (runs without installing).
+"benchmarks/run_experiments.py" = ["E402"]
+
 [tool.ruff.lint.isort]
 known-first-party = [
   "carbon_engine",
@@ -50,6 +54,7 @@ known-first-party = [
 
 [tool.mypy]
 python_version = "3.12"
+plugins = ["pydantic.mypy"]
 warn_unused_ignores = false
 ignore_missing_imports = true
 no_implicit_optional = true

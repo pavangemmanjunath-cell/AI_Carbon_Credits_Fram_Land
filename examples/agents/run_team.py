@@ -50,7 +50,9 @@ os.environ.setdefault("ATLAS_LOG_LEVEL", "warning")
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Run the CarbonCreditBuy agent team on a demo plot.")
+    parser = argparse.ArgumentParser(
+        description="Run the CarbonCreditBuy agent team on a demo plot."
+    )
     parser.add_argument("--plot", default="PLT-DEMOIN", help="demo plot id (default PLT-DEMOIN)")
     parser.add_argument(
         "--plan",
