@@ -13,11 +13,25 @@ set `verification_status: verified`.
 
 ## [Unreleased]
 
-Nothing yet.
+### Security
+
+- `maplibre-gl` 5.24.0 → 6.11.2, fixing an XSS sanitizer bypass (GHSA-jrc7-96c5-q579). MapLibre 6 has no default
+  export and loads its worker by URL, so the map imports the module namespace and registers the bundled worker with
+  `setWorkerUrl()`.
+- `vitest` and `@vitest/coverage-v8` 3.2.7 → 5.0.2 (development only), fixing GHSA-82fw-gwwq-j7x9 and removing the
+  vulnerable `tinypool` (GHSA-85c8-ppgw-ccpr, GHSA-5gmw-xhrv-c9v3). `npm audit` now reports no vulnerabilities.
+- `@types/node` added as an explicit development dependency (it was previously supplied indirectly).
+
+### Fixed
+
+- Documentation link check: `.lychee.toml` used options that lychee 0.24 no longer accepts (`base`, boolean
+  `include_fragments`), so the check could not run. It now runs: 1,954 links OK, 0 errors.
 
 ## [1.1.1] — 2026-10-11
 
-Reproducibility, documentation and CI release. No change to carbon parameters, equations, policy rules or results.
+Archived on Zenodo as [10.5281/zenodo.23298816](https://doi.org/10.5281/zenodo.23298816). Reproducibility, documentation
+and CI release. No change to carbon
+parameters, equations, policy rules or results.
 
 ### Changed
 
@@ -99,10 +113,12 @@ estimate that uses a `pending` parameter. Pending in this release:
 
 #### Added
 
-- **AI agent team.** A small in-house framework, `packages/agent-framework` (`carboncreditbuy_agents`), and nine agents in
+- **AI agent team.** A small in-house framework, `packages/agent-framework` (`carboncreditbuy_agents`), and nine agents
+  in
   `apps/api/app/agents`: `coordinator`, `land`, `imagery`, `trees`, `carbon`, `policy`, `market`, `review` and
   `report`. Three plans (`full-assessment`, `quick-estimate`, `tree-age-check`) and the endpoints `GET /agents`,
-  `POST /plots/{plot_id}/agents/run`, `POST /agents/ask`, `GET /agents/runs` and `GET /agents/runs/{run_id}`. Agents call
+  `POST /plots/{plot_id}/agents/run`, `POST /agents/ask`, `GET /agents/runs` and `GET /agents/runs/{run_id}`. Agents
+  call
   the engines, so every number comes from an engine, and guardrails check each run. They are deterministic by default;
   a language model is optional (`ATLAS_AGENT_REASONER=llm`) and may only reword sentences.
   See the [agents guide](docs/agents/README.md), the [catalog](docs/agents/catalog.md) and
@@ -114,7 +130,8 @@ estimate that uses a `pending` parameter. Pending in this release:
 - **Import data.** `POST /imports`, `GET /imports`, `GET /imports/{import_id}` and `DELETE /imports/{import_id}` read
   GeoJSON, KML, KMZ, CSV, LAS and LAZ files (E57 only where the optional `pye57` package is installed). The raw file is
   read in memory and dropped; only a derived record is stored: a boundary, tree counts and heights, and a map preview.
-  The limit is `ATLAS_MAX_UPLOAD_MB` (50 by default). The web app has an Import data dialog in the header and a Data page.
+  The limit is `ATLAS_MAX_UPLOAD_MB` (50 by default). The web app has an Import data dialog in the header and a Data
+  page.
   Synthetic sample files are in [`data/sample/imports/`](data/sample/imports/README.md).
 - **AI detected tree cover.** `POST /plots/{plot_id}/detect` and `GET /plots/{plot_id}/detections` find patches of dense
   green vegetation in the vegetation cube, each with a heuristic confidence, and every result lists its limitations.
@@ -167,7 +184,8 @@ estimate that uses a `pending` parameter. Pending in this release:
   `psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f data/schemas/schema.sql`. It is idempotent and upgrades a revision 0.1
   database inside one transaction. `plots_source_known` is replaced by `plots_source_format` so that the new plot
   sources are accepted, `reports_format_known` by `reports_format_token`, and three constraints are new (see
-  **Security**). If an existing row breaks a new constraint, the whole upgrade rolls back and the error names it. The 0.1
+  **Security**). If an existing row breaks a new constraint, the whole upgrade rolls back and the error names it. The
+  0.1
   tables `plot_analyses`, `tree_inventories`, `agent_runs` and `audit_log` are no longer used and are not touched.
 - **New settings:** `ATLAS_MAX_UPLOAD_MB`, `ATLAS_AGENT_REASONER`, `LLM_API_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL`,
   `LLM_TIMEOUT_SECONDS` and `ESRI_API_KEY`, all in [`.env.example`](.env.example). `VITE_TERRAIN_TILES_URL` is no longer

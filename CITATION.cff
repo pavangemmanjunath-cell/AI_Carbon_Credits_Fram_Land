@@ -10,8 +10,11 @@ authors:
   - given-names: "Thomas"
 version: "1.1.1"
 date-released: "2026-10-11"
-doi: "10.5281/zenodo.23298048"
+doi: "10.5281/zenodo.23298816"
 identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23298816"
+    description: "Zenodo archive of release v1.1.1 (this version)"
   - type: doi
     value: "10.5281/zenodo.23298048"
     description: "Zenodo concept DOI (all versions; resolves to the latest)"

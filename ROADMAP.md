@@ -1,7 +1,7 @@
 # Roadmap
 
-Where CarbonCreditBuy stands and what comes next. **The first published release, V_1.1, was archived on 2026-10-11**
-(DOI [10.5281/zenodo.23298049](https://doi.org/10.5281/zenodo.23298049)); 0.2.0 was the development milestone
+Where CarbonCreditBuy stands and what comes next. **Releases V_1.1 and v1.1.1 were archived on 2026-10-11**
+(latest DOI [10.5281/zenodo.23298816](https://doi.org/10.5281/zenodo.23298816)); 0.2.0 was the development milestone
 before it. The steps after it have
 no dates: each one waits for a source to be read, a reviewer to agree or a decision to be written down, and a date would
 be a promise nobody can keep. What changed in each release is in the [changelog](CHANGELOG.md). The larger ideas, with
@@ -33,7 +33,8 @@ minor versions, and every change is recorded under **Changed** in the changelog 
 | QGIS plugin | Select a field polygon in QGIS, count the tree crowns of a segmentation layer inside it, and ask the API for a scenario estimate and the agent team's assessment. Experimental, GPL-2.0-or-later | [QGIS plugin](docs/user-guide/qgis-plugin.md), [plugin README](integrations/qgis-plugin/README.md) |
 
 **Removed.** All 3D views went: three.js, React Three Fiber and deck.gl, the 4D cube and the tilt and terrain control.
-The map is flat and north-up. The vegetation cube stays plain JSON and is drawn as a flat NDVI layer, and DuckDB-WASM was
+The map is flat and north-up. The vegetation cube stays plain JSON and is drawn as a flat NDVI layer, and DuckDB-WASM
+was
 never added ([ADR-0002](docs/architecture/adr/0002-json-cube-no-duckdb.md)).
 
 ## The twelve build phases
@@ -88,5 +89,6 @@ propagation beyond fixed fractions; integration with field-data apps for DBH cap
 
 Issuing or brokering carbon credits, computing carbon numbers with a language model, or any feature that requires
 sharing exact farm geometry with a third party by default. These are governance guardrails
-([GOVERNANCE.md](GOVERNANCE.md#scope-guardrails)), not scheduling decisions. The 3D views that version 0.2.0 removed, and
+([GOVERNANCE.md](GOVERNANCE.md#scope-guardrails)), not scheduling decisions. The 3D views that version 0.2.0 removed,
+and
 an in-browser SQL engine, are not planned either: the map stays flat and 2D to keep the app simple.

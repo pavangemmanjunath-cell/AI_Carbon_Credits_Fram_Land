@@ -3,7 +3,7 @@
 An open, explainable platform for estimating tree-based carbon removal on farmland, and the evidence a recognised
 programme would still need.
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23298049.svg)](https://doi.org/10.5281/zenodo.23298049)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23298816.svg)](https://doi.org/10.5281/zenodo.23298816)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-1E6B41)](LICENSE)
 ![Python 3.12+](https://img.shields.io/badge/python-3.12%2B-14211A)
 ![React 19](https://img.shields.io/badge/react-19-14211A)
@@ -96,7 +96,8 @@ flowchart LR
   API --> DB[("PostGIS or<br/>in-memory demo store")]
 ```
 
-Components render, engines calculate, adapters fetch, agents explain. More: [docs/architecture.md](docs/architecture.md).
+Components render, engines calculate, adapters fetch, agents explain. More:
+[docs/architecture.md](docs/architecture.md).
 
 ## Repository Structure
 
@@ -227,8 +228,8 @@ Associated publication information will be added when available.
 
 Use GitHub's **"Cite this repository"** button (generated from [CITATION.cff](CITATION.cff)).
 
-Software DOI: <https://doi.org/10.5281/zenodo.23298049> (release `V_1.1`). Concept DOI for all versions:
-<https://doi.org/10.5281/zenodo.23298048>.
+Software DOI: <https://doi.org/10.5281/zenodo.23298816> (release `v1.1.1`). Concept DOI for all versions:
+<https://doi.org/10.5281/zenodo.23298048>. Previous release `V_1.1`: <https://doi.org/10.5281/zenodo.23298049>.
 
 The software DOI identifies this code. A future paper will have its own DOI; the two are not interchangeable.
 

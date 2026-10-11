@@ -6,8 +6,9 @@ This document records independently verifiable reuse and adoption of this projec
 (their own forks, stars, papers or demos) is not counted as independent. Nothing is estimated or extrapolated.
 Entries are added by pull request with the evidence linked.
 
-**Status (2026-10-11):** the software is archived on Zenodo
-([10.5281/zenodo.23298049](https://doi.org/10.5281/zenodo.23298049), release `V_1.1`). No independent reuse has been
+**Status (2026-10-11):** the software is archived on Zenodo (release `v1.1.1`:
+[10.5281/zenodo.23298816](https://doi.org/10.5281/zenodo.23298816);
+all versions: [10.5281/zenodo.23298048](https://doi.org/10.5281/zenodo.23298048)). No independent reuse has been
 recorded yet. Associated publication information will be added when available.
 
 ## Independent Publications

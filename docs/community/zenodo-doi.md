@@ -4,6 +4,7 @@ The repository is connected to Zenodo. Every GitHub Release is archived automati
 
 | Identifier | DOI | Meaning |
 |---|---|---|
+| Version DOI, release `v1.1.1` | [10.5281/zenodo.23298816](https://doi.org/10.5281/zenodo.23298816) | Cites exactly that archived release |
 | Version DOI, release `V_1.1` | [10.5281/zenodo.23298049](https://doi.org/10.5281/zenodo.23298049) | Cites exactly that archived release |
 | Concept DOI | [10.5281/zenodo.23298048](https://doi.org/10.5281/zenodo.23298048) | Cites the software across all versions; resolves to the latest |
 
