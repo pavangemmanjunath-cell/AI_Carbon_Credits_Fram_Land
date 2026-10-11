@@ -1,3 +1,4 @@
+/// <reference types="node" />  // runs in Node under Playwright
 import { expect, test, type Page } from '@playwright/test';
 
 /**

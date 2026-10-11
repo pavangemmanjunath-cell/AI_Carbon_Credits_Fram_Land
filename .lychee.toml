@@ -38,8 +38,6 @@ exclude = [
 # Paths we never scan.
 exclude_path = ["node_modules", "apps/web/dist", ".cache", ".reports"]
 
-# Relative links are resolved against the repository root when they start with "/".
-base = "."
 
 # Do not check anchors in external pages (expensive and noisy); internal anchors are checked.
-include_fragments = true
+include_fragments = "full"

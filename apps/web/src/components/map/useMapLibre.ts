@@ -1,8 +1,15 @@
 import { useEffect, useRef, useState, type RefObject } from 'react';
-import maplibregl, { type Map as MapLibreMap, type StyleSpecification } from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
+import type { Map as MapLibreMap, StyleSpecification } from 'maplibre-gl';
 import { Protocol } from 'pmtiles';
+import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 import { mapEnv } from '@/config/mapEnv';
 import { pmtilesStyle } from './mapStyle';
+
+// MapLibre 6 runs its tile parsing in a separate worker module that it loads by URL.
+// Vite pre-bundles maplibre-gl, so the default (relative) worker URL no longer resolves;
+// give it the bundled worker file explicitly (works in dev and in production builds).
+maplibregl.setWorkerUrl(maplibreWorkerUrl);
 
 let protocolRegistered = false;
 

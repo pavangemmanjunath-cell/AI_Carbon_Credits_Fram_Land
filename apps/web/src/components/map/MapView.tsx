@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
 import type { Feature, FeatureCollection } from 'geojson';
 import { regionFor } from '@/config/regions';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
@@ -325,8 +325,9 @@ export function MapView({
   useEffect(() => {
     if (!map) return;
     let failures = 0;
-    const onError = (event: { sourceId?: string }) => {
-      if (event.sourceId !== 'atlas-imagery') return;
+    // MapLibre 6 types 'error' events as ErrorEvent; tile errors also carry `sourceId`.
+    const onError = (event: unknown) => {
+      if ((event as { sourceId?: string }).sourceId !== 'atlas-imagery') return;
       failures += 1;
       // A few failed tiles happen; many mean the service is down. The basemap stays underneath.
       if (failures >= 6) setImageryFailed(true);
