@@ -3,37 +3,26 @@
     "id": "ipcc-2006-vol4-ch4",
     "name": "IPCC 2006 Guidelines Vol. 4 Ch. 4 (Forest Land) — Tier 1 gain-loss",
     "kind": "guideline",
-    "regions": [
-      "*"
-    ],
+    "regions": ["*"],
     "url": "https://www.ipcc-nggip.iges.or.jp/public/2006gl/vol4.html",
     "status": "active",
-    "used_by_models": [
-      "tree-biomass"
-    ],
+    "used_by_models": ["tree-biomass"],
     "notes": "National-inventory guidance; used here for default parameters, not for credit issuance."
   },
   {
     "id": "chave-2014",
     "name": "Chave et al. 2014 pantropical allometric models",
     "kind": "scientific_equation",
-    "regions": [
-      "IN",
-      "tropics"
-    ],
+    "regions": ["IN", "tropics"],
     "url": "https://doi.org/10.1111/gcb.12629",
     "status": "active",
-    "used_by_models": [
-      "tree-biomass"
-    ]
+    "used_by_models": ["tree-biomass"]
   },
   {
     "id": "verra-vm0042",
     "name": "Verra VM0042 Improved Agricultural Land Management",
     "kind": "voluntary_standard",
-    "regions": [
-      "*"
-    ],
+    "regions": ["*"],
     "url": "https://verra.org/methodologies/vm0042-methodology-for-improved-agricultural-land-management-v2-0/",
     "status": "active",
     "version": "v2.2",
@@ -51,79 +40,51 @@
     "id": "verra-vm0047",
     "name": "Verra VM0047 Afforestation, Reforestation and Revegetation",
     "kind": "voluntary_standard",
-    "regions": [
-      "*"
-    ],
+    "regions": ["*"],
     "url": "https://verra.org/methodologies/vm0047-afforestation-reforestation-and-revegetation-v1-0/",
     "status": "active",
     "version": "v1.0",
-    "activities": [
-      "tree_plantation",
-      "agroforestry"
-    ],
+    "activities": ["tree_plantation", "agroforestry"],
     "notes": "Area-based and census-based approaches; requires baseline, additionality, leakage, permanence buffer, monitoring and verification."
   },
   {
     "id": "in-gcp-tree-plantation",
     "name": "Green Credit Programme — tree plantation methodology",
     "kind": "government_methodology",
-    "regions": [
-      "IN"
-    ],
+    "regions": ["IN"],
     "url": "https://moef.gov.in/",
     "status": "active",
-    "activities": [
-      "tree_plantation"
-    ],
+    "activities": ["tree_plantation"],
     "notes": "Green Credits are distinct from carbon credits under the CCTS (MoEFCC). Verify scope (identified degraded land parcels) before screening private farmland as applicable."
   },
   {
     "id": "in-ccts-offset",
     "name": "Carbon Credit Trading Scheme — offset mechanism methodologies",
     "kind": "compliance_market",
-    "regions": [
-      "IN"
-    ],
+    "regions": ["IN"],
     "url": "https://beeindia.gov.in/",
     "status": "active",
-    "activities": [
-      "tree_plantation",
-      "agroforestry",
-      "agriculture"
-    ],
+    "activities": ["tree_plantation", "agroforestry", "agriculture"],
     "notes": "BEE lists agriculture and forestry among sectors covered by accredited carbon verification agencies; project-level methodology approval required."
   },
   {
     "id": "eu-crcf",
     "name": "EU Carbon Removals and Carbon Farming Certification Framework",
     "kind": "certification_framework",
-    "regions": [
-      "EU"
-    ],
+    "regions": ["EU"],
     "url": "https://eur-lex.europa.eu/eli/reg/2024/3012/oj",
     "status": "active",
-    "activities": [
-      "afforestation",
-      "agroforestry",
-      "soil_carbon",
-      "peatland_rewetting"
-    ],
+    "activities": ["afforestation", "agroforestry", "soil_carbon", "peatland_rewetting"],
     "notes": "Regulation (EU) 2024/3012. Certification methodologies adopted via delegated acts (2025–2026); certification is required — an estimate is never automatically certifiable."
   },
   {
     "id": "us-comet-farm",
     "name": "USDA COMET-Farm",
     "kind": "methodology_tool",
-    "regions": [
-      "US"
-    ],
+    "regions": ["US"],
     "url": "https://comet-farm.com/",
     "status": "active",
-    "activities": [
-      "agroforestry",
-      "cropland",
-      "grazing"
-    ],
+    "activities": ["agroforestry", "cropland", "grazing"],
     "notes": "Reference methodology for US farm/ranch GHG accounting; agroforestry biomass via growth equations based on Forest Inventory and Analysis data. Referenced, not copied."
   }
 ]

@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { formatArea, formatCurrency, formatRange, formatSignedPercent, intlLocale, unitLabel } from './format';
+import {
+  formatArea,
+  formatCurrency,
+  formatRange,
+  formatSignedPercent,
+  intlLocale,
+  unitLabel,
+} from './format';
 
 describe('format helpers', () => {
   it('puts hectares first for India/EU and acres first for the US', () => {
@@ -10,7 +17,9 @@ describe('format helpers', () => {
   });
 
   it('formats ranges, currency and percentages per locale', () => {
-    expect(formatRange({ low: 7.4, central: 10.6, high: 13.8, unit: 'tCO2e/yr' }, 'en-IN')).toBe('7.4 – 13.8');
+    expect(formatRange({ low: 7.4, central: 10.6, high: 13.8, unit: 'tCO2e/yr' }, 'en-IN')).toBe(
+      '7.4 – 13.8',
+    );
     expect(formatCurrency(12122, '₹', 'en-IN')).toBe('₹12,122');
     expect(formatCurrency(293, '$', 'en-US')).toBe('$293');
     expect(formatSignedPercent(22.6, 'en-IN', 0)).toBe('+23%');

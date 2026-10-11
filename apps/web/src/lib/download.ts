@@ -57,5 +57,7 @@ export function csvEscape(value: unknown): string {
 }
 
 export function toCsv(header: string[], rows: unknown[][]): string {
-  return [header.map(csvEscape).join(','), ...rows.map((r) => r.map(csvEscape).join(','))].join('\n');
+  return [header.map(csvEscape).join(','), ...rows.map((r) => r.map(csvEscape).join(','))].join(
+    '\n',
+  );
 }

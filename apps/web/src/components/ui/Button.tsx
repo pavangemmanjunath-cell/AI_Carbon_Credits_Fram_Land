@@ -8,7 +8,14 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export function Button({ variant = 'primary', size = 'md', className = '', children, type = 'button', ...rest }: ButtonProps) {
+export function Button({
+  variant = 'primary',
+  size = 'md',
+  className = '',
+  children,
+  type = 'button',
+  ...rest
+}: ButtonProps) {
   return (
     <button type={type} className={buttonClass(variant, size, className)} {...rest}>
       {children}
@@ -26,7 +33,15 @@ interface LinkButtonProps {
   ariaLabel?: string;
 }
 
-export function LinkButton({ to, variant = 'primary', size = 'md', className = '', children, external, ariaLabel }: LinkButtonProps) {
+export function LinkButton({
+  to,
+  variant = 'primary',
+  size = 'md',
+  className = '',
+  children,
+  external,
+  ariaLabel,
+}: LinkButtonProps) {
   if (external) {
     return (
       <a

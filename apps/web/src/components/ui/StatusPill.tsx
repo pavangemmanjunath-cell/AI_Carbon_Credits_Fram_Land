@@ -14,13 +14,21 @@ export function StatusPill({ status }: { status: PolicyStatus | string }) {
   const { t } = useTranslation();
   const tone = TONES[status] ?? TONES.unknown;
   return (
-    <span className={`inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold ${tone}`}>
+    <span
+      className={`inline-flex items-center rounded-full px-2.5 py-1 text-[11px] font-semibold ${tone}`}
+    >
       {t(`policyStatus.${status}`, { defaultValue: status.replace(/_/g, ' ') })}
     </span>
   );
 }
 
-export function Pill({ children, tone = 'mint' }: { children: React.ReactNode; tone?: 'mint' | 'amber' | 'blue' | 'grey' | 'dark' }) {
+export function Pill({
+  children,
+  tone = 'mint',
+}: {
+  children: React.ReactNode;
+  tone?: 'mint' | 'amber' | 'blue' | 'grey' | 'dark';
+}) {
   const cls = {
     mint: 'bg-mint text-forest-deep',
     amber: 'bg-amber-tint text-amber-text',
@@ -28,5 +36,11 @@ export function Pill({ children, tone = 'mint' }: { children: React.ReactNode; t
     grey: 'bg-ground text-ink-2',
     dark: 'bg-panel-dark text-white',
   }[tone];
-  return <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ${cls}`}>{children}</span>;
+  return (
+    <span
+      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-semibold ${cls}`}
+    >
+      {children}
+    </span>
+  );
 }

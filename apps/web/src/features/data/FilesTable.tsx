@@ -1,4 +1,12 @@
-import { Boxes, CloudUpload, File as FileIcon, FileCode, FileSpreadsheet, MapPinned, Trash2 } from 'lucide-react';
+import {
+  Boxes,
+  CloudUpload,
+  File as FileIcon,
+  FileCode,
+  FileSpreadsheet,
+  MapPinned,
+  Trash2,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { Button } from '@/components/ui/Button';
@@ -12,7 +20,13 @@ import type { ImportRecord, Plot } from '@/types/api';
 import { canShowOnMap, importResultLine, importTypeOf, linkedPlot } from './logic/dataModel';
 
 function TypeIcon({ type }: { type: ImportFileType }) {
-  const Icon = isPointCloud(type) ? Boxes : type === 'csv' ? FileSpreadsheet : type === 'unknown' ? FileIcon : FileCode;
+  const Icon = isPointCloud(type)
+    ? Boxes
+    : type === 'csv'
+      ? FileSpreadsheet
+      : type === 'unknown'
+        ? FileIcon
+        : FileCode;
   return <Icon size={16} className="shrink-0 text-forest" aria-hidden="true" />;
 }
 
@@ -63,7 +77,11 @@ export function FilesTable({ records, plots, loading, error }: Props) {
         return t('data.resultBoundary', { area: area(line.areaHectares) });
       case 'trees':
         return line.meanHeightM != null
-          ? t('data.resultTreesHeight', { count: line.count, n: formatInteger(line.count, locale), height: formatNumber(line.meanHeightM, locale, { maximumFractionDigits: 1 }) })
+          ? t('data.resultTreesHeight', {
+              count: line.count,
+              n: formatInteger(line.count, locale),
+              height: formatNumber(line.meanHeightM, locale, { maximumFractionDigits: 1 }),
+            })
           : t('data.resultTrees', { count: line.count, n: formatInteger(line.count, locale) });
       case 'boundary-trees':
         return `${t('data.resultBoundary', { area: area(line.areaHectares) })} · ${t('data.resultTrees', { count: line.count, n: formatInteger(line.count, locale) })}`;
@@ -79,7 +97,8 @@ export function FilesTable({ records, plots, loading, error }: Props) {
     navigate('/app');
   };
   const remove = (record: ImportRecord) => {
-    if (window.confirm(t('data.deleteFileConfirm', { name: record.filename }))) deleteImport.mutate(record.import_id);
+    if (window.confirm(t('data.deleteFileConfirm', { name: record.filename })))
+      deleteImport.mutate(record.import_id);
   };
 
   return (
@@ -87,8 +106,20 @@ export function FilesTable({ records, plots, loading, error }: Props) {
       <table className="w-full min-w-[880px] border-collapse text-sm">
         <thead>
           <tr className="text-left text-[12px] text-muted">
-            {['colName', 'colType', 'colSize', 'colAdded', 'colPlot', 'colResult', 'colActions'].map((k) => (
-              <th key={k} scope="col" className={`border-b border-line px-4 py-3 font-medium ${k === 'colActions' ? 'text-right' : ''}`}>
+            {[
+              'colName',
+              'colType',
+              'colSize',
+              'colAdded',
+              'colPlot',
+              'colResult',
+              'colActions',
+            ].map((k) => (
+              <th
+                key={k}
+                scope="col"
+                className={`border-b border-line px-4 py-3 font-medium ${k === 'colActions' ? 'text-right' : ''}`}
+              >
                 {t(`data.${k}`)}
               </th>
             ))}
@@ -110,17 +141,34 @@ export function FilesTable({ records, plots, loading, error }: Props) {
                   </span>
                 </td>
                 <td className="px-4 py-3 text-ink-2">{t(`import.type_${type}`)}</td>
-                <td className="px-4 py-3 font-mono text-ink-2">{formatBytes(record.size_bytes, locale)}</td>
+                <td className="px-4 py-3 font-mono text-ink-2">
+                  {formatBytes(record.size_bytes, locale)}
+                </td>
                 <td className="px-4 py-3 text-ink-2">{formatDate(record.created_at, locale)}</td>
-                <td className="px-4 py-3 text-ink-2">{plot ? plot.name : record.plot_id ? record.plot_id : '—'}</td>
-                <td className={`px-4 py-3 ${failed ? 'text-amber-text' : 'text-ink'}`}>{resultText(record, plot)}</td>
+                <td className="px-4 py-3 text-ink-2">
+                  {plot ? plot.name : record.plot_id ? record.plot_id : '—'}
+                </td>
+                <td className={`px-4 py-3 ${failed ? 'text-amber-text' : 'text-ink'}`}>
+                  {resultText(record, plot)}
+                </td>
                 <td className="px-4 py-3">
                   <div className="flex justify-end gap-1.5">
-                    <Button size="sm" variant="secondary" disabled={!canShowOnMap(record)} onClick={() => viewOnMap(record)}>
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      disabled={!canShowOnMap(record)}
+                      onClick={() => viewOnMap(record)}
+                    >
                       <MapPinned size={14} aria-hidden="true" />
                       {t('data.viewOnMap')}
                     </Button>
-                    <Button size="sm" variant="ghost" aria-label={t('data.deleteNamed', { name: record.filename })} title={t('data.delete')} onClick={() => remove(record)}>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      aria-label={t('data.deleteNamed', { name: record.filename })}
+                      title={t('data.delete')}
+                      onClick={() => remove(record)}
+                    >
                       <Trash2 size={14} aria-hidden="true" />
                     </Button>
                   </div>

@@ -1,10 +1,19 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_SIMULATION, growthFactor, parseSimulationParams, shareUrl, toSearchParams, toSimulateBody } from './simulationParams';
+import {
+  DEFAULT_SIMULATION,
+  growthFactor,
+  parseSimulationParams,
+  shareUrl,
+  toSearchParams,
+  toSimulateBody,
+} from './simulationParams';
 import { MAX_GLYPHS, standLayout } from './standIllustration';
 
 describe('simulationParams', () => {
   it('parses and clamps URL parameters', () => {
-    const state = parseSimulationParams(new URLSearchParams('country=in&species=teak&trees=99999&year=1800&horizon=15&area=0'));
+    const state = parseSimulationParams(
+      new URLSearchParams('country=in&species=teak&trees=99999&year=1800&horizon=15&area=0'),
+    );
     expect(state.country).toBe('IN');
     expect(state.species).toBe('teak');
     expect(state.trees).toBe(2000);
@@ -23,7 +32,9 @@ describe('simulationParams', () => {
     const again = parseSimulationParams(params);
     expect(again.plot).toBe('PLT-X');
     expect(again.trees).toBe(DEFAULT_SIMULATION.trees);
-    expect(shareUrl(DEFAULT_SIMULATION, 'https://atlas.example')).not.toMatch(/[?&](lat|lon|latitude|longitude)=/);
+    expect(shareUrl(DEFAULT_SIMULATION, 'https://atlas.example')).not.toMatch(
+      /[?&](lat|lon|latitude|longitude)=/,
+    );
   });
 
   it('builds the API body with an explicit survival rate', () => {
@@ -68,7 +79,9 @@ describe('standIllustration', () => {
     }
     // back rows are drawn smaller than the front row
     const back = mature.glyphs.filter((g) => g.row === 0)[0];
-    const front = mature.glyphs.filter((g) => g.row === Math.max(...mature.glyphs.map((x) => x.row)))[0];
+    const front = mature.glyphs.filter(
+      (g) => g.row === Math.max(...mature.glyphs.map((x) => x.row)),
+    )[0];
     expect(back.scale).toBeLessThan(front.scale);
   });
 

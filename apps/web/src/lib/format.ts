@@ -38,11 +38,22 @@ export function formatInteger(value: number | null | undefined, locale = 'en-IN'
   return formatNumber(value, locale, { maximumFractionDigits: 0 });
 }
 
-export function formatDecimal(value: number | null | undefined, locale = 'en-IN', digits = 2): string {
-  return formatNumber(value, locale, { minimumFractionDigits: digits, maximumFractionDigits: digits });
+export function formatDecimal(
+  value: number | null | undefined,
+  locale = 'en-IN',
+  digits = 2,
+): string {
+  return formatNumber(value, locale, {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  });
 }
 
-export function formatPercent(fraction: number | null | undefined, locale = 'en-IN', digits = 0): string {
+export function formatPercent(
+  fraction: number | null | undefined,
+  locale = 'en-IN',
+  digits = 0,
+): string {
   if (fraction === null || fraction === undefined || Number.isNaN(fraction)) return '—';
   return new Intl.NumberFormat(locale, {
     style: 'percent',
@@ -50,7 +61,11 @@ export function formatPercent(fraction: number | null | undefined, locale = 'en-
   }).format(fraction);
 }
 
-export function formatSignedPercent(pct: number | null | undefined, locale = 'en-IN', digits = 1): string {
+export function formatSignedPercent(
+  pct: number | null | undefined,
+  locale = 'en-IN',
+  digits = 1,
+): string {
   if (pct === null || pct === undefined || Number.isNaN(pct)) return '—';
   const sign = pct > 0 ? '+' : '';
   return `${sign}${formatNumber(pct, locale, { maximumFractionDigits: digits })}%`;
@@ -122,7 +137,11 @@ export function formatDate(iso: string | null | undefined, locale = 'en-IN'): st
   if (!iso) return '—';
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
-  return new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'short', day: 'numeric' }).format(d);
+  return new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  }).format(d);
 }
 
 export function formatDateTime(iso: string | null | undefined, locale = 'en-IN'): string {
@@ -140,11 +159,17 @@ export function formatDateTime(iso: string | null | undefined, locale = 'en-IN')
 }
 
 /** "2026-09" → "Sep 2026" in the given locale. */
-export function monthLabel(yyyymm: string, locale = 'en-IN', style: 'short' | 'long' = 'short'): string {
+export function monthLabel(
+  yyyymm: string,
+  locale = 'en-IN',
+  style: 'short' | 'long' = 'short',
+): string {
   const match = /^(\d{4})-(\d{2})/.exec(yyyymm);
   if (!match) return yyyymm;
   const d = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, 1));
-  return new Intl.DateTimeFormat(locale, { year: 'numeric', month: style, timeZone: 'UTC' }).format(d);
+  return new Intl.DateTimeFormat(locale, { year: 'numeric', month: style, timeZone: 'UTC' }).format(
+    d,
+  );
 }
 
 export function densityPerHa(treeCount: number, hectares: number): number {

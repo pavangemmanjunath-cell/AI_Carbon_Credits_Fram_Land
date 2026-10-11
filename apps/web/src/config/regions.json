@@ -31,10 +31,22 @@
         }
       ],
       "other_income_sources": [
-        { "id": "fruit_yield", "label": "Fruit yield (mango, coconut, citrus)", "source": "data.gov.in district crop production + farmer records" },
+        {
+          "id": "fruit_yield",
+          "label": "Fruit yield (mango, coconut, citrus)",
+          "source": "data.gov.in district crop production + farmer records"
+        },
         { "id": "intercrop", "label": "Agroforestry intercrop", "source": "farmer records" },
-        { "id": "timber", "label": "Timber potential (teak, eucalyptus)", "source": "state forest department rates + farmer records" },
-        { "id": "incentives", "label": "Eligible incentives (state agroforestry / horticulture missions)", "source": "programme screening" }
+        {
+          "id": "timber",
+          "label": "Timber potential (teak, eucalyptus)",
+          "source": "state forest department rates + farmer records"
+        },
+        {
+          "id": "incentives",
+          "label": "Eligible incentives (state agroforestry / horticulture missions)",
+          "source": "programme screening"
+        }
       ]
     },
     {
@@ -74,9 +86,21 @@
         }
       ],
       "other_income_sources": [
-        { "id": "nut_fruit_yield", "label": "Nut / fruit yield (pecan, walnut, apple)", "source": "USDA NASS county statistics + farmer records" },
-        { "id": "timber", "label": "Timber potential", "source": "state extension stumpage reports + farmer records" },
-        { "id": "incentives", "label": "Conservation programme payments (EQIP, CSP)", "source": "programme screening" }
+        {
+          "id": "nut_fruit_yield",
+          "label": "Nut / fruit yield (pecan, walnut, apple)",
+          "source": "USDA NASS county statistics + farmer records"
+        },
+        {
+          "id": "timber",
+          "label": "Timber potential",
+          "source": "state extension stumpage reports + farmer records"
+        },
+        {
+          "id": "incentives",
+          "label": "Conservation programme payments (EQIP, CSP)",
+          "source": "programme screening"
+        }
       ]
     },
     {
@@ -116,11 +140,47 @@
         }
       ],
       "other_income_sources": [
-        { "id": "fruit_yield", "label": "Fruit / olive / nut yield", "source": "Eurostat and national statistics + farmer records" },
-        { "id": "timber", "label": "Timber potential", "source": "national forestry statistics + farmer records" },
+        {
+          "id": "fruit_yield",
+          "label": "Fruit / olive / nut yield",
+          "source": "Eurostat and national statistics + farmer records"
+        },
+        {
+          "id": "timber",
+          "label": "Timber potential",
+          "source": "national forestry statistics + farmer records"
+        },
         { "id": "incentives", "label": "CAP eco-scheme payments", "source": "programme screening" }
       ]
     }
   ],
-  "eu_member_states": ["AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK", "SI", "ES", "SE"]
+  "eu_member_states": [
+    "AT",
+    "BE",
+    "BG",
+    "HR",
+    "CY",
+    "CZ",
+    "DK",
+    "EE",
+    "FI",
+    "FR",
+    "DE",
+    "GR",
+    "HU",
+    "IE",
+    "IT",
+    "LV",
+    "LT",
+    "LU",
+    "MT",
+    "NL",
+    "PL",
+    "PT",
+    "RO",
+    "SK",
+    "SI",
+    "ES",
+    "SE"
+  ]
 }

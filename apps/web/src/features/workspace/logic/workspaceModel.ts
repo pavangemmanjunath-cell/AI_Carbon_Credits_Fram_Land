@@ -1,7 +1,14 @@
 /**
  * Pure helpers for the workspace screen — no React, fully unit-testable.
  */
-import type { Analysis, CarbonEstimate, Confidence, Range, TreeInventory, TreeInventoryBody } from '@/types/api';
+import type {
+  Analysis,
+  CarbonEstimate,
+  Confidence,
+  Range,
+  TreeInventory,
+  TreeInventoryBody,
+} from '@/types/api';
 
 export interface TreeForm {
   species_id: string;
@@ -21,7 +28,10 @@ export const DEFAULT_FORM: TreeForm = {
   survival_rate: 0.85,
 };
 
-export function formFromInventory(inventory: TreeInventory | null | undefined, fallbackSpecies: string): TreeForm {
+export function formFromInventory(
+  inventory: TreeInventory | null | undefined,
+  fallbackSpecies: string,
+): TreeForm {
   if (!inventory) return { ...DEFAULT_FORM, species_id: fallbackSpecies };
   return {
     species_id: inventory.species.id,
@@ -37,9 +47,14 @@ export function formFromInventory(inventory: TreeInventory | null | undefined, f
  * Form for a plot that was just selected. A plot created from a tree line has
  * no inventory yet; its suggested tree count pre-fills the form.
  */
-export function formForPlot(inventory: TreeInventory | null | undefined, fallbackSpecies: string, prefillTreeCount?: number | null): TreeForm {
+export function formForPlot(
+  inventory: TreeInventory | null | undefined,
+  fallbackSpecies: string,
+  prefillTreeCount?: number | null,
+): TreeForm {
   const form = formFromInventory(inventory, fallbackSpecies);
-  if (!inventory && prefillTreeCount && prefillTreeCount > 0) return { ...form, tree_count: Math.round(prefillTreeCount) };
+  if (!inventory && prefillTreeCount && prefillTreeCount > 0)
+    return { ...form, tree_count: Math.round(prefillTreeCount) };
   return form;
 }
 
@@ -48,7 +63,11 @@ export function formForPlot(inventory: TreeInventory | null | undefined, fallbac
  * "Use 128 trees" in the Import dialog), so the form must show it instead of
  * auto-saving its own older values over it.
  */
-export function isExternalInventory(latestId: string | null | undefined, lastSeenId: string | null, ownIds: ReadonlySet<string>): boolean {
+export function isExternalInventory(
+  latestId: string | null | undefined,
+  lastSeenId: string | null,
+  ownIds: ReadonlySet<string>,
+): boolean {
   return Boolean(latestId) && latestId !== lastSeenId && !ownIds.has(latestId as string);
 }
 
@@ -101,7 +120,10 @@ export interface ResultSummary {
   missing: string[];
 }
 
-export function summarize(estimate: CarbonEstimate | undefined, analysis: Analysis | undefined): ResultSummary {
+export function summarize(
+  estimate: CarbonEstimate | undefined,
+  analysis: Analysis | undefined,
+): ResultSummary {
   const ndvi = analysis?.vegetation?.indices.ndvi;
   return {
     removal: estimate?.estimate ?? null,
@@ -119,6 +141,7 @@ export function summarize(estimate: CarbonEstimate | undefined, analysis: Analys
 /** Years available for the observation slider from the vegetation time series. */
 export function observationYears(analysis: Analysis | undefined): number[] {
   const years = new Set<number>();
-  for (const point of analysis?.vegetation?.time_series ?? []) years.add(Number(point.date.slice(0, 4)));
+  for (const point of analysis?.vegetation?.time_series ?? [])
+    years.add(Number(point.date.slice(0, 4)));
   return [...years].sort();
 }

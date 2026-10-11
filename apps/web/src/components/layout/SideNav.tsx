@@ -35,12 +35,18 @@ export function SideNav({ onNavigate }: { onNavigate?: () => void }) {
     <nav aria-label={t('nav.sections')} className="flex h-full flex-col gap-3 p-2.5">
       {mainGroups.map((group) => (
         <div key={group.key} className="flex flex-col gap-1">
-          <span className="px-3 pb-0.5 pt-1 text-[11px] font-semibold uppercase tracking-wider text-muted">{t(`nav.group_${group.key}`)}</span>
+          <span className="px-3 pb-0.5 pt-1 text-[11px] font-semibold uppercase tracking-wider text-muted">
+            {t(`nav.group_${group.key}`)}
+          </span>
           <ul className="m-0 flex list-none flex-col gap-0.5 p-0">{renderItems(group.items)}</ul>
         </div>
       ))}
       <div className="mt-auto flex flex-col gap-2.5">
-        {systemGroup && <ul className="m-0 flex list-none flex-col gap-0.5 border-t border-line p-0 pt-2.5">{renderItems(systemGroup.items)}</ul>}
+        {systemGroup && (
+          <ul className="m-0 flex list-none flex-col gap-0.5 border-t border-line p-0 pt-2.5">
+            {renderItems(systemGroup.items)}
+          </ul>
+        )}
         <div className="rounded-[10px] border border-line bg-ground p-3 text-[12px] leading-relaxed text-ink-2">
           <strong className="flex items-center gap-1.5 text-ink">
             <ShieldCheck size={14} className="text-forest" aria-hidden="true" />

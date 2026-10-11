@@ -27,7 +27,10 @@ export const DEFAULT_SIMULATION: SimulationState = {
 
 const clamp = (v: number, min: number, max: number) => Math.min(max, Math.max(min, v));
 
-export function parseSimulationParams(params: URLSearchParams, defaults: SimulationState = DEFAULT_SIMULATION): SimulationState {
+export function parseSimulationParams(
+  params: URLSearchParams,
+  defaults: SimulationState = DEFAULT_SIMULATION,
+): SimulationState {
   const num = (key: string, fallback: number) => {
     const raw = params.get(key);
     const n = raw === null ? NaN : Number(raw);
@@ -77,7 +80,10 @@ export function toSimulateBody(state: SimulationState, survival?: number): Simul
   };
 }
 
-export function shareUrl(state: SimulationState, origin = typeof window !== 'undefined' ? window.location.origin : ''): string {
+export function shareUrl(
+  state: SimulationState,
+  origin = typeof window !== 'undefined' ? window.location.origin : '',
+): string {
   return `${origin}/app/simulate?${toSearchParams(state).toString()}`;
 }
 

@@ -5,7 +5,9 @@ import { MemoryRouter, Route, Routes } from 'react-router';
 
 /** Renders with a fresh QueryClient (no retries) and a memory router; `/app` renders a marker for navigation checks. */
 export function renderWithProviders(ui: ReactElement, { route = '/' }: { route?: string } = {}) {
-  const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false, gcTime: Infinity }, mutations: { retry: false } } });
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { retry: false, gcTime: Infinity }, mutations: { retry: false } },
+  });
   const utils = render(
     <QueryClientProvider client={queryClient}>
       <MemoryRouter initialEntries={[route]}>

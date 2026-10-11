@@ -21,7 +21,11 @@ export function landUseShares(analysis: Analysis | null | undefined, max = 3): L
     .filter((c) => Number.isFinite(c.share) && c.share > 0)
     .sort((a, b) => b.share - a.share)
     .slice(0, Math.max(0, max))
-    .map((c) => ({ key: LANDCOVER_STYLES.find((s) => s.code === c.code)?.key ?? null, name: c.name, share: c.share }));
+    .map((c) => ({
+      key: LANDCOVER_STYLES.find((s) => s.code === c.code)?.key ?? null,
+      name: c.name,
+      share: c.share,
+    }));
 }
 
 export interface SoilInsight {
@@ -48,7 +52,9 @@ export function soilInsight(analysis: Analysis | null | undefined): SoilInsight 
  * The API lists inventories oldest first, and every save of the tree form
  * creates a new version, so the first item is the OLDEST, not the current one.
  */
-export function latestInventory(items: readonly TreeInventory[] | null | undefined): TreeInventory | null {
+export function latestInventory(
+  items: readonly TreeInventory[] | null | undefined,
+): TreeInventory | null {
   if (!items || items.length === 0) return null;
   let latest = items[0];
   for (const item of items) {

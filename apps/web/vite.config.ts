@@ -27,7 +27,8 @@ export default defineConfig({
         // manual chunk that depends on it (charts) and every page preloads charts.
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (/node_modules\/(react|react-dom|scheduler|use-sync-external-store)\//.test(id)) return 'react';
+            if (/node_modules\/(react|react-dom|scheduler|use-sync-external-store)\//.test(id))
+              return 'react';
             if (id.includes('maplibre-gl')) return 'maplibre';
             if (id.includes('recharts') || id.includes('d3-') || id.includes('victory-vendor'))
               return 'charts';

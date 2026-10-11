@@ -12,7 +12,15 @@ export function confidenceOpacity(confidence: number | null | undefined): number
 }
 
 /** The same rule as a MapLibre expression for the fill layer. */
-export const CONFIDENCE_OPACITY_EXPRESSION = ['interpolate', ['linear'], ['coalesce', ['get', 'confidence'], 0], 0, 0.1, 1, 0.6] as const;
+export const CONFIDENCE_OPACITY_EXPRESSION = [
+  'interpolate',
+  ['linear'],
+  ['coalesce', ['get', 'confidence'], 0],
+  0,
+  0.1,
+  1,
+  0.6,
+] as const;
 
 export interface DetectionSummary {
   patches: number;
@@ -35,7 +43,12 @@ export interface PatchInfo {
 }
 
 /** Popup values for one patch: confidence with two decimals and area in hectares. */
-export function patchInfo(properties: Partial<DetectionPatchProperties> | null | undefined): PatchInfo | null {
+export function patchInfo(
+  properties: Partial<DetectionPatchProperties> | null | undefined,
+): PatchInfo | null {
   if (!properties || properties.confidence == null || properties.area_m2 == null) return null;
-  return { confidence: Number(properties.confidence).toFixed(2), hectares: Number(properties.area_m2) / 10_000 };
+  return {
+    confidence: Number(properties.confidence).toFixed(2),
+    hectares: Number(properties.area_m2) / 10_000,
+  };
 }

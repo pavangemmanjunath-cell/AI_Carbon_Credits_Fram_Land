@@ -67,10 +67,19 @@ export interface UiState {
   dismissWelcome: () => void;
 }
 
-export const DEFAULT_LAYERS: LayerState = { landuse: true, ndvi: true, soil: false, treeCover: false, importedTrees: false };
+export const DEFAULT_LAYERS: LayerState = {
+  landuse: true,
+  ndvi: true,
+  soil: false,
+  treeCover: false,
+  importedTrees: false,
+};
 
 /** Fields kept in localStorage (`carboncreditbuy-ui`). */
-type PersistedUi = Pick<UiState, 'selectedPlotId' | 'layers' | 'language' | 'areaUnit' | 'country' | 'mapView' | 'imageryChoice'>;
+type PersistedUi = Pick<
+  UiState,
+  'selectedPlotId' | 'layers' | 'language' | 'areaUnit' | 'country' | 'mapView' | 'imageryChoice'
+>;
 
 export const UI_STORE_VERSION = 2;
 
@@ -99,7 +108,9 @@ export function migrateUiState(persisted: unknown, version: number): Partial<Per
   const oldLayers = isRecord(state.layers) ? state.layers : {};
   const satelliteWasOn = version < 2 && oldLayers.satellite === true;
   const imageryChoice = isRecord(state.imageryChoice)
-    ? Object.fromEntries(Object.entries(state.imageryChoice).filter(([, v]) => typeof v === 'string'))
+    ? Object.fromEntries(
+        Object.entries(state.imageryChoice).filter(([, v]) => typeof v === 'string'),
+      )
     : {};
   return {
     ...(state as Partial<PersistedUi>),
@@ -135,7 +146,8 @@ export const useUiStore = create<UiState>()(
       ...initialState(),
 
       setSelectedPlotId: (id) => set({ selectedPlotId: id }),
-      toggleLayer: (key, value) => set((s) => ({ layers: { ...s.layers, [key]: value ?? !s.layers[key] } })),
+      toggleLayer: (key, value) =>
+        set((s) => ({ layers: { ...s.layers, [key]: value ?? !s.layers[key] } })),
       setObservationYear: (year) => set({ observationYear: year }),
       setLanguage: (language) => set({ language }),
       setAreaUnit: (unit) => set({ areaUnit: unit }),

@@ -48,7 +48,11 @@ export function Dialog({ open, title, onClose, children, size = 'md', footer }: 
           </button>
         </div>
         <div className="min-h-0 flex-1 overflow-y-auto px-5 py-4">{children}</div>
-        {footer && <div className="flex flex-wrap items-center justify-end gap-2 border-t border-line px-5 py-3.5">{footer}</div>}
+        {footer && (
+          <div className="flex flex-wrap items-center justify-end gap-2 border-t border-line px-5 py-3.5">
+            {footer}
+          </div>
+        )}
       </div>
     </dialog>
   );

@@ -1,259 +1,941 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CarbonCreditBuy report RPT-2026-10-05-0002</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --forest: #1E6B41;
-    --ink: #14211A;
-    --ground: #F3F6F2;
-    --rule: #14211A;
-    --muted: #5B6B60;
-  }
-  @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-    font-size: 10.5pt; line-height: 1.45; color: var(--ink); background: #fff;
-  }
-  .page { max-width: 190mm; margin: 0 auto; padding: 12mm 0 18mm 0; }
-  h1, h2, h3 { font-family: "Space Grotesk", "IBM Plex Sans", sans-serif; font-weight: 700; margin: 0; }
-  h1 { font-size: 22pt; letter-spacing: -0.01em; color: var(--ink); }
-  h2 { font-size: 13pt; color: var(--forest); margin: 9mm 0 3mm 0; padding-bottom: 1.5mm; border-bottom: 1px solid var(--rule); page-break-after: avoid; }
-  h3 { font-size: 11pt; margin: 4mm 0 2mm 0; }
-  .masthead { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid var(--forest); padding-bottom: 4mm; margin-bottom: 4mm; }
-  .masthead .brand { font-family: "Space Grotesk", sans-serif; font-weight: 500; color: var(--forest); font-size: 10pt; letter-spacing: 0.08em; text-transform: uppercase; }
-  .meta { font-family: "IBM Plex Mono", monospace; font-size: 8.5pt; color: var(--muted); text-align: right; }
-  .banner { background: var(--ground); border-left: 4px solid var(--forest); padding: 3mm 4mm; margin: 4mm 0; font-size: 10pt; }
-  .banner strong { color: var(--forest); }
-  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; margin: 3mm 0; }
-  .kpi { background: var(--ground); padding: 3mm 4mm; border-top: 1px solid var(--rule); }
-  .kpi .label { font-size: 8.5pt; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-  .kpi .value { font-family: "IBM Plex Mono", monospace; font-size: 15pt; font-weight: 500; color: var(--ink); }
-  .kpi .range { font-family: "IBM Plex Mono", monospace; font-size: 8.5pt; color: var(--muted); }
-  table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm 0; font-size: 9.5pt; page-break-inside: auto; }
-  th, td { text-align: left; padding: 1.6mm 2mm; border-bottom: 1px solid var(--rule); vertical-align: top; }
-  th { font-weight: 600; font-size: 8.5pt; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); border-bottom: 1px solid var(--rule); }
-  td.num, th.num { text-align: right; font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
-  tr { page-break-inside: avoid; }
-  .tag { display: inline-block; font-family: "IBM Plex Mono", monospace; font-size: 8pt; padding: 0.3mm 1.6mm; border: 1px solid var(--rule); border-radius: 2px; }
-  .tag.pending { border-color: #B5651D; color: #B5651D; }
-  .tag.verified { border-color: var(--forest); color: var(--forest); }
-  .tag.assumption { border-color: var(--muted); color: var(--muted); }
-  .muted { color: var(--muted); }
-  .small { font-size: 8.5pt; }
-  ul { margin: 1mm 0 2mm 0; padding-left: 5mm; }
-  li { margin: 0.6mm 0; }
-  .disclaimer { border-top: 2px solid var(--forest); margin-top: 8mm; padding-top: 3mm; font-size: 9pt; }
-  footer { margin-top: 6mm; font-family: "IBM Plex Mono", monospace; font-size: 8pt; color: var(--muted); }
-  @media print { .page { padding: 0; max-width: none; } a { color: inherit; text-decoration: none; } }
-</style>
-</head>
-<body>
-<div class="page">
-  <div class="masthead">
-    <div>
-      <div class="brand">CarbonCreditBuy · Evidence report</div>
-      <h1>Demo mango orchard (synthetic)</h1>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CarbonCreditBuy report RPT-2026-10-05-0002</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --forest: #1e6b41;
+        --ink: #14211a;
+        --ground: #f3f6f2;
+        --rule: #14211a;
+        --muted: #5b6b60;
+      }
+      @page {
+        size: A4;
+        margin: 18mm 16mm 20mm 16mm;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+        font-size: 10.5pt;
+        line-height: 1.45;
+        color: var(--ink);
+        background: #fff;
+      }
+      .page {
+        max-width: 190mm;
+        margin: 0 auto;
+        padding: 12mm 0 18mm 0;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
+        font-weight: 700;
+        margin: 0;
+      }
+      h1 {
+        font-size: 22pt;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+      h2 {
+        font-size: 13pt;
+        color: var(--forest);
+        margin: 9mm 0 3mm 0;
+        padding-bottom: 1.5mm;
+        border-bottom: 1px solid var(--rule);
+        page-break-after: avoid;
+      }
+      h3 {
+        font-size: 11pt;
+        margin: 4mm 0 2mm 0;
+      }
+      .masthead {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 2px solid var(--forest);
+        padding-bottom: 4mm;
+        margin-bottom: 4mm;
+      }
+      .masthead .brand {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 500;
+        color: var(--forest);
+        font-size: 10pt;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .meta {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 8.5pt;
+        color: var(--muted);
+        text-align: right;
+      }
+      .banner {
+        background: var(--ground);
+        border-left: 4px solid var(--forest);
+        padding: 3mm 4mm;
+        margin: 4mm 0;
+        font-size: 10pt;
+      }
+      .banner strong {
+        color: var(--forest);
+      }
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3mm;
+        margin: 3mm 0;
+      }
+      .kpi {
+        background: var(--ground);
+        padding: 3mm 4mm;
+        border-top: 1px solid var(--rule);
+      }
+      .kpi .label {
+        font-size: 8.5pt;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+      .kpi .value {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 15pt;
+        font-weight: 500;
+        color: var(--ink);
+      }
+      .kpi .range {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 8.5pt;
+        color: var(--muted);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 2mm 0 4mm 0;
+        font-size: 9.5pt;
+        page-break-inside: auto;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 1.6mm 2mm;
+        border-bottom: 1px solid var(--rule);
+        vertical-align: top;
+      }
+      th {
+        font-weight: 600;
+        font-size: 8.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+        border-bottom: 1px solid var(--rule);
+      }
+      td.num,
+      th.num {
+        text-align: right;
+        font-family: 'IBM Plex Mono', monospace;
+        font-variant-numeric: tabular-nums;
+      }
+      tr {
+        page-break-inside: avoid;
+      }
+      .tag {
+        display: inline-block;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 8pt;
+        padding: 0.3mm 1.6mm;
+        border: 1px solid var(--rule);
+        border-radius: 2px;
+      }
+      .tag.pending {
+        border-color: #b5651d;
+        color: #b5651d;
+      }
+      .tag.verified {
+        border-color: var(--forest);
+        color: var(--forest);
+      }
+      .tag.assumption {
+        border-color: var(--muted);
+        color: var(--muted);
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .small {
+        font-size: 8.5pt;
+      }
+      ul {
+        margin: 1mm 0 2mm 0;
+        padding-left: 5mm;
+      }
+      li {
+        margin: 0.6mm 0;
+      }
+      .disclaimer {
+        border-top: 2px solid var(--forest);
+        margin-top: 8mm;
+        padding-top: 3mm;
+        font-size: 9pt;
+      }
+      footer {
+        margin-top: 6mm;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 8pt;
+        color: var(--muted);
+      }
+      @media print {
+        .page {
+          padding: 0;
+          max-width: none;
+        }
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="masthead">
+        <div>
+          <div class="brand">CarbonCreditBuy · Evidence report</div>
+          <h1>Demo mango orchard (synthetic)</h1>
+        </div>
+        <div class="meta">
+          RPT-2026-10-05-0002<br />
+          generated 2026-10-05T19:53:49Z<br />
+          mode: demo · api v1
+        </div>
+      </div>
+
+      <div class="banner">
+        <strong>Scenario estimate — not an issued carbon credit.</strong>
+        All carbon figures are modelled ranges with stated uncertainty and are
+        <em>not certified</em>
+        (certified: false). Programme sections are an initial screening, not an eligibility
+        determination.
+      </div>
+
+      <div class="kpis">
+        <div class="kpi">
+          <div class="label">Estimated annual carbon removal</div>
+          <div class="value">11.0 <span class="small">tCO2e/yr</span></div>
+          <div class="range">range 7.7 – 14.3 · confidence medium</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Cumulative removal to date</div>
+          <div class="value">23.0 <span class="small">tCO2e</span></div>
+          <div class="range">range 16.1 – 29.9</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Evidence readiness</div>
+          <div class="value">55<span class="small">/100</span></div>
+          <div class="range">grade medium · 5 items missing</div>
+        </div>
+      </div>
+
+      <h2>1 · Plot</h2>
+      <table>
+        <tr>
+          <th>Plot id</th>
+          <td>PLT-DEMOIN</td>
+          <th>Country / region</th>
+          <td>IN · Karnataka</td>
+        </tr>
+        <tr>
+          <th>Area</th>
+          <td class="num">2.13 ha (5.26 ac)</td>
+          <th>Perimeter</th>
+          <td class="num">551 m</td>
+        </tr>
+        <tr>
+          <th>Approximate location</th>
+          <td class="num">13.30°, 77.55°</td>
+          <th>Boundary source</th>
+          <td>synthetic-demo</td>
+        </tr>
+      </table>
+      <p class="small muted">
+        The exact boundary is withheld in this document (privacy by default); the location is
+        generalised to a 0.05° grid.
+      </p>
+
+      <h2>2 · Plantation</h2>
+      <table>
+        <tr>
+          <th>Species</th>
+          <td>Mango <span class="muted">(Mangifera indica)</span></td>
+          <th>Trees</th>
+          <td class="num">420 (197 / ha)</td>
+        </tr>
+        <tr>
+          <th>Planted</th>
+          <td class="num">2023 (age 3 yr)</td>
+          <th>Survival rate</th>
+          <td class="num">85%</td>
+        </tr>
+        <tr>
+          <th>Average DBH</th>
+          <td class="num">not measured</td>
+          <th>Average height</th>
+          <td class="num">not measured</td>
+        </tr>
+        <tr>
+          <th>Measurement source</th>
+          <td>user-reported</td>
+          <th>Inventory confidence</th>
+          <td>medium</td>
+        </tr>
+      </table>
+
+      <h2>3 · Earth observations</h2>
+      <h3>Land cover — ESA WorldCover 2021 v200 (10 m)</h3>
+      <table>
+        <tr>
+          <th>Class</th>
+          <th class="num">Share</th>
+          <th class="num">Area (ha)</th>
+        </tr>
+        <tr>
+          <td>Cropland <span class="muted small">(40)</span></td>
+          <td class="num">68%</td>
+          <td class="num">1.45</td>
+        </tr>
+        <tr>
+          <td>Tree cover <span class="muted small">(10)</span></td>
+          <td class="num">27%</td>
+          <td class="num">0.58</td>
+        </tr>
+        <tr>
+          <td>Built-up <span class="muted small">(50)</span></td>
+          <td class="num">3%</td>
+          <td class="num">0.06</td>
+        </tr>
+        <tr>
+          <td>Grassland <span class="muted small">(30)</span></td>
+          <td class="num">2%</td>
+          <td class="num">0.04</td>
+        </tr>
+      </table>
+      <h3>Vegetation condition (Sentinel-2 L2A)</h3>
+      <table>
+        <tr>
+          <th>Date</th>
+          <th class="num">NDVI</th>
+          <th class="num">NDMI</th>
+          <th class="num">Cloud %</th>
+          <th>Scene</th>
+        </tr>
+        <tr>
+          <td class="num">2024-10-20</td>
+          <td class="num">0.57</td>
+          <td class="num">0.19</td>
+          <td class="num">4.9</td>
+          <td class="small">S2A_MSIL2A_20241020T050659_N0511_R019_T43PGQ_DEMO</td>
+        </tr>
+        <tr>
+          <td class="num">2025-10-17</td>
+          <td class="num">0.60</td>
+          <td class="num">0.21</td>
+          <td class="num">1.9</td>
+          <td class="small">S2A_MSIL2A_20251017T050659_N0511_R019_T43PGQ_DEMO</td>
+        </tr>
+        <tr>
+          <td class="num">2026-10-05</td>
+          <td class="num">0.63</td>
+          <td class="num">0.23</td>
+          <td class="num">3.0</td>
+          <td class="small">S2A_MSIL2A_20261005T050659_N0511_R019_T43PGQ_DEMO</td>
+        </tr>
+      </table>
+      <p>
+        Latest NDVI 0.63 (healthy), NDMI 0.23 (moderate). Vegetation index increased approximately
+        10% during the evaluated period.
+      </p>
+      <table>
+        <tr>
+          <th>Climate zone</th>
+          <td>Tropical dry</td>
+          <th>Mean annual temperature</th>
+          <td class="num">24.0 °C</td>
+        </tr>
+        <tr>
+          <th>Annual precipitation</th>
+          <td class="num">807 mm</td>
+          <th>Elevation</th>
+          <td class="num">873 m</td>
+        </tr>
+        <tr>
+          <th>Soil organic carbon (0–30 cm)</th>
+          <td class="num">10.5 g/kg</td>
+          <th></th>
+          <td class="muted small">current stock indicator (SoilGrids), not a change estimate</td>
+        </tr>
+      </table>
+      <p class="small muted">Data quality: demo mode: synthetic observations</p>
+
+      <h2>4 · Carbon</h2>
+      <p>
+        Model <strong>tree-biomass v0.1.0</strong> (tier 1) · methodology IPCC 2006 Guidelines, Vol.
+        4, Ch. 4 (Forest Land), Tier 1 gain-loss. Parameter set status:
+        <span class="tag pending">pending</span>
+      </p>
+      <table>
+        <tr>
+          <th></th>
+          <th class="num">Low</th>
+          <th class="num">Central</th>
+          <th class="num">High</th>
+          <th>Unit</th>
+        </tr>
+        <tr>
+          <td>Estimated annual carbon removal</td>
+          <td class="num">7.7</td>
+          <td class="num">11.0</td>
+          <td class="num">14.3</td>
+          <td>tCO2e/yr</td>
+        </tr>
+        <tr>
+          <td>Cumulative removal to date</td>
+          <td class="num">16.1</td>
+          <td class="num">23.0</td>
+          <td class="num">29.9</td>
+          <td>tCO2e</td>
+        </tr>
+        <tr>
+          <td class="muted">Above ground tco2e yr</td>
+          <td></td>
+          <td class="num">8.1</td>
+          <td></td>
+          <td>tCO2e/yr</td>
+        </tr>
+        <tr>
+          <td class="muted">Below ground tco2e yr</td>
+          <td></td>
+          <td class="num">2.9</td>
+          <td></td>
+          <td>tCO2e/yr</td>
+        </tr>
+      </table>
+      <h3>Annual series (central, cumulative)</h3>
+      <table>
+        <tr>
+          <th class="num">Year</th>
+          <th class="num">Age</th>
+          <th class="num">Low</th>
+          <th class="num">Central</th>
+          <th class="num">High</th>
+          <th class="num">Cumulative</th>
+        </tr>
+        <tr>
+          <td class="num">2023</td>
+          <td class="num">0</td>
+          <td class="num">0.0</td>
+          <td class="num">0.0</td>
+          <td class="num">0.0</td>
+          <td class="num">0.0</td>
+        </tr>
+        <tr>
+          <td class="num">2028</td>
+          <td class="num">5</td>
+          <td class="num">13.4</td>
+          <td class="num">19.2</td>
+          <td class="num">25.0</td>
+          <td class="num">57.6</td>
+        </tr>
+        <tr>
+          <td class="num">2033</td>
+          <td class="num">10</td>
+          <td class="num">6.6</td>
+          <td class="num">9.4</td>
+          <td class="num">12.3</td>
+          <td class="num">141.5</td>
+        </tr>
+        <tr>
+          <td class="num">2038</td>
+          <td class="num">15</td>
+          <td class="num">6.6</td>
+          <td class="num">9.4</td>
+          <td class="num">12.3</td>
+          <td class="num">188.7</td>
+        </tr>
+        <tr>
+          <td class="num">2043</td>
+          <td class="num">20</td>
+          <td class="num">6.6</td>
+          <td class="num">9.4</td>
+          <td class="num">12.3</td>
+          <td class="num">236.0</td>
+        </tr>
+        <tr>
+          <td class="num">2048</td>
+          <td class="num">25</td>
+          <td class="num">6.6</td>
+          <td class="num">9.4</td>
+          <td class="num">12.3</td>
+          <td class="num">283.2</td>
+        </tr>
+        <tr>
+          <td class="num">2053</td>
+          <td class="num">30</td>
+          <td class="num">6.6</td>
+          <td class="num">9.4</td>
+          <td class="num">12.3</td>
+          <td class="num">330.5</td>
+        </tr>
+      </table>
+      <h3>Parameters used</h3>
+      <table>
+        <tr>
+          <th>Parameter</th>
+          <th class="num">Value</th>
+          <th>Unit</th>
+          <th>Source</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td>horizon_years_default</td>
+          <td class="num">30</td>
+          <td>years</td>
+          <td class="small">
+            project assumption v0.1 — evaluation window for annual series and mean annual removal
+          </td>
+          <td><span class="tag assumption">assumption</span></td>
+        </tr>
+        <tr>
+          <td>survival_rate</td>
+          <td class="num">0.85</td>
+          <td>fraction</td>
+          <td class="small">reported (user-reported)</td>
+          <td><span class="tag assumption">assumption</span></td>
+        </tr>
+        <tr>
+          <td>above_ground_biomass_growth</td>
+          <td class="num">4.0</td>
+          <td>t d.m. / ha / yr</td>
+          <td class="small">
+            IPCC 2006 Vol.4 Ch.4 Tables 4.10/4.12 (working values; verify cell by cell) [zone:
+            tropical_dry; age class: le_20_years]
+          </td>
+          <td><span class="tag pending">pending</span></td>
+        </tr>
+        <tr>
+          <td>increment_multiplier</td>
+          <td class="num">0.9</td>
+          <td>dimensionless</td>
+          <td class="small">
+            fruit orchards pruned/managed below natural stand increment; project assumption v0.1
+            [species: mango]
+          </td>
+          <td><span class="tag assumption">assumption</span></td>
+        </tr>
+        <tr>
+          <td>reference_density_per_ha</td>
+          <td class="num">150</td>
+          <td>trees/ha</td>
+          <td class="small">
+            typical 8 m × 8 m orchard spacing; project assumption v0.1 [species: mango]
+          </td>
+          <td><span class="tag assumption">assumption</span></td>
+        </tr>
+        <tr>
+          <td>maturity_years</td>
+          <td class="num">8</td>
+          <td>years</td>
+          <td class="small">config/species/species.yaml v0.1.0 [species: mango]</td>
+          <td><span class="tag assumption">assumption</span></td>
+        </tr>
+        <tr>
+          <td>carbon_fraction</td>
+          <td class="num">0.47</td>
+          <td>t C / t d.m.</td>
+          <td class="small">IPCC 2006 Vol.4 Ch.4 Table 4.3 (default for all tree parts)</td>
+          <td><span class="tag verified">verified</span></td>
+        </tr>
+        <tr>
+          <td>co2_per_c</td>
+          <td class="num">3.6667</td>
+          <td>t CO2 / t C</td>
+          <td class="small">molecular mass ratio 44/12</td>
+          <td><span class="tag verified">verified</span></td>
+        </tr>
+        <tr>
+          <td>density_scaling_clamp</td>
+          <td class="num">[0.2, 1.5]</td>
+          <td>ratio to reference density</td>
+          <td class="small">project assumption v0.1</td>
+          <td><span class="tag assumption">assumption</span></td>
+        </tr>
+        <tr>
+          <td>years_to_full_increment_default</td>
+          <td class="num">6</td>
+          <td>years</td>
+          <td class="small">
+            project assumption v0.1 — linear ramp from planting to full Tier 1 increment
+          </td>
+          <td><span class="tag assumption">assumption</span></td>
+        </tr>
+        <tr>
+          <td>post_maturity_increment_factor</td>
+          <td class="num">0.5</td>
+          <td>fraction of full increment</td>
+          <td class="small">
+            project assumption v0.1 — after species maturity_years the annual increment is held at
+            50% of the full Tier 1 increment (slower net growth of mature orchards/stands; replace
+            with age-class increments when IPCC 2019 Refinement Table 4.9 values are verified)
+          </td>
+          <td><span class="tag assumption">assumption</span></td>
+        </tr>
+        <tr>
+          <td>uncertainty_fraction_tier1_low</td>
+          <td class="num">0.3</td>
+          <td>fraction of central</td>
+          <td class="small">
+            project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4
+            §4.2.1.4)
+          </td>
+          <td><span class="tag assumption">assumption</span></td>
+        </tr>
+        <tr>
+          <td>uncertainty_fraction_tier1_high</td>
+          <td class="num">0.3</td>
+          <td>fraction of central</td>
+          <td class="small">
+            project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4
+            §4.2.1.4)
+          </td>
+          <td><span class="tag assumption">assumption</span></td>
+        </tr>
+        <tr>
+          <td>density_factor_applied</td>
+          <td class="num">1.3145</td>
+          <td>ratio to reference density</td>
+          <td class="small">
+            planted density 197.2 trees/ha ÷ reference 150 trees/ha, clamped to [0.2, 1.5]
+          </td>
+          <td><span class="tag assumption">assumption</span></td>
+        </tr>
+        <tr>
+          <td>root_to_shoot_ratio</td>
+          <td class="num">0.56</td>
+          <td>dimensionless</td>
+          <td class="small">
+            IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: tropical_dry; class: agb_lt_20]
+          </td>
+          <td><span class="tag pending">pending</span></td>
+        </tr>
+        <tr>
+          <td>root_to_shoot_ratio</td>
+          <td class="num">0.28</td>
+          <td>dimensionless</td>
+          <td class="small">
+            IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: tropical_dry; class: agb_ge_20]
+          </td>
+          <td><span class="tag pending">pending</span></td>
+        </tr>
+      </table>
+      <ul class="small">
+        <li>
+          Root-to-shoot ratio follows the above-ground biomass stock class: 0.56 → 0.28 (IPCC 2006
+          Table 4.4).
+        </li>
+        <li>
+          Headline estimate: mean annual removal over the horizon (sum of annual series ÷ number of
+          years with age ≥ 1).
+        </li>
+        <li>Climate zone &#39;tropical_dry&#39; from derived.</li>
+      </ul>
+
+      <h2>5 · Potential programmes (screening)</h2>
+      <p class="small muted">
+        Initial screening only — not an eligibility determination. Green Credits (GCP) and carbon
+        credits (CCTS) are separate mechanisms.
+      </p>
+      <table>
+        <tr>
+          <th>Programme</th>
+          <th>Authority</th>
+          <th>Screening status</th>
+          <th>Key requirements</th>
+        </tr>
+        <tr>
+          <td>
+            <strong>Green Credit Programme</strong><br /><span class="small muted"
+              >Government programme</span
+            >
+            <ul class="small">
+              <li>
+                Tree plantation is a notified Green Credit activity, but the 2024 tree-plantation
+                methodology targets identified degraded land parcels made available by state forest
+                departments; applicability to private farmland must be confirmed with the
+                administrator (ICFRE).
+              </li>
+              <li>Green Credit Programme is a separate mechanism from CCTS.</li>
+            </ul>
+          </td>
+          <td class="small">Ministry of Environment, Forest and Climate Change (MoEFCC)</td>
+          <td><span class="tag">Requires assessment</span></td>
+          <td>
+            <ul class="small">
+              <li>Registration on the Green Credit Programme portal</li>
+              <li>Plantation on land parcels identified/approved under the programme</li>
+              <li>Verification of tree survival per the notified methodology</li>
+              <li>
+                Understanding that Green Credits are not carbon credits and cannot be used for CCTS
+                compliance
+              </li>
+            </ul>
+            <div class="small">
+              <a href="https://moef.gov.in/"
+                >MoEFCC — Green Credit Programme (notification and methodology)</a
+              >
+            </div>
+            <div class="small">
+              <a href="https://icfre.gov.in/">ICFRE — Green Credit Programme administrator</a>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>Carbon Credit Trading Scheme (offset mechanism)</strong><br /><span
+              class="small muted"
+              >Compliance market</span
+            >
+            <ul class="small">
+              <li>
+                BEE lists agriculture and forestry among sectors covered by accredited carbon
+                verification agencies under the offset mechanism; a project needs an approved
+                methodology, baseline, additionality demonstration, monitoring and third-party
+                verification before any Carbon Credit Certificate is issued.
+              </li>
+              <li>CCTS is a separate mechanism from Green Credit Programme.</li>
+            </ul>
+          </td>
+          <td class="small">Bureau of Energy Efficiency (BEE), Ministry of Power</td>
+          <td><span class="tag">Requires methodology assessment</span></td>
+          <td>
+            <ul class="small">
+              <li>Approved offset methodology applicable to the activity</li>
+              <li>Baseline and additionality demonstration</li>
+              <li>Monitoring plan with measurements (e.g. DBH, survival) and leakage assessment</li>
+              <li>Verification by a BEE-accredited carbon verification agency</li>
+              <li>Registration with the registry under the scheme</li>
+            </ul>
+            <div class="small">
+              <a href="https://beeindia.gov.in/">BEE — Carbon Credit Trading Scheme</a>
+            </div>
+            <div class="small">
+              <a href="https://beeindia.gov.in/"
+                >Carbon Credit Trading Scheme, 2023 (Ministry of Power notification)</a
+              >
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <strong>State agroforestry / horticulture missions (incentives)</strong><br /><span
+              class="small muted"
+              >Incentive programme</span
+            >
+            <ul class="small">
+              <li>
+                Several states pay per-surviving-tree incentives or subsidise saplings for farmers;
+                conditions vary by state.
+              </li>
+            </ul>
+          </td>
+          <td class="small">State governments (e.g. Karnataka Krishi Aranya Protsaha Yojane)</td>
+          <td><span class="tag">Potentially applicable</span></td>
+          <td>
+            <ul class="small">
+              <li>Farmer registration with the state forest/horticulture department</li>
+              <li>Survival verification after 1–3 years</li>
+            </ul>
+            <div class="small">
+              <a href="https://aranya.gov.in/"
+                >Karnataka Forest Department — Krishi Aranya Protsaha Yojane</a
+              >
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <h2>6 · Financial scenarios</h2>
+      <p class="small muted">
+        Three separate values are shown and never summed: environmental benefit (section 4),
+        indicative carbon value (scenario, not a credit) and other farm income.
+      </p>
+      <table>
+        <tr>
+          <th>Scenario</th>
+          <th class="num">Price (INR/tCO2e)</th>
+          <th class="num">Low</th>
+          <th class="num">Central</th>
+          <th class="num">High</th>
+        </tr>
+        <tr>
+          <td>Low</td>
+          <td class="num">₹480</td>
+          <td class="num">₹3,701</td>
+          <td class="num">₹5,290</td>
+          <td class="num">₹6,874</td>
+        </tr>
+        <tr>
+          <td>Reference</td>
+          <td class="num">₹1,100</td>
+          <td class="num">₹8,481</td>
+          <td class="num">₹12,122</td>
+          <td class="num">₹15,752</td>
+        </tr>
+        <tr>
+          <td>High</td>
+          <td class="num">₹2,100</td>
+          <td class="num">₹16,191</td>
+          <td class="num">₹23,142</td>
+          <td class="num">₹30,072</td>
+        </tr>
+      </table>
+      <p class="small muted">
+        Basis: config/market/carbon-price-scenarios.yaml (as of 2025). Scenario ranges bracket
+        recently reported voluntary-market prices for nature-based removal (ARR) credits. They are
+        placeholders for local price discovery and must be reviewed each release against the World
+        Bank &#34;State and Trends of Carbon Pricing&#34; and Ecosystem Marketplace reports.
+        Market-value scenario — not guaranteed revenue. Issuance depends on methodology,
+        additionality, verification, permanence and market conditions.
+      </p>
+      <h3>Other farm income (not summed)</h3>
+      <table>
+        <tr>
+          <th>Item</th>
+          <th class="num">Value</th>
+          <th>Source</th>
+        </tr>
+        <tr>
+          <td>Fruit yield (mango, coconut, citrus)</td>
+          <td class="num">to be entered</td>
+          <td class="small">data.gov.in district crop production + farmer records</td>
+        </tr>
+        <tr>
+          <td>Agroforestry intercrop</td>
+          <td class="num">to be entered</td>
+          <td class="small">farmer records</td>
+        </tr>
+        <tr>
+          <td>Timber potential (teak, eucalyptus)</td>
+          <td class="num">to be entered</td>
+          <td class="small">state forest department rates + farmer records</td>
+        </tr>
+        <tr>
+          <td>Eligible incentives (state agroforestry / horticulture missions)</td>
+          <td class="num">to be entered</td>
+          <td class="small">programme screening</td>
+        </tr>
+      </table>
+
+      <h2>7 · Evidence</h2>
+      <table>
+        <tr>
+          <th>Present</th>
+          <th>Missing (weight)</th>
+        </tr>
+        <tr>
+          <td>
+            <ul>
+              <li>Land polygon</li>
+              <li>Tree count</li>
+              <li>Tree species</li>
+              <li>Plantation age</li>
+              <li>Satellite observation</li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Tree diameter measurements <span class="muted">(15)</span></li>
+              <li>Tree height measurements <span class="muted">(6)</span></li>
+              <li>Baseline land-use records <span class="muted">(12)</span></li>
+              <li>Farm management history <span class="muted">(9)</span></li>
+              <li>Land ownership / tenure document <span class="muted">(10)</span></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <h3>Data sources and provenance</h3>
+      <table>
+        <tr>
+          <th>Source</th>
+          <th>Version</th>
+          <th>Licence</th>
+          <th>Attribution</th>
+        </tr>
+        <tr>
+          <td>Synthetic demo data (imitating ESA WorldCover 2021 v200)</td>
+          <td class="small">v200</td>
+          <td class="small">Apache-2.0 (generated)</td>
+          <td class="small">CarbonCreditBuy demo generator — not an observation</td>
+        </tr>
+        <tr>
+          <td>
+            Synthetic demo data (imitating Sentinel-2 L2A (Earth Search STAC, Element 84 / AWS))
+          </td>
+          <td class="small">L2A</td>
+          <td class="small">Apache-2.0 (generated)</td>
+          <td class="small">CarbonCreditBuy demo generator — not an observation</td>
+        </tr>
+        <tr>
+          <td>
+            Synthetic demo data (imitating Open-Meteo Historical Weather API (ERA5) and Elevation
+            API (Copernicus DEM GLO-90))
+          </td>
+          <td class="small">v1</td>
+          <td class="small">Apache-2.0 (generated)</td>
+          <td class="small">CarbonCreditBuy demo generator — not an observation</td>
+        </tr>
+        <tr>
+          <td>Synthetic demo data (imitating SoilGrids 2.0 (ISRIC World Soil Information))</td>
+          <td class="small">2.0 (2020)</td>
+          <td class="small">Apache-2.0 (generated)</td>
+          <td class="small">CarbonCreditBuy demo generator — not an observation</td>
+        </tr>
+      </table>
+
+      <div class="disclaimer">
+        <h2 style="margin-top: 0">8 · Disclaimer</h2>
+        <p>
+          This assessment is a modelled scenario estimate. It is not a certification, not an issued
+          carbon or green credit, and not investment advice. Credit issuance depends on an
+          applicable methodology, baseline and additionality, monitoring, verification, permanence
+          and market conditions. Validation and third-party verification are required where
+          applicable.
+        </p>
+        <p class="small muted">
+          Generated by CarbonCreditBuy (open source, Apache-2.0). Estimates follow the cited
+          methodology with parameters whose verification status is shown above; values marked
+          <em>pending</em> have not yet been checked against the cited tables. Nothing in this
+          document constitutes a carbon credit, a certification, a market quote or an eligibility
+          decision.
+        </p>
+      </div>
+      <footer>RPT-2026-10-05-0002 · 2026-10-05T19:53:49Z · CarbonCreditBuy API v1</footer>
     </div>
-    <div class="meta">
-      RPT-2026-10-05-0002<br>
-      generated 2026-10-05T19:53:49Z<br>
-      mode: demo · api v1
-    </div>
-  </div>
-
-  <div class="banner">
-    <strong>Scenario estimate — not an issued carbon credit.</strong>
-    All carbon figures are modelled ranges with stated uncertainty and are <em>not certified</em>
-    (certified: false). Programme sections are an initial screening, not an eligibility determination.
-  </div>
-
-  <div class="kpis">
-    <div class="kpi">
-      <div class="label">Estimated annual carbon removal</div>
-      <div class="value">11.0 <span class="small">tCO2e/yr</span></div>
-      <div class="range">range 7.7 – 14.3 · confidence medium</div>
-    </div>
-    <div class="kpi">
-      <div class="label">Cumulative removal to date</div>
-      <div class="value">23.0 <span class="small">tCO2e</span></div>
-      <div class="range">range 16.1 – 29.9</div>
-    </div>
-    <div class="kpi">
-      <div class="label">Evidence readiness</div>
-      <div class="value">55<span class="small">/100</span></div>
-      <div class="range">grade medium · 5 items missing</div>
-    </div>
-  </div>
-
-  <h2>1 · Plot</h2>
-  <table>
-    <tr><th>Plot id</th><td>PLT-DEMOIN</td><th>Country / region</th><td>IN · Karnataka</td></tr>
-    <tr><th>Area</th><td class="num">2.13 ha (5.26 ac)</td><th>Perimeter</th><td class="num">551 m</td></tr>
-    <tr><th>Approximate location</th><td class="num">13.30°, 77.55°</td><th>Boundary source</th><td>synthetic-demo</td></tr>
-  </table>
-  <p class="small muted">The exact boundary is withheld in this document (privacy by default); the location is generalised to a 0.05° grid.</p>
-
-  <h2>2 · Plantation</h2>
-  <table>
-    <tr><th>Species</th><td>Mango <span class="muted">(Mangifera indica)</span></td><th>Trees</th><td class="num">420 (197 / ha)</td></tr>
-    <tr><th>Planted</th><td class="num">2023 (age 3 yr)</td><th>Survival rate</th><td class="num">85%</td></tr>
-    <tr><th>Average DBH</th><td class="num">not measured</td><th>Average height</th><td class="num">not measured</td></tr>
-    <tr><th>Measurement source</th><td>user-reported</td><th>Inventory confidence</th><td>medium</td></tr>
-  </table>
-
-  <h2>3 · Earth observations</h2>
-    <h3>Land cover — ESA WorldCover 2021 v200 (10 m)</h3>
-    <table>
-      <tr><th>Class</th><th class="num">Share</th><th class="num">Area (ha)</th></tr>
-      <tr><td>Cropland <span class="muted small">(40)</span></td><td class="num">68%</td><td class="num">1.45</td></tr>
-      <tr><td>Tree cover <span class="muted small">(10)</span></td><td class="num">27%</td><td class="num">0.58</td></tr>
-      <tr><td>Built-up <span class="muted small">(50)</span></td><td class="num">3%</td><td class="num">0.06</td></tr>
-      <tr><td>Grassland <span class="muted small">(30)</span></td><td class="num">2%</td><td class="num">0.04</td></tr>
-    </table>
-    <h3>Vegetation condition (Sentinel-2 L2A)</h3>
-    <table>
-      <tr><th>Date</th><th class="num">NDVI</th><th class="num">NDMI</th><th class="num">Cloud %</th><th>Scene</th></tr>
-      <tr><td class="num">2024-10-20</td><td class="num">0.57</td><td class="num">0.19</td><td class="num">4.9</td><td class="small">S2A_MSIL2A_20241020T050659_N0511_R019_T43PGQ_DEMO</td></tr>
-      <tr><td class="num">2025-10-17</td><td class="num">0.60</td><td class="num">0.21</td><td class="num">1.9</td><td class="small">S2A_MSIL2A_20251017T050659_N0511_R019_T43PGQ_DEMO</td></tr>
-      <tr><td class="num">2026-10-05</td><td class="num">0.63</td><td class="num">0.23</td><td class="num">3.0</td><td class="small">S2A_MSIL2A_20261005T050659_N0511_R019_T43PGQ_DEMO</td></tr>
-    </table>
-    <p>Latest NDVI 0.63 (healthy),
-       NDMI 0.23 (moderate).
-       Vegetation index increased approximately 10% during the evaluated period.</p>
-    <table>
-      <tr><th>Climate zone</th><td>Tropical dry</td><th>Mean annual temperature</th><td class="num">24.0 °C</td></tr>
-      <tr><th>Annual precipitation</th><td class="num">807 mm</td><th>Elevation</th><td class="num">873 m</td></tr>
-      <tr><th>Soil organic carbon (0–30 cm)</th><td class="num">10.5 g/kg</td><th></th><td class="muted small">current stock indicator (SoilGrids), not a change estimate</td></tr>
-    </table>
-    <p class="small muted">Data quality: demo mode: synthetic observations</p>
-
-  <h2>4 · Carbon</h2>
-  <p>Model <strong>tree-biomass v0.1.0</strong> (tier 1) ·
-     methodology IPCC 2006 Guidelines, Vol. 4, Ch. 4 (Forest Land), Tier 1 gain-loss.
-     Parameter set status: <span class="tag pending">pending</span></p>
-  <table>
-    <tr><th></th><th class="num">Low</th><th class="num">Central</th><th class="num">High</th><th>Unit</th></tr>
-    <tr><td>Estimated annual carbon removal</td><td class="num">7.7</td><td class="num">11.0</td><td class="num">14.3</td><td>tCO2e/yr</td></tr>
-    <tr><td>Cumulative removal to date</td><td class="num">16.1</td><td class="num">23.0</td><td class="num">29.9</td><td>tCO2e</td></tr>
-    <tr><td class="muted">Above ground tco2e yr</td><td></td><td class="num">8.1</td><td></td><td>tCO2e/yr</td></tr>
-    <tr><td class="muted">Below ground tco2e yr</td><td></td><td class="num">2.9</td><td></td><td>tCO2e/yr</td></tr>
-  </table>
-  <h3>Annual series (central, cumulative)</h3>
-  <table>
-    <tr><th class="num">Year</th><th class="num">Age</th><th class="num">Low</th><th class="num">Central</th><th class="num">High</th><th class="num">Cumulative</th></tr>
-    <tr><td class="num">2023</td><td class="num">0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td><td class="num">0.0</td></tr>
-    <tr><td class="num">2028</td><td class="num">5</td><td class="num">13.4</td><td class="num">19.2</td><td class="num">25.0</td><td class="num">57.6</td></tr>
-    <tr><td class="num">2033</td><td class="num">10</td><td class="num">6.6</td><td class="num">9.4</td><td class="num">12.3</td><td class="num">141.5</td></tr>
-    <tr><td class="num">2038</td><td class="num">15</td><td class="num">6.6</td><td class="num">9.4</td><td class="num">12.3</td><td class="num">188.7</td></tr>
-    <tr><td class="num">2043</td><td class="num">20</td><td class="num">6.6</td><td class="num">9.4</td><td class="num">12.3</td><td class="num">236.0</td></tr>
-    <tr><td class="num">2048</td><td class="num">25</td><td class="num">6.6</td><td class="num">9.4</td><td class="num">12.3</td><td class="num">283.2</td></tr>
-    <tr><td class="num">2053</td><td class="num">30</td><td class="num">6.6</td><td class="num">9.4</td><td class="num">12.3</td><td class="num">330.5</td></tr>
-  </table>
-  <h3>Parameters used</h3>
-  <table>
-    <tr><th>Parameter</th><th class="num">Value</th><th>Unit</th><th>Source</th><th>Status</th></tr>
-    <tr><td>horizon_years_default</td><td class="num">30</td><td>years</td><td class="small">project assumption v0.1 — evaluation window for annual series and mean annual removal</td><td><span class="tag assumption">assumption</span></td></tr>
-    <tr><td>survival_rate</td><td class="num">0.85</td><td>fraction</td><td class="small">reported (user-reported)</td><td><span class="tag assumption">assumption</span></td></tr>
-    <tr><td>above_ground_biomass_growth</td><td class="num">4.0</td><td>t d.m. / ha / yr</td><td class="small">IPCC 2006 Vol.4 Ch.4 Tables 4.10/4.12 (working values; verify cell by cell) [zone: tropical_dry; age class: le_20_years]</td><td><span class="tag pending">pending</span></td></tr>
-    <tr><td>increment_multiplier</td><td class="num">0.9</td><td>dimensionless</td><td class="small">fruit orchards pruned/managed below natural stand increment; project assumption v0.1 [species: mango]</td><td><span class="tag assumption">assumption</span></td></tr>
-    <tr><td>reference_density_per_ha</td><td class="num">150</td><td>trees/ha</td><td class="small">typical 8 m × 8 m orchard spacing; project assumption v0.1 [species: mango]</td><td><span class="tag assumption">assumption</span></td></tr>
-    <tr><td>maturity_years</td><td class="num">8</td><td>years</td><td class="small">config/species/species.yaml v0.1.0 [species: mango]</td><td><span class="tag assumption">assumption</span></td></tr>
-    <tr><td>carbon_fraction</td><td class="num">0.47</td><td>t C / t d.m.</td><td class="small">IPCC 2006 Vol.4 Ch.4 Table 4.3 (default for all tree parts)</td><td><span class="tag verified">verified</span></td></tr>
-    <tr><td>co2_per_c</td><td class="num">3.6667</td><td>t CO2 / t C</td><td class="small">molecular mass ratio 44/12</td><td><span class="tag verified">verified</span></td></tr>
-    <tr><td>density_scaling_clamp</td><td class="num">[0.2, 1.5]</td><td>ratio to reference density</td><td class="small">project assumption v0.1</td><td><span class="tag assumption">assumption</span></td></tr>
-    <tr><td>years_to_full_increment_default</td><td class="num">6</td><td>years</td><td class="small">project assumption v0.1 — linear ramp from planting to full Tier 1 increment</td><td><span class="tag assumption">assumption</span></td></tr>
-    <tr><td>post_maturity_increment_factor</td><td class="num">0.5</td><td>fraction of full increment</td><td class="small">project assumption v0.1 — after species maturity_years the annual increment is held at 50% of the full Tier 1 increment (slower net growth of mature orchards/stands; replace with age-class increments when IPCC 2019 Refinement Table 4.9 values are verified)</td><td><span class="tag assumption">assumption</span></td></tr>
-    <tr><td>uncertainty_fraction_tier1_low</td><td class="num">0.3</td><td>fraction of central</td><td class="small">project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)</td><td><span class="tag assumption">assumption</span></td></tr>
-    <tr><td>uncertainty_fraction_tier1_high</td><td class="num">0.3</td><td>fraction of central</td><td class="small">project assumption v0.1 pending adoption of IPCC Tier 1 default uncertainty (Ch.4 §4.2.1.4)</td><td><span class="tag assumption">assumption</span></td></tr>
-    <tr><td>density_factor_applied</td><td class="num">1.3145</td><td>ratio to reference density</td><td class="small">planted density 197.2 trees/ha ÷ reference 150 trees/ha, clamped to [0.2, 1.5]</td><td><span class="tag assumption">assumption</span></td></tr>
-    <tr><td>root_to_shoot_ratio</td><td class="num">0.56</td><td>dimensionless</td><td class="small">IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: tropical_dry; class: agb_lt_20]</td><td><span class="tag pending">pending</span></td></tr>
-    <tr><td>root_to_shoot_ratio</td><td class="num">0.28</td><td>dimensionless</td><td class="small">IPCC 2006 Vol.4 Ch.4 Table 4.4 [zone: tropical_dry; class: agb_ge_20]</td><td><span class="tag pending">pending</span></td></tr>
-  </table>
-  <ul class="small">
-<li>Root-to-shoot ratio follows the above-ground biomass stock class: 0.56 → 0.28 (IPCC 2006 Table 4.4).</li><li>Headline estimate: mean annual removal over the horizon (sum of annual series ÷ number of years with age ≥ 1).</li><li>Climate zone &#39;tropical_dry&#39; from derived.</li>  </ul>
-
-  <h2>5 · Potential programmes (screening)</h2>
-  <p class="small muted">Initial screening only — not an eligibility determination. Green Credits (GCP) and carbon credits (CCTS) are separate mechanisms.</p>
-  <table>
-    <tr><th>Programme</th><th>Authority</th><th>Screening status</th><th>Key requirements</th></tr>
-    <tr>
-      <td><strong>Green Credit Programme</strong><br><span class="small muted">Government programme</span>
-<ul class="small"><li>Tree plantation is a notified Green Credit activity, but the 2024 tree-plantation methodology targets identified degraded land parcels made available by state forest departments; applicability to private farmland must be confirmed with the administrator (ICFRE).</li><li>Green Credit Programme is a separate mechanism from CCTS.</li></ul></td>
-      <td class="small">Ministry of Environment, Forest and Climate Change (MoEFCC)</td>
-      <td><span class="tag">Requires assessment</span></td>
-      <td><ul class="small"><li>Registration on the Green Credit Programme portal</li><li>Plantation on land parcels identified/approved under the programme</li><li>Verification of tree survival per the notified methodology</li><li>Understanding that Green Credits are not carbon credits and cannot be used for CCTS compliance</li></ul>
-<div class="small"><a href="https://moef.gov.in/">MoEFCC — Green Credit Programme (notification and methodology)</a></div><div class="small"><a href="https://icfre.gov.in/">ICFRE — Green Credit Programme administrator</a></div></td>
-    </tr>
-    <tr>
-      <td><strong>Carbon Credit Trading Scheme (offset mechanism)</strong><br><span class="small muted">Compliance market</span>
-<ul class="small"><li>BEE lists agriculture and forestry among sectors covered by accredited carbon verification agencies under the offset mechanism; a project needs an approved methodology, baseline, additionality demonstration, monitoring and third-party verification before any Carbon Credit Certificate is issued.</li><li>CCTS is a separate mechanism from Green Credit Programme.</li></ul></td>
-      <td class="small">Bureau of Energy Efficiency (BEE), Ministry of Power</td>
-      <td><span class="tag">Requires methodology assessment</span></td>
-      <td><ul class="small"><li>Approved offset methodology applicable to the activity</li><li>Baseline and additionality demonstration</li><li>Monitoring plan with measurements (e.g. DBH, survival) and leakage assessment</li><li>Verification by a BEE-accredited carbon verification agency</li><li>Registration with the registry under the scheme</li></ul>
-<div class="small"><a href="https://beeindia.gov.in/">BEE — Carbon Credit Trading Scheme</a></div><div class="small"><a href="https://beeindia.gov.in/">Carbon Credit Trading Scheme, 2023 (Ministry of Power notification)</a></div></td>
-    </tr>
-    <tr>
-      <td><strong>State agroforestry / horticulture missions (incentives)</strong><br><span class="small muted">Incentive programme</span>
-<ul class="small"><li>Several states pay per-surviving-tree incentives or subsidise saplings for farmers; conditions vary by state.</li></ul></td>
-      <td class="small">State governments (e.g. Karnataka Krishi Aranya Protsaha Yojane)</td>
-      <td><span class="tag">Potentially applicable</span></td>
-      <td><ul class="small"><li>Farmer registration with the state forest/horticulture department</li><li>Survival verification after 1–3 years</li></ul>
-<div class="small"><a href="https://aranya.gov.in/">Karnataka Forest Department — Krishi Aranya Protsaha Yojane</a></div></td>
-    </tr>
-  </table>
-
-  <h2>6 · Financial scenarios</h2>
-  <p class="small muted">Three separate values are shown and never summed: environmental benefit (section 4), indicative carbon value (scenario, not a credit) and other farm income.</p>
-  <table>
-    <tr><th>Scenario</th><th class="num">Price (INR/tCO2e)</th><th class="num">Low</th><th class="num">Central</th><th class="num">High</th></tr>
-    <tr><td>Low</td><td class="num">₹480</td><td class="num">₹3,701</td><td class="num">₹5,290</td><td class="num">₹6,874</td></tr>
-    <tr><td>Reference</td><td class="num">₹1,100</td><td class="num">₹8,481</td><td class="num">₹12,122</td><td class="num">₹15,752</td></tr>
-    <tr><td>High</td><td class="num">₹2,100</td><td class="num">₹16,191</td><td class="num">₹23,142</td><td class="num">₹30,072</td></tr>
-  </table>
-  <p class="small muted">Basis: config/market/carbon-price-scenarios.yaml (as of 2025). Scenario ranges bracket recently reported voluntary-market prices for nature-based removal (ARR) credits. They are placeholders for local price discovery and must be reviewed each release against the World Bank &#34;State and Trends of Carbon Pricing&#34; and Ecosystem Marketplace reports. Market-value scenario — not guaranteed revenue. Issuance depends on methodology, additionality, verification, permanence and market conditions.</p>
-  <h3>Other farm income (not summed)</h3>
-  <table>
-    <tr><th>Item</th><th class="num">Value</th><th>Source</th></tr>
-    <tr><td>Fruit yield (mango, coconut, citrus)</td><td class="num">to be entered</td><td class="small">data.gov.in district crop production + farmer records</td></tr>
-    <tr><td>Agroforestry intercrop</td><td class="num">to be entered</td><td class="small">farmer records</td></tr>
-    <tr><td>Timber potential (teak, eucalyptus)</td><td class="num">to be entered</td><td class="small">state forest department rates + farmer records</td></tr>
-    <tr><td>Eligible incentives (state agroforestry / horticulture missions)</td><td class="num">to be entered</td><td class="small">programme screening</td></tr>
-  </table>
-
-  <h2>7 · Evidence</h2>
-  <table>
-    <tr><th>Present</th><th>Missing (weight)</th></tr>
-    <tr>
-      <td><ul><li>Land polygon</li><li>Tree count</li><li>Tree species</li><li>Plantation age</li><li>Satellite observation</li></ul></td>
-      <td><ul><li>Tree diameter measurements <span class="muted">(15)</span></li><li>Tree height measurements <span class="muted">(6)</span></li><li>Baseline land-use records <span class="muted">(12)</span></li><li>Farm management history <span class="muted">(9)</span></li><li>Land ownership / tenure document <span class="muted">(10)</span></li></ul></td>
-    </tr>
-  </table>
-  <h3>Data sources and provenance</h3>
-  <table>
-    <tr><th>Source</th><th>Version</th><th>Licence</th><th>Attribution</th></tr>
-    <tr><td>Synthetic demo data (imitating ESA WorldCover 2021 v200)</td><td class="small">v200</td><td class="small">Apache-2.0 (generated)</td><td class="small">CarbonCreditBuy demo generator — not an observation</td></tr>
-    <tr><td>Synthetic demo data (imitating Sentinel-2 L2A (Earth Search STAC, Element 84 / AWS))</td><td class="small">L2A</td><td class="small">Apache-2.0 (generated)</td><td class="small">CarbonCreditBuy demo generator — not an observation</td></tr>
-    <tr><td>Synthetic demo data (imitating Open-Meteo Historical Weather API (ERA5) and Elevation API (Copernicus DEM GLO-90))</td><td class="small">v1</td><td class="small">Apache-2.0 (generated)</td><td class="small">CarbonCreditBuy demo generator — not an observation</td></tr>
-    <tr><td>Synthetic demo data (imitating SoilGrids 2.0 (ISRIC World Soil Information))</td><td class="small">2.0 (2020)</td><td class="small">Apache-2.0 (generated)</td><td class="small">CarbonCreditBuy demo generator — not an observation</td></tr>
-  </table>
-
-  <div class="disclaimer">
-    <h2 style="margin-top:0">8 · Disclaimer</h2>
-    <p>This assessment is a modelled scenario estimate. It is not a certification, not an issued carbon or green credit, and not investment advice. Credit issuance depends on an applicable methodology, baseline and additionality, monitoring, verification, permanence and market conditions. Validation and third-party verification are required where applicable.</p>
-    <p class="small muted">Generated by CarbonCreditBuy (open source, Apache-2.0). Estimates follow the cited methodology with
-      parameters whose verification status is shown above; values marked <em>pending</em> have not yet been checked
-      against the cited tables. Nothing in this document constitutes a carbon credit, a certification, a market quote
-      or an eligibility decision.</p>
-  </div>
-  <footer>RPT-2026-10-05-0002 · 2026-10-05T19:53:49Z · CarbonCreditBuy API v1</footer>
-</div>
-</body>
+  </body>
 </html>

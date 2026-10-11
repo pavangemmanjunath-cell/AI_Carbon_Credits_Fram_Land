@@ -2,9 +2,19 @@
  * Left navigation model (Trimble-style: icon + label, a few calm groups).
  * Pure data and matching rules so the nav is unit-testable.
  */
-import { Bot, Database, FileText, FlaskConical, Hourglass, Map as MapIcon, Settings, type LucideIcon } from 'lucide-react';
+import {
+  Bot,
+  Database,
+  FileText,
+  FlaskConical,
+  Hourglass,
+  Map as MapIcon,
+  Settings,
+  type LucideIcon,
+} from 'lucide-react';
 
-export type NavKey = 'myLand' | 'data' | 'agents' | 'treeAge' | 'simulation' | 'reports' | 'settings';
+export type NavKey =
+  'myLand' | 'data' | 'agents' | 'treeAge' | 'simulation' | 'reports' | 'settings';
 
 export interface NavItem {
   key: NavKey;
@@ -23,8 +33,18 @@ export const NAV_GROUPS: NavGroup[] = [
   {
     key: 'land',
     items: [
-      { key: 'myLand', to: '/app', icon: MapIcon, matches: [/^\/app\/?$/, /^\/app\/plots\/[^/]+\/results\/?$/] },
-      { key: 'data', to: '/app/data', icon: Database, matches: [/^\/app\/data(\/|$)/, /^\/app\/plots\/?$/] },
+      {
+        key: 'myLand',
+        to: '/app',
+        icon: MapIcon,
+        matches: [/^\/app\/?$/, /^\/app\/plots\/[^/]+\/results\/?$/],
+      },
+      {
+        key: 'data',
+        to: '/app/data',
+        icon: Database,
+        matches: [/^\/app\/data(\/|$)/, /^\/app\/plots\/?$/],
+      },
     ],
   },
   {
@@ -32,16 +52,35 @@ export const NAV_GROUPS: NavGroup[] = [
     items: [
       { key: 'agents', to: '/app/agents', icon: Bot, matches: [/^\/app\/agents(\/|$)/] },
       { key: 'treeAge', to: '/app/tree-age', icon: Hourglass, matches: [/^\/app\/tree-age(\/|$)/] },
-      { key: 'simulation', to: '/app/simulate', icon: FlaskConical, matches: [/^\/app\/simulate(\/|$)/] },
+      {
+        key: 'simulation',
+        to: '/app/simulate',
+        icon: FlaskConical,
+        matches: [/^\/app\/simulate(\/|$)/],
+      },
     ],
   },
   {
     key: 'share',
-    items: [{ key: 'reports', to: '/app/reports', icon: FileText, matches: [/^\/app\/reports(\/|$)/, /^\/app\/plots\/[^/]+\/report\/?$/] }],
+    items: [
+      {
+        key: 'reports',
+        to: '/app/reports',
+        icon: FileText,
+        matches: [/^\/app\/reports(\/|$)/, /^\/app\/plots\/[^/]+\/report\/?$/],
+      },
+    ],
   },
   {
     key: 'system',
-    items: [{ key: 'settings', to: '/app/settings', icon: Settings, matches: [/^\/app\/settings(\/|$)/, /^\/app\/species(\/|$)/] }],
+    items: [
+      {
+        key: 'settings',
+        to: '/app/settings',
+        icon: Settings,
+        matches: [/^\/app\/settings(\/|$)/, /^\/app\/species(\/|$)/],
+      },
+    ],
   },
 ];
 

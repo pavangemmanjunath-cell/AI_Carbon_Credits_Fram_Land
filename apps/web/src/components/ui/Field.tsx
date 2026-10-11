@@ -13,7 +13,10 @@ interface FieldProps {
 export function Field({ id, label, icon, hint, children, inline = false }: FieldProps) {
   if (inline) {
     return (
-      <label htmlFor={id} className="grid grid-cols-[132px_minmax(0,1fr)] items-center gap-2.5 text-sm text-ink-2">
+      <label
+        htmlFor={id}
+        className="grid grid-cols-[132px_minmax(0,1fr)] items-center gap-2.5 text-sm text-ink-2"
+      >
         <span className="flex items-center gap-2">
           {icon}
           {label}
@@ -39,7 +42,9 @@ export function UnitInput({ unit, children }: { unit: string; children: ReactNod
   return (
     <span className="flex overflow-hidden rounded-[10px] border border-line bg-surface focus-within:border-forest focus-within:shadow-[0_0_0_3px_var(--mint)]">
       {children}
-      <span className="flex items-center border-l border-line px-3 text-[13px] text-muted">{unit}</span>
+      <span className="flex items-center border-l border-line px-3 text-[13px] text-muted">
+        {unit}
+      </span>
     </span>
   );
 }

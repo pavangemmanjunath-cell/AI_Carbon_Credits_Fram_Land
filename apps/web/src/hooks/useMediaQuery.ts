@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
 function matches(query: string): boolean {
-  return typeof window !== 'undefined' && typeof window.matchMedia === 'function' ? window.matchMedia(query).matches : false;
+  return typeof window !== 'undefined' && typeof window.matchMedia === 'function'
+    ? window.matchMedia(query).matches
+    : false;
 }
 
 /** Live result of a CSS media query (false where matchMedia is unavailable). */

@@ -416,10 +416,7 @@
     },
     {
       "name": "density_scaling_clamp",
-      "value": [
-        0.2,
-        1.5
-      ],
+      "value": [0.2, 1.5],
       "unit": "ratio to reference density",
       "source": "project assumption v0.1",
       "verification_status": "assumption"

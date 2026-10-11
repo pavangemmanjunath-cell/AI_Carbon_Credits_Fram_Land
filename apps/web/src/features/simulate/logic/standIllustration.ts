@@ -56,8 +56,19 @@ export function standLayout(treeCount: number, growth: number, options: Options 
     const offset = row % 2 === 1 ? step / 2 : 0;
     for (let i = 0; i < inRow; i += 1) {
       const x = margin + step * i + step / 2 + offset - (row % 2 === 1 ? step / 4 : 0);
-      glyphs.push({ x: Number(x.toFixed(1)), y: Number(y.toFixed(1)), scale: Number((g * depth).toFixed(3)), row });
+      glyphs.push({
+        x: Number(x.toFixed(1)),
+        y: Number(y.toFixed(1)),
+        scale: Number((g * depth).toFixed(3)),
+        row,
+      });
     }
   }
-  return { glyphs, treesPerGlyph: count > shown ? Math.round(count / shown) : 1, width, height, horizon };
+  return {
+    glyphs,
+    treesPerGlyph: count > shown ? Math.round(count / shown) : 1,
+    width,
+    height,
+    horizon,
+  };
 }

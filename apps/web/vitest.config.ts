@@ -16,7 +16,13 @@ export default defineConfig({
     css: false,
     coverage: {
       provider: 'v8',
-      include: ['src/features/**/logic/**', 'src/features/cube/cubeQuery.ts', 'src/lib/**', 'src/services/**', 'src/store/**'],
+      include: [
+        'src/features/**/logic/**',
+        'src/features/cube/cubeQuery.ts',
+        'src/lib/**',
+        'src/services/**',
+        'src/store/**',
+      ],
     },
   },
 });

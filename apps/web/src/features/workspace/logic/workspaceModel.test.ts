@@ -1,6 +1,16 @@
 import { describe, expect, it } from 'vitest';
 import { analysis, estimate, inventory } from '@/test/fixtures';
-import { DEFAULT_FORM, formEquals, formForPlot, formFromInventory, isExternalInventory, isFormValid, observationYears, summarize, toInventoryBody } from './workspaceModel';
+import {
+  DEFAULT_FORM,
+  formEquals,
+  formForPlot,
+  formFromInventory,
+  isExternalInventory,
+  isFormValid,
+  observationYears,
+  summarize,
+  toInventoryBody,
+} from './workspaceModel';
 
 describe('workspaceModel', () => {
   it('derives the form from the latest inventory and back', () => {
@@ -10,7 +20,9 @@ describe('workspaceModel', () => {
     expect(formEquals(form, formFromInventory(inventory, 'x'))).toBe(true);
     const body = toInventoryBody(form);
     expect(body.measurement_source).toBe('user-reported');
-    expect(toInventoryBody({ ...form, average_dbh_cm: 12 }).measurement_source).toBe('field-measured');
+    expect(toInventoryBody({ ...form, average_dbh_cm: 12 }).measurement_source).toBe(
+      'field-measured',
+    );
   });
 
   it('uses the fallback species when there is no inventory', () => {
@@ -35,7 +47,9 @@ describe('workspaceModel', () => {
   it('validates the form bounds', () => {
     expect(isFormValid(DEFAULT_FORM)).toBe(true);
     expect(isFormValid({ ...DEFAULT_FORM, tree_count: 0 })).toBe(false);
-    expect(isFormValid({ ...DEFAULT_FORM, plantation_year: new Date().getFullYear() + 1 })).toBe(false);
+    expect(isFormValid({ ...DEFAULT_FORM, plantation_year: new Date().getFullYear() + 1 })).toBe(
+      false,
+    );
     expect(isFormValid({ ...DEFAULT_FORM, average_dbh_cm: -1 })).toBe(false);
   });
 

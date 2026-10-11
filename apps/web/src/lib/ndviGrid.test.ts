@@ -19,7 +19,8 @@ describe('NDVI cube cells as GeoJSON', () => {
 
   it('puts row 0 at the north edge and columns west → east', () => {
     const fc = cubeSliceToGeoJson(cube, 0, 0);
-    const cell = (r: number, c: number) => fc.features.find((f) => f.properties.row === r && f.properties.col === c)!;
+    const cell = (r: number, c: number) =>
+      fc.features.find((f) => f.properties.row === r && f.properties.col === c)!;
     const north = Math.max(...cell(0, 1).geometry.coordinates[0].map((p) => p[1]));
     expect(north).toBeCloseTo(13.291, 9);
     const south = Math.min(...cell(2, 1).geometry.coordinates[0].map((p) => p[1]));
@@ -31,10 +32,17 @@ describe('NDVI cube cells as GeoJSON', () => {
   });
 
   it('colours cells with the discrete NDVI palette and greys null cells', () => {
-    const withNull = { ...cube, values: cube.values.map((slice, t) => (t === 0 ? slice.map((row, r) => row.map((v, c) => (r === 1 && c === 1 ? null : v))) : slice)) };
+    const withNull = {
+      ...cube,
+      values: cube.values.map((slice, t) =>
+        t === 0 ? slice.map((row, r) => row.map((v, c) => (r === 1 && c === 1 ? null : v))) : slice,
+      ),
+    };
     const fc = cubeSliceToGeoJson(withNull, 0);
     for (const f of fc.features) expect(f.properties.color).toBe(ndviColor(f.properties.value));
-    expect(fc.features.find((f) => f.properties.row === 1 && f.properties.col === 1)?.properties.color).toBe(NDVI_NULL_HEX);
+    expect(
+      fc.features.find((f) => f.properties.row === 1 && f.properties.col === 1)?.properties.color,
+    ).toBe(NDVI_NULL_HEX);
   });
 
   it('follows the year slider: latest month of the chosen year', () => {
@@ -42,7 +50,10 @@ describe('NDVI cube cells as GeoJSON', () => {
     expect(cube.times[timeIndexForYear(cube, 2024)]).toBe('2024-12');
     expect(timeIndexForYear(cube, 1999)).toBe(cube.times.length - 1);
     expect(timeIndexForYear(undefined, 2024)).toBe(0);
-    const slices = [cubeSliceToGeoJson(cube, timeIndexForYear(cube, 2023)), cubeSliceToGeoJson(cube, timeIndexForYear(cube, 2026))];
+    const slices = [
+      cubeSliceToGeoJson(cube, timeIndexForYear(cube, 2023)),
+      cubeSliceToGeoJson(cube, timeIndexForYear(cube, 2026)),
+    ];
     expect(slices[0].features[0].properties.value).not.toBe(slices[1].features[0].properties.value);
   });
 
@@ -53,6 +64,8 @@ describe('NDVI cube cells as GeoJSON', () => {
   });
 
   it('clamps out-of-range time indexes', () => {
-    expect(cubeSliceToGeoJson(cube, 999).features[0].properties.value).toBe(cubeSliceToGeoJson(cube, cube.times.length - 1).features[0].properties.value);
+    expect(cubeSliceToGeoJson(cube, 999).features[0].properties.value).toBe(
+      cubeSliceToGeoJson(cube, cube.times.length - 1).features[0].properties.value,
+    );
   });
 });

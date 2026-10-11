@@ -1,5 +1,16 @@
 import { useState } from 'react';
-import { ArrowRight, Bot, Calculator, Globe2, MapPin, Search, ShieldCheck, Sprout, TreePine, Vegan } from 'lucide-react';
+import {
+  ArrowRight,
+  Bot,
+  Calculator,
+  Globe2,
+  MapPin,
+  Search,
+  ShieldCheck,
+  Sprout,
+  TreePine,
+  Vegan,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router';
 import { LogoMark, Wordmark } from '@/components/brand/Logo';
@@ -28,7 +39,10 @@ export default function LandingPage() {
   const setCountry = useUiStore((s) => s.setCountry);
   const [query, setQuery] = useState('');
 
-  const go = () => navigate(`/app?country=${country}${query.trim() ? `&q=${encodeURIComponent(query.trim())}` : ''}`);
+  const go = () =>
+    navigate(
+      `/app?country=${country}${query.trim() ? `&q=${encodeURIComponent(query.trim())}` : ''}`,
+    );
 
   const steps = [
     { icon: Vegan, title: t('landing.step1Title'), text: t('landing.step1Text') },
@@ -46,11 +60,24 @@ export default function LandingPage() {
           <Wordmark />
         </Link>
         <nav aria-label="Primary" className="hidden gap-7 text-sm font-medium text-ink-2 md:flex">
-          <Link to="/app" className="hover:text-forest">{t('nav.platform')}</Link>
-          <a href={`${DOCS}/blob/main/docs/architecture/carbon-engine.md`} className="hover:text-forest">{t('nav.methodology')}</a>
-          <a href="#data" className="hover:text-forest">{t('nav.dataSources')}</a>
-          <a href="#regions" className="hover:text-forest">{t('nav.regions')}</a>
-          <a href={DOCS} className="hover:text-forest">{t('nav.github')}</a>
+          <Link to="/app" className="hover:text-forest">
+            {t('nav.platform')}
+          </Link>
+          <a
+            href={`${DOCS}/blob/main/docs/architecture/carbon-engine.md`}
+            className="hover:text-forest"
+          >
+            {t('nav.methodology')}
+          </a>
+          <a href="#data" className="hover:text-forest">
+            {t('nav.dataSources')}
+          </a>
+          <a href="#regions" className="hover:text-forest">
+            {t('nav.regions')}
+          </a>
+          <a href={DOCS} className="hover:text-forest">
+            {t('nav.github')}
+          </a>
         </nav>
         <div className="flex items-center gap-3">
           <LanguageSelect />
@@ -75,7 +102,9 @@ export default function LandingPage() {
                 </span>
               ))}
           </h1>
-          <p className="m-0 max-w-[560px] text-[18px] leading-relaxed text-ink-2">{t('landing.subtitle')}</p>
+          <p className="m-0 max-w-[560px] text-[18px] leading-relaxed text-ink-2">
+            {t('landing.subtitle')}
+          </p>
           <form
             className="card flex max-w-[600px] flex-col gap-3 p-4"
             onSubmit={(e) => {
@@ -121,7 +150,10 @@ export default function LandingPage() {
         <MapPreview />
       </section>
 
-      <section aria-label={t('landing.fourStepsTitle')} className="mx-auto w-full max-w-[1440px] px-6 pb-12 lg:px-12">
+      <section
+        aria-label={t('landing.fourStepsTitle')}
+        className="mx-auto w-full max-w-[1440px] px-6 pb-12 lg:px-12"
+      >
         <div className="mb-5 flex flex-wrap items-baseline justify-between gap-3">
           <h2 className="m-0 text-[24px]">{t('landing.fourStepsTitle')}</h2>
           <span className="text-sm text-muted">{t('landing.fourStepsSubtitle')}</span>
@@ -143,15 +175,21 @@ export default function LandingPage() {
       <section className="border-y border-line bg-surface">
         <div className="mx-auto w-full max-w-[1440px] px-6 py-12 lg:px-12">
           <h2 className="m-0 text-[24px]">{t('landing.threeNumbersTitle')}</h2>
-          <p className="mb-5 mt-1.5 max-w-[760px] text-[15px] text-ink-2">{t('landing.threeNumbersSubtitle')}</p>
+          <p className="mb-5 mt-1.5 max-w-[760px] text-[15px] text-ink-2">
+            {t('landing.threeNumbersSubtitle')}
+          </p>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <article className="rounded-[14px] border border-line bg-ground p-5">
               <span className="eyebrow text-forest-deep">{t('landing.environmentalBenefit')}</span>
               <p className="big-number my-2 text-[34px]">
                 11.0 <span className="text-[15px] font-medium text-muted">tCO₂e / yr</span>
               </p>
-              <p className="m-0 font-mono text-[13px] text-ink-2">low 7.7 · high 14.3 · confidence medium</p>
-              <p className="mb-0 mt-2 text-sm text-ink-2">{t('landing.environmentalBenefitText')}</p>
+              <p className="m-0 font-mono text-[13px] text-ink-2">
+                low 7.7 · high 14.3 · confidence medium
+              </p>
+              <p className="mb-0 mt-2 text-sm text-ink-2">
+                {t('landing.environmentalBenefitText')}
+              </p>
             </article>
             <article className="rounded-[14px] border border-line bg-ground p-5">
               <span className="eyebrow text-forest-deep">{t('landing.indicativeValue')}</span>
@@ -159,12 +197,16 @@ export default function LandingPage() {
                 ₹12,122 <span className="text-[15px] font-medium text-muted">reference / yr</span>
               </p>
               <p className="m-0 font-mono text-[13px] text-ink-2">low ₹5,290 · high ₹23,142</p>
-              <p className="mb-0 mt-2 text-sm font-medium text-amber-text">{t('landing.indicativeValueText')}</p>
+              <p className="mb-0 mt-2 text-sm font-medium text-amber-text">
+                {t('landing.indicativeValueText')}
+              </p>
             </article>
             <article className="rounded-[14px] border border-line bg-ground p-5">
               <span className="eyebrow text-forest-deep">{t('landing.otherIncome')}</span>
               <p className="big-number my-2 text-[26px]">Fruit · Timber · Incentives</p>
-              <p className="m-0 font-mono text-[13px] text-ink-2">from statistics and your records</p>
+              <p className="m-0 font-mono text-[13px] text-ink-2">
+                from statistics and your records
+              </p>
               <p className="mb-0 mt-2 text-sm text-ink-2">{t('landing.otherIncomeText')}</p>
             </article>
           </div>
@@ -176,7 +218,10 @@ export default function LandingPage() {
         <p className="mb-4 mt-1.5 text-[15px] text-ink-2">{t('landing.builtOnSubtitle')}</p>
         <div className="flex flex-wrap gap-2.5">
           {DATA_BADGES.map((b) => (
-            <span key={b.label} className="card inline-flex items-center gap-2 px-3.5 py-2.5 text-sm">
+            <span
+              key={b.label}
+              className="card inline-flex items-center gap-2 px-3.5 py-2.5 text-sm"
+            >
               <span className={`h-2 w-2 rounded-full ${b.tone}`} aria-hidden="true" />
               {b.label} <span className="text-muted">{b.note}</span>
             </span>
@@ -208,33 +253,64 @@ export default function LandingPage() {
         <div className="mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-10 px-6 py-12 lg:grid-cols-2 lg:px-12">
           <div className="flex flex-col gap-3">
             <h2 className="m-0 text-[26px] text-white">{t('landing.privacyTitle')}</h2>
-            <p className="m-0 text-[15px] leading-relaxed text-[#C9D6CD]">{t('landing.privacyText')}</p>
+            <p className="m-0 text-[15px] leading-relaxed text-[#C9D6CD]">
+              {t('landing.privacyText')}
+            </p>
             <div className="mt-2 flex max-w-[460px] flex-col gap-2.5 rounded-[12px] border border-[#3A4A41] p-4">
-              <span className="text-[12px] uppercase tracking-wider text-mint-on-dark">{t('settings.processing')}</span>
+              <span className="text-[12px] uppercase tracking-wider text-mint-on-dark">
+                {t('settings.processing')}
+              </span>
               <span className="flex items-start gap-2.5 text-sm">
-                <ShieldCheck size={16} className="mt-0.5 shrink-0 text-plot-fill" aria-hidden="true" />
+                <ShieldCheck
+                  size={16}
+                  className="mt-0.5 shrink-0 text-plot-fill"
+                  aria-hidden="true"
+                />
                 <span>
                   <span className="font-semibold">{t('landing.modeDeterministic')}</span>
-                  <span className="block text-[13px] text-[#C9D6CD]">{t('landing.modeDeterministicText')}</span>
+                  <span className="block text-[13px] text-[#C9D6CD]">
+                    {t('landing.modeDeterministicText')}
+                  </span>
                 </span>
               </span>
               <span className="flex items-start gap-2.5 text-sm">
                 <Bot size={16} className="mt-0.5 shrink-0 text-mint-on-dark" aria-hidden="true" />
                 <span>
                   <span className="font-semibold">{t('landing.modeAi')}</span>
-                  <span className="block text-[13px] text-[#C9D6CD]">{t('landing.modeAiText')}</span>
+                  <span className="block text-[13px] text-[#C9D6CD]">
+                    {t('landing.modeAiText')}
+                  </span>
                 </span>
               </span>
             </div>
           </div>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {[
-              ['Public', 'Country · approximate region · anonymized sample plots · aggregated metrics', 'text-mint-on-dark'],
-              ['Private', 'Exact polygon · owner identity · farm address · land documents · management records', 'text-[#F4C790]'],
-              ['Provenance', 'Every number carries its dataset version, acquisition date, model version and source.', 'text-mint-on-dark'],
-              ['Uncertainty', 'Low, central and high bounds on every carbon output — a tree count never equals one exact number.', 'text-mint-on-dark'],
+              [
+                'Public',
+                'Country · approximate region · anonymized sample plots · aggregated metrics',
+                'text-mint-on-dark',
+              ],
+              [
+                'Private',
+                'Exact polygon · owner identity · farm address · land documents · management records',
+                'text-[#F4C790]',
+              ],
+              [
+                'Provenance',
+                'Every number carries its dataset version, acquisition date, model version and source.',
+                'text-mint-on-dark',
+              ],
+              [
+                'Uncertainty',
+                'Low, central and high bounds on every carbon output — a tree count never equals one exact number.',
+                'text-mint-on-dark',
+              ],
             ].map(([title, text, tone]) => (
-              <div key={title} className="flex flex-col gap-1.5 rounded-[12px] border border-[#2E3F35] bg-panel-dark-2 p-4">
+              <div
+                key={title}
+                className="flex flex-col gap-1.5 rounded-[12px] border border-[#2E3F35] bg-panel-dark-2 p-4"
+              >
                 <span className={`text-[12px] uppercase tracking-wider ${tone}`}>{title}</span>
                 <span className="text-sm leading-relaxed text-[#E6EFE9]">{text}</span>
               </div>
@@ -250,7 +326,9 @@ export default function LandingPage() {
           <a href={`${DOCS}/blob/main/SECURITY.md`}>{t('landing.footerSecurity')}</a>
           <a href={`${DOCS}/blob/main/GOVERNANCE.md`}>{t('landing.footerGovernance')}</a>
           <a href={`${DOCS}/blob/main/ADOPTERS.md`}>{t('landing.footerAdopters')}</a>
-          <a href={`${DOCS}/blob/main/docs/licensing/ATTRIBUTION.md`}>{t('landing.footerAttribution')}</a>
+          <a href={`${DOCS}/blob/main/docs/licensing/ATTRIBUTION.md`}>
+            {t('landing.footerAttribution')}
+          </a>
         </nav>
       </footer>
     </div>

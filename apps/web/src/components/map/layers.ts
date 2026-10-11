@@ -4,7 +4,13 @@
  * satellite imagery stays below the data, the data below the plots, and the
  * terra-draw drawing layers (`td-*`) stay on top.
  */
-import type { ExpressionSpecification, FilterSpecification, GeoJSONSource, LayerSpecification, Map as MapLibreMap } from 'maplibre-gl';
+import type {
+  ExpressionSpecification,
+  FilterSpecification,
+  GeoJSONSource,
+  LayerSpecification,
+  Map as MapLibreMap,
+} from 'maplibre-gl';
 import type { Feature, FeatureCollection, Geometry, Polygon } from 'geojson';
 import { CONFIDENCE_OPACITY_EXPRESSION } from '@/lib/detection';
 import type { ImageryProvider, Plot } from '@/types/api';
@@ -28,7 +34,12 @@ export const PREVIEW_FILL = 'atlas-preview-fill';
 export const PREVIEW_LINE = 'atlas-preview-line';
 export const PREVIEW_POINT = 'atlas-preview-point';
 
-export type OverlaySource = typeof NDVI_SOURCE | typeof DETECT_SOURCE | typeof PLOT_SOURCE | typeof IMPORT_SOURCE | typeof PREVIEW_SOURCE;
+export type OverlaySource =
+  | typeof NDVI_SOURCE
+  | typeof DETECT_SOURCE
+  | typeof PLOT_SOURCE
+  | typeof IMPORT_SOURCE
+  | typeof PREVIEW_SOURCE;
 
 const EMPTY: FeatureCollection = { type: 'FeatureCollection', features: [] };
 const IS_POLYGON: FilterSpecification = ['==', ['geometry-type'], 'Polygon'];
@@ -40,20 +51,34 @@ const OVERLAYS: LayerSpecification[] = [
     id: NDVI_FILL,
     type: 'fill',
     source: NDVI_SOURCE,
-    paint: { 'fill-color': ['get', 'color'], 'fill-opacity': ['case', ['==', ['get', 'value'], null], 0.25, 0.72] },
+    paint: {
+      'fill-color': ['get', 'color'],
+      'fill-opacity': ['case', ['==', ['get', 'value'], null], 0.25, 0.72],
+    },
   },
   {
     id: DETECT_FILL,
     type: 'fill',
     source: DETECT_SOURCE,
-    paint: { 'fill-color': '#1E6B41', 'fill-opacity': CONFIDENCE_OPACITY_EXPRESSION as unknown as ExpressionSpecification },
+    paint: {
+      'fill-color': '#1E6B41',
+      'fill-opacity': CONFIDENCE_OPACITY_EXPRESSION as unknown as ExpressionSpecification,
+    },
   },
-  { id: DETECT_LINE, type: 'line', source: DETECT_SOURCE, paint: { 'line-color': '#0F3D24', 'line-width': 1.6 } },
+  {
+    id: DETECT_LINE,
+    type: 'line',
+    source: DETECT_SOURCE,
+    paint: { 'line-color': '#0F3D24', 'line-width': 1.6 },
+  },
   {
     id: PLOT_FILL,
     type: 'fill',
     source: PLOT_SOURCE,
-    paint: { 'fill-color': '#2FA85B', 'fill-opacity': ['case', ['boolean', ['get', 'selected'], false], 0.16, 0.08] },
+    paint: {
+      'fill-color': '#2FA85B',
+      'fill-opacity': ['case', ['boolean', ['get', 'selected'], false], 0.16, 0.08],
+    },
   },
   {
     id: PLOT_LINE,
@@ -76,15 +101,32 @@ const OVERLAYS: LayerSpecification[] = [
       'line-dasharray': [2, 1.5],
     },
   },
-  { id: IMPORT_CROWNS, type: 'line', source: IMPORT_SOURCE, filter: IS_POLYGON, paint: { 'line-color': '#B7791F', 'line-width': 1.4 } },
+  {
+    id: IMPORT_CROWNS,
+    type: 'line',
+    source: IMPORT_SOURCE,
+    filter: IS_POLYGON,
+    paint: { 'line-color': '#B7791F', 'line-width': 1.4 },
+  },
   {
     id: IMPORT_POINTS,
     type: 'circle',
     source: IMPORT_SOURCE,
     filter: IS_POINT,
-    paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 12, 1.5, 18, 5], 'circle-color': '#B7791F', 'circle-stroke-color': '#FFFFFF', 'circle-stroke-width': 0.8 },
+    paint: {
+      'circle-radius': ['interpolate', ['linear'], ['zoom'], 12, 1.5, 18, 5],
+      'circle-color': '#B7791F',
+      'circle-stroke-color': '#FFFFFF',
+      'circle-stroke-width': 0.8,
+    },
   },
-  { id: PREVIEW_FILL, type: 'fill', source: PREVIEW_SOURCE, filter: IS_POLYGON, paint: { 'fill-color': '#2A6FB0', 'fill-opacity': 0.14 } },
+  {
+    id: PREVIEW_FILL,
+    type: 'fill',
+    source: PREVIEW_SOURCE,
+    filter: IS_POLYGON,
+    paint: { 'fill-color': '#2A6FB0', 'fill-opacity': 0.14 },
+  },
   {
     id: PREVIEW_LINE,
     type: 'line',
@@ -97,11 +139,22 @@ const OVERLAYS: LayerSpecification[] = [
     type: 'circle',
     source: PREVIEW_SOURCE,
     filter: IS_POINT,
-    paint: { 'circle-radius': 8, 'circle-color': '#1F4E8A', 'circle-stroke-color': '#FFFFFF', 'circle-stroke-width': 3 },
+    paint: {
+      'circle-radius': 8,
+      'circle-color': '#1F4E8A',
+      'circle-stroke-color': '#FFFFFF',
+      'circle-stroke-width': 3,
+    },
   },
 ];
 
-const OVERLAY_SOURCES: OverlaySource[] = [NDVI_SOURCE, DETECT_SOURCE, PLOT_SOURCE, IMPORT_SOURCE, PREVIEW_SOURCE];
+const OVERLAY_SOURCES: OverlaySource[] = [
+  NDVI_SOURCE,
+  DETECT_SOURCE,
+  PLOT_SOURCE,
+  IMPORT_SOURCE,
+  PREVIEW_SOURCE,
+];
 
 function firstDrawLayerId(map: MapLibreMap): string | undefined {
   return map.getStyle()?.layers?.find((l) => l.id.startsWith('td-'))?.id;
@@ -118,7 +171,11 @@ export function ensureOverlayLayers(map: MapLibreMap): void {
   }
 }
 
-export function setOverlayData(map: MapLibreMap, sourceId: OverlaySource, data: FeatureCollection | null | undefined): void {
+export function setOverlayData(
+  map: MapLibreMap,
+  sourceId: OverlaySource,
+  data: FeatureCollection | null | undefined,
+): void {
   const source = map.getSource(sourceId) as GeoJSONSource | undefined;
   source?.setData(data ?? EMPTY);
 }
@@ -129,7 +186,10 @@ export function setLayersVisible(map: MapLibreMap, layerIds: string[], visible: 
   }
 }
 
-export function plotsToGeoJson(plots: Plot[], selectedId: string | null): FeatureCollection<Polygon> {
+export function plotsToGeoJson(
+  plots: Plot[],
+  selectedId: string | null,
+): FeatureCollection<Polygon> {
   const features: Feature<Polygon>[] = [];
   for (const plot of plots) {
     if (!plot.geometry) continue;
@@ -159,7 +219,11 @@ export function geometryToCollection(geometry: Geometry | null | undefined): Fea
  */
 const imageryUrlByMap = new WeakMap<MapLibreMap, string>();
 
-export function syncImageryLayer(map: MapLibreMap, provider: ImageryProvider | null, visible: boolean): void {
+export function syncImageryLayer(
+  map: MapLibreMap,
+  provider: ImageryProvider | null,
+  visible: boolean,
+): void {
   if (map.getSource(IMAGERY_SOURCE) && (!provider || imageryUrlByMap.get(map) !== provider.url)) {
     if (map.getLayer(IMAGERY_LAYER)) map.removeLayer(IMAGERY_LAYER);
     map.removeSource(IMAGERY_SOURCE);
@@ -181,7 +245,15 @@ export function syncImageryLayer(map: MapLibreMap, provider: ImageryProvider | n
   }
   if (!map.getLayer(IMAGERY_LAYER)) {
     const before = map.getLayer(NDVI_FILL) ? NDVI_FILL : firstDrawLayerId(map);
-    map.addLayer({ id: IMAGERY_LAYER, type: 'raster', source: IMAGERY_SOURCE, paint: { 'raster-fade-duration': 150 } }, before);
+    map.addLayer(
+      {
+        id: IMAGERY_LAYER,
+        type: 'raster',
+        source: IMAGERY_SOURCE,
+        paint: { 'raster-fade-duration': 150 },
+      },
+      before,
+    );
   }
   map.setLayoutProperty(IMAGERY_LAYER, 'visibility', 'visible');
 }

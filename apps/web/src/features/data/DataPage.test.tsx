@@ -15,26 +15,50 @@ const mocks = vi.hoisted(() => ({
 
 vi.mock('@/services/client', () => ({ client: mocks, probeHealth: vi.fn() }));
 
-const pinPlot = { ...plot, plot_id: 'PLT-PIN', name: 'Plot B', source: 'pin-and-area' as const, boundary_quality: 'approximate' as const };
+const pinPlot = {
+  ...plot,
+  plot_id: 'PLT-PIN',
+  name: 'Plot B',
+  source: 'pin-and-area' as const,
+  boundary_quality: 'approximate' as const,
+};
 
 describe('DataPage', () => {
   beforeEach(() => {
     resetUiStore();
     Object.values(mocks).forEach((m) => m.mockReset());
     mocks.listPlots.mockResolvedValue({ items: [plot, pinPlot] });
-    mocks.listImports.mockResolvedValue({ items: [importRecord({ plot_id: plot.plot_id }), importRecord({ import_id: 'IMP-2', filename: 'broken.kml', format: 'kml', status: 'failed', trees: null, plot_id: null })] });
+    mocks.listImports.mockResolvedValue({
+      items: [
+        importRecord({ plot_id: plot.plot_id }),
+        importRecord({
+          import_id: 'IMP-2',
+          filename: 'broken.kml',
+          format: 'kml',
+          status: 'failed',
+          trees: null,
+          plot_id: null,
+        }),
+      ],
+    });
   });
 
   it('opens on the Land plots tab with friendly sources and the approximate badge', async () => {
     renderWithProviders(<DataPage />, { route: '/app/data' });
     expect(screen.getByRole('heading', { name: 'Data' })).toBeInTheDocument();
-    expect(screen.getByRole('tab', { name: /Land plots/ })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tab', { name: /Land plots/ })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
     const table = await screen.findByRole('table');
     expect(within(table).getByText('Plot B')).toBeInTheDocument();
     expect(within(table).getByText('Pin + size')).toBeInTheDocument();
     expect(within(table).getByText('Demo data')).toBeInTheDocument();
     expect(within(table).getAllByText('Approximate boundary')).toHaveLength(1);
-    expect(within(table).getAllByRole('link', { name: /Results/ })[0]).toHaveAttribute('href', '/app/plots/PLT-TEST/results');
+    expect(within(table).getAllByRole('link', { name: /Results/ })[0]).toHaveAttribute(
+      'href',
+      '/app/plots/PLT-TEST/results',
+    );
   });
 
   it('opens a plot on the map', async () => {
@@ -47,7 +71,10 @@ describe('DataPage', () => {
 
   it('lists imported files with type, linked land and result, and shows one on the map', async () => {
     renderWithProviders(<DataPage />, { route: '/app/data?tab=files' });
-    expect(screen.getByRole('tab', { name: /Imported files/ })).toHaveAttribute('aria-selected', 'true');
+    expect(screen.getByRole('tab', { name: /Imported files/ })).toHaveAttribute(
+      'aria-selected',
+      'true',
+    );
     const table = await screen.findByRole('table');
     expect(within(table).getByText('orchard.laz')).toBeInTheDocument();
     expect(within(table).getByText('LAZ point cloud')).toBeInTheDocument();
@@ -57,7 +84,10 @@ describe('DataPage', () => {
     const [viewTrees, viewFailed] = within(table).getAllByRole('button', { name: /View on map/ });
     expect(viewFailed).toBeDisabled();
     fireEvent.click(viewTrees);
-    expect(useUiStore.getState()).toMatchObject({ mapImportId: 'IMP-1', selectedPlotId: 'PLT-TEST' });
+    expect(useUiStore.getState()).toMatchObject({
+      mapImportId: 'IMP-1',
+      selectedPlotId: 'PLT-TEST',
+    });
     expect(useUiStore.getState().layers.importedTrees).toBe(true);
     expect(await screen.findByText('workspace-route')).toBeInTheDocument();
   });
@@ -82,6 +112,8 @@ describe('DataPage', () => {
   it('explains that imported files need the API when it is offline', async () => {
     mocks.listImports.mockRejectedValue(new FeatureNeedsApiError('Imported files'));
     renderWithProviders(<DataPage />, { route: '/app/data?tab=files' });
-    expect(await screen.findByRole('alert')).toHaveTextContent('This needs the CarbonCreditBuy server');
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      'This needs the CarbonCreditBuy server',
+    );
   });
 });

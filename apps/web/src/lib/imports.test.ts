@@ -15,8 +15,17 @@ import {
   type QueueItem,
 } from './imports';
 
-const ring = [[[77.53, 13.29], [77.54, 13.29], [77.54, 13.3], [77.53, 13.3], [77.53, 13.29]]];
-const file = (name: string, size = 10, lastModified = 1) => new File(['x'.repeat(size)], name, { lastModified });
+const ring = [
+  [
+    [77.53, 13.29],
+    [77.54, 13.29],
+    [77.54, 13.3],
+    [77.53, 13.3],
+    [77.53, 13.29],
+  ],
+];
+const file = (name: string, size = 10, lastModified = 1) =>
+  new File(['x'.repeat(size)], name, { lastModified });
 
 describe('import file types', () => {
   it('detects every supported extension, case-insensitively', () => {
@@ -90,18 +99,33 @@ describe('upload queue', () => {
 
 describe('import results → actions', () => {
   it('maps a point cloud to a tree outcome with the mean height', () => {
-    expect(importOutcomes(importRecord())).toEqual([{ kind: 'trees', count: 128, countInPlot: 120, meanHeightM: 6.43 }]);
+    expect(importOutcomes(importRecord())).toEqual([
+      { kind: 'trees', count: 128, countInPlot: 120, meanHeightM: 6.43 },
+    ]);
   });
 
   it('maps a boundary file (and a file with both) in display order', () => {
-    const boundary = { geometry: { type: 'Polygon' as const, coordinates: ring }, area_hectares: 2.13, name: 'Field 7' };
-    expect(importOutcomes(importRecord({ kind: 'boundary', boundary, trees: null }))).toEqual([{ kind: 'boundary', areaHectares: 2.13, name: 'Field 7' }]);
-    expect(importOutcomes(importRecord({ boundary })).map((o) => o.kind)).toEqual(['boundary', 'trees']);
+    const boundary = {
+      geometry: { type: 'Polygon' as const, coordinates: ring },
+      area_hectares: 2.13,
+      name: 'Field 7',
+    };
+    expect(importOutcomes(importRecord({ kind: 'boundary', boundary, trees: null }))).toEqual([
+      { kind: 'boundary', areaHectares: 2.13, name: 'Field 7' },
+    ]);
+    expect(importOutcomes(importRecord({ boundary })).map((o) => o.kind)).toEqual([
+      'boundary',
+      'trees',
+    ]);
   });
 
   it('reports failed and empty imports', () => {
-    expect(importOutcomes(importRecord({ status: 'failed', trees: null, warnings: ['No CRS'] }))).toEqual([{ kind: 'failed', reason: 'No CRS' }]);
-    expect(importOutcomes(importRecord({ trees: { ...importRecord().trees!, count: 0 } }))).toEqual([{ kind: 'nothing' }]);
+    expect(
+      importOutcomes(importRecord({ status: 'failed', trees: null, warnings: ['No CRS'] })),
+    ).toEqual([{ kind: 'failed', reason: 'No CRS' }]);
+    expect(importOutcomes(importRecord({ trees: { ...importRecord().trees!, count: 0 } }))).toEqual(
+      [{ kind: 'nothing' }],
+    );
   });
 
   it('uses the trees inside the linked plot when the server could tell', () => {
@@ -109,12 +133,18 @@ describe('import results → actions', () => {
     expect(treeCountToUse(importRecord(), 'PLT-DEMOIN')).toBe(120);
     // a different target plot: the inside count does not apply, use every tree in the file
     expect(treeCountToUse(importRecord(), 'PLT-OTHER')).toBe(128);
-    expect(treeCountToUse(importRecord({ trees: { ...importRecord().trees!, count_in_plot: null } }))).toBe(128);
+    expect(
+      treeCountToUse(importRecord({ trees: { ...importRecord().trees!, count_in_plot: null } })),
+    ).toBe(128);
     expect(treeCountToUse(importRecord({ trees: null }))).toBeNull();
   });
 
   it('builds a model-estimated inventory with species and year from the tree form', () => {
-    const body = inventoryFromImport(importRecord(), { species_id: 'mango', plantation_year: 2019, survival_rate: 0.85 });
+    const body = inventoryFromImport(importRecord(), {
+      species_id: 'mango',
+      plantation_year: 2019,
+      survival_rate: 0.85,
+    });
     expect(body).toEqual({
       species_id: 'mango',
       tree_count: 120,
@@ -124,15 +154,35 @@ describe('import results → actions', () => {
       survival_rate: 0.85,
       measurement_source: 'model-estimated',
     });
-    const noHeight = inventoryFromImport(importRecord({ trees: { ...importRecord().trees!, mean_height_m: null } }), { species_id: 'teak', plantation_year: 2020, survival_rate: null });
+    const noHeight = inventoryFromImport(
+      importRecord({ trees: { ...importRecord().trees!, mean_height_m: null } }),
+      { species_id: 'teak', plantation_year: 2020, survival_rate: null },
+    );
     expect(noHeight?.average_height_m).toBeNull();
-    expect(inventoryFromImport(importRecord({ trees: null }), { species_id: 'teak', plantation_year: 2020, survival_rate: null })).toBeNull();
+    expect(
+      inventoryFromImport(importRecord({ trees: null }), {
+        species_id: 'teak',
+        plantation_year: 2020,
+        survival_rate: null,
+      }),
+    ).toBeNull();
   });
 
   it('builds the "Use as my land" plot body (source import, country left to the server)', () => {
-    const boundary = { geometry: { type: 'Polygon' as const, coordinates: ring }, area_hectares: 2.13, name: 'Field 7' };
-    expect(plotFromImport(importRecord({ boundary }), 'Plot B')).toEqual({ name: 'Field 7', source: 'import', boundary_quality: 'exact', geometry: boundary.geometry });
-    expect(plotFromImport(importRecord({ boundary: { ...boundary, name: null } }), 'Plot B')?.name).toBe('Plot B');
+    const boundary = {
+      geometry: { type: 'Polygon' as const, coordinates: ring },
+      area_hectares: 2.13,
+      name: 'Field 7',
+    };
+    expect(plotFromImport(importRecord({ boundary }), 'Plot B')).toEqual({
+      name: 'Field 7',
+      source: 'import',
+      boundary_quality: 'exact',
+      geometry: boundary.geometry,
+    });
+    expect(
+      plotFromImport(importRecord({ boundary: { ...boundary, name: null } }), 'Plot B')?.name,
+    ).toBe('Plot B');
     expect(plotFromImport(importRecord(), 'Plot B')).toBeNull();
   });
 });

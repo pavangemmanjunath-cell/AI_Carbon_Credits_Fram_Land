@@ -1,11 +1,27 @@
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+  CartesianGrid,
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
 import { useTranslation } from 'react-i18next';
 import { monthLabel } from '@/lib/format';
 import type { Cube } from '@/types/api';
 import { monthlyMeanSeries, ndviDomain, ndviTicks } from './logic/changeOverTime';
 
 /** Small 2D card: monthly mean NDVI of the plot (one line, no KPI tiles). */
-export function ChangeOverTimeCard({ cube, loading, locale }: { cube?: Cube; loading?: boolean; locale: string }) {
+export function ChangeOverTimeCard({
+  cube,
+  loading,
+  locale,
+}: {
+  cube?: Cube;
+  loading?: boolean;
+  locale: string;
+}) {
   const { t } = useTranslation();
   const points = monthlyMeanSeries(cube);
   const domain = ndviDomain(points);
@@ -19,7 +35,9 @@ export function ChangeOverTimeCard({ cube, loading, locale }: { cube?: Cube; loa
         loading ? (
           <span className="skeleton block h-[200px] w-full" />
         ) : (
-          <p className="m-0 py-8 text-center text-sm text-muted">{t('results.changeOverTimeEmpty')}</p>
+          <p className="m-0 py-8 text-center text-sm text-muted">
+            {t('results.changeOverTimeEmpty')}
+          </p>
         )
       ) : (
         <div className="h-[200px] w-full">
@@ -34,18 +52,40 @@ export function ChangeOverTimeCard({ cube, loading, locale }: { cube?: Cube; loa
                 tickLine={false}
                 axisLine={{ stroke: '#D8E0DA' }}
               />
-              <YAxis domain={domain} ticks={ndviTicks(domain)} tickFormatter={(v: number) => v.toFixed(1)} tick={{ fontSize: 11, fill: '#5E6E65', fontFamily: 'IBM Plex Mono' }} tickLine={false} axisLine={false} width={36} />
+              <YAxis
+                domain={domain}
+                ticks={ndviTicks(domain)}
+                tickFormatter={(v: number) => v.toFixed(1)}
+                tick={{ fontSize: 11, fill: '#5E6E65', fontFamily: 'IBM Plex Mono' }}
+                tickLine={false}
+                axisLine={false}
+                width={36}
+              />
               <Tooltip
                 formatter={(value) => [Number(value).toFixed(2), t('results.ndviMean')]}
                 labelFormatter={(label) => monthLabel(String(label), locale, 'long')}
                 contentStyle={{ borderRadius: 10, border: '1px solid #D8E0DA', fontSize: 12 }}
               />
-              <Line type="monotone" dataKey="mean" stroke="#1E6B41" strokeWidth={2.25} dot={false} isAnimationActive={false} />
+              <Line
+                type="monotone"
+                dataKey="mean"
+                stroke="#1E6B41"
+                strokeWidth={2.25}
+                dot={false}
+                isAnimationActive={false}
+              />
             </LineChart>
           </ResponsiveContainer>
         </div>
       )}
-      {cube && <p className="m-0 text-[11px] text-muted">{t('results.changeOverTimeSource', { source: cube.provenance.source, composite: cube.provenance.composite })}</p>}
+      {cube && (
+        <p className="m-0 text-[11px] text-muted">
+          {t('results.changeOverTimeSource', {
+            source: cube.provenance.source,
+            composite: cube.provenance.composite,
+          })}
+        </p>
+      )}
     </figure>
   );
 }

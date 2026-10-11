@@ -56,7 +56,8 @@ export function useImportQueue(options: Options) {
   const createdPlotsRef = useRef<Plot[]>([]);
   const knownPlots = useCallback(() => {
     const seen = new Map<string, Plot>();
-    for (const plot of [...optionsRef.current.plots, ...createdPlotsRef.current]) seen.set(plot.plot_id, plot);
+    for (const plot of [...optionsRef.current.plots, ...createdPlotsRef.current])
+      seen.set(plot.plot_id, plot);
     return [...seen.values()];
   }, []);
 
@@ -70,7 +71,10 @@ export function useImportQueue(options: Options) {
         const plot = await createPlot.mutateAsync(body);
         createdPlotsRef.current = [...createdPlotsRef.current, plot];
         setCreatedPlots(createdPlotsRef.current);
-        setLandActions((s) => ({ ...s, [itemId]: { status: 'done', plotId: plot.plot_id, plotName: plot.name } }));
+        setLandActions((s) => ({
+          ...s,
+          [itemId]: { status: 'done', plotId: plot.plot_id, plotName: plot.name },
+        }));
         onPlotCreated(plot);
         return plot;
       } catch (error) {
@@ -91,7 +95,10 @@ export function useImportQueue(options: Options) {
       try {
         await addTrees.mutateAsync({ plotId: plot.plot_id, body });
         void queryClient.invalidateQueries({ queryKey: queryKeys.estimate(plot.plot_id) });
-        setTreeActions((s) => ({ ...s, [itemId]: { status: 'done', plotId: plot.plot_id, plotName: plot.name } }));
+        setTreeActions((s) => ({
+          ...s,
+          [itemId]: { status: 'done', plotId: plot.plot_id, plotName: plot.name },
+        }));
       } catch (error) {
         setTreeActions((s) => ({ ...s, [itemId]: { status: 'error', error } }));
       }
@@ -124,7 +131,11 @@ export function useImportQueue(options: Options) {
             },
           });
           dispatch({ type: 'done', id: item.id, record });
-          if (optionsRef.current.useBoundaryAsLand && record.status !== 'failed' && record.boundary) {
+          if (
+            optionsRef.current.useBoundaryAsLand &&
+            record.status !== 'failed' &&
+            record.boundary
+          ) {
             const plot = await applyAsLand(item.id, record);
             // Later files of the same batch are counted inside the new land.
             if (plot) linkedPlotId = plot.plot_id;
@@ -159,7 +170,9 @@ export function useImportQueue(options: Options) {
 
   /** Where "Use N trees" goes: the land created in this dialog, else the selected plot. */
   const treeTarget: Plot | null =
-    createdPlots[createdPlots.length - 1] ?? options.plots.find((p) => p.plot_id === options.plotId) ?? null;
+    createdPlots[createdPlots.length - 1] ??
+    options.plots.find((p) => p.plot_id === options.plotId) ??
+    null;
 
   return {
     queue,

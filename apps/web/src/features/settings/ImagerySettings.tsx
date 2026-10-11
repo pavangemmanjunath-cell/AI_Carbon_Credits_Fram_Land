@@ -24,7 +24,9 @@ export function ImagerySettings() {
   const storeKey = key ?? 'default';
   const query = useImageryProviders(key);
   const active = chooseProvider(query.data, imageryChoice[storeKey]);
-  const providers = [...(query.data?.providers ?? [])].sort((a, b) => Number(b.available) - Number(a.available));
+  const providers = [...(query.data?.providers ?? [])].sort(
+    (a, b) => Number(b.available) - Number(a.available),
+  );
   const place = key ? countryName(key, language) : t('settings.imageryDefaultRegion');
 
   return (
@@ -36,7 +38,11 @@ export function ImagerySettings() {
         </h2>
         <p className="m-0 text-[13px] text-ink-2">{t('settings.imageryIntro', { place })}</p>
       </div>
-      {hasSatelliteOverride && <p className="m-0 rounded-[10px] bg-blue-tint px-3 py-2 text-[12px] text-blue-text">{t('settings.imageryEnvOverride')}</p>}
+      {hasSatelliteOverride && (
+        <p className="m-0 rounded-[10px] bg-blue-tint px-3 py-2 text-[12px] text-blue-text">
+          {t('settings.imageryEnvOverride')}
+        </p>
+      )}
       {query.isLoading && <span className="skeleton block h-24 w-full" />}
       {query.error != null && (
         <p role="alert" className="m-0 text-[13px] text-amber-text">
@@ -60,20 +66,31 @@ export function ImagerySettings() {
                   className="mt-1 h-4 w-4 shrink-0 accent-forest"
                   checked={checked}
                   disabled={!p.available}
-                  onChange={() => setImageryChoice(storeKey, p.id === query.data?.recommended ? null : p.id)}
+                  onChange={() =>
+                    setImageryChoice(storeKey, p.id === query.data?.recommended ? null : p.id)
+                  }
                 />
                 <span className="flex min-w-0 flex-1 flex-col gap-1">
                   <span className="flex flex-wrap items-center gap-2">
                     <span className="font-semibold text-ink">{p.name}</span>
-                    {p.id === query.data?.recommended && <Pill tone="mint">{t('settings.imageryRecommended')}</Pill>}
-                    {!coversCountry(p, key) && <Pill tone="grey">{t('settings.imageryOtherCoverage')}</Pill>}
+                    {p.id === query.data?.recommended && (
+                      <Pill tone="mint">{t('settings.imageryRecommended')}</Pill>
+                    )}
+                    {!coversCountry(p, key) && (
+                      <Pill tone="grey">{t('settings.imageryOtherCoverage')}</Pill>
+                    )}
                   </span>
                   {p.resolution && <span className="text-[12px] text-muted">{p.resolution}</span>}
                   <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] text-ink-2">
                     <span>
                       {t('settings.imageryLicence')}:{' '}
                       {p.license_url ? (
-                        <a href={p.license_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 font-medium text-forest">
+                        <a
+                          href={p.license_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 font-medium text-forest"
+                        >
                           {p.license}
                           <ExternalLink size={11} aria-hidden="true" />
                         </a>
@@ -82,10 +99,15 @@ export function ImagerySettings() {
                       )}
                     </span>
                     <span className="flex items-center gap-1.5">
-                      {t('settings.imageryAnalysis')}: <Pill tone={TERMS_TONE[analysis]}>{t(`settings.analysis_${analysis}`)}</Pill>
+                      {t('settings.imageryAnalysis')}:{' '}
+                      <Pill tone={TERMS_TONE[analysis]}>{t(`settings.analysis_${analysis}`)}</Pill>
                     </span>
                   </span>
-                  {!p.available && p.unavailable_reason && <span className="text-[12px] text-amber-text">{t('settings.imageryUnavailable', { reason: p.unavailable_reason })}</span>}
+                  {!p.available && p.unavailable_reason && (
+                    <span className="text-[12px] text-amber-text">
+                      {t('settings.imageryUnavailable', { reason: p.unavailable_reason })}
+                    </span>
+                  )}
                 </span>
               </label>
             );

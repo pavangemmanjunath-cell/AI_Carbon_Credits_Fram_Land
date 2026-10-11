@@ -56,7 +56,11 @@ export function PlotsTable({ plots, loading }: { plots: Plot[]; loading: boolean
         <thead>
           <tr className="text-left text-[12px] text-muted">
             {['colName', 'colArea', 'colSource', 'colAdded', 'colActions'].map((k) => (
-              <th key={k} scope="col" className={`border-b border-line px-4 py-3 font-medium ${k === 'colActions' ? 'text-right' : ''}`}>
+              <th
+                key={k}
+                scope="col"
+                className={`border-b border-line px-4 py-3 font-medium ${k === 'colActions' ? 'text-right' : ''}`}
+              >
                 {t(`data.${k}`)}
               </th>
             ))}
@@ -89,11 +93,21 @@ export function PlotsTable({ plots, loading }: { plots: Plot[]; loading: boolean
                       <MapPinned size={14} aria-hidden="true" />
                       {t('data.openOnMap')}
                     </Button>
-                    <Link to={`/app/plots/${p.plot_id}/results`} onClick={() => setSelectedPlotId(p.plot_id)} className={buttonClass('secondary', 'sm')}>
+                    <Link
+                      to={`/app/plots/${p.plot_id}/results`}
+                      onClick={() => setSelectedPlotId(p.plot_id)}
+                      className={buttonClass('secondary', 'sm')}
+                    >
                       <ChartColumn size={14} aria-hidden="true" />
                       {t('data.results')}
                     </Link>
-                    <Button size="sm" variant="ghost" aria-label={t('data.deleteNamed', { name: p.name })} title={t('data.delete')} onClick={() => remove(p)}>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      aria-label={t('data.deleteNamed', { name: p.name })}
+                      title={t('data.delete')}
+                      onClick={() => remove(p)}
+                    >
                       <Trash2 size={14} aria-hidden="true" />
                     </Button>
                   </div>

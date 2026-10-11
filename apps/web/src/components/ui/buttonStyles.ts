@@ -16,6 +16,10 @@ const sizes: Record<ButtonSize, string> = {
 };
 
 /** Shared button classes, usable on <button>, <a> and router <Link>. */
-export function buttonClass(variant: ButtonVariant = 'primary', size: ButtonSize = 'md', extra = '') {
+export function buttonClass(
+  variant: ButtonVariant = 'primary',
+  size: ButtonSize = 'md',
+  extra = '',
+) {
   return `${base} ${variants[variant]} ${sizes[size]} ${extra}`.trim();
 }

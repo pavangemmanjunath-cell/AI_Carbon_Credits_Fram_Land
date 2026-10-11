@@ -14,7 +14,10 @@ export function Stepper({ current, completed = [] }: StepperProps) {
   const { t } = useTranslation();
   const currentIndex = ORDER.indexOf(current);
   return (
-    <ol aria-label={t('steps.progress')} className="flex min-w-0 flex-1 flex-wrap items-center gap-1 lg:gap-1.5">
+    <ol
+      aria-label={t('steps.progress')}
+      className="flex min-w-0 flex-1 flex-wrap items-center gap-1 lg:gap-1.5"
+    >
       {ORDER.map((key, index) => {
         const done = completed.includes(key) || index < currentIndex;
         const active = key === current;
@@ -36,12 +39,16 @@ export function Stepper({ current, completed = [] }: StepperProps) {
                 {done ? <Check size={14} aria-hidden="true" /> : index + 1}
               </span>
               <span className="hidden flex-col leading-tight xl:flex">
-                <span className={`text-[13px] font-semibold ${active ? 'text-forest-deep' : 'text-ink-2'}`}>
+                <span
+                  className={`text-[13px] font-semibold ${active ? 'text-forest-deep' : 'text-ink-2'}`}
+                >
                   {t(`steps.${key}`)}
                 </span>
                 <span className="text-[11px] text-muted">{t(`steps.${key}Hint`)}</span>
               </span>
-              <span className={`text-[13px] font-semibold xl:hidden ${active ? 'text-forest-deep' : 'text-ink-2'}`}>
+              <span
+                className={`text-[13px] font-semibold xl:hidden ${active ? 'text-forest-deep' : 'text-ink-2'}`}
+              >
                 {t(`steps.${key}`)}
               </span>
             </span>

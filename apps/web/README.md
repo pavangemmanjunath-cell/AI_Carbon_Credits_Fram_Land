@@ -38,18 +38,18 @@ the web app share one file. Copy [`.env.example`](../../.env.example) to `.env` 
 
 ## Scripts (run inside `apps/web`)
 
-| Command | What it does |
-| --- | --- |
-| `npm run dev` | Dev server with hot reload (port 5173) |
-| `npm run build` | Production build into `dist/` |
-| `npm run preview` | Serve the build on port 4173 |
-| `npm run typecheck` | `tsc` for the app and node configs |
-| `npm run lint`, `npm run lint:fix` | ESLint |
-| `npm run format`, `npm run format:check` | Prettier |
-| `npm run test -- --run` | Vitest once (without `--run` it starts in watch mode) |
-| `npm run test:coverage` | Vitest with coverage |
-| `npm run test:e2e` | Playwright smoke tests against the preview build |
-| `npm run fixtures:demo` | Refresh `public/demo/` from `data/sample/responses/` |
+| Command                                  | What it does                                          |
+| ---------------------------------------- | ----------------------------------------------------- |
+| `npm run dev`                            | Dev server with hot reload (port 5173)                |
+| `npm run build`                          | Production build into `dist/`                         |
+| `npm run preview`                        | Serve the build on port 4173                          |
+| `npm run typecheck`                      | `tsc` for the app and node configs                    |
+| `npm run lint`, `npm run lint:fix`       | ESLint                                                |
+| `npm run format`, `npm run format:check` | Prettier                                              |
+| `npm run test -- --run`                  | Vitest once (without `--run` it starts in watch mode) |
+| `npm run test:coverage`                  | Vitest with coverage                                  |
+| `npm run test:e2e`                       | Playwright smoke tests against the preview build      |
+| `npm run fixtures:demo`                  | Refresh `public/demo/` from `data/sample/responses/`  |
 
 From the repository root, `make test-web` runs the typecheck and the unit tests, `make lint` includes ESLint,
 `make samples` regenerates the sample responses and then the demo fixtures, and `make screenshots` captures the
@@ -59,14 +59,14 @@ documentation screenshots (see [Screenshots](#screenshots)).
 
 Every `VITE_*` value is compiled into the bundle and is therefore **public**; never put a secret in one.
 
-| Variable | Purpose |
-| --- | --- |
-| `VITE_API_BASE_URL` | API root, for example `http://localhost:8000/api/v1` |
-| `VITE_BASEMAP_STYLE_URL` | MapLibre style JSON; the default is the MapLibre demo style, for development only |
-| `VITE_BASEMAP_PMTILES_URL` | Your own Protomaps PMTiles basemap (ODbL attribution required); it takes precedence over the style URL |
-| `VITE_SATELLITE_TILES_URL`, `VITE_SATELLITE_ATTRIBUTION` | Optional override for the Satellite view and its mandatory attribution. Without it the app uses the provider recommended by `GET /imagery/providers`; respect the provider's licence |
-| `VITE_DEFAULT_COUNTRY`, `VITE_DEFAULT_LANGUAGE` | Initial country (`IN`, `US`, `EU`) and language |
-| `VITE_API_KEY` | Optional `X-API-Key` header value for an API that sets `ATLAS_API_KEYS`; read by `services/api.ts`, not listed in `.env.example`. It sits in the bundle, so anyone who loads the app can read it: it identifies the deployment, it does not protect it |
+| Variable                                                 | Purpose                                                                                                                                                                                                                                                |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `VITE_API_BASE_URL`                                      | API root, for example `http://localhost:8000/api/v1`                                                                                                                                                                                                   |
+| `VITE_BASEMAP_STYLE_URL`                                 | MapLibre style JSON; the default is the MapLibre demo style, for development only                                                                                                                                                                      |
+| `VITE_BASEMAP_PMTILES_URL`                               | Your own Protomaps PMTiles basemap (ODbL attribution required); it takes precedence over the style URL                                                                                                                                                 |
+| `VITE_SATELLITE_TILES_URL`, `VITE_SATELLITE_ATTRIBUTION` | Optional override for the Satellite view and its mandatory attribution. Without it the app uses the provider recommended by `GET /imagery/providers`; respect the provider's licence                                                                   |
+| `VITE_DEFAULT_COUNTRY`, `VITE_DEFAULT_LANGUAGE`          | Initial country (`IN`, `US`, `EU`) and language                                                                                                                                                                                                        |
+| `VITE_API_KEY`                                           | Optional `X-API-Key` header value for an API that sets `ATLAS_API_KEYS`; read by `services/api.ts`, not listed in `.env.example`. It sits in the bundle, so anyone who loads the app can read it: it identifies the deployment, it does not protect it |
 
 `VITE_TERRAIN_TILES_URL` (still passed by `infra/docker/Dockerfile.web`) is no longer read: the terrain views went with
 the 3D scenes.
@@ -155,12 +155,12 @@ Settings); `/app/settings`. `/app/plots` redirects to `/app/data`, and the retir
 shows "API offline - showing demo data". Genuine API errors (404, 422 and so on) are never hidden. The fallback never
 computes a number; a plot created offline gets the demo estimate back with a note saying so.
 
-| Area | When the API is unreachable |
-| --- | --- |
-| Plots, analysis, trees, estimates, policy, market, simulation, explanation, report | Demo fixtures, with the banner |
-| Pin + size, tree line, typed coordinates | Browser calculations, labelled as such |
-| Imports, tree-cover detection, imagery providers | A message that the API is needed; the Satellite switch is unavailable |
-| AI agents, tree age | A message that the API is needed: the transcript, the rules and the numbers exist only on the server |
+| Area                                                                               | When the API is unreachable                                                                          |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Plots, analysis, trees, estimates, policy, market, simulation, explanation, report | Demo fixtures, with the banner                                                                       |
+| Pin + size, tree line, typed coordinates                                           | Browser calculations, labelled as such                                                               |
+| Imports, tree-cover detection, imagery providers                                   | A message that the API is needed; the Satellite switch is unavailable                                |
+| AI agents, tree age                                                                | A message that the API is needed: the transcript, the rules and the numbers exist only on the server |
 
 ## Tests
 

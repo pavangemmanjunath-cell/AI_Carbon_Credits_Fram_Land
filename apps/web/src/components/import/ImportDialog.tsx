@@ -1,5 +1,14 @@
 import { useEffect, useMemo, useRef, useState, type DragEvent } from 'react';
-import { Boxes, CircleCheckBig, CloudUpload, File as FileIcon, FileCode, FileSpreadsheet, ShieldCheck, X } from 'lucide-react';
+import {
+  Boxes,
+  CircleCheckBig,
+  CloudUpload,
+  File as FileIcon,
+  FileCode,
+  FileSpreadsheet,
+  ShieldCheck,
+  X,
+} from 'lucide-react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/Button';
 import { Dialog } from '@/components/ui/Dialog';
@@ -9,14 +18,33 @@ import { regionIdFor, type AreaUnit } from '@/config/regions';
 import { DEFAULT_FORM } from '@/features/workspace/logic/workspaceModel';
 import { errorMessage } from '@/lib/errors';
 import { formatArea, formatInteger, formatNumber, intlLocale } from '@/lib/format';
-import { formatBytes, importOutcomes, IMPORT_ACCEPT, treeCountToUse, type ImportFileType, type TreeFormDefaults } from '@/lib/imports';
+import {
+  formatBytes,
+  importOutcomes,
+  IMPORT_ACCEPT,
+  treeCountToUse,
+  type ImportFileType,
+  type TreeFormDefaults,
+} from '@/lib/imports';
 import { usePlots, useSpecies } from '@/services/queries';
 import { useUiStore } from '@/store/uiStore';
 import type { Plot } from '@/types/api';
-import { useImportQueue, type ActionState, type ImportQueue, type QueueItem } from './useImportQueue';
+import {
+  useImportQueue,
+  type ActionState,
+  type ImportQueue,
+  type QueueItem,
+} from './useImportQueue';
 
 function TypeIcon({ type }: { type: ImportFileType }) {
-  const Icon = type === 'las' || type === 'laz' || type === 'e57' ? Boxes : type === 'csv' ? FileSpreadsheet : type === 'unknown' ? FileIcon : FileCode;
+  const Icon =
+    type === 'las' || type === 'laz' || type === 'e57'
+      ? Boxes
+      : type === 'csv'
+        ? FileSpreadsheet
+        : type === 'unknown'
+          ? FileIcon
+          : FileCode;
   return (
     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] bg-mint text-forest-deep">
       <Icon size={18} aria-hidden="true" />
@@ -47,7 +75,11 @@ export function ImportDialog({ onClose }: { onClose: () => void }) {
     if (activeTreeForm) return activeTreeForm;
     const fallbackSpecies = species?.[0]?.id;
     if (!fallbackSpecies) return null;
-    return { species_id: fallbackSpecies, plantation_year: DEFAULT_FORM.plantation_year, survival_rate: DEFAULT_FORM.survival_rate };
+    return {
+      species_id: fallbackSpecies,
+      plantation_year: DEFAULT_FORM.plantation_year,
+      survival_rate: DEFAULT_FORM.survival_rate,
+    };
   }, [activeTreeForm, species]);
 
   const queue = useImportQueue({
@@ -116,7 +148,13 @@ export function ImportDialog({ onClose }: { onClose: () => void }) {
             <Trans
               i18nKey="import.dropText"
               components={{
-                browse: <button type="button" className="font-semibold text-forest underline underline-offset-2" onClick={() => inputRef.current?.click()} />,
+                browse: (
+                  <button
+                    type="button"
+                    className="font-semibold text-forest underline underline-offset-2"
+                    onClick={() => inputRef.current?.click()}
+                  />
+                ),
               }}
             />
           </p>
@@ -139,13 +177,28 @@ export function ImportDialog({ onClose }: { onClose: () => void }) {
         {queue.queue.length > 0 && (
           <ul aria-label={t('import.fileList')} className="m-0 flex list-none flex-col gap-2 p-0">
             {queue.queue.map((item) => (
-              <FileRow key={item.id} item={item} queue={queue} plots={plotList} locale={locale} country={selectedPlot?.country ?? country} areaUnit={areaUnit} canUseTrees={Boolean(treeDefaults)} />
+              <FileRow
+                key={item.id}
+                item={item}
+                queue={queue}
+                plots={plotList}
+                locale={locale}
+                country={selectedPlot?.country ?? country}
+                areaUnit={areaUnit}
+                canUseTrees={Boolean(treeDefaults)}
+              />
             ))}
           </ul>
         )}
 
         <div className="flex flex-col gap-3 rounded-[12px] border border-line p-3.5">
-          <Switch checked={useBoundaryAsLand} onChange={setUseBoundaryAsLand} label={t('import.useBoundary')} hint={t('import.useBoundaryHint')} disabled={running} />
+          <Switch
+            checked={useBoundaryAsLand}
+            onChange={setUseBoundaryAsLand}
+            label={t('import.useBoundary')}
+            hint={t('import.useBoundaryHint')}
+            disabled={running}
+          />
           <Switch
             checked={runDetection}
             onChange={setRunDetection}
@@ -160,7 +213,11 @@ export function ImportDialog({ onClose }: { onClose: () => void }) {
             <ShieldCheck size={15} className="shrink-0 text-forest" aria-hidden="true" />
             {t('import.privacy')}
           </p>
-          <p className="m-0 pl-[23px] text-muted">{selectedPlot ? t('import.linkedTo', { plot: selectedPlot.name }) : t('import.notLinked')}</p>
+          <p className="m-0 pl-[23px] text-muted">
+            {selectedPlot
+              ? t('import.linkedTo', { plot: selectedPlot.name })
+              : t('import.notLinked')}
+          </p>
         </div>
       </div>
     </Dialog>
@@ -177,8 +234,12 @@ interface RowProps {
   canUseTrees: boolean;
 }
 
-function actionLabel(state: ActionState | undefined, labels: { idle: string; pending: string; done: (name: string) => string }): { text: string; disabled: boolean; done: boolean } {
-  if (!state || state.status === 'idle' || state.status === 'error') return { text: labels.idle, disabled: false, done: false };
+function actionLabel(
+  state: ActionState | undefined,
+  labels: { idle: string; pending: string; done: (name: string) => string },
+): { text: string; disabled: boolean; done: boolean } {
+  if (!state || state.status === 'idle' || state.status === 'error')
+    return { text: labels.idle, disabled: false, done: false };
   if (state.status === 'pending') return { text: labels.pending, disabled: true, done: false };
   return { text: labels.done(state.plotName), disabled: true, done: true };
 }
@@ -204,14 +265,23 @@ function FileRow({ item, queue, plots, locale, country, areaUnit, canUseTrees }:
           </span>
         </div>
 
-        {item.status === 'unsupported' && <span className="text-[12px] text-amber-text">{t('import.unsupported')}</span>}
-        {item.status === 'cancelled' && <span className="text-[12px] text-muted">{t('import.status_cancelled')}</span>}
+        {item.status === 'unsupported' && (
+          <span className="text-[12px] text-amber-text">{t('import.unsupported')}</span>
+        )}
+        {item.status === 'cancelled' && (
+          <span className="text-[12px] text-muted">{t('import.status_cancelled')}</span>
+        )}
         {item.status === 'uploading' && (
           <div className="flex items-center gap-2" aria-live="polite">
             <span className="block h-1.5 flex-1 overflow-hidden rounded-full bg-[#E3E9E4]">
-              <span className="block h-full bg-forest transition-[width]" style={{ width: `${pct}%` }} />
+              <span
+                className="block h-full bg-forest transition-[width]"
+                style={{ width: `${pct}%` }}
+              />
             </span>
-            <span className="w-24 shrink-0 text-right font-mono text-[11px] text-ink-2">{pct >= 100 ? t('import.analysing') : t('import.uploading', { pct })}</span>
+            <span className="w-24 shrink-0 text-right font-mono text-[11px] text-ink-2">
+              {pct >= 100 ? t('import.analysing') : t('import.uploading', { pct })}
+            </span>
           </div>
         )}
         {item.status === 'error' && (
@@ -247,24 +317,49 @@ function FileRow({ item, queue, plots, locale, country, areaUnit, canUseTrees }:
               });
               return (
                 <div key="boundary" className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="text-[13px] text-ink">{t('import.boundaryFound', { area })}</span>
-                  <Button size="sm" variant={action.done ? 'ghost' : 'secondary'} disabled={action.disabled} onClick={() => void queue.applyAsLand(item.id, record)}>
-                    {action.done && <CircleCheckBig size={14} className="text-forest" aria-hidden="true" />}
+                  <span className="text-[13px] text-ink">
+                    {t('import.boundaryFound', { area })}
+                  </span>
+                  <Button
+                    size="sm"
+                    variant={action.done ? 'ghost' : 'secondary'}
+                    disabled={action.disabled}
+                    onClick={() => void queue.applyAsLand(item.id, record)}
+                  >
+                    {action.done && (
+                      <CircleCheckBig size={14} className="text-forest" aria-hidden="true" />
+                    )}
                     {action.text}
                   </Button>
-                  {land?.status === 'error' && <span role="alert" className="w-full text-[12px] text-amber-text">{errorMessage(land.error, t)}</span>}
+                  {land?.status === 'error' && (
+                    <span role="alert" className="w-full text-[12px] text-amber-text">
+                      {errorMessage(land.error, t)}
+                    </span>
+                  )}
                 </div>
               );
             }
             const count = treeCountToUse(record, target?.plot_id) ?? outcome.count;
-            const linked = record.plot_id ? (plots.find((p) => p.plot_id === record.plot_id) ?? null) : null;
+            const linked = record.plot_id
+              ? (plots.find((p) => p.plot_id === record.plot_id) ?? null)
+              : null;
             const n = formatInteger(outcome.count, locale);
             const detected =
               outcome.meanHeightM != null
-                ? t('import.treesDetectedHeight', { count: outcome.count, n, height: formatNumber(outcome.meanHeightM, locale, { maximumFractionDigits: 1 }) })
+                ? t('import.treesDetectedHeight', {
+                    count: outcome.count,
+                    n,
+                    height: formatNumber(outcome.meanHeightM, locale, { maximumFractionDigits: 1 }),
+                  })
                 : t('import.treesDetected', { count: outcome.count, n });
             const action = actionLabel(trees, {
-              idle: target ? t('import.useTrees', { count, n: formatInteger(count, locale), plot: target.name }) : '',
+              idle: target
+                ? t('import.useTrees', {
+                    count,
+                    n: formatInteger(count, locale),
+                    plot: target.name,
+                  })
+                : '',
               pending: t('import.saving'),
               done: (name) => t('import.treesUsed', { plot: name }),
             });
@@ -272,17 +367,37 @@ function FileRow({ item, queue, plots, locale, country, areaUnit, canUseTrees }:
               <div key="trees" className="flex flex-col gap-1.5">
                 <span className="text-[13px] text-ink">
                   {detected}
-                  {outcome.countInPlot != null && outcome.countInPlot !== outcome.count && linked && (
-                    <span className="text-ink-2"> · {t('import.insidePlot', { n: formatInteger(outcome.countInPlot, locale), plot: linked.name })}</span>
-                  )}
+                  {outcome.countInPlot != null &&
+                    outcome.countInPlot !== outcome.count &&
+                    linked && (
+                      <span className="text-ink-2">
+                        {' '}
+                        ·{' '}
+                        {t('import.insidePlot', {
+                          n: formatInteger(outcome.countInPlot, locale),
+                          plot: linked.name,
+                        })}
+                      </span>
+                    )}
                 </span>
                 {target && canUseTrees ? (
                   <span className="flex flex-wrap items-center gap-2">
-                    <Button size="sm" variant={action.done ? 'ghost' : 'secondary'} disabled={action.disabled} onClick={() => void queue.applyTrees(item.id, record, target)}>
-                      {action.done && <CircleCheckBig size={14} className="text-forest" aria-hidden="true" />}
+                    <Button
+                      size="sm"
+                      variant={action.done ? 'ghost' : 'secondary'}
+                      disabled={action.disabled}
+                      onClick={() => void queue.applyTrees(item.id, record, target)}
+                    >
+                      {action.done && (
+                        <CircleCheckBig size={14} className="text-forest" aria-hidden="true" />
+                      )}
                       {action.text}
                     </Button>
-                    {trees?.status === 'error' && <span role="alert" className="text-[12px] text-amber-text">{errorMessage(trees.error, t)}</span>}
+                    {trees?.status === 'error' && (
+                      <span role="alert" className="text-[12px] text-amber-text">
+                        {errorMessage(trees.error, t)}
+                      </span>
+                    )}
                   </span>
                 ) : (
                   <span className="text-[12px] text-muted">{t('import.needLandForTrees')}</span>
@@ -291,13 +406,16 @@ function FileRow({ item, queue, plots, locale, country, areaUnit, canUseTrees }:
             );
           })}
 
-        {item.status === 'done' && record && record.warnings.length > 0 && record.status !== 'failed' && (
-          <ul className="m-0 list-disc pl-4 text-[11px] text-muted">
-            {record.warnings.slice(0, 3).map((w) => (
-              <li key={w}>{w}</li>
-            ))}
-          </ul>
-        )}
+        {item.status === 'done' &&
+          record &&
+          record.warnings.length > 0 &&
+          record.status !== 'failed' && (
+            <ul className="m-0 list-disc pl-4 text-[11px] text-muted">
+              {record.warnings.slice(0, 3).map((w) => (
+                <li key={w}>{w}</li>
+              ))}
+            </ul>
+          )}
       </div>
       <button
         type="button"

@@ -16,7 +16,27 @@ const detection: Detection = {
   features: {
     type: 'FeatureCollection',
     features: [
-      { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[0, 0], [1, 0], [1, 1], [0, 0]]] }, properties: { id: 'P1', label: 'tree cover', confidence: 0.82, area_m2: 4100, mean_ndvi: 0.71 } },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Polygon',
+          coordinates: [
+            [
+              [0, 0],
+              [1, 0],
+              [1, 1],
+              [0, 0],
+            ],
+          ],
+        },
+        properties: {
+          id: 'P1',
+          label: 'tree cover',
+          confidence: 0.82,
+          area_m2: 4100,
+          mean_ndvi: 0.71,
+        },
+      },
     ],
   },
   summary: { patches: 6, covered_fraction: 0.61, area_hectares: 1.3 },
@@ -35,23 +55,45 @@ describe('AI-detected tree cover display helpers', () => {
   });
 
   it('summarises patches and covered share from the server', () => {
-    expect(detectionSummary(detection)).toEqual({ patches: 6, coveredFraction: 0.61, areaHectares: 1.3 });
+    expect(detectionSummary(detection)).toEqual({
+      patches: 6,
+      coveredFraction: 0.61,
+      areaHectares: 1.3,
+    });
     expect(detectionSummary(undefined)).toBeNull();
   });
 
   it('prepares the popup values for one patch', () => {
-    expect(patchInfo(detection.features.features[0].properties)).toEqual({ confidence: '0.82', hectares: 0.41 });
+    expect(patchInfo(detection.features.features[0].properties)).toEqual({
+      confidence: '0.82',
+      hectares: 0.41,
+    });
     expect(patchInfo({ confidence: 0.5 })).toBeNull();
     expect(patchInfo(undefined)).toBeNull();
   });
 });
 
 describe('error messages', () => {
-  const t = (key: string, options?: Record<string, unknown>) => (options ? `${key}:${JSON.stringify(options)}` : key);
+  const t = (key: string, options?: Record<string, unknown>) =>
+    options ? `${key}:${JSON.stringify(options)}` : key;
 
   it('shows the RFC 7807 detail of API problems', () => {
-    expect(errorMessage(new ApiError(415, { title: 'Unsupported Media Type', detail: 'Convert the E57 file to LAS/LAZ with CloudCompare or PDAL.' }, 'x'), t)).toBe('Convert the E57 file to LAS/LAZ with CloudCompare or PDAL.');
-    expect(errorMessage(new ApiError(413, { title: 'Payload Too Large' }, 'x'), t)).toBe('Payload Too Large');
+    expect(
+      errorMessage(
+        new ApiError(
+          415,
+          {
+            title: 'Unsupported Media Type',
+            detail: 'Convert the E57 file to LAS/LAZ with CloudCompare or PDAL.',
+          },
+          'x',
+        ),
+        t,
+      ),
+    ).toBe('Convert the E57 file to LAS/LAZ with CloudCompare or PDAL.');
+    expect(errorMessage(new ApiError(413, { title: 'Payload Too Large' }, 'x'), t)).toBe(
+      'Payload Too Large',
+    );
   });
 
   it('uses friendly messages for server-only features, network failures and cancels', () => {

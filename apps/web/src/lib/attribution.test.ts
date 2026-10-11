@@ -1,10 +1,21 @@
 import { describe, expect, it } from 'vitest';
-import { attributionParts, dataAttributions, plainAttribution, styleAttributions } from './attribution';
+import {
+  attributionParts,
+  dataAttributions,
+  plainAttribution,
+  styleAttributions,
+} from './attribution';
 
 describe('map attribution', () => {
   it('turns HTML attribution into plain text', () => {
-    expect(plainAttribution('<a href="https://www.openstreetmap.org/copyright">&copy; OpenStreetMap</a> contributors')).toBe('© OpenStreetMap contributors');
-    expect(plainAttribution('<script>alert(1)</script>Esri &amp; partners')).toBe('alert(1) Esri & partners');
+    expect(
+      plainAttribution(
+        '<a href="https://www.openstreetmap.org/copyright">&copy; OpenStreetMap</a> contributors',
+      ),
+    ).toBe('© OpenStreetMap contributors');
+    expect(plainAttribution('<script>alert(1)</script>Esri &amp; partners')).toBe(
+      'alert(1) Esri & partners',
+    );
     expect(plainAttribution(null)).toBe('');
   });
 

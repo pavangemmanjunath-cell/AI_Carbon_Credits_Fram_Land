@@ -9,7 +9,10 @@ import type { ImageryProvider, ImageryProvidersResponse, TermsAnswer } from '@/t
 export const ENV_PROVIDER_ID = 'env-override';
 
 /** Provider built from VITE_SATELLITE_TILES_URL / VITE_SATELLITE_ATTRIBUTION. */
-export function envImageryProvider(url: string | undefined, attribution: string | undefined): ImageryProvider | null {
+export function envImageryProvider(
+  url: string | undefined,
+  attribution: string | undefined,
+): ImageryProvider | null {
   if (!url) return null;
   return {
     id: ENV_PROVIDER_ID,
@@ -33,12 +36,17 @@ export function envImageryProvider(url: string | undefined, attribution: string 
   };
 }
 
-export function availableProviders(response: ImageryProvidersResponse | null | undefined): ImageryProvider[] {
+export function availableProviders(
+  response: ImageryProvidersResponse | null | undefined,
+): ImageryProvider[] {
   return (response?.providers ?? []).filter((p) => p.available && Boolean(p.url));
 }
 
 /** The user's stored choice when still available, else the recommended provider, else the first available one. */
-export function chooseProvider(response: ImageryProvidersResponse | null | undefined, preferredId?: string | null): ImageryProvider | null {
+export function chooseProvider(
+  response: ImageryProvidersResponse | null | undefined,
+  preferredId?: string | null,
+): ImageryProvider | null {
   const available = availableProviders(response);
   if (available.length === 0) return null;
   return (
@@ -54,7 +62,10 @@ export function resolveImagery(input: {
   response?: ImageryProvidersResponse | null;
   preferredId?: string | null;
 }): ImageryProvider | null {
-  return envImageryProvider(input.envUrl, input.envAttribution) ?? chooseProvider(input.response, input.preferredId);
+  return (
+    envImageryProvider(input.envUrl, input.envAttribution) ??
+    chooseProvider(input.response, input.preferredId)
+  );
 }
 
 export type TermsStatus = 'yes' | 'no' | 'check';
@@ -66,13 +77,19 @@ export function termsStatus(answer: TermsAnswer | null | undefined): TermsStatus
   return 'check';
 }
 
-export function coversCountry(provider: ImageryProvider, country: string | null | undefined): boolean {
+export function coversCountry(
+  provider: ImageryProvider,
+  country: string | null | undefined,
+): boolean {
   if (provider.coverage.type === 'global') return true;
   return Boolean(country) && provider.coverage.countries.includes(String(country).toUpperCase());
 }
 
 /** Country code sent to `GET /imagery/providers`: the plot's ISO code, else the app country (EU → none, the server default applies). */
-export function imageryCountry(plotCountry: string | null | undefined, appCountry: string | null | undefined): string | undefined {
+export function imageryCountry(
+  plotCountry: string | null | undefined,
+  appCountry: string | null | undefined,
+): string | undefined {
   const code = (plotCountry ?? appCountry ?? '').toUpperCase();
   return code && code !== 'EU' ? code : undefined;
 }

@@ -17,7 +17,11 @@ export interface NdviCellProperties {
 /** Fraction of each cell left as a gap so the grid stays readable over imagery. */
 export const CELL_GAP = 0.04;
 
-export function cubeSliceToGeoJson(cube: Cube, timeIndex: number, gap = CELL_GAP): FeatureCollection<Polygon, NdviCellProperties> {
+export function cubeSliceToGeoJson(
+  cube: Cube,
+  timeIndex: number,
+  gap = CELL_GAP,
+): FeatureCollection<Polygon, NdviCellProperties> {
   const { rows, cols, bbox } = cube.grid;
   const [west, south, east, north] = bbox;
   const dLon = (east - west) / cols;
@@ -37,7 +41,18 @@ export function cubeSliceToGeoJson(cube: Cube, timeIndex: number, gap = CELL_GAP
       const s = north - (r + 1) * dLat + insetLat;
       features.push({
         type: 'Feature',
-        geometry: { type: 'Polygon', coordinates: [[[w, s], [e, s], [e, n], [w, n], [w, s]]] },
+        geometry: {
+          type: 'Polygon',
+          coordinates: [
+            [
+              [w, s],
+              [e, s],
+              [e, n],
+              [w, n],
+              [w, s],
+            ],
+          ],
+        },
         properties: { row: r, col: c, value, color: ndviColor(value) },
       });
     }
@@ -48,11 +63,16 @@ export function cubeSliceToGeoJson(cube: Cube, timeIndex: number, gap = CELL_GAP
 /** Distinct calendar years covered by the cube, ascending. */
 export function cubeYears(cube: Cube | null | undefined): number[] {
   if (!cube) return [];
-  return [...new Set(cube.times.map((m) => Number(m.slice(0, 4))))].filter(Number.isFinite).sort((a, b) => a - b);
+  return [...new Set(cube.times.map((m) => Number(m.slice(0, 4))))]
+    .filter(Number.isFinite)
+    .sort((a, b) => a - b);
 }
 
 /** Index of the latest month of `year` (or the last month when the year is not in the cube). */
-export function timeIndexForYear(cube: Cube | null | undefined, year: number | null | undefined): number {
+export function timeIndexForYear(
+  cube: Cube | null | undefined,
+  year: number | null | undefined,
+): number {
   if (!cube || cube.times.length === 0) return 0;
   let index = -1;
   cube.times.forEach((m, i) => {
@@ -62,7 +82,11 @@ export function timeIndexForYear(cube: Cube | null | undefined, year: number | n
 }
 
 /** The year the slider should show: the stored one when the cube covers it, else the latest. */
-export function activeYear(cube: Cube | null | undefined, stored: number | null | undefined, fallback = new Date().getFullYear()): number {
+export function activeYear(
+  cube: Cube | null | undefined,
+  stored: number | null | undefined,
+  fallback = new Date().getFullYear(),
+): number {
   const years = cubeYears(cube);
   if (stored != null && years.includes(stored)) return stored;
   return years[years.length - 1] ?? fallback;

@@ -1,11 +1,7 @@
 {
   "plot_id": "PLT-DEMOIN",
   "mode": "demo",
-  "years": [
-    2024,
-    2025,
-    2026
-  ],
+  "years": [2024, 2025, 2026],
   "landcover": {
     "dataset": "ESA WorldCover",
     "version": "2021 v200",
@@ -38,12 +34,8 @@
     ],
     "tree_cover_share": 0.27,
     "cropland_share": 0.68,
-    "tiles": [
-      "ESA_WorldCover_10m_2021_v200_N12E075_Map.tif"
-    ],
-    "notes": [
-      "demo mode: synthetic land-cover shares"
-    ],
+    "tiles": ["ESA_WorldCover_10m_2021_v200_N12E075_Map.tif"],
+    "notes": ["demo mode: synthetic land-cover shares"],
     "provenance": {
       "generated_at": "2026-10-05T19:53:49Z",
       "api_version": "1",
@@ -107,9 +99,7 @@
       "change_pct": 10.5,
       "statement": "Vegetation index increased approximately 10% during the evaluated period."
     },
-    "notes": [
-      "demo mode: synthetic observations"
-    ],
+    "notes": ["demo mode: synthetic observations"],
     "provenance": {
       "generated_at": "2026-10-05T19:53:49Z",
       "api_version": "1",
@@ -165,11 +155,7 @@
   },
   "soil": {
     "soc_0_30cm_g_per_kg": 10.53,
-    "depths_used": [
-      "0-5cm",
-      "5-15cm",
-      "15-30cm"
-    ],
+    "depths_used": ["0-5cm", "5-15cm", "15-30cm"],
     "provenance": {
       "generated_at": "2026-10-05T19:53:49Z",
       "api_version": "1",
@@ -191,9 +177,7 @@
   },
   "terrain": null,
   "data_quality": {
-    "warnings": [
-      "demo mode: synthetic observations"
-    ]
+    "warnings": ["demo mode: synthetic observations"]
   },
   "generated_at": "2026-10-05T19:53:49Z"
 }

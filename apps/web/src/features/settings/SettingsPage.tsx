@@ -13,7 +13,11 @@ export default function SettingsPage() {
   // Read-only: the server operator decides whether an optional LLM may rephrase agent messages.
   const catalog = useAgentCatalog();
   const framework = catalog.data?.framework;
-  const narration = !framework ? t('settings.aiNarrationUnknown') : framework.llm_enabled ? t('settings.aiNarrationOn') : t('settings.aiNarrationOff');
+  const narration = !framework
+    ? t('settings.aiNarrationUnknown')
+    : framework.llm_enabled
+      ? t('settings.aiNarrationOn')
+      : t('settings.aiNarrationOff');
   return (
     <div className="mx-auto flex max-w-[860px] flex-col gap-4 p-5">
       <div className="flex flex-col gap-1">
@@ -23,7 +27,11 @@ export default function SettingsPage() {
       <section className="card flex flex-col gap-4 p-5">
         <label className="flex flex-col gap-1.5 text-sm">
           <span className="font-semibold">{t('settings.language')}</span>
-          <select value={s.language} onChange={(e) => s.setLanguage(e.target.value)} className="field-input h-10 max-w-xs">
+          <select
+            value={s.language}
+            onChange={(e) => s.setLanguage(e.target.value)}
+            className="field-input h-10 max-w-xs"
+          >
             {LANGUAGES.map((l) => (
               <option key={l.code} value={l.code}>
                 {l.label}
@@ -34,7 +42,11 @@ export default function SettingsPage() {
         </label>
         <label className="flex flex-col gap-1.5 text-sm">
           <span className="font-semibold">{t('settings.country')}</span>
-          <select value={s.country} onChange={(e) => s.setCountry(e.target.value)} className="field-input h-10 max-w-xs">
+          <select
+            value={s.country}
+            onChange={(e) => s.setCountry(e.target.value)}
+            className="field-input h-10 max-w-xs"
+          >
             {REGIONS.map((r) => (
               <option key={r.id} value={r.id}>
                 {t(`country.${r.id}`)}
@@ -46,8 +58,20 @@ export default function SettingsPage() {
           <legend className="mb-1 font-semibold">{t('settings.units')}</legend>
           {(['auto', 'hectare', 'acre'] as const).map((u) => (
             <label key={u} className="flex items-center gap-2.5">
-              <input type="radio" name="units" className="h-4 w-4 accent-forest" checked={s.areaUnit === u} onChange={() => s.setAreaUnit(u)} />
-              {t(u === 'auto' ? 'settings.unitsAuto' : u === 'hectare' ? 'settings.unitsHectare' : 'settings.unitsAcre')}
+              <input
+                type="radio"
+                name="units"
+                className="h-4 w-4 accent-forest"
+                checked={s.areaUnit === u}
+                onChange={() => s.setAreaUnit(u)}
+              />
+              {t(
+                u === 'auto'
+                  ? 'settings.unitsAuto'
+                  : u === 'hectare'
+                    ? 'settings.unitsHectare'
+                    : 'settings.unitsAcre',
+              )}
             </label>
           ))}
         </fieldset>
@@ -57,7 +81,9 @@ export default function SettingsPage() {
             <ShieldCheck size={16} className="mt-0.5 shrink-0 text-forest" aria-hidden="true" />
             <span>
               {t('landing.modeDeterministic')}
-              <span className="block text-[12px] text-muted">{t('landing.modeDeterministicText')}</span>
+              <span className="block text-[12px] text-muted">
+                {t('landing.modeDeterministicText')}
+              </span>
             </span>
           </span>
           <span className="flex items-start gap-2.5">
@@ -70,7 +96,10 @@ export default function SettingsPage() {
         </div>
       </section>
       <ImagerySettings />
-      <Link to="/app/species" className="card flex items-center gap-3 p-5 text-ink no-underline transition-colors hover:border-forest">
+      <Link
+        to="/app/species"
+        className="card flex items-center gap-3 p-5 text-ink no-underline transition-colors hover:border-forest"
+      >
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-mint text-forest-deep">
           <TreePine size={20} aria-hidden="true" />
         </span>
@@ -85,7 +114,9 @@ export default function SettingsPage() {
         <p className="m-0">{t('settings.privacyText1')}</p>
         <p className="m-0">{t('settings.privacyText2')}</p>
         <p className="m-0">{t('settings.privacyText3')}</p>
-        <p className="m-0 font-mono text-[12px] text-muted">{t('settings.apiStatus', { status: s.apiStatus, mode: s.apiMode ?? '—' })}</p>
+        <p className="m-0 font-mono text-[12px] text-muted">
+          {t('settings.apiStatus', { status: s.apiStatus, mode: s.apiMode ?? '—' })}
+        </p>
       </section>
     </div>
   );

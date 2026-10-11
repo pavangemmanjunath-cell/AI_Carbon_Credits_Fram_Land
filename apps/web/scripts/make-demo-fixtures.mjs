@@ -17,10 +17,26 @@ const outDir = path.resolve(here, '../public/demo');
 mkdirSync(outDir, { recursive: true });
 
 const files = [
-  'analysis.json', 'attribution.json', 'carbon-estimate.json', 'cube.json', 'geocode.json', 'health.json',
-  'market-scenario.json', 'methodologies.json', 'plot.json', 'plots.json', 'policy-eligibility.json',
-  'regions.json', 'species.json', 'trees.json', 'vegetation.json', 'explain.json',
-  'simulate-IN.json', 'simulate-US.json', 'simulate-EU.json', 'report.html',
+  'analysis.json',
+  'attribution.json',
+  'carbon-estimate.json',
+  'cube.json',
+  'geocode.json',
+  'health.json',
+  'market-scenario.json',
+  'methodologies.json',
+  'plot.json',
+  'plots.json',
+  'policy-eligibility.json',
+  'regions.json',
+  'species.json',
+  'trees.json',
+  'vegetation.json',
+  'explain.json',
+  'simulate-IN.json',
+  'simulate-US.json',
+  'simulate-EU.json',
+  'report.html',
 ];
 for (const name of files) {
   const from = path.join(source, name);

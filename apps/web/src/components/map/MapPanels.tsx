@@ -11,7 +11,15 @@ import { useUiStore, type LayerKey } from '@/store/uiStore';
 import type { GeocodeResult } from '@/types/api';
 
 // ─── Search ─────────────────────────────────────────────────────────────────
-export function MapSearch({ country, onPick, initialQuery = '' }: { country: string; onPick: (r: GeocodeResult) => void; initialQuery?: string }) {
+export function MapSearch({
+  country,
+  onPick,
+  initialQuery = '',
+}: {
+  country: string;
+  onPick: (r: GeocodeResult) => void;
+  initialQuery?: string;
+}) {
   const { t } = useTranslation();
   const [query, setQuery] = useState(initialQuery);
   const [open, setOpen] = useState(false);
@@ -54,11 +62,21 @@ export function MapSearch({ country, onPick, initialQuery = '' }: { country: str
           onFocus={() => setOpen(true)}
           className="h-full w-full bg-transparent text-sm outline-none placeholder:text-muted"
         />
-        {isFetching && <span className="h-4 w-4 animate-spin rounded-full border-2 border-line border-t-forest" aria-hidden="true" />}
+        {isFetching && (
+          <span
+            className="h-4 w-4 animate-spin rounded-full border-2 border-line border-t-forest"
+            aria-hidden="true"
+          />
+        )}
       </form>
       {open && debounced.trim().length >= 3 && (
-        <ul role="listbox" className="float-control absolute left-0 right-0 top-12 z-20 max-h-64 overflow-auto py-1 text-sm">
-          {results.length === 0 && !isFetching && <li className="px-3.5 py-2 text-muted">{t('map.noResults')}</li>}
+        <ul
+          role="listbox"
+          className="float-control absolute left-0 right-0 top-12 z-20 max-h-64 overflow-auto py-1 text-sm"
+        >
+          {results.length === 0 && !isFetching && (
+            <li className="px-3.5 py-2 text-muted">{t('map.noResults')}</li>
+          )}
           {results.map((r) => (
             <li key={`${r.lat}-${r.lon}-${r.label}`}>
               <button
@@ -122,7 +140,14 @@ interface LayerPanelProps {
   showLegend?: boolean;
 }
 
-export function LayerPanel({ hasPlot, locale, treeCover, importedTrees, insights, showLegend = true }: LayerPanelProps) {
+export function LayerPanel({
+  hasPlot,
+  locale,
+  treeCover,
+  importedTrees,
+  insights,
+  showLegend = true,
+}: LayerPanelProps) {
   const { t } = useTranslation();
   const layers = useUiStore((s) => s.layers);
   const toggleLayer = useUiStore((s) => s.toggleLayer);
@@ -134,10 +159,13 @@ export function LayerPanel({ hasPlot, locale, treeCover, importedTrees, insights
       if (!hasPlot) return <span className="text-muted">{t('map.selectPlotFirst')}</span>;
       if (insights.loading) return <span className="text-muted">{t('app.loading')}</span>;
       if (key === 'landuse') {
-        if (!insights.landUse.length) return <span className="text-muted">{t('map.landUseNone')}</span>;
+        if (!insights.landUse.length)
+          return <span className="text-muted">{t('map.landUseNone')}</span>;
         return (
           <span className="font-medium text-forest-deep">
-            {insights.landUse.map((c) => `${formatPercent(c.share, locale)} ${c.key ? t(c.key) : c.name}`).join(' · ')}
+            {insights.landUse
+              .map((c) => `${formatPercent(c.share, locale)} ${c.key ? t(c.key) : c.name}`)
+              .join(' · ')}
           </span>
         );
       }
@@ -146,21 +174,34 @@ export function LayerPanel({ hasPlot, locale, treeCover, importedTrees, insights
       return (
         <>
           {soil.socGPerKg != null && (
-            <span className="font-medium text-forest-deep">{t('map.soilSummary', { soc: formatNumber(soil.socGPerKg, locale, { maximumFractionDigits: 1 }) })}</span>
+            <span className="font-medium text-forest-deep">
+              {t('map.soilSummary', {
+                soc: formatNumber(soil.socGPerKg, locale, { maximumFractionDigits: 1 }),
+              })}
+            </span>
           )}
-          {soil.climateZoneLabel && <span className="text-muted">{t('map.climateZoneLine', { zone: soil.climateZoneLabel })}</span>}
+          {soil.climateZoneLabel && (
+            <span className="text-muted">
+              {t('map.climateZoneLine', { zone: soil.climateZoneLabel })}
+            </span>
+          )}
         </>
       );
     }
     if (key === 'treeCover') {
       if (!hasPlot) return <span className="text-muted">{t('map.selectPlotFirst')}</span>;
       if (treeCover.loading) return <span className="text-muted">{t('map.treeCoverLoading')}</span>;
-      if (treeCover.error) return <span className="text-amber-text">{errorMessage(treeCover.error, t)}</span>;
+      if (treeCover.error)
+        return <span className="text-amber-text">{errorMessage(treeCover.error, t)}</span>;
       return (
         <>
           {treeCover.summary && (
             <span className="font-medium text-forest-deep">
-              {t('map.treeCoverSummary', { count: treeCover.summary.patches, n: formatInteger(treeCover.summary.patches, locale), share: formatPercent(treeCover.summary.coveredFraction, locale) })}
+              {t('map.treeCoverSummary', {
+                count: treeCover.summary.patches,
+                n: formatInteger(treeCover.summary.patches, locale),
+                share: formatPercent(treeCover.summary.coveredFraction, locale),
+              })}
             </span>
           )}
           <span className="text-muted">{t('map.treeCoverNote')}</span>
@@ -169,11 +210,17 @@ export function LayerPanel({ hasPlot, locale, treeCover, importedTrees, insights
     }
     if (key === 'importedTrees') {
       if (importedTrees.loading) return <span className="text-muted">{t('app.loading')}</span>;
-      if (importedTrees.error) return <span className="text-amber-text">{errorMessage(importedTrees.error, t)}</span>;
-      if (importedTrees.count == null) return <span className="text-muted">{t('map.importedTreesNone')}</span>;
+      if (importedTrees.error)
+        return <span className="text-amber-text">{errorMessage(importedTrees.error, t)}</span>;
+      if (importedTrees.count == null)
+        return <span className="text-muted">{t('map.importedTreesNone')}</span>;
       return (
         <span className="font-medium text-forest-deep">
-          {t('map.importedTreesCount', { count: importedTrees.count, n: formatInteger(importedTrees.count, locale), file: importedTrees.filename ?? '' })}
+          {t('map.importedTreesCount', {
+            count: importedTrees.count,
+            n: formatInteger(importedTrees.count, locale),
+            file: importedTrees.filename ?? '',
+          })}
         </span>
       );
     }
@@ -181,7 +228,10 @@ export function LayerPanel({ hasPlot, locale, treeCover, importedTrees, insights
   };
 
   return (
-    <section aria-label={t('map.layersTitle')} className="float-control flex min-h-0 w-[272px] flex-col gap-2 overflow-y-auto p-3">
+    <section
+      aria-label={t('map.layersTitle')}
+      className="float-control flex min-h-0 w-[272px] flex-col gap-2 overflow-y-auto p-3"
+    >
       <div className="flex items-center justify-between">
         <span className="flex items-center gap-2 text-[13px] font-semibold">
           <Layers size={16} className="text-forest" aria-hidden="true" />
@@ -193,11 +243,20 @@ export function LayerPanel({ hasPlot, locale, treeCover, importedTrees, insights
         const extra = detail(item.key);
         return (
           <label key={item.key} className="flex cursor-pointer items-start gap-2.5 text-[13px]">
-            <input type="checkbox" className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-forest" checked={layers[item.key]} onChange={() => toggleLayer(item.key)} />
+            <input
+              type="checkbox"
+              className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-forest"
+              checked={layers[item.key]}
+              onChange={() => toggleLayer(item.key)}
+            />
             <span className="flex min-w-0 flex-col">
               <span className="font-medium">{t(item.label)}</span>
               <span className="text-[11px] text-muted">{t(item.hint)}</span>
-              {extra && <span className="mt-0.5 flex flex-col gap-0.5 text-[11px] leading-snug">{extra}</span>}
+              {extra && (
+                <span className="mt-0.5 flex flex-col gap-0.5 text-[11px] leading-snug">
+                  {extra}
+                </span>
+              )}
             </span>
           </label>
         );
@@ -208,20 +267,42 @@ export function LayerPanel({ hasPlot, locale, treeCover, importedTrees, insights
 }
 
 // ─── Year slider ─────────────────────────────────────────────────────────────
-export function YearSlider({ years, value, onChange, caption }: { years: number[]; value: number; onChange: (y: number) => void; caption: string }) {
+export function YearSlider({
+  years,
+  value,
+  onChange,
+  caption,
+}: {
+  years: number[];
+  value: number;
+  onChange: (y: number) => void;
+  caption: string;
+}) {
   const { t } = useTranslation();
   if (years.length === 0) return null;
   const min = years[0];
   const max = years[years.length - 1];
   return (
-    <section aria-label={t('map.observationYear')} className="float-control flex w-full max-w-[340px] flex-col gap-1.5 px-3.5 py-2.5">
+    <section
+      aria-label={t('map.observationYear')}
+      className="float-control flex w-full max-w-[340px] flex-col gap-1.5 px-3.5 py-2.5"
+    >
       <div className="flex items-center justify-between text-[12px]">
         <label htmlFor="observation-year" className="font-semibold">
           {t('map.observationYear')}
         </label>
         <span className="font-mono text-ink-2">{caption}</span>
       </div>
-      <input id="observation-year" type="range" min={min} max={max} step={1} value={value} onChange={(e) => onChange(Number(e.target.value))} className="range-input" />
+      <input
+        id="observation-year"
+        type="range"
+        min={min}
+        max={max}
+        step={1}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        className="range-input"
+      />
       <div className="flex justify-between font-mono text-[11px] text-muted">
         {years.map((y) => (
           <span key={y}>{y}</span>
@@ -241,7 +322,10 @@ export function Legend() {
     { label: t('map.legendWater'), swatch: 'bg-[#7FB1E0]' },
   ];
   return (
-    <section aria-label={t('map.legendTitle')} className="mt-1 grid grid-cols-2 gap-x-3 gap-y-1.5 border-t border-line pt-2.5 text-[12px]">
+    <section
+      aria-label={t('map.legendTitle')}
+      className="mt-1 grid grid-cols-2 gap-x-3 gap-y-1.5 border-t border-line pt-2.5 text-[12px]"
+    >
       {rows.map((r) => (
         <span key={r.label} className="flex items-center gap-2">
           <span className={`h-3.5 w-3.5 rounded-[3px] ${r.swatch}`} aria-hidden="true" />

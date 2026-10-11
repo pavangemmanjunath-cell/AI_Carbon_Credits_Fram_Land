@@ -83,22 +83,46 @@ export function queueReducer(state: QueueItem[], action: QueueAction): QueueItem
         if (known.has(id)) continue;
         known.add(id);
         const type = importFileType(file.name);
-        added.push({ id, file, type, status: type === 'unknown' ? 'unsupported' : 'ready', progress: 0, record: null, error: null });
+        added.push({
+          id,
+          file,
+          type,
+          status: type === 'unknown' ? 'unsupported' : 'ready',
+          progress: 0,
+          record: null,
+          error: null,
+        });
       }
       return added.length ? [...state, ...added] : state;
     }
     case 'remove':
       return state.filter((item) => item.id !== action.id || item.status === 'uploading');
     case 'start':
-      return state.map((item) => (item.id === action.id ? { ...item, status: 'uploading', progress: 0, error: null } : item));
+      return state.map((item) =>
+        item.id === action.id ? { ...item, status: 'uploading', progress: 0, error: null } : item,
+      );
     case 'progress':
-      return state.map((item) => (item.id === action.id && item.status === 'uploading' ? { ...item, progress: Math.max(item.progress, Math.min(1, action.progress)) } : item));
+      return state.map((item) =>
+        item.id === action.id && item.status === 'uploading'
+          ? { ...item, progress: Math.max(item.progress, Math.min(1, action.progress)) }
+          : item,
+      );
     case 'done':
-      return state.map((item) => (item.id === action.id ? { ...item, status: 'done', progress: 1, record: action.record } : item));
+      return state.map((item) =>
+        item.id === action.id
+          ? { ...item, status: 'done', progress: 1, record: action.record }
+          : item,
+      );
     case 'error':
-      return state.map((item) => (item.id === action.id ? { ...item, status: 'error', error: action.error } : item));
+      return state.map((item) =>
+        item.id === action.id ? { ...item, status: 'error', error: action.error } : item,
+      );
     case 'cancelPending':
-      return state.map((item) => (item.status === 'ready' || item.status === 'uploading' ? { ...item, status: 'cancelled' } : item));
+      return state.map((item) =>
+        item.status === 'ready' || item.status === 'uploading'
+          ? { ...item, status: 'cancelled' }
+          : item,
+      );
     case 'reset':
       return [];
     default:
@@ -132,7 +156,11 @@ export function importOutcomes(record: ImportRecord): ImportOutcome[] {
   if (record.status === 'failed') return [{ kind: 'failed', reason: record.warnings[0] ?? null }];
   const outcomes: ImportOutcome[] = [];
   if (record.boundary) {
-    outcomes.push({ kind: 'boundary', areaHectares: record.boundary.area_hectares, name: record.boundary.name ?? null });
+    outcomes.push({
+      kind: 'boundary',
+      areaHectares: record.boundary.area_hectares,
+      name: record.boundary.name ?? null,
+    });
   }
   if (record.trees && record.trees.count > 0) {
     outcomes.push({
@@ -153,7 +181,9 @@ export function importOutcomes(record: ImportRecord): ImportOutcome[] {
 export function treeCountToUse(record: ImportRecord, targetPlotId?: string | null): number | null {
   if (!record.trees || record.trees.count <= 0) return null;
   const sameTarget = targetPlotId === undefined || targetPlotId === record.plot_id;
-  return sameTarget && record.trees.count_in_plot != null ? record.trees.count_in_plot : record.trees.count;
+  return sameTarget && record.trees.count_in_plot != null
+    ? record.trees.count_in_plot
+    : record.trees.count;
 }
 
 export interface TreeFormDefaults {
@@ -166,7 +196,11 @@ export interface TreeFormDefaults {
  * Inventory body for "Use N trees for <plot>": the count (and mean height from
  * a point cloud) come from the import; species and year from the tree form.
  */
-export function inventoryFromImport(record: ImportRecord, form: TreeFormDefaults, targetPlotId?: string | null): TreeInventoryBody | null {
+export function inventoryFromImport(
+  record: ImportRecord,
+  form: TreeFormDefaults,
+  targetPlotId?: string | null,
+): TreeInventoryBody | null {
   const count = treeCountToUse(record, targetPlotId);
   if (!count) return null;
   const height = record.trees?.mean_height_m;

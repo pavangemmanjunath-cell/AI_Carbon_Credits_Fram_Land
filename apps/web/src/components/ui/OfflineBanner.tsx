@@ -15,7 +15,11 @@ export function OfflineBanner() {
     >
       <WifiOff size={16} aria-hidden="true" />
       <span className="flex-1">{t('banner.offline')}</span>
-      <button type="button" onClick={dismiss} className="font-semibold underline-offset-2 hover:underline">
+      <button
+        type="button"
+        onClick={dismiss}
+        className="font-semibold underline-offset-2 hover:underline"
+      >
         {t('banner.dismiss')}
       </button>
     </div>

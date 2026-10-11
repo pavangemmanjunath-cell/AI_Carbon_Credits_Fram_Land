@@ -16,7 +16,18 @@ import {
   validateTreeLineSettings,
 } from './landInput';
 
-const square = { type: 'Polygon' as const, coordinates: [[[0, 0], [0.01, 0], [0.01, 0.01], [0, 0.01], [0, 0]]] };
+const square = {
+  type: 'Polygon' as const,
+  coordinates: [
+    [
+      [0, 0],
+      [0.01, 0],
+      [0.01, 0.01],
+      [0, 0.01],
+      [0, 0],
+    ],
+  ],
+};
 
 describe('land input helpers', () => {
   it('offers the five friendly ways to add land in a fixed order, each with labels', () => {
@@ -64,24 +75,54 @@ describe('land input helpers', () => {
   });
 
   it('builds the geometry helper bodies', () => {
-    expect(fromPointBody({ lat: 13.29, lon: 77.53 }, 2, 'acre')).toEqual({ lat: 13.29, lon: 77.53, area: { value: 2, unit: 'ac' }, shape: 'square' });
-    const line = { type: 'LineString' as const, coordinates: [[0, 0], [1, 1]] };
+    expect(fromPointBody({ lat: 13.29, lon: 77.53 }, 2, 'acre')).toEqual({
+      lat: 13.29,
+      lon: 77.53,
+      area: { value: 2, unit: 'ac' },
+      shape: 'square',
+    });
+    const line = {
+      type: 'LineString' as const,
+      coordinates: [
+        [0, 0],
+        [1, 1],
+      ],
+    };
     expect(fromLineBody(line, 5, 4)).toEqual({ line, spacing_m: 5, width_m: 4 });
   });
 
   it('maps every mode to the plot source and boundary quality of the contract', () => {
-    expect(plotRequestFor('tree-line', square, 55)).toEqual({ geometry: square, source: 'tree-line', boundary_quality: 'approximate', treeCount: 55 });
-    expect(plotRequestFor('pin', square)).toMatchObject({ source: 'pin-and-area', boundary_quality: 'approximate' });
-    expect(plotRequestFor('coordinates', square)).toMatchObject({ source: 'coordinates', boundary_quality: 'exact' });
-    expect(plotRequestFor('boundary', square)).toMatchObject({ source: 'manual-drawing', boundary_quality: 'exact' });
-    expect(plotRequestFor('edit', square)).toMatchObject({ source: 'manual-drawing', boundary_quality: 'exact' });
+    expect(plotRequestFor('tree-line', square, 55)).toEqual({
+      geometry: square,
+      source: 'tree-line',
+      boundary_quality: 'approximate',
+      treeCount: 55,
+    });
+    expect(plotRequestFor('pin', square)).toMatchObject({
+      source: 'pin-and-area',
+      boundary_quality: 'approximate',
+    });
+    expect(plotRequestFor('coordinates', square)).toMatchObject({
+      source: 'coordinates',
+      boundary_quality: 'exact',
+    });
+    expect(plotRequestFor('boundary', square)).toMatchObject({
+      source: 'manual-drawing',
+      boundary_quality: 'exact',
+    });
+    expect(plotRequestFor('edit', square)).toMatchObject({
+      source: 'manual-drawing',
+      boundary_quality: 'exact',
+    });
   });
 
   it('names new plots with the first free letter', () => {
     expect(nextPlotName([])).toBe('Plot A');
     expect(nextPlotName([{ name: 'Plot A' }, { name: 'plot b' }])).toBe('Plot C');
     expect(nextPlotName([{ name: 'Plot B' }])).toBe('Plot A');
-    const many = Array.from({ length: 26 }, (_, i) => ({ name: `Plot ${String.fromCharCode(65 + i)}` }));
+    const many = Array.from({ length: 26 }, (_, i) => ({
+      name: `Plot ${String.fromCharCode(65 + i)}`,
+    }));
     expect(nextPlotName(many)).toBe('Plot AA');
     expect(nextPlotName([], 'Fläche')).toBe('Fläche A');
   });

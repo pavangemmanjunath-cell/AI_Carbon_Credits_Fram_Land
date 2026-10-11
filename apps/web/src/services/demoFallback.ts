@@ -43,13 +43,19 @@ import type {
 } from '@/types/api';
 import { areaHectares, bboxOf, centroidOf, perimeterMetres, publicCentroid } from '@/lib/geo';
 import { ACRES_PER_HECTARE } from '@/lib/format';
-import { GeometryInputError, offlineFromLine, offlineFromPoint, offlineParseCoordinates } from '@/lib/geometryOffline';
+import {
+  GeometryInputError,
+  offlineFromLine,
+  offlineFromPoint,
+  offlineParseCoordinates,
+} from '@/lib/geometryOffline';
 import { regionIdFor } from '@/config/regions';
 import { ApiError } from './api';
 import { latestInventory } from '@/lib/insights';
 
 export const DEMO_PLOT_ID = 'PLT-DEMOIN';
-const OFFLINE_NOTE = 'Offline demo fixture: values are not recomputed for your inputs. Start the API with `make api`.';
+const OFFLINE_NOTE =
+  'Offline demo fixture: values are not recomputed for your inputs. Start the API with `make api`.';
 
 function fixtureUrl(name: string): string {
   const base = (import.meta.env.BASE_URL as string | undefined) ?? '/';
@@ -81,7 +87,8 @@ export function clearFixtureCache(): void {
   offlineTrees.clear();
 }
 
-const clone = <T>(v: T): T => (typeof structuredClone === 'function' ? structuredClone(v) : (JSON.parse(JSON.stringify(v)) as T));
+const clone = <T>(v: T): T =>
+  typeof structuredClone === 'function' ? structuredClone(v) : (JSON.parse(JSON.stringify(v)) as T);
 
 // In-memory state for things created while offline (plots drawn, trees edited).
 const offlinePlots = new Map<string, Plot>();
@@ -101,7 +108,10 @@ function countryFromCentroid(c: { lat: number; lon: number }): string {
 }
 
 /** Mirrors the contract's confidence rule for tree inventories. */
-export function inventoryDataQuality(body: TreeInventoryBody): { fields: DataQualityField[]; confidence: Confidence } {
+export function inventoryDataQuality(body: TreeInventoryBody): {
+  fields: DataQualityField[];
+  confidence: Confidence;
+} {
   const fields: DataQualityField[] = [
     { name: 'tree_count', status: body.tree_count > 0 ? 'supplied' : 'missing' },
     { name: 'species', status: body.species_id ? 'supplied' : 'missing' },
@@ -112,7 +122,11 @@ export function inventoryDataQuality(body: TreeInventoryBody): { fields: DataQua
   ];
   const supplied = (name: string) => fields.find((f) => f.name === name)?.status === 'supplied';
   const confidence: Confidence =
-    supplied('tree_count') && supplied('species') && supplied('age') && supplied('dbh') && supplied('height')
+    supplied('tree_count') &&
+    supplied('species') &&
+    supplied('age') &&
+    supplied('dbh') &&
+    supplied('height')
       ? 'high'
       : supplied('tree_count') && supplied('species') && supplied('age')
         ? 'medium'
@@ -144,7 +158,11 @@ function asProblem<A extends unknown[], R>(fn: (...args: A) => R): (...args: A) 
       return fn(...args);
     } catch (error) {
       if (error instanceof GeometryInputError) {
-        throw new ApiError(422, { title: 'Invalid geometry input', status: 422, detail: error.message }, 'Invalid geometry input');
+        throw new ApiError(
+          422,
+          { title: 'Invalid geometry input', status: 422, detail: error.message },
+          'Invalid geometry input',
+        );
       }
       throw error;
     }
@@ -152,7 +170,15 @@ function asProblem<A extends unknown[], R>(fn: (...args: A) => R): (...args: A) 
 }
 
 function notFound(resource: string, id: string): ApiError {
-  return new ApiError(404, { title: 'Not found', status: 404, detail: `${resource} ${id} does not exist in the offline demo` }, 'Not found');
+  return new ApiError(
+    404,
+    {
+      title: 'Not found',
+      status: 404,
+      detail: `${resource} ${id} does not exist in the offline demo`,
+    },
+    'Not found',
+  );
 }
 
 async function allPlots(): Promise<Plot[]> {
@@ -161,7 +187,10 @@ async function allPlots(): Promise<Plot[]> {
 }
 
 export const demo = {
-  health: async (): Promise<Health> => ({ ...(await loadFixture<Health>('health.json')), time: new Date().toISOString() }),
+  health: async (): Promise<Health> => ({
+    ...(await loadFixture<Health>('health.json')),
+    time: new Date().toISOString(),
+  }),
   regions: () => loadFixture<Region[]>('regions.json'),
   geocode: async (q: string, country?: string): Promise<GeocodeResponse> => {
     const fixture = await loadFixture<GeocodeResponse>('geocode.json');
@@ -223,14 +252,25 @@ export const demo = {
       fixture.data_quality = { warnings: [...fixture.data_quality.warnings, OFFLINE_NOTE] };
       const plot = offlinePlots.get(plotId);
       if (plot && fixture.landcover) {
-        fixture.landcover.classes = fixture.landcover.classes.map((c) => ({ ...c, area_ha: Number((c.share * plot.area_hectares).toFixed(2)) }));
+        fixture.landcover.classes = fixture.landcover.classes.map((c) => ({
+          ...c,
+          area_ha: Number((c.share * plot.area_hectares).toFixed(2)),
+        }));
       }
     }
     return fixture;
   },
   cube: async (plotId: string, index: CubeIndex = 'ndvi'): Promise<Cube> => {
     if (index !== 'ndvi') {
-      throw new ApiError(422, { title: 'Unsupported index', status: 422, detail: `Index ${index} is not available in the offline demo` }, 'Unsupported index');
+      throw new ApiError(
+        422,
+        {
+          title: 'Unsupported index',
+          status: 422,
+          detail: `Index ${index} is not available in the offline demo`,
+        },
+        'Unsupported index',
+      );
     }
     const fixture = clone(await loadFixture<Cube>('cube.json'));
     fixture.plot_id = plotId;
@@ -248,9 +288,17 @@ export const demo = {
     return { items: [] };
   },
   createTrees: async (plotId: string, body: TreeInventoryBody): Promise<TreeInventory> => {
-    const [plot, species] = await Promise.all([demo.getPlot(plotId), loadFixture<Species[]>('species.json')]);
+    const [plot, species] = await Promise.all([
+      demo.getPlot(plotId),
+      loadFixture<Species[]>('species.json'),
+    ]);
     const sp = species.find((s) => s.id === body.species_id);
-    if (!sp) throw new ApiError(422, { title: 'Unknown species', status: 422, detail: `species_id ${body.species_id}` }, 'Unknown species');
+    if (!sp)
+      throw new ApiError(
+        422,
+        { title: 'Unknown species', status: 422, detail: `species_id ${body.species_id}` },
+        'Unknown species',
+      );
     inventoryCounter += 1;
     const year = new Date().getUTCFullYear();
     const inventory: TreeInventory = {
@@ -268,19 +316,29 @@ export const demo = {
       data_quality: inventoryDataQuality(body),
       created_at: new Date().toISOString(),
     };
-    const existing = offlineTrees.get(plotId) ?? (plotId === DEMO_PLOT_ID ? clone(await loadFixture<TreeInventoryList>('trees.json')).items : []);
+    const existing =
+      offlineTrees.get(plotId) ??
+      (plotId === DEMO_PLOT_ID
+        ? clone(await loadFixture<TreeInventoryList>('trees.json')).items
+        : []);
     offlineTrees.set(plotId, [inventory, ...existing]);
     return inventory;
   },
 
-  carbonEstimate: async (plotId: string, body: CarbonEstimateBody = {}): Promise<CarbonEstimate> => {
+  carbonEstimate: async (
+    plotId: string,
+    body: CarbonEstimateBody = {},
+  ): Promise<CarbonEstimate> => {
     const fixture = clone(await loadFixture<CarbonEstimate>('carbon-estimate.json'));
     fixture.plot_id = plotId;
     const latest = latestInventory((await demo.listTrees(plotId)).items);
     const inventoryId = body.inventory_id ?? latest?.inventory_id ?? null;
     fixture.inventory_id = inventoryId;
     if (inventoryId !== 'INV-01' || plotId !== DEMO_PLOT_ID) {
-      fixture.provenance = { ...fixture.provenance, notes: [...(fixture.provenance.notes ?? []), OFFLINE_NOTE] };
+      fixture.provenance = {
+        ...fixture.provenance,
+        notes: [...(fixture.provenance.notes ?? []), OFFLINE_NOTE],
+      };
       if (latest) fixture.confidence = latest.data_quality.confidence;
     }
     return fixture;
@@ -299,11 +357,15 @@ export const demo = {
     }
     return fixture;
   },
-  marketScenario: async (_plotId: string, _estimateId?: string): Promise<MarketScenario> => loadFixture<MarketScenario>('market-scenario.json'),
+  marketScenario: async (_plotId: string, _estimateId?: string): Promise<MarketScenario> =>
+    loadFixture<MarketScenario>('market-scenario.json'),
 
-  createReport: async (_plotId: string, _body: ReportBody): Promise<ReportHandle> => loadFixture<ReportHandle>('report.json'),
+  createReport: async (_plotId: string, _body: ReportBody): Promise<ReportHandle> =>
+    loadFixture<ReportHandle>('report.json'),
   fetchReportDocument: async (reportUrl: string): Promise<string> => {
-    const url = reportUrl.startsWith('/demo/') ? fixtureUrl(reportUrl.replace('/demo/', '')) : reportUrl;
+    const url = reportUrl.startsWith('/demo/')
+      ? fixtureUrl(reportUrl.replace('/demo/', ''))
+      : reportUrl;
     const r = await fetch(url);
     if (!r.ok) throw new Error(`Report not available offline (${r.status})`);
     return r.text();
@@ -320,7 +382,10 @@ export const demo = {
       year: body.planting_year,
       horizon: body.horizon_years,
     };
-    fixture.provenance = { ...fixture.provenance, notes: [...(fixture.provenance.notes ?? []), OFFLINE_NOTE] };
+    fixture.provenance = {
+      ...fixture.provenance,
+      notes: [...(fixture.provenance.notes ?? []), OFFLINE_NOTE],
+    };
     return fixture;
   },
 
@@ -329,16 +394,23 @@ export const demo = {
     const i = body.indicators;
     const parts: string[] = [];
     if (i.area_hectares != null) parts.push(`Your plot covers about ${i.area_hectares} hectares.`);
-    if (i.tree_count != null && i.species) parts.push(`You reported ${i.tree_count} ${i.species} trees.`);
+    if (i.tree_count != null && i.species)
+      parts.push(`You reported ${i.tree_count} ${i.species} trees.`);
     if (i.ndvi != null) {
       const health = i.ndvi >= 0.6 ? 'healthy' : i.ndvi >= 0.3 ? 'moderate' : 'sparse';
-      parts.push(`The latest vegetation index (NDVI ${i.ndvi}) indicates ${health} vegetation${i.ndvi_trend_pct != null ? `, with a ${i.ndvi_trend_pct > 0 ? 'rise' : 'change'} of about ${Math.abs(i.ndvi_trend_pct).toFixed(0)}% over the evaluated period` : ''}.`);
+      parts.push(
+        `The latest vegetation index (NDVI ${i.ndvi}) indicates ${health} vegetation${i.ndvi_trend_pct != null ? `, with a ${i.ndvi_trend_pct > 0 ? 'rise' : 'change'} of about ${Math.abs(i.ndvi_trend_pct).toFixed(0)}% over the evaluated period` : ''}.`,
+      );
     }
     if (i.estimate_central != null) {
-      parts.push(`The model estimates roughly ${i.estimate_central} tCO₂e of annual removal (range ${i.estimate_low ?? '—'} to ${i.estimate_high ?? '—'}), with ${i.confidence ?? 'medium'} confidence.`);
+      parts.push(
+        `The model estimates roughly ${i.estimate_central} tCO₂e of annual removal (range ${i.estimate_low ?? '—'} to ${i.estimate_high ?? '—'}), with ${i.confidence ?? 'medium'} confidence.`,
+      );
     }
     if (i.missing_evidence && i.missing_evidence.length > 0) {
-      parts.push(`Collecting ${i.missing_evidence.join(', ')} would narrow the range and improve programme readiness.`);
+      parts.push(
+        `Collecting ${i.missing_evidence.join(', ')} would narrow the range and improve programme readiness.`,
+      );
     }
     parts.push('This is a scenario estimate, not an issued carbon credit.');
     return {
@@ -351,7 +423,9 @@ export const demo = {
   // v0.2 geometry helpers: computed in the browser and labelled as offline.
   geometryFromPoint: asProblem((body: FromPointBody): FromPointResult => offlineFromPoint(body)),
   geometryFromLine: asProblem((body: FromLineBody): FromLineResult => offlineFromLine(body)),
-  parseCoordinates: asProblem((body: ParseCoordinatesBody): ParseCoordinatesResult => offlineParseCoordinates(body)),
+  parseCoordinates: asProblem((body: ParseCoordinatesBody): ParseCoordinatesResult =>
+    offlineParseCoordinates(body),
+  ),
 };
 
 export type DemoApi = typeof demo;

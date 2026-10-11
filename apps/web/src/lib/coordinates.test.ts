@@ -1,9 +1,19 @@
 import { describe, expect, it } from 'vitest';
-import { formatLatLon, parseCoordinateLine, parseCoordinateText, ringFromPoints } from './coordinates';
+import {
+  formatLatLon,
+  parseCoordinateLine,
+  parseCoordinateText,
+  ringFromPoints,
+} from './coordinates';
 
 describe('coordinate text parsing (offline mirror of /geometry/parse-coordinates)', () => {
   it('reads decimal degrees with comma, space or semicolon separators', () => {
-    for (const line of ['13.2923, 77.5384', '13.2923 77.5384', '13.2923;77.5384', '  13.2923 ,  77.5384 ']) {
+    for (const line of [
+      '13.2923, 77.5384',
+      '13.2923 77.5384',
+      '13.2923;77.5384',
+      '  13.2923 ,  77.5384 ',
+    ]) {
       expect(parseCoordinateLine(line, 1).point).toEqual({ lat: 13.2923, lon: 77.5384 });
     }
     expect(parseCoordinateLine('-33.86, -70.65', 1).point).toEqual({ lat: -33.86, lon: -70.65 });
@@ -35,7 +45,10 @@ describe('coordinate text parsing (offline mirror of /geometry/parse-coordinates
     expect(parsed.point).toEqual({ lat: 37.7749, lon: -122.4194 });
     expect(parsed.warning).toMatch(/Line 3/);
     // 77.5 is a valid latitude, so an Indian lon, lat pair cannot be detected and is kept as typed
-    expect(parseCoordinateLine('77.5384, 13.2923', 1)).toMatchObject({ point: { lat: 77.5384, lon: 13.2923 }, warning: null });
+    expect(parseCoordinateLine('77.5384, 13.2923', 1)).toMatchObject({
+      point: { lat: 77.5384, lon: 13.2923 },
+      warning: null,
+    });
   });
 
   it('rejects junk, out-of-range values and impossible minutes', () => {
@@ -71,7 +84,18 @@ describe('coordinate text parsing (offline mirror of /geometry/parse-coordinates
   });
 
   it('closes rings and formats a point for display', () => {
-    expect(ringFromPoints([{ lat: 1, lon: 2 }, { lat: 3, lon: 4 }, { lat: 5, lon: 6 }])).toEqual([[2, 1], [4, 3], [6, 5], [2, 1]]);
+    expect(
+      ringFromPoints([
+        { lat: 1, lon: 2 },
+        { lat: 3, lon: 4 },
+        { lat: 5, lon: 6 },
+      ]),
+    ).toEqual([
+      [2, 1],
+      [4, 3],
+      [6, 5],
+      [2, 1],
+    ]);
     expect(formatLatLon({ lat: -13.29231, lon: 77.53844 })).toBe('13.2923° S, 77.5384° E');
   });
 });

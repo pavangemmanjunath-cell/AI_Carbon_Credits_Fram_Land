@@ -38,7 +38,11 @@ export function areaHectares(geometry: PolygonGeometry): number {
 }
 
 export function perimeterMetres(geometry: PolygonGeometry): number {
-  return turf.length(turf.polygonToLine(polygonFeature(geometry)) as Feature<Geometry>, { units: 'kilometers' }) * 1000;
+  return (
+    turf.length(turf.polygonToLine(polygonFeature(geometry)) as Feature<Geometry>, {
+      units: 'kilometers',
+    }) * 1000
+  );
 }
 
 export function centroidOf(geometry: PolygonGeometry): LatLon {
@@ -64,7 +68,12 @@ export function pointInPolygon(lon: number, lat: number, geometry: PolygonGeomet
 /** Accepts a Feature, FeatureCollection or bare geometry and returns the first polygon ring set. */
 export function extractPolygon(input: unknown): PolygonGeometry | null {
   if (!input || typeof input !== 'object') return null;
-  const obj = input as { type?: string; coordinates?: unknown; geometry?: unknown; features?: unknown[] };
+  const obj = input as {
+    type?: string;
+    coordinates?: unknown;
+    geometry?: unknown;
+    features?: unknown[];
+  };
   if (obj.type === 'Polygon' && Array.isArray(obj.coordinates)) {
     return { type: 'Polygon', coordinates: obj.coordinates as number[][][] };
   }
@@ -83,17 +92,21 @@ export function extractPolygon(input: unknown): PolygonGeometry | null {
 }
 
 /** Contract validation, mirrored client-side so users get instant feedback. */
-export function validatePolygon(geometry: PolygonGeometry): { ok: true } | { ok: false; reason: string } {
+export function validatePolygon(
+  geometry: PolygonGeometry,
+): { ok: true } | { ok: false; reason: string } {
   const ring = geometry.coordinates[0];
   if (!ring || ring.length < 4) return { ok: false, reason: 'too_few_vertices' };
   if (ring.length > 501) return { ok: false, reason: 'too_many_vertices' };
   for (const [lon, lat] of ring) {
-    if (lon < -180 || lon > 180 || lat < -90 || lat > 90) return { ok: false, reason: 'out_of_bounds' };
+    if (lon < -180 || lon > 180 || lat < -90 || lat > 90)
+      return { ok: false, reason: 'out_of_bounds' };
   }
   const ha = areaHectares(geometry);
   if (ha < 0.01) return { ok: false, reason: 'too_small' };
   if (ha > 10_000) return { ok: false, reason: 'too_large' };
-  if (turf.kinks(polygonFeature(geometry)).features.length > 0) return { ok: false, reason: 'self_intersecting' };
+  if (turf.kinks(polygonFeature(geometry)).features.length > 0)
+    return { ok: false, reason: 'self_intersecting' };
   return { ok: true };
 }
 

@@ -42,9 +42,7 @@
     "change_pct": 10.5,
     "statement": "Vegetation index increased approximately 10% during the evaluated period."
   },
-  "notes": [
-    "demo mode: synthetic observations"
-  ],
+  "notes": ["demo mode: synthetic observations"],
   "provenance": {
     "generated_at": "2026-10-05T19:53:49Z",
     "api_version": "1",

@@ -1,5 +1,16 @@
 import { useState } from 'react';
-import { Calendar, ChevronRight, Info, Leaf, Plus, ShieldCheck, Sprout, TreePine, Vegan, Wind } from 'lucide-react';
+import {
+  Calendar,
+  ChevronRight,
+  Info,
+  Leaf,
+  Plus,
+  ShieldCheck,
+  Sprout,
+  TreePine,
+  Vegan,
+  Wind,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { buttonClass } from '@/components/ui/buttonStyles';
@@ -25,17 +36,34 @@ interface Props {
   onSelectPlot: (id: string) => void;
 }
 
-export function PlotDetailsPanel({ plots, plot, species, form, onForm, estimate, analysis, saving, updating, locale, onSelectPlot }: Props) {
+export function PlotDetailsPanel({
+  plots,
+  plot,
+  species,
+  form,
+  onForm,
+  estimate,
+  analysis,
+  saving,
+  updating,
+  locale,
+  onSelectPlot,
+}: Props) {
   const { t } = useTranslation();
   const areaUnit = useUiStore((s) => s.areaUnit);
   const setLandInputMode = useUiStore((s) => s.setLandInputMode);
-  const [showMeasurements, setShowMeasurements] = useState(Boolean(form.average_dbh_cm || form.average_height_m));
+  const [showMeasurements, setShowMeasurements] = useState(
+    Boolean(form.average_dbh_cm || form.average_height_m),
+  );
   const summary = summarize(estimate, analysis);
   const currentYear = new Date().getFullYear();
 
   if (!plot) {
     return (
-      <aside aria-label={t('panel.title')} className="card flex flex-col gap-3 p-4 text-sm text-muted">
+      <aside
+        aria-label={t('panel.title')}
+        className="card flex flex-col gap-3 p-4 text-sm text-muted"
+      >
         <h2 className="text-[17px] text-ink">{t('panel.title')}</h2>
         {t('panel.noPlot')}
       </aside>
@@ -55,7 +83,11 @@ export function PlotDetailsPanel({ plots, plot, species, form, onForm, estimate,
         </h2>
         <label className="block w-full text-[13px]">
           <span className="sr-only">{t('panel.plotSelector')}</span>
-          <select value={plot.plot_id} onChange={(e) => onSelectPlot(e.target.value)} className="field-input h-10 w-full max-w-full truncate font-semibold">
+          <select
+            value={plot.plot_id}
+            onChange={(e) => onSelectPlot(e.target.value)}
+            className="field-input h-10 w-full max-w-full truncate font-semibold"
+          >
             {plots.map((p) => (
               <option key={p.plot_id} value={p.plot_id}>
                 {p.name}
@@ -68,7 +100,11 @@ export function PlotDetailsPanel({ plots, plot, species, form, onForm, estimate,
             <Info size={14} className="mt-[1px] shrink-0" aria-hidden="true" />
             <span>
               {t('panel.approximateNote')}{' '}
-              <button type="button" onClick={() => setLandInputMode('edit')} className="font-semibold underline underline-offset-2">
+              <button
+                type="button"
+                onClick={() => setLandInputMode('edit')}
+                className="font-semibold underline underline-offset-2"
+              >
                 {t('panel.drawExactEdges')}
               </button>
             </span>
@@ -77,12 +113,27 @@ export function PlotDetailsPanel({ plots, plot, species, form, onForm, estimate,
       </div>
 
       <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
-        <Field id="area" inline label={t('panel.landArea')} icon={<Vegan size={16} className="text-forest" aria-hidden="true" />}>
+        <Field
+          id="area"
+          inline
+          label={t('panel.landArea')}
+          icon={<Vegan size={16} className="text-forest" aria-hidden="true" />}
+        >
           <UnitInput unit={t(area.primaryUnit === 'hectare' ? 'units.hectares' : 'units.acres')}>
-            <input id="area" readOnly value={formatNumber(area.primaryValue, locale, { maximumFractionDigits: 2 })} className="h-10 w-full min-w-0 bg-ground px-3 text-sm text-ink-2" />
+            <input
+              id="area"
+              readOnly
+              value={formatNumber(area.primaryValue, locale, { maximumFractionDigits: 2 })}
+              className="h-10 w-full min-w-0 bg-ground px-3 text-sm text-ink-2"
+            />
           </UnitInput>
         </Field>
-        <Field id="tree-count" inline label={t('panel.numberOfTrees')} icon={<TreePine size={16} className="text-forest" aria-hidden="true" />}>
+        <Field
+          id="tree-count"
+          inline
+          label={t('panel.numberOfTrees')}
+          icon={<TreePine size={16} className="text-forest" aria-hidden="true" />}
+        >
           <UnitInput unit={t('units.trees')}>
             <input
               id="tree-count"
@@ -90,13 +141,25 @@ export function PlotDetailsPanel({ plots, plot, species, form, onForm, estimate,
               min={1}
               step={1}
               value={form.tree_count}
-              onChange={(e) => onForm({ ...form, tree_count: Math.max(0, Math.round(Number(e.target.value))) })}
+              onChange={(e) =>
+                onForm({ ...form, tree_count: Math.max(0, Math.round(Number(e.target.value))) })
+              }
               className="h-10 w-full min-w-0 px-3 text-sm outline-none"
             />
           </UnitInput>
         </Field>
-        <Field id="species" inline label={t('panel.treeType')} icon={<Leaf size={16} className="text-forest" aria-hidden="true" />}>
-          <select id="species" value={form.species_id} onChange={(e) => onForm({ ...form, species_id: e.target.value })} className="field-input h-10">
+        <Field
+          id="species"
+          inline
+          label={t('panel.treeType')}
+          icon={<Leaf size={16} className="text-forest" aria-hidden="true" />}
+        >
+          <select
+            id="species"
+            value={form.species_id}
+            onChange={(e) => onForm({ ...form, species_id: e.target.value })}
+            className="field-input h-10"
+          >
             {species.map((s) => (
               <option key={s.id} value={s.id}>
                 {s.common_name} — {s.scientific_name}
@@ -105,8 +168,18 @@ export function PlotDetailsPanel({ plots, plot, species, form, onForm, estimate,
             {species.length === 0 && <option value={form.species_id}>{form.species_id}</option>}
           </select>
         </Field>
-        <Field id="plantation-year" inline label={t('panel.plantationYear')} icon={<Calendar size={16} className="text-forest" aria-hidden="true" />}>
-          <select id="plantation-year" value={form.plantation_year} onChange={(e) => onForm({ ...form, plantation_year: Number(e.target.value) })} className="field-input h-10">
+        <Field
+          id="plantation-year"
+          inline
+          label={t('panel.plantationYear')}
+          icon={<Calendar size={16} className="text-forest" aria-hidden="true" />}
+        >
+          <select
+            id="plantation-year"
+            value={form.plantation_year}
+            onChange={(e) => onForm({ ...form, plantation_year: Number(e.target.value) })}
+            className="field-input h-10"
+          >
             {years.map((y) => (
               <option key={y} value={y}>
                 {y}
@@ -133,7 +206,12 @@ export function PlotDetailsPanel({ plots, plot, species, form, onForm, estimate,
                 step={0.5}
                 placeholder="—"
                 value={form.average_dbh_cm ?? ''}
-                onChange={(e) => onForm({ ...form, average_dbh_cm: e.target.value === '' ? null : Number(e.target.value) })}
+                onChange={(e) =>
+                  onForm({
+                    ...form,
+                    average_dbh_cm: e.target.value === '' ? null : Number(e.target.value),
+                  })
+                }
                 className="field-input"
               />
             </Field>
@@ -145,7 +223,12 @@ export function PlotDetailsPanel({ plots, plot, species, form, onForm, estimate,
                 step={0.5}
                 placeholder="—"
                 value={form.average_height_m ?? ''}
-                onChange={(e) => onForm({ ...form, average_height_m: e.target.value === '' ? null : Number(e.target.value) })}
+                onChange={(e) =>
+                  onForm({
+                    ...form,
+                    average_height_m: e.target.value === '' ? null : Number(e.target.value),
+                  })
+                }
                 className="field-input"
               />
             </Field>
@@ -165,8 +248,12 @@ export function PlotDetailsPanel({ plots, plot, species, form, onForm, estimate,
             {t('panel.removalRange')}
           </dt>
           <dd className="m-0 flex items-baseline gap-1.5">
-            <span className="big-number text-[20px]">{summary.removal ? formatRange(summary.removal, locale, 1) : '—'}</span>
-            <span className="text-[12px] text-muted">{summary.removal ? unitLabel(summary.removal.unit) : ''}</span>
+            <span className="big-number text-[20px]">
+              {summary.removal ? formatRange(summary.removal, locale, 1) : '—'}
+            </span>
+            <span className="text-[12px] text-muted">
+              {summary.removal ? unitLabel(summary.removal.unit) : ''}
+            </span>
             <InfoButton label={t('panel.whatIsThis')} text={t('panel.removalInfo')} />
           </dd>
         </div>
@@ -176,8 +263,12 @@ export function PlotDetailsPanel({ plots, plot, species, form, onForm, estimate,
             {t('panel.vegetationHealth')}
           </dt>
           <dd className="m-0 flex items-baseline gap-1.5">
-            <span className="big-number text-[20px]">{summary.ndvi != null ? summary.ndvi.toFixed(2) : '—'}</span>
-            <span className="text-[12px] font-semibold text-forest">{summary.ndviClass ? t(`ndvi.${summary.ndviClass}`) : ''}</span>
+            <span className="big-number text-[20px]">
+              {summary.ndvi != null ? summary.ndvi.toFixed(2) : '—'}
+            </span>
+            <span className="text-[12px] font-semibold text-forest">
+              {summary.ndviClass ? t(`ndvi.${summary.ndviClass}`) : ''}
+            </span>
             <InfoButton label={t('panel.whatIsThis')} text={t('panel.vegetationInfo')} />
           </dd>
         </div>
@@ -189,18 +280,31 @@ export function PlotDetailsPanel({ plots, plot, species, form, onForm, estimate,
             </dt>
             <dd className="m-0 flex items-baseline gap-1.5">
               <span className="big-number text-[20px]">{summary.readinessScore ?? '—'}</span>
-              <span className="text-[12px] text-muted">/ 100{summary.readinessGrade ? ` · ${t(`confidence.${summary.readinessGrade}`)}` : ''}</span>
+              <span className="text-[12px] text-muted">
+                / 100
+                {summary.readinessGrade ? ` · ${t(`confidence.${summary.readinessGrade}`)}` : ''}
+              </span>
               <InfoButton label={t('panel.whatIsThis')} text={t('panel.readinessInfo')} />
             </dd>
           </div>
           <span className="block h-2 overflow-hidden rounded-full bg-[#E3E9E4]" aria-hidden="true">
-            <span className="block h-full bg-forest transition-[width]" style={{ width: `${summary.readinessScore ?? 0}%` }} />
+            <span
+              className="block h-full bg-forest transition-[width]"
+              style={{ width: `${summary.readinessScore ?? 0}%` }}
+            />
           </span>
-          {summary.missing.length > 0 && <span className="text-[12px] text-ink-2">{t('panel.missing', { items: summary.missing.slice(0, 3).join(' · ') })}</span>}
+          {summary.missing.length > 0 && (
+            <span className="text-[12px] text-ink-2">
+              {t('panel.missing', { items: summary.missing.slice(0, 3).join(' · ') })}
+            </span>
+          )}
         </div>
       </dl>
 
-      <Link to={`/app/plots/${plot.plot_id}/results`} className={buttonClass('primary', 'lg', 'w-full')}>
+      <Link
+        to={`/app/plots/${plot.plot_id}/results`}
+        className={buttonClass('primary', 'lg', 'w-full')}
+      >
         {infoIcon}
         {t('panel.seeCarbonPotential')}
         <ChevronRight size={16} aria-hidden="true" />

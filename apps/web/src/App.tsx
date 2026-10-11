@@ -23,7 +23,9 @@ function CubeRedirect() {
   const { id } = useParams();
   const selectedPlotId = useUiStore((s) => s.selectedPlotId);
   const plotId = id ?? selectedPlotId;
-  return <Navigate to={plotId ? `/app/plots/${encodeURIComponent(plotId)}/results` : '/app'} replace />;
+  return (
+    <Navigate to={plotId ? `/app/plots/${encodeURIComponent(plotId)}/results` : '/app'} replace />
+  );
 }
 
 export function App() {

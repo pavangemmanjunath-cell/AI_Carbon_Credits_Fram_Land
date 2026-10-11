@@ -356,11 +356,7 @@ export interface Cube {
 // ─── Trees ───────────────────────────────────────────────────────────────────
 
 export type MeasurementSource =
-  | 'user-reported'
-  | 'satellite-derived'
-  | 'government-data'
-  | 'field-measured'
-  | 'model-estimated';
+  'user-reported' | 'satellite-derived' | 'government-data' | 'field-measured' | 'model-estimated';
 
 export interface TreeInventoryBody {
   species_id: string;

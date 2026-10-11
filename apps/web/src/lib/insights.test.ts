@@ -43,20 +43,36 @@ describe('landUseShares', () => {
 
 describe('soilInsight', () => {
   it('reads soil carbon and the climate zone', () => {
-    expect(soilInsight(analysis)).toEqual({ socGPerKg: 10.53, climateZone: 'tropical_dry', climateZoneLabel: 'Tropical dry' });
+    expect(soilInsight(analysis)).toEqual({
+      socGPerKg: 10.53,
+      climateZone: 'tropical_dry',
+      climateZoneLabel: 'Tropical dry',
+    });
   });
 
   it('is null when nothing is known', () => {
     expect(soilInsight(null)).toBeNull();
-    expect(soilInsight({ plot_id: 'x', mode: 'demo', data_quality: { warnings: [] }, generated_at: '' } as unknown as Analysis)).toBeNull();
+    expect(
+      soilInsight({
+        plot_id: 'x',
+        mode: 'demo',
+        data_quality: { warnings: [] },
+        generated_at: '',
+      } as unknown as Analysis),
+    ).toBeNull();
   });
 });
 
 describe('latestInventory', () => {
-  const inv = (id: string, created: string) => ({ inventory_id: id, created_at: created }) as unknown as TreeInventory;
+  const inv = (id: string, created: string) =>
+    ({ inventory_id: id, created_at: created }) as unknown as TreeInventory;
 
   it('picks the most recently saved inventory, not the first in the list', () => {
-    const items = [inv('INV-01', '2026-10-01T10:00:00Z'), inv('INV-02', '2026-10-05T10:00:00Z'), inv('INV-03', '2026-10-03T10:00:00Z')];
+    const items = [
+      inv('INV-01', '2026-10-01T10:00:00Z'),
+      inv('INV-02', '2026-10-05T10:00:00Z'),
+      inv('INV-03', '2026-10-03T10:00:00Z'),
+    ];
     expect(latestInventory(items)?.inventory_id).toBe('INV-02');
   });
 

@@ -39,14 +39,23 @@ export default function ReportsPage() {
           {plots.map((p) => {
             const locale = intlLocale(language, p.country);
             return (
-              <li key={p.plot_id} className="card flex flex-wrap items-center justify-between gap-3 px-4 py-3.5">
+              <li
+                key={p.plot_id}
+                className="card flex flex-wrap items-center justify-between gap-3 px-4 py-3.5"
+              >
                 <span className="flex min-w-0 flex-col">
                   <span className="font-semibold text-ink">{p.name}</span>
                   <span className="text-[12px] text-muted">
-                    {formatArea(p.area_hectares, p.country, locale, areaUnit).primary} · {t(`country.${p.country}`, { defaultValue: p.country })} · {formatDate(p.created_at, locale)}
+                    {formatArea(p.area_hectares, p.country, locale, areaUnit).primary} ·{' '}
+                    {t(`country.${p.country}`, { defaultValue: p.country })} ·{' '}
+                    {formatDate(p.created_at, locale)}
                   </span>
                 </span>
-                <Link to={`/app/plots/${p.plot_id}/report`} onClick={() => setSelectedPlotId(p.plot_id)} className={buttonClass('secondary', 'sm')}>
+                <Link
+                  to={`/app/plots/${p.plot_id}/report`}
+                  onClick={() => setSelectedPlotId(p.plot_id)}
+                  className={buttonClass('secondary', 'sm')}
+                >
                   <FileText size={14} aria-hidden="true" />
                   {t('reports.open')}
                 </Link>

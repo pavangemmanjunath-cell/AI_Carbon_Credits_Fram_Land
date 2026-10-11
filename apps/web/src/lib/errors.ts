@@ -15,7 +15,12 @@ export function isAbortError(error: unknown): boolean {
 export function errorMessage(error: unknown, t: Translate): string {
   if (!error) return '';
   if (error instanceof FeatureNeedsApiError) return t('errors.needsApi');
-  if (error instanceof ApiError) return error.detail || error.title || t('errors.apiError', { status: error.status, title: error.message });
+  if (error instanceof ApiError)
+    return (
+      error.detail ||
+      error.title ||
+      t('errors.apiError', { status: error.status, title: error.message })
+    );
   if (error instanceof NetworkError) return t('errors.network');
   if (isAbortError(error)) return t('errors.cancelled');
   if (error instanceof Error && error.message) return error.message;

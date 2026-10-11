@@ -94,11 +94,15 @@ export class NetworkError extends Error {
 /** True when the failure means "the API is not there" rather than "the request was wrong". */
 export function isUnreachable(error: unknown): boolean {
   if (error instanceof NetworkError) return true;
-  if (error instanceof ApiError) return error.status === 502 || error.status === 503 || error.status === 504;
+  if (error instanceof ApiError)
+    return error.status === 502 || error.status === 503 || error.status === 504;
   return false;
 }
 
-export function buildUrl(path: string, params?: Record<string, string | number | undefined>): string {
+export function buildUrl(
+  path: string,
+  params?: Record<string, string | number | undefined>,
+): string {
   const url = new URL(`${apiBaseUrl()}${path.startsWith('/') ? path : `/${path}`}`);
   if (params) {
     for (const [key, value] of Object.entries(params)) {
@@ -132,13 +136,18 @@ export interface RequestOptions {
 
 export async function request<T>(path: string, options: RequestOptions = {}): Promise<T> {
   const { method = 'GET', body, params, signal, as = 'json', timeoutMs = 20_000 } = options;
-  const headers: Record<string, string> = { Accept: as === 'json' ? 'application/json, application/problem+json' : 'text/html, */*' };
+  const headers: Record<string, string> = {
+    Accept: as === 'json' ? 'application/json, application/problem+json' : 'text/html, */*',
+  };
   if (body !== undefined) headers['Content-Type'] = 'application/json';
   const key = apiKey();
   if (key) headers['X-API-Key'] = key;
 
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(new DOMException('Request timed out', 'TimeoutError')), timeoutMs);
+  const timer = setTimeout(
+    () => controller.abort(new DOMException('Request timed out', 'TimeoutError')),
+    timeoutMs,
+  );
   const onOuterAbort = () => controller.abort(signal?.reason);
   signal?.addEventListener('abort', onOuterAbort, { once: true });
 
@@ -163,7 +172,11 @@ export async function request<T>(path: string, options: RequestOptions = {}): Pr
 
   if (!response.ok) {
     const problem = await parseProblem(response);
-    throw new ApiError(response.status, problem, `${response.status} ${response.statusText || 'Request failed'}`);
+    throw new ApiError(
+      response.status,
+      problem,
+      `${response.status} ${response.statusText || 'Request failed'}`,
+    );
   }
   if (response.status === 204) return undefined as T;
   if (as === 'text') return (await response.text()) as T;
@@ -221,12 +234,20 @@ export function upload<T>(path: string, form: FormData, options: UploadOptions =
         try {
           resolve(JSON.parse(xhr.responseText) as T);
         } catch (cause) {
-          reject(new ApiError(xhr.status, { title: 'Invalid response', detail: String(cause) }, 'Invalid response'));
+          reject(
+            new ApiError(
+              xhr.status,
+              { title: 'Invalid response', detail: String(cause) },
+              'Invalid response',
+            ),
+          );
         }
         return;
       }
       const problem = problemFromText(xhr.getResponseHeader('content-type'), xhr.responseText);
-      reject(new ApiError(xhr.status, problem, `${xhr.status} ${xhr.statusText || 'Request failed'}`));
+      reject(
+        new ApiError(xhr.status, problem, `${xhr.status} ${xhr.statusText || 'Request failed'}`),
+      );
     };
     xhr.onerror = () => {
       done();
@@ -234,7 +255,17 @@ export function upload<T>(path: string, form: FormData, options: UploadOptions =
     };
     xhr.ontimeout = () => {
       done();
-      reject(new ApiError(408, { title: 'Upload timed out', status: 408, detail: 'The server did not answer in time. Try a smaller file.' }, 'Upload timed out'));
+      reject(
+        new ApiError(
+          408,
+          {
+            title: 'Upload timed out',
+            status: 408,
+            detail: 'The server did not answer in time. Try a smaller file.',
+          },
+          'Upload timed out',
+        ),
+      );
     };
     xhr.onabort = () => {
       done();
@@ -270,32 +301,52 @@ export const api = {
   listPlots: () => request<PlotList>('/plots'),
   getPlot: (plotId: string) => request<Plot>(`/plots/${encodeURIComponent(plotId)}`),
   createPlot: (body: PlotCreateBody) => request<Plot>('/plots', { method: 'POST', body }),
-  deletePlot: (plotId: string) => request<void>(`/plots/${encodeURIComponent(plotId)}`, { method: 'DELETE' }),
+  deletePlot: (plotId: string) =>
+    request<void>(`/plots/${encodeURIComponent(plotId)}`, { method: 'DELETE' }),
 
   analyze: (plotId: string, body: AnalyzeBody = {}) =>
-    request<Analysis>(`/plots/${encodeURIComponent(plotId)}/analyze`, { method: 'POST', body, timeoutMs: 60_000 }),
+    request<Analysis>(`/plots/${encodeURIComponent(plotId)}/analyze`, {
+      method: 'POST',
+      body,
+      timeoutMs: 60_000,
+    }),
   cube: (plotId: string, index: CubeIndex = 'ndvi', months = 36) =>
-    request<Cube>(`/plots/${encodeURIComponent(plotId)}/cube`, { params: { index, months }, timeoutMs: 60_000 }),
+    request<Cube>(`/plots/${encodeURIComponent(plotId)}/cube`, {
+      params: { index, months },
+      timeoutMs: 60_000,
+    }),
 
-  listTrees: (plotId: string) => request<TreeInventoryList>(`/plots/${encodeURIComponent(plotId)}/trees`),
+  listTrees: (plotId: string) =>
+    request<TreeInventoryList>(`/plots/${encodeURIComponent(plotId)}/trees`),
   createTrees: (plotId: string, body: TreeInventoryBody) =>
     request<TreeInventory>(`/plots/${encodeURIComponent(plotId)}/trees`, { method: 'POST', body }),
 
   carbonEstimate: (plotId: string, body: CarbonEstimateBody = {}) =>
-    request<CarbonEstimate>(`/plots/${encodeURIComponent(plotId)}/carbon-estimate`, { method: 'POST', body }),
+    request<CarbonEstimate>(`/plots/${encodeURIComponent(plotId)}/carbon-estimate`, {
+      method: 'POST',
+      body,
+    }),
   policyEligibility: (plotId: string, activity = 'tree_plantation') =>
-    request<PolicyEligibility>(`/plots/${encodeURIComponent(plotId)}/policy-eligibility`, { params: { activity } }),
+    request<PolicyEligibility>(`/plots/${encodeURIComponent(plotId)}/policy-eligibility`, {
+      params: { activity },
+    }),
   marketScenario: (plotId: string, estimateId?: string) =>
     request<MarketScenario>(`/plots/${encodeURIComponent(plotId)}/market-scenario`, {
       params: { estimate_id: estimateId },
     }),
 
   createReport: (plotId: string, body: ReportBody) =>
-    request<ReportHandle>(`/plots/${encodeURIComponent(plotId)}/report`, { method: 'POST', body, timeoutMs: 60_000 }),
+    request<ReportHandle>(`/plots/${encodeURIComponent(plotId)}/report`, {
+      method: 'POST',
+      body,
+      timeoutMs: 60_000,
+    }),
   /** `url` comes from the report handle and is relative to the API origin (e.g. `/api/v1/reports/RPT-…`). */
   fetchReportDocument: (reportUrl: string) => {
     const base = new URL(apiBaseUrl());
-    const absolute = reportUrl.startsWith('http') ? reportUrl : new URL(reportUrl, base.origin).toString();
+    const absolute = reportUrl.startsWith('http')
+      ? reportUrl
+      : new URL(reportUrl, base.origin).toString();
     const path = absolute.startsWith(apiBaseUrl()) ? absolute.slice(apiBaseUrl().length) : null;
     if (path) return request<string>(path, { as: 'text', timeoutMs: 60_000 });
     return fetch(absolute).then(async (r) => {
@@ -304,7 +355,8 @@ export const api = {
     });
   },
 
-  simulate: (body: SimulateBody, signal?: AbortSignal) => request<Simulation>('/simulate', { method: 'POST', body, signal }),
+  simulate: (body: SimulateBody, signal?: AbortSignal) =>
+    request<Simulation>('/simulate', { method: 'POST', body, signal }),
   explain: (body: ExplainBody) => request<ExplainResponse>('/explain', { method: 'POST', body }),
 
   // ─── v0.2 · geometry helpers (pure calculations, nothing stored) ─────────
@@ -313,22 +365,38 @@ export const api = {
   geometryFromLine: (body: FromLineBody, signal?: AbortSignal) =>
     request<FromLineResult>('/geometry/from-line', { method: 'POST', body, signal }),
   parseCoordinates: (body: ParseCoordinatesBody, signal?: AbortSignal) =>
-    request<ParseCoordinatesResult>('/geometry/parse-coordinates', { method: 'POST', body, signal }),
+    request<ParseCoordinatesResult>('/geometry/parse-coordinates', {
+      method: 'POST',
+      body,
+      signal,
+    }),
 
   // ─── v0.2 · imports ──────────────────────────────────────────────────────
   uploadImport: (file: File, options: ImportUploadOptions = {}) =>
-    upload<ImportRecord>('/imports', importFormData(file, options), { onProgress: options.onProgress, signal: options.signal }),
-  listImports: (plotId?: string) => request<ImportList>('/imports', { params: { plot_id: plotId } }),
-  getImport: (importId: string) => request<ImportRecord>(`/imports/${encodeURIComponent(importId)}`),
-  deleteImport: (importId: string) => request<void>(`/imports/${encodeURIComponent(importId)}`, { method: 'DELETE' }),
+    upload<ImportRecord>('/imports', importFormData(file, options), {
+      onProgress: options.onProgress,
+      signal: options.signal,
+    }),
+  listImports: (plotId?: string) =>
+    request<ImportList>('/imports', { params: { plot_id: plotId } }),
+  getImport: (importId: string) =>
+    request<ImportRecord>(`/imports/${encodeURIComponent(importId)}`),
+  deleteImport: (importId: string) =>
+    request<void>(`/imports/${encodeURIComponent(importId)}`, { method: 'DELETE' }),
 
   // ─── v0.2 · detection ────────────────────────────────────────────────────
   detect: (plotId: string, body: DetectBody) =>
-    request<Detection>(`/plots/${encodeURIComponent(plotId)}/detect`, { method: 'POST', body, timeoutMs: 60_000 }),
-  latestDetection: (plotId: string) => request<Detection>(`/plots/${encodeURIComponent(plotId)}/detections`),
+    request<Detection>(`/plots/${encodeURIComponent(plotId)}/detect`, {
+      method: 'POST',
+      body,
+      timeoutMs: 60_000,
+    }),
+  latestDetection: (plotId: string) =>
+    request<Detection>(`/plots/${encodeURIComponent(plotId)}/detections`),
 
   // ─── v0.2 · imagery ──────────────────────────────────────────────────────
-  imageryProviders: (country?: string) => request<ImageryProvidersResponse>('/imagery/providers', { params: { country } }),
+  imageryProviders: (country?: string) =>
+    request<ImageryProvidersResponse>('/imagery/providers', { params: { country } }),
 };
 
 export type Api = typeof api;

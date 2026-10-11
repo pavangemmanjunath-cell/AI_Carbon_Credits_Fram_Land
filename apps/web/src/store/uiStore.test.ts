@@ -1,5 +1,11 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { DEFAULT_LAYERS, migrateUiState, resetUiStore, sanitizeLayers, useUiStore } from './uiStore';
+import {
+  DEFAULT_LAYERS,
+  migrateUiState,
+  resetUiStore,
+  sanitizeLayers,
+  useUiStore,
+} from './uiStore';
 
 describe('uiStore', () => {
   beforeEach(() => resetUiStore());
@@ -27,7 +33,10 @@ describe('uiStore', () => {
     const s = useUiStore.getState();
     s.setImageryChoice('ES', 'ign-spain-pnoa');
     s.setImageryChoice('IN', 'eox-s2cloudless-2017');
-    expect(useUiStore.getState().imageryChoice).toEqual({ ES: 'ign-spain-pnoa', IN: 'eox-s2cloudless-2017' });
+    expect(useUiStore.getState().imageryChoice).toEqual({
+      ES: 'ign-spain-pnoa',
+      IN: 'eox-s2cloudless-2017',
+    });
     s.setImageryChoice('ES', null);
     expect(useUiStore.getState().imageryChoice).toEqual({ IN: 'eox-s2cloudless-2017' });
   });
@@ -41,7 +50,14 @@ describe('uiStore', () => {
   });
 
   it('migrates v1 storage: drops the removed 3D field and maps the old satellite layer to the switch', () => {
-    const migrated = migrateUiState({ cube3d: true, layers: { satellite: true, landuse: false, ndvi: true, soil: true }, language: 'kn' }, 1);
+    const migrated = migrateUiState(
+      {
+        cube3d: true,
+        layers: { satellite: true, landuse: false, ndvi: true, soil: true },
+        language: 'kn',
+      },
+      1,
+    );
     expect(migrated).not.toHaveProperty('cube3d');
     expect(migrated.mapView).toBe('satellite');
     expect(migrated.language).toBe('kn');
@@ -52,6 +68,9 @@ describe('uiStore', () => {
   });
 
   it('fills missing layer keys and ignores junk values', () => {
-    expect(sanitizeLayers({ ndvi: false, treeCover: 'yes', bogus: true })).toEqual({ ...DEFAULT_LAYERS, ndvi: false });
+    expect(sanitizeLayers({ ndvi: false, treeCover: 'yes', bogus: true })).toEqual({
+      ...DEFAULT_LAYERS,
+      ndvi: false,
+    });
   });
 });

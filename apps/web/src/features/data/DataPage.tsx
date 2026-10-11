@@ -26,7 +26,11 @@ export default function DataPage() {
   };
   const tabs: { id: DataTab; label: string; count: number | null }[] = [
     { id: 'plots', label: t('data.tabPlots'), count: plotsQuery.data ? plots.length : null },
-    { id: 'files', label: t('data.tabFiles'), count: importsQuery.data ? importsQuery.data.items.length : null },
+    {
+      id: 'files',
+      label: t('data.tabFiles'),
+      count: importsQuery.data ? importsQuery.data.items.length : null,
+    },
   ];
 
   return (
@@ -57,14 +61,21 @@ export default function DataPage() {
             tabIndex={tab === item.id ? 0 : -1}
             onClick={() => select(item.id)}
             onKeyDown={(e) => {
-              if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') select(item.id === 'plots' ? 'files' : 'plots');
+              if (e.key === 'ArrowRight' || e.key === 'ArrowLeft')
+                select(item.id === 'plots' ? 'files' : 'plots');
             }}
             className={`-mb-px flex h-11 items-center gap-2 border-b-2 px-3.5 text-sm font-semibold transition-colors ${
-              tab === item.id ? 'border-forest text-forest-deep' : 'border-transparent text-ink-2 hover:text-ink'
+              tab === item.id
+                ? 'border-forest text-forest-deep'
+                : 'border-transparent text-ink-2 hover:text-ink'
             }`}
           >
             {item.label}
-            {item.count != null && <span className="rounded-full bg-ground px-2 py-0.5 font-mono text-[11px] text-muted">{item.count}</span>}
+            {item.count != null && (
+              <span className="rounded-full bg-ground px-2 py-0.5 font-mono text-[11px] text-muted">
+                {item.count}
+              </span>
+            )}
           </button>
         ))}
       </div>
@@ -73,7 +84,12 @@ export default function DataPage() {
         {tab === 'plots' ? (
           <PlotsTable plots={plots} loading={plotsQuery.isLoading} />
         ) : (
-          <FilesTable records={importsQuery.data?.items ?? []} plots={plots} loading={importsQuery.isLoading} error={importsQuery.error} />
+          <FilesTable
+            records={importsQuery.data?.items ?? []}
+            plots={plots}
+            loading={importsQuery.isLoading}
+            error={importsQuery.error}
+          />
         )}
       </div>
     </div>

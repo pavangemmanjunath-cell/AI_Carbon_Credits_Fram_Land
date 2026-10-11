@@ -23,7 +23,9 @@ test.describe('CarbonCreditBuy smoke', () => {
     await page.goto('/app/data');
     await page.getByRole('button', { name: 'Import data' }).click();
     await expect(page.getByRole('heading', { name: 'Import data' })).toBeVisible();
-    await expect(page.getByText('Only the results are kept — the file itself is not stored.')).toBeVisible();
+    await expect(
+      page.getByText('Only the results are kept — the file itself is not stored.'),
+    ).toBeVisible();
   });
 
   test('old 4D cube links land on the results page', async ({ page }) => {

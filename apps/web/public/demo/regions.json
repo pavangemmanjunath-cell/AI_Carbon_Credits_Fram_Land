@@ -9,23 +9,13 @@
       "area": "hectare",
       "area_secondary": "acre"
     },
-    "languages": [
-      "en",
-      "de",
-      "fr",
-      "es"
-    ],
+    "languages": ["en", "de", "fr", "es"],
     "default_center": {
       "lat": 50.0,
       "lon": 10.0
     },
     "default_zoom": 3.8,
-    "bbox": [
-      -10.5,
-      34.5,
-      31.6,
-      71.2
-    ],
+    "bbox": [-10.5, 34.5, 31.6, 71.2],
     "member_states": [
       "AT",
       "BE",
@@ -107,22 +97,13 @@
       "area": "hectare",
       "area_secondary": "acre"
     },
-    "languages": [
-      "en",
-      "hi",
-      "kn"
-    ],
+    "languages": ["en", "hi", "kn"],
     "default_center": {
       "lat": 20.59,
       "lon": 78.96
     },
     "default_zoom": 4.5,
-    "bbox": [
-      68.1,
-      6.5,
-      97.4,
-      35.7
-    ],
+    "bbox": [68.1, 6.5, 97.4, 35.7],
     "member_states": [],
     "programmes": [
       {
@@ -174,21 +155,13 @@
       "area": "acre",
       "area_secondary": "hectare"
     },
-    "languages": [
-      "en",
-      "es"
-    ],
+    "languages": ["en", "es"],
     "default_center": {
       "lat": 39.5,
       "lon": -98.35
     },
     "default_zoom": 3.8,
-    "bbox": [
-      -125.0,
-      24.4,
-      -66.9,
-      49.4
-    ],
+    "bbox": [-125.0, 24.4, -66.9, 49.4],
     "member_states": [],
     "programmes": [
       {

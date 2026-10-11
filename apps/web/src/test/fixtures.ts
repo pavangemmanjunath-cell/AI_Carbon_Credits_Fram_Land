@@ -1,5 +1,12 @@
 /** Tiny deterministic fixtures for unit tests (no network, no files). */
-import type { Analysis, CarbonEstimate, Cube, ImportRecord, Plot, TreeInventory } from '@/types/api';
+import type {
+  Analysis,
+  CarbonEstimate,
+  Cube,
+  ImportRecord,
+  Plot,
+  TreeInventory,
+} from '@/types/api';
 
 export function makeCube(rows = 3, cols = 3, months = 36): Cube {
   const times = Array.from({ length: months }, (_, i) => {
@@ -7,7 +14,9 @@ export function makeCube(rows = 3, cols = 3, months = 36): Cube {
     const month = ((i + 9) % 12) + 1;
     return `${year}-${String(month).padStart(2, '0')}`;
   });
-  const mask = Array.from({ length: rows }, (_, r) => Array.from({ length: cols }, (_, c) => (r === 0 && c === 0 ? 0 : 1)));
+  const mask = Array.from({ length: rows }, (_, r) =>
+    Array.from({ length: cols }, (_, c) => (r === 0 && c === 0 ? 0 : 1)),
+  );
   const values = times.map((_, t) =>
     Array.from({ length: rows }, (_, r) =>
       Array.from({ length: cols }, (_, c) => {
@@ -27,7 +36,13 @@ export function makeCube(rows = 3, cols = 3, months = 36): Cube {
     mask,
     values,
     stats_per_time: times.map((time) => ({ time, mean: 0.6, min: 0.3, max: 0.9, valid_share: 1 })),
-    provenance: { source: 'synthetic-demo', composite: 'monthly-min-cloud', cloud_mask: 'SCL', aggregation: '3×3 mean', scene_ids: [] },
+    provenance: {
+      source: 'synthetic-demo',
+      composite: 'monthly-min-cloud',
+      cloud_mask: 'SCL',
+      aggregation: '3×3 mean',
+      scene_ids: [],
+    },
   };
 }
 
@@ -36,7 +51,18 @@ export const plot: Plot = {
   name: 'Plot A',
   country: 'IN',
   region: 'Karnataka',
-  geometry: { type: 'Polygon', coordinates: [[[77.53, 13.29], [77.54, 13.29], [77.54, 13.3], [77.53, 13.3], [77.53, 13.29]]] },
+  geometry: {
+    type: 'Polygon',
+    coordinates: [
+      [
+        [77.53, 13.29],
+        [77.54, 13.29],
+        [77.54, 13.3],
+        [77.53, 13.3],
+        [77.53, 13.29],
+      ],
+    ],
+  },
   area_hectares: 2.13,
   area_acres: 5.26,
   perimeter_m: 612,
@@ -79,11 +105,38 @@ export const estimate: CarbonEstimate = {
   methodology: { id: 'ipcc-2006-vol4-ch4', name: 'IPCC 2006 Vol.4 Ch.4 Tier 1' },
   estimate: { low: 7.4, central: 10.6, high: 13.8, unit: 'tCO2e/yr' },
   stock: { low: 16, central: 23, high: 30, unit: 'tCO2e' },
-  annual_series: [0, 1, 2, 3].map((i) => ({ year: 2023 + i, age: i, low: i * 2, central: i * 3, high: i * 4, cum_low: i * 2, cum_central: i * 3, cum_high: i * 4 })),
+  annual_series: [0, 1, 2, 3].map((i) => ({
+    year: 2023 + i,
+    age: i,
+    low: i * 2,
+    central: i * 3,
+    high: i * 4,
+    cum_low: i * 2,
+    cum_central: i * 3,
+    cum_high: i * 4,
+  })),
   parameters_used: [
-    { name: 'carbon_fraction', value: 0.47, unit: 't C/t d.m.', source: 'IPCC 2006 Table 4.3', verification_status: 'verified' },
-    { name: 'above_ground_biomass_growth', value: 4, unit: 't d.m./ha/yr', source: 'IPCC Table 4.12', verification_status: 'pending' },
-    { name: 'survival_rate', value: 0.85, unit: 'fraction', source: 'assumption v0.1', verification_status: 'assumption' },
+    {
+      name: 'carbon_fraction',
+      value: 0.47,
+      unit: 't C/t d.m.',
+      source: 'IPCC 2006 Table 4.3',
+      verification_status: 'verified',
+    },
+    {
+      name: 'above_ground_biomass_growth',
+      value: 4,
+      unit: 't d.m./ha/yr',
+      source: 'IPCC Table 4.12',
+      verification_status: 'pending',
+    },
+    {
+      name: 'survival_rate',
+      value: 0.85,
+      unit: 'fraction',
+      source: 'assumption v0.1',
+      verification_status: 'assumption',
+    },
   ],
   confidence: 'medium',
   certified: false,
@@ -122,7 +175,14 @@ export const analysis: Analysis = {
     trend: { start: '2024-09', end: '2026-09', change_pct: 22.6, statement: 'up' },
     provenance: { generated_at: '', api_version: '1', mode: 'demo', sources: [] },
   },
-  climate: { zone: 'tropical_dry', zone_label: 'Tropical dry', mean_annual_temp_c: 24, annual_precip_mm: 820, elevation_m: 880, provenance: { generated_at: '', api_version: '1', mode: 'demo', sources: [] } },
+  climate: {
+    zone: 'tropical_dry',
+    zone_label: 'Tropical dry',
+    mean_annual_temp_c: 24,
+    annual_precip_mm: 820,
+    elevation_m: 880,
+    provenance: { generated_at: '', api_version: '1', mode: 'demo', sources: [] },
+  },
   data_quality: { warnings: ['demo'] },
   generated_at: '2026-10-05T00:00:00Z',
 };
@@ -138,10 +198,31 @@ export function importRecord(extra: Partial<ImportRecord> = {}): ImportRecord {
     plot_id: 'PLT-DEMOIN',
     kind: 'point-cloud',
     status: 'ready',
-    summary: { feature_count: 0, polygon_count: 0, point_count: 412_883, georeferenced: true, crs: 'EPSG:32643' },
+    summary: {
+      feature_count: 0,
+      polygon_count: 0,
+      point_count: 412_883,
+      georeferenced: true,
+      crs: 'EPSG:32643',
+    },
     boundary: null,
-    trees: { count: 128, count_in_plot: 120, mean_height_m: 6.43, median_height_m: 6.1, p90_height_m: 8.9, canopy_cover_fraction: 0.42, confidence_field: null, min_confidence: null, method: 'chm + local maxima' },
-    detection: { ran: true, method: 'canopy height model + local maxima', parameters: { cell_size_m: 0.5 }, notes: [] },
+    trees: {
+      count: 128,
+      count_in_plot: 120,
+      mean_height_m: 6.43,
+      median_height_m: 6.1,
+      p90_height_m: 8.9,
+      canopy_cover_fraction: 0.42,
+      confidence_field: null,
+      min_confidence: null,
+      method: 'chm + local maxima',
+    },
+    detection: {
+      ran: true,
+      method: 'canopy height model + local maxima',
+      parameters: { cell_size_m: 0.5 },
+      notes: [],
+    },
     preview: null,
     warnings: [],
     privacy: 'private',

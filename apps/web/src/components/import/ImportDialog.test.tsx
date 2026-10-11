@@ -39,18 +39,30 @@ describe('ImportDialog', () => {
     resetUiStore();
     Object.values(mocks).forEach((m) => m.mockReset());
     mocks.listPlots.mockResolvedValue({ items: [plot] });
-    mocks.species.mockResolvedValue([{ id: 'mango', common_name: 'Mango', scientific_name: 'Mangifera indica', regions: ['IN'] }]);
+    mocks.species.mockResolvedValue([
+      { id: 'mango', common_name: 'Mango', scientific_name: 'Mangifera indica', regions: ['IN'] },
+    ]);
     useUiStore.setState({ selectedPlotId: plot.plot_id, country: 'IN' });
   });
 
   it('shows the Trimble-style drop zone, privacy line and both switches on by default', () => {
     renderWithProviders(<ImportDialog onClose={() => {}} />);
     expect(screen.getByRole('heading', { name: 'Import data' })).toBeInTheDocument();
-    expect(screen.getByTestId('import-drop-zone')).toHaveTextContent('Drag GeoJSON, KML/KMZ, CSV, LAS or LAZ files here or browse to upload');
+    expect(screen.getByTestId('import-drop-zone')).toHaveTextContent(
+      'Drag GeoJSON, KML/KMZ, CSV, LAS or LAZ files here or browse to upload',
+    );
     expect(screen.getByText('.e57 if your server supports it')).toBeInTheDocument();
-    expect(screen.getByText('Only the results are kept — the file itself is not stored.')).toBeInTheDocument();
-    expect(screen.getByRole('switch', { name: 'Use boundary files as my land' })).toHaveAttribute('aria-checked', 'true');
-    expect(screen.getByRole('switch', { name: 'Run tree detection on import' })).toHaveAttribute('aria-checked', 'true');
+    expect(
+      screen.getByText('Only the results are kept — the file itself is not stored.'),
+    ).toBeInTheDocument();
+    expect(screen.getByRole('switch', { name: 'Use boundary files as my land' })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    );
+    expect(screen.getByRole('switch', { name: 'Run tree detection on import' })).toHaveAttribute(
+      'aria-checked',
+      'true',
+    );
     expect(screen.getByRole('button', { name: /^Import$/ })).toBeDisabled();
   });
 
@@ -68,7 +80,9 @@ describe('ImportDialog', () => {
 
   it('accepts dropped files', () => {
     renderWithProviders(<ImportDialog onClose={() => {}} />);
-    fireEvent.drop(screen.getByTestId('import-drop-zone'), { dataTransfer: { files: [new File(['{}'], 'field.geojson')] } });
+    fireEvent.drop(screen.getByTestId('import-drop-zone'), {
+      dataTransfer: { files: [new File(['{}'], 'field.geojson')] },
+    });
     expect(screen.getByText('field.geojson')).toBeInTheDocument();
   });
 
@@ -88,7 +102,11 @@ describe('ImportDialog', () => {
 
     expect(await screen.findByText('Boundary found · 2.13 ha')).toBeInTheDocument();
     await waitFor(() => expect(mocks.createPlot).toHaveBeenCalledTimes(1));
-    expect(mocks.createPlot.mock.calls[0][0]).toMatchObject({ name: 'Field 7', source: 'import', boundary_quality: 'exact' });
+    expect(mocks.createPlot.mock.calls[0][0]).toMatchObject({
+      name: 'Field 7',
+      source: 'import',
+      boundary_quality: 'exact',
+    });
     expect(await screen.findByText('Added as Field 7')).toBeInTheDocument();
     await waitFor(() => expect(order).toHaveLength(2));
     // the second file is linked to the land created from the first one
@@ -112,13 +130,26 @@ describe('ImportDialog', () => {
   });
 
   it('turns detected trees into a model-estimated inventory for the plot', async () => {
-    useUiStore.setState({ activeTreeForm: { plotId: plot.plot_id, species_id: 'teak', plantation_year: 2018, survival_rate: 0.9 } });
+    useUiStore.setState({
+      activeTreeForm: {
+        plotId: plot.plot_id,
+        species_id: 'teak',
+        plantation_year: 2018,
+        survival_rate: 0.9,
+      },
+    });
     mocks.uploadImport.mockResolvedValue(importRecord({ plot_id: plot.plot_id }));
-    mocks.createTrees.mockImplementation(async (plotId: string, body: Record<string, unknown>) => ({ inventory_id: 'INV-9', plot_id: plotId, ...body }));
+    mocks.createTrees.mockImplementation(async (plotId: string, body: Record<string, unknown>) => ({
+      inventory_id: 'INV-9',
+      plot_id: plotId,
+      ...body,
+    }));
     renderWithProviders(<ImportDialog onClose={() => {}} />);
     addFiles([new File(['x'], 'orchard.laz')]);
     fireEvent.click(screen.getByRole('button', { name: /^Import$/ }));
-    expect(await screen.findByText(/128 trees detected \(mean height 6\.4 m\)/)).toBeInTheDocument();
+    expect(
+      await screen.findByText(/128 trees detected \(mean height 6\.4 m\)/),
+    ).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'Use 120 trees for Plot A' }));
     await waitFor(() => expect(mocks.createTrees).toHaveBeenCalledTimes(1));
     expect(mocks.createTrees).toHaveBeenCalledWith('PLT-TEST', {
@@ -134,11 +165,22 @@ describe('ImportDialog', () => {
   });
 
   it('shows the RFC 7807 detail inline when a file is rejected', async () => {
-    mocks.uploadImport.mockRejectedValue(new ApiError(415, { title: 'Unsupported Media Type', detail: 'Convert the E57 file to LAS/LAZ with CloudCompare or PDAL.' }, '415'));
+    mocks.uploadImport.mockRejectedValue(
+      new ApiError(
+        415,
+        {
+          title: 'Unsupported Media Type',
+          detail: 'Convert the E57 file to LAS/LAZ with CloudCompare or PDAL.',
+        },
+        '415',
+      ),
+    );
     renderWithProviders(<ImportDialog onClose={() => {}} />);
     addFiles([new File(['x'], 'scan.e57')]);
     fireEvent.click(screen.getByRole('button', { name: /^Import$/ }));
-    expect(await screen.findByRole('alert')).toHaveTextContent('Import failed: Convert the E57 file to LAS/LAZ with CloudCompare or PDAL.');
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      'Import failed: Convert the E57 file to LAS/LAZ with CloudCompare or PDAL.',
+    );
   });
 
   it('closes on Cancel', () => {

@@ -11,7 +11,17 @@ export function tabFromParam(value: string | null): DataTab {
   return value === 'files' ? 'files' : 'plots';
 }
 
-const KNOWN_SOURCES: PlotSource[] = ['manual-drawing', 'upload', 'import', 'pin-and-area', 'tree-line', 'coordinates', 'qgis-plugin', 'api', 'synthetic-demo'];
+const KNOWN_SOURCES: PlotSource[] = [
+  'manual-drawing',
+  'upload',
+  'import',
+  'pin-and-area',
+  'tree-line',
+  'coordinates',
+  'qgis-plugin',
+  'api',
+  'synthetic-demo',
+];
 
 /** i18n key of the friendly source label (`source.tree-line` → "Tree line"). */
 export function plotSourceKey(source: string): string {
@@ -37,9 +47,12 @@ export function importResultLine(record: ImportRecord): ImportResultLine {
   const boundary = outcomes.find((o) => o.kind === 'boundary');
   const trees = outcomes.find((o) => o.kind === 'trees');
   if (outcomes[0]?.kind === 'failed') return { kind: 'failed' };
-  if (boundary?.kind === 'boundary' && trees?.kind === 'trees') return { kind: 'boundary-trees', areaHectares: boundary.areaHectares, count: trees.count };
-  if (boundary?.kind === 'boundary') return { kind: 'boundary', areaHectares: boundary.areaHectares };
-  if (trees?.kind === 'trees') return { kind: 'trees', count: trees.count, meanHeightM: trees.meanHeightM };
+  if (boundary?.kind === 'boundary' && trees?.kind === 'trees')
+    return { kind: 'boundary-trees', areaHectares: boundary.areaHectares, count: trees.count };
+  if (boundary?.kind === 'boundary')
+    return { kind: 'boundary', areaHectares: boundary.areaHectares };
+  if (trees?.kind === 'trees')
+    return { kind: 'trees', count: trees.count, meanHeightM: trees.meanHeightM };
   return { kind: 'nothing' };
 }
 

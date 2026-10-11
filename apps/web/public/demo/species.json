@@ -4,9 +4,7 @@
     "scientific_name": "Mangifera indica",
     "common_name": "Mango",
     "group": "broadleaf_tropical_fruit",
-    "regions": [
-      "IN"
-    ],
+    "regions": ["IN"],
     "suitable_climate_zones": [
       "tropical_dry",
       "tropical_moist",
@@ -44,9 +42,7 @@
     "scientific_name": "Tectona grandis",
     "common_name": "Teak",
     "group": "broadleaf_tropical_timber",
-    "regions": [
-      "IN"
-    ],
+    "regions": ["IN"],
     "suitable_climate_zones": [
       "tropical_moist",
       "tropical_wet",
@@ -83,14 +79,8 @@
     "scientific_name": "Azadirachta indica",
     "common_name": "Neem",
     "group": "broadleaf_tropical_dry",
-    "regions": [
-      "IN"
-    ],
-    "suitable_climate_zones": [
-      "tropical_dry",
-      "subtropical_dry",
-      "tropical_moist"
-    ],
+    "regions": ["IN"],
+    "suitable_climate_zones": ["tropical_dry", "subtropical_dry", "tropical_moist"],
     "max_density_per_ha": 1600,
     "maturity_years": 15,
     "notes": null,
@@ -121,11 +111,7 @@
     "scientific_name": "Eucalyptus spp.",
     "common_name": "Eucalyptus",
     "group": "broadleaf_fast_growing",
-    "regions": [
-      "IN",
-      "EU",
-      "US"
-    ],
+    "regions": ["IN", "EU", "US"],
     "suitable_climate_zones": [
       "tropical_dry",
       "tropical_moist",
@@ -164,9 +150,7 @@
     "scientific_name": "mixed native species (tropical/subtropical)",
     "common_name": "Mixed native species",
     "group": "broadleaf_tropical_mixed",
-    "regions": [
-      "IN"
-    ],
+    "regions": ["IN"],
     "suitable_climate_zones": [
       "tropical_dry",
       "tropical_moist",
@@ -205,16 +189,8 @@
     "scientific_name": "Populus spp.",
     "common_name": "Poplar",
     "group": "broadleaf_fast_growing",
-    "regions": [
-      "EU",
-      "US",
-      "IN"
-    ],
-    "suitable_climate_zones": [
-      "cool_temperate_moist",
-      "warm_temperate_moist",
-      "subtropical_humid"
-    ],
+    "regions": ["EU", "US", "IN"],
+    "suitable_climate_zones": ["cool_temperate_moist", "warm_temperate_moist", "subtropical_humid"],
     "max_density_per_ha": 2000,
     "maturity_years": 10,
     "notes": null,

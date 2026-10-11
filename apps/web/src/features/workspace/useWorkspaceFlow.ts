@@ -24,7 +24,16 @@ import {
 } from '@/services/queries';
 import { useUiStore } from '@/store/uiStore';
 import type { Plot } from '@/types/api';
-import { DEFAULT_FORM, formEquals, formForPlot, formFromInventory, isExternalInventory, isFormValid, toInventoryBody, type TreeForm } from './logic/workspaceModel';
+import {
+  DEFAULT_FORM,
+  formEquals,
+  formForPlot,
+  formFromInventory,
+  isExternalInventory,
+  isFormValid,
+  toInventoryBody,
+  type TreeForm,
+} from './logic/workspaceModel';
 import { latestInventory as pickLatestInventory } from '@/lib/insights';
 
 /**
@@ -53,14 +62,16 @@ export function useWorkspaceFlow() {
     if (plots.length === 0) return;
     const exists = plots.some((p) => p.plot_id === selectedPlotId);
     if (!exists) {
-      const preferred = plots.find((p) => regionIdFor(p.country) === regionIdFor(country)) ?? plots[0];
+      const preferred =
+        plots.find((p) => regionIdFor(p.country) === regionIdFor(country)) ?? plots[0];
       setSelectedPlotId(preferred.plot_id);
     }
   }, [plots, selectedPlotId, setSelectedPlotId, country]);
 
   const selectedPlot: Plot | null = plots.find((p) => p.plot_id === selectedPlotId) ?? null;
   useEffect(() => {
-    if (selectedPlot && regionIdFor(selectedPlot.country) !== regionIdFor(country)) setCountry(regionIdFor(selectedPlot.country));
+    if (selectedPlot && regionIdFor(selectedPlot.country) !== regionIdFor(country))
+      setCountry(regionIdFor(selectedPlot.country));
   }, [selectedPlot, country, setCountry]);
 
   const analysisQuery = useAnalysis(selectedPlot?.plot_id);
@@ -82,12 +93,18 @@ export function useWorkspaceFlow() {
     if (formPlotRef.current !== selectedPlot.plot_id) {
       formPlotRef.current = selectedPlot.plot_id;
       seenInventoryRef.current = latestId;
-      const prefill = pendingPrefill.current?.plotId === selectedPlot.plot_id ? pendingPrefill.current.treeCount : null;
+      const prefill =
+        pendingPrefill.current?.plotId === selectedPlot.plot_id
+          ? pendingPrefill.current.treeCount
+          : null;
       if (prefill) pendingPrefill.current = null;
       setForm(formForPlot(latestInventory, speciesList[0]?.id ?? DEFAULT_FORM.species_id, prefill));
       return;
     }
-    if (latestInventory && isExternalInventory(latestId, seenInventoryRef.current, ownInventoryIds.current)) {
+    if (
+      latestInventory &&
+      isExternalInventory(latestId, seenInventoryRef.current, ownInventoryIds.current)
+    ) {
       seenInventoryRef.current = latestId;
       setForm(formFromInventory(latestInventory, latestInventory.species.id));
     }
@@ -96,13 +113,19 @@ export function useWorkspaceFlow() {
   // The Import dialog reuses species, year and survival of the form being edited.
   useEffect(() => {
     if (!selectedPlot || formPlotRef.current !== selectedPlot.plot_id) return;
-    setActiveTreeForm({ plotId: selectedPlot.plot_id, species_id: form.species_id, plantation_year: form.plantation_year, survival_rate: form.survival_rate });
+    setActiveTreeForm({
+      plotId: selectedPlot.plot_id,
+      species_id: form.species_id,
+      plantation_year: form.plantation_year,
+      survival_rate: form.survival_rate,
+    });
   }, [selectedPlot, form.species_id, form.plantation_year, form.survival_rate, setActiveTreeForm]);
 
   const createTrees = useCreateTrees(selectedPlot?.plot_id);
   const debouncedForm = useDebouncedValue(form, 600);
   useEffect(() => {
-    if (!selectedPlot || treesQuery.isLoading || formPlotRef.current !== selectedPlot.plot_id) return;
+    if (!selectedPlot || treesQuery.isLoading || formPlotRef.current !== selectedPlot.plot_id)
+      return;
     if (!isFormValid(debouncedForm)) return;
     const current = formFromInventory(latestInventory, debouncedForm.species_id);
     if (latestInventory && formEquals(current, debouncedForm)) return;
@@ -116,18 +139,35 @@ export function useWorkspaceFlow() {
     // Saves only when the debounced form changes; the inventory it compares with is read at that moment.
   }, [debouncedForm, selectedPlot?.plot_id, treesQuery.isLoading]);
 
-  const estimateQuery = useCarbonEstimate(selectedPlot?.plot_id, latestInventory?.inventory_id ?? null, Boolean(latestInventory));
+  const estimateQuery = useCarbonEstimate(
+    selectedPlot?.plot_id,
+    latestInventory?.inventory_id ?? null,
+    Boolean(latestInventory),
+  );
 
   // -- map data: AI tree cover, imported trees, satellite imagery ----------------------
   const detectionQuery = useDetection(selectedPlot?.plot_id, layers.treeCover);
-  const importsQuery = useImports(selectedPlot?.plot_id, layers.importedTrees && Boolean(selectedPlot) && !mapImportId);
-  const latestTreeImport = importsQuery.data?.items.find((i) => i.status !== 'failed' && (i.trees?.count ?? 0) > 0) ?? null;
-  const importIdOnMap = layers.importedTrees ? (mapImportId ?? latestTreeImport?.import_id ?? null) : null;
+  const importsQuery = useImports(
+    selectedPlot?.plot_id,
+    layers.importedTrees && Boolean(selectedPlot) && !mapImportId,
+  );
+  const latestTreeImport =
+    importsQuery.data?.items.find((i) => i.status !== 'failed' && (i.trees?.count ?? 0) > 0) ??
+    null;
+  const importIdOnMap = layers.importedTrees
+    ? (mapImportId ?? latestTreeImport?.import_id ?? null)
+    : null;
   const importRecordQuery = useImportRecord(importIdOnMap);
   // An import opened from the Data page belongs to its own plot: drop it when another plot is chosen.
   const importRecord = importRecordQuery.data;
   useEffect(() => {
-    if (mapImportId && importRecord?.import_id === mapImportId && importRecord.plot_id && selectedPlot && importRecord.plot_id !== selectedPlot.plot_id) {
+    if (
+      mapImportId &&
+      importRecord?.import_id === mapImportId &&
+      importRecord.plot_id &&
+      selectedPlot &&
+      importRecord.plot_id !== selectedPlot.plot_id
+    ) {
       setMapImportId(null);
     }
   }, [mapImportId, importRecord, selectedPlot, setMapImportId]);
@@ -155,10 +195,16 @@ export function useWorkspaceFlow() {
       const name = request.name ?? nextPlotName(plots, t('map.newPlotPrefix'));
       // `country` is left to the server, which derives it from the polygon.
       createPlot.mutate(
-        { name, geometry: request.geometry, source: request.source, boundary_quality: request.boundary_quality },
+        {
+          name,
+          geometry: request.geometry,
+          source: request.source,
+          boundary_quality: request.boundary_quality,
+        },
         {
           onSuccess: (plot) => {
-            if (request.treeCount && request.treeCount > 0) pendingPrefill.current = { plotId: plot.plot_id, treeCount: request.treeCount };
+            if (request.treeCount && request.treeCount > 0)
+              pendingPrefill.current = { plotId: plot.plot_id, treeCount: request.treeCount };
             setSelectedPlotId(plot.plot_id);
           },
         },
@@ -194,8 +240,17 @@ export function useWorkspaceFlow() {
     estimate: estimateQuery.data,
     estimateLoading: estimateQuery.isLoading || estimateQuery.isFetching,
     estimateError: estimateQuery.error,
-    detection: { data: detectionQuery.data, loading: detectionQuery.isFetching, error: detectionQuery.error },
-    importedTrees: { record: importRecord ?? null, loading: importsQuery.isFetching || importRecordQuery.isFetching, error: importsQuery.error ?? importRecordQuery.error, fitOnLoad: Boolean(mapImportId) },
+    detection: {
+      data: detectionQuery.data,
+      loading: detectionQuery.isFetching,
+      error: detectionQuery.error,
+    },
+    importedTrees: {
+      record: importRecord ?? null,
+      loading: importsQuery.isFetching || importRecordQuery.isFetching,
+      error: importsQuery.error ?? importRecordQuery.error,
+      fitOnLoad: Boolean(mapImportId),
+    },
     imagery: { provider: imageryProvider, loading: imageryQuery.isLoading },
     onCreatePlot,
     onDeletePlot,

@@ -32,10 +32,8 @@ export function Wordmark({ compact = false }: { compact?: boolean }) {
     <span className="flex flex-col leading-tight">
       <span className="font-heading text-[16px] font-bold tracking-tight text-ink">
         CarbonCreditBuy
-</span>
-      {!compact && (
-        <span className="text-[11px] text-muted">Trees, land and carbon potential</span>
-      )}
+      </span>
+      {!compact && <span className="text-[11px] text-muted">Trees, land and carbon potential</span>}
     </span>
   );
 }

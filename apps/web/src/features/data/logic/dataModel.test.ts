@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { importRecord, plot } from '@/test/fixtures';
-import { canShowOnMap, importResultLine, importTypeOf, linkedPlot, plotSourceKey, tabFromParam } from './dataModel';
+import {
+  canShowOnMap,
+  importResultLine,
+  importTypeOf,
+  linkedPlot,
+  plotSourceKey,
+  tabFromParam,
+} from './dataModel';
 
 const boundary = { geometry: plot.geometry!, area_hectares: 2.13, name: 'Field 7' };
 
@@ -27,10 +34,23 @@ describe('Data page model', () => {
   });
 
   it('summarises the result column', () => {
-    expect(importResultLine(importRecord())).toEqual({ kind: 'trees', count: 128, meanHeightM: 6.43 });
-    expect(importResultLine(importRecord({ kind: 'boundary', boundary, trees: null }))).toEqual({ kind: 'boundary', areaHectares: 2.13 });
-    expect(importResultLine(importRecord({ boundary }))).toEqual({ kind: 'boundary-trees', areaHectares: 2.13, count: 128 });
-    expect(importResultLine(importRecord({ status: 'failed', trees: null }))).toEqual({ kind: 'failed' });
+    expect(importResultLine(importRecord())).toEqual({
+      kind: 'trees',
+      count: 128,
+      meanHeightM: 6.43,
+    });
+    expect(importResultLine(importRecord({ kind: 'boundary', boundary, trees: null }))).toEqual({
+      kind: 'boundary',
+      areaHectares: 2.13,
+    });
+    expect(importResultLine(importRecord({ boundary }))).toEqual({
+      kind: 'boundary-trees',
+      areaHectares: 2.13,
+      count: 128,
+    });
+    expect(importResultLine(importRecord({ status: 'failed', trees: null }))).toEqual({
+      kind: 'failed',
+    });
     expect(importResultLine(importRecord({ trees: null }))).toEqual({ kind: 'nothing' });
   });
 

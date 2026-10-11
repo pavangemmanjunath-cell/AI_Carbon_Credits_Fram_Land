@@ -29,9 +29,7 @@
           "url": "https://icfre.gov.in/"
         }
       ],
-      "distinct_from": [
-        "in-ccts"
-      ],
+      "distinct_from": ["in-ccts"],
       "url": "https://moef.gov.in/"
     },
     {
@@ -61,9 +59,7 @@
           "url": "https://beeindia.gov.in/"
         }
       ],
-      "distinct_from": [
-        "in-gcp"
-      ],
+      "distinct_from": ["in-gcp"],
       "url": "https://beeindia.gov.in/"
     },
     {
