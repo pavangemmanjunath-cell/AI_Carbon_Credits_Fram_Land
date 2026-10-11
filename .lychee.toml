@@ -5,7 +5,7 @@
 max_concurrency = 4
 max_retries = 2
 timeout = 20
-user_agent = "carboncreditbuy-docs-linkcheck/0.1 (+https://github.com/<org>/carboncreditbuy)"
+user_agent = "carboncreditbuy-docs-linkcheck/0.1 (+https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land)"
 
 # Accept the usual success codes plus 429 (rate limited) so that an upstream
 # throttle never fails documentation CI.

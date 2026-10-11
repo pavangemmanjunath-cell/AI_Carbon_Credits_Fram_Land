@@ -159,10 +159,10 @@ scenario, not a credit) and other farm income — never added together.
 | Tool | Wraps | Returns (summary) |
 |---|---|---|
 | `market_scenarios` | `MarketService.scenarios_for` (`config/market/carbon-price-scenarios.yaml`) | currency, low / reference / high scenarios with price and value per year, price basis with verification status and references, other income sources (value `null` until you add records), disclaimer |
-
 | `cost_scenario` | `SimulationService.simulate` with `costs` → `carbon_engine.economics.cost_scenario` — only when the request carries costs | currency, totals (establishment, upkeep and monitoring over the horizon, undiscounted), cumulative removal range, break-even carbon price per tCO₂e (low–central–high), per price scenario the indicative value over the horizon and the share of costs covered, `not_entered`, `certified: false`, disclaimer |
 
-Reads `plot_id`, `estimate`, `costs`; writes `market`, `cost`. Skipped when there is no `estimate`. One `finding` in three
+Reads `plot_id`, `estimate`, `costs`; writes `market`, `cost`. Skipped when there is no `estimate`. One `finding` in
+three
 sentences — environmental benefit, indicative value (reference price, with the low and high scenario values in
 brackets), other farm income (not estimated) — and "These three values answer different questions and are never
 added together." The market disclaimer is pinned. The facts keep the three values under separate keys

@@ -1,6 +1,7 @@
 # United States (US)
 
-This page summarizes how CarbonCreditBuy behaves for plots in the United States and what a farmer, adviser or researcher in
+This page summarizes how CarbonCreditBuy behaves for plots in the United States and what a farmer, adviser or researcher
+in
 the US should expect from it. Configuration lives in
 [`config/regions/US.yaml`](../../../config/regions/US.yaml) and
 [`config/policies/US.yaml`](../../../config/policies/US.yaml). The sister regions are [India](../IN/README.md) and the
@@ -19,7 +20,8 @@ the US should expect from it. Configuration lives in
 | Map default | Center 39.5 N, 98.35 W, zoom 3.8 | |
 | Bounding box | West -125.0, south 24.4, east -66.9, north 49.4 | Covers the contiguous states. Alaska, Hawaii and the territories lie outside it, so CarbonCreditBuy cannot guess the region from a point there: choose the country explicitly |
 
-**Tons.** In the US a "ton" usually means the short ton of 2,000 pounds, which is about 0.907 metric tons. Every CarbonCreditBuy
+**Tons.** In the US a "ton" usually means the short ton of 2,000 pounds, which is about 0.907 metric tons. Every
+CarbonCreditBuy
 figure is in metric tons (tonnes) of CO₂e. Check which one a program, a price quote or another tool uses before you
 compare numbers.
 
@@ -39,7 +41,8 @@ context stays empty in v0.1. Details, licenses and access notes are in [DATA_SOU
 The map's **Satellite** view starts with the USGS "Imagery Only" layer for US plots. It is mostly National Agricultural
 Imagery Program (NAIP) aerial photography, public domain, and needs no key. Outside the US the default is the global
 Sentinel-2 mosaic from EOX, and a deployer who holds an Esri license can add Esri World Imagery, for viewing only. A
-person can pick another provider under **Settings**, **Map imagery**. Imagery is for viewing: CarbonCreditBuy's own analysis
+person can pick another provider under **Settings**, **Map imagery**. Imagery is for viewing: CarbonCreditBuy's own
+analysis
 uses Sentinel-2 scenes and WorldCover, not map tiles. Licenses, attribution texts and zoom limits are in
 [MAP_LICENSES.md](../../licensing/MAP_LICENSES.md) and
 [`config/imagery/providers.yaml`](../../../config/imagery/providers.yaml). The US details, and what is still
@@ -57,7 +60,8 @@ Each program is described, with its sources and its open questions, in [PROGRAMS
 screening result carries the sentence "Initial screening only — not an eligibility determination. Voluntary-market
 credits require an approved methodology, verification and registry issuance."
 
-CarbonCreditBuy keeps **credits** (a tradable unit issued by a registry) and **incentives** (a payment or cost-share) apart.
+CarbonCreditBuy keeps **credits** (a tradable unit issued by a registry) and **incentives** (a payment or cost-share)
+apart.
 A USDA payment is never shown as a carbon value, and a voluntary credit is never implied by a USDA program.
 
 ## Trees of different ages
@@ -99,7 +103,8 @@ confirmed from a primary source; at the time of writing all ten are marked `veri
   ([farmer data](../../privacy/farmer-data.md)). Version 0.1 has no sign-in, so read
   [Privacy and your data](../../user-guide/faq.md#privacy-and-your-data) before you enter a real boundary on a shared
   server.
-- **One more caution for temperate trees.** The growth values are broad Tier 1 working values, and the equation used when
+- **One more caution for temperate trees.** The growth values are broad Tier 1 working values, and the equation used
+  when
   you enter a trunk diameter was built for tropical trees. See [METHODOLOGIES.md](METHODOLOGIES.md) before you read
   anything into a diameter-based number for walnut, pecan, apple or poplar.
 

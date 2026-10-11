@@ -1,13 +1,15 @@
 # Programs — United States
 
-This page describes the three programs CarbonCreditBuy screens for plots in the United States, the standards and protocols
+This page describes the three programs CarbonCreditBuy screens for plots in the United States, the standards and
+protocols
 around them, and what is still unconfirmed. The rules themselves live in
 [`config/policies/US.yaml`](../../../config/policies/US.yaml). The screening is never an eligibility determination:
 "Initial screening only — not an eligibility determination. Voluntary-market credits require an approved methodology,
 verification and registry issuance."
 
 Statements about rules carry a source link. A statement we could not confirm against the primary document is marked
-*(unverified)*. Program details, payment rates and sign-up dates change; verify them with the administrator. The research
+*(unverified)*. Program details, payment rates and sign-up dates change; verify them with the administrator. The
+research
 behind this page is in [policy-references.md](../../research/policy-references.md) and
 [tree-age-carbon-rules.md](../../research/tree-age-carbon-rules.md).
 
@@ -19,7 +21,8 @@ behind this page is in [policy-references.md](../../research/policy-references.m
 | COMET-Farm and COMET-Planner | Estimation tool | A greenhouse-gas estimate, not a unit | No |
 | Verra, Climate Action Reserve, American Carbon Registry | Voluntary standard | Credits issued after verification (VCUs, CRTs, ERTs in the research note) | Yes |
 
-Source: the taxonomy in [policy-references.md](../../research/policy-references.md#7-carbon-credit-vs-incentive-taxonomy-the-engine-should-use).
+Source: the taxonomy in
+[policy-references.md](../../research/policy-references.md#7-carbon-credit-vs-incentive-taxonomy-the-engine-should-use).
 CarbonCreditBuy shows an incentive as other farm income and an estimate as an environmental benefit. Neither is a credit
 ([carbon credit vs estimate](../../concepts/carbon-credit-vs-estimate.md)).
 
@@ -43,12 +46,16 @@ from the rule's list of activities, not from a finding about the tool: TODO(veri
 
 ## USDA COMET-Farm and COMET-Planner
 
-**What they are.** COMET-Farm is the USDA and Colorado State University tool for estimating farm and ranch greenhouse-gas
-emissions and mitigation options ([comet-farm.com](https://comet-farm.com/)). CarbonCreditBuy lists it as a **methodology
-reference**: you can enter the same trees there to cross-check this estimate. CarbonCreditBuy does not call COMET-Farm and
+**What they are.** COMET-Farm is the USDA and Colorado State University tool for estimating farm and ranch
+greenhouse-gas
+emissions and mitigation options ([comet-farm.com](https://comet-farm.com/)). CarbonCreditBuy lists it as a
+**methodology
+reference**: you can enter the same trees there to cross-check this estimate. CarbonCreditBuy does not call COMET-Farm
+and
 sends it nothing; you enter your own boundary and trees there under its terms.
 
-**What CarbonCreditBuy rule says.** Status `potentially_applicable` for tree plantation, agroforestry, cropland practice and
+**What CarbonCreditBuy rule says.** Status `potentially_applicable` for tree plantation, agroforestry, cropland practice
+and
 grazing. The reason text says that agroforestry assessments use tree numbers and sizes with growth equations based on
 Forest Inventory and Analysis (FIA) data. We could not open the COMET-Farm site, which is a JavaScript application, so
 the details of its agroforestry module are *(unverified)*. Requirements listed: field boundaries and management history
@@ -70,14 +77,16 @@ wood or litter ([COMET-Planner report](https://comet-planner.com/api/resource/pd
 | 612 | Tree/Shrub Establishment |
 
 **Comparing the two.** Expect different numbers: COMET-Planner averages 10 years of living tree carbon from FIA-based
-models, while CarbonCreditBuy reports a 30-year mean annual removal from IPCC Tier 1 working values. Compare the time window,
+models, while CarbonCreditBuy reports a 30-year mean annual removal from IPCC Tier 1 working values. Compare the time
+window,
 the carbon pools, the units (acres or hectares, metric or short tons) and the inputs before you draw a conclusion
 ([METHODOLOGIES.md](METHODOLOGIES.md)). The registry entry says COMET-Farm is "referenced, not copied": CarbonCreditBuy
 does not reuse its equations ([`registry.yaml`](../../../config/methodologies/registry.yaml)).
 
 ## Voluntary-market methodologies
 
-**What CarbonCreditBuy rule says.** Status `requires_methodology_assessment` for tree plantation, agroforestry and cropland
+**What CarbonCreditBuy rule says.** Status `requires_methodology_assessment` for tree plantation, agroforestry and
+cropland
 practice. The requirements it lists: registration with a standard and a registry; a baseline and an additionality
 demonstration; monitoring (diameter, survival, remote sensing) and a leakage assessment; a permanence commitment and a
 buffer-pool contribution; third-party validation and verification. The rule notes that minimum project sizes and
@@ -91,7 +100,8 @@ costs apply and does not state them.
 | Verra VM0042, Improved Agricultural Land Management | Tillage, fertilizer, residue and water management, cover crops and grazing. Not tree planting | Version 2.2 active since 21 October 2025; Core Carbon Principles approval of 30 October 2025 with a condition against digital soil mapping for soil carbon | [Verra, VM0042 v2.2](https://verra.org/methodologies/vm0042-improved-agricultural-land-management-v2-2/); [ICVCM, 30 October 2025](https://icvcm.org/integrity-council-approves-first-sustainable-agriculture-methodologies-from-car-and-verra/) |
 | Climate Action Reserve, Soil Enrichment Protocol | Soil carbon on US farmland | Version 1.1 approved under the Core Carbon Principles on 30 October 2025 with a 40-year permanence condition | [ICVCM, 30 October 2025](https://icvcm.org/integrity-council-approves-first-sustainable-agriculture-methodologies-from-car-and-verra/) |
 
-CarbonCreditBuy policy file and registry still point to the VM0047 version 1.0 and VM0042 version 2.0 pages. The research
+CarbonCreditBuy policy file and registry still point to the VM0047 version 1.0 and VM0042 version 2.0 pages. The
+research
 note recommends updating them to the versions above and adding the census-based condition to the rule text
 ([policy-references.md](../../research/policy-references.md#8-what-configpoliciesyaml-should-say-concrete-edits)).
 
@@ -113,17 +123,21 @@ research note has the details.
 
 **Private company programs.** Several agricultural companies run their own carbon programs for practice changes, with
 their own contract terms. A 2025 Penn State research brief compares contract terms
-([Penn State](https://aglaw.psu.edu/wp-content/uploads/2025/04/RB25-036-Research-Brief-Carbon-Sequestration-Contracts.pdf)).
-CarbonCreditBuy does not screen them and states none of their payments, because the terms change; read any contract with an
+([Penn
+State](https://aglaw.psu.edu/wp-content/uploads/2025/04/RB25-036-Research-Brief-Carbon-Sequestration-Contracts.pdf)).
+CarbonCreditBuy does not screen them and states none of their payments, because the terms change; read any contract with
+an
 adviser before you sign.
 
 ## USDA NRCS conservation programs: EQIP and CSP
 
 **What they are.** The Environmental Quality Incentives Program (EQIP) offers cost-share, and the Conservation
-Stewardship Program (CSP) offers stewardship payments. They are incentives, not carbon credits ([EQIP](https://www.nrcs.usda.gov/programs-initiatives/eqip-environmental-quality-incentives);
+Stewardship Program (CSP) offers stewardship payments. They are incentives, not carbon credits
+([EQIP](https://www.nrcs.usda.gov/programs-initiatives/eqip-environmental-quality-incentives);
 [CSP](https://www.nrcs.usda.gov/programs-initiatives/csp-conservation-stewardship-program)).
 
-**What CarbonCreditBuy rule says.** Status `potentially_applicable` for tree plantation, agroforestry and cropland practice,
+**What CarbonCreditBuy rule says.** Status `potentially_applicable` for tree plantation, agroforestry and cropland
+practice,
 otherwise `not_applicable`. The reason: cost-share and stewardship payments exist for agroforestry practices such as
 windbreaks, alley cropping and riparian buffers. Requirements listed: eligible land and producer status; a
 conservation plan with NRCS.
@@ -131,7 +145,8 @@ conservation plan with NRCS.
 **Practice codes.** The NRCS fiscal-year 2024 CSAF mitigation practice list names these agroforestry and forestry
 codes: 311, 379, 380, 381, 383, 384, 390, 391, 420, 422, 612, 643 and 666
 ([NRCS](https://www.nrcs.usda.gov/sites/default/files/2023-12/FY24%20%20CSAF%20Mitigation%20practice%20list.pdf)).
-Payment rates, sign-up periods and ranking rules change each year, so CarbonCreditBuy states none. Your local NRCS office
+Payment rates, sign-up periods and ranking rules change each year, so CarbonCreditBuy states none. Your local NRCS
+office
 knows which practices your county funds.
 
 **If you also want carbon revenue.** Ask the carbon program how it treats cost-share that already paid for the same
@@ -172,7 +187,8 @@ applying. The sentence on every result stays the same: screening information, no
 ## What CarbonCreditBuy does not screen
 
 State programs, federal programs other than EQIP and CSP, and private contracts. Local tree-protection rules vary by
-city and CarbonCreditBuy has only the two municipal examples above. TODO(verify): research which state programs exist, with
+city and CarbonCreditBuy has only the two municipal examples above. TODO(verify): research which state programs exist,
+with
 an official source for each, before adding rules.
 
 ## Open items for reviewers

@@ -18,7 +18,8 @@ research behind this page is in [policy-references.md](../../research/policy-ref
 | CAP eco-schemes | Incentive | Area payments | No |
 | Voluntary standards and national labels | Voluntary standard | Credits issued after verification | Yes |
 
-Source: the taxonomy in [policy-references.md](../../research/policy-references.md#7-carbon-credit-vs-incentive-taxonomy-the-engine-should-use).
+Source: the taxonomy in
+[policy-references.md](../../research/policy-references.md#7-carbon-credit-vs-incentive-taxonomy-the-engine-should-use).
 CarbonCreditBuy shows an incentive as other farm income and an estimate as an environmental benefit. Neither is a credit
 ([carbon credit vs estimate](../../concepts/carbon-credit-vs-estimate.md)).
 
@@ -74,24 +75,30 @@ transcription errors, so open the text before you quote it
 ### What CarbonCreditBuy rule says
 
 Status `requires_certification` for tree plantation, agroforestry, soil carbon and cropland practice, otherwise
-`unknown`. The requirements it lists: an activity covered by an adopted CRCF certification methodology; a baseline and an
+`unknown`. The requirements it lists: an activity covered by an adopted CRCF certification methodology; a baseline and
+an
 additionality demonstration per the methodology; monitoring, reporting and verification by a certification body; a
 liability mechanism for reversals and a minimum monitoring period; registration in a recognized scheme's registry.
 
 The reason text on the card says afforestation and agroforestry on mineral soils "are addressed by Commission
 certification methodologies". As of the research date those methodologies were adopted but not confirmed in force, and
 no scheme could yet be recognized to issue units for them, so we found no scheme issuing CRCF units for agroforestry
-*(unverified)*. The research note recommends a date-stamped reason and a note that units serve EU climate objectives only
+*(unverified)*. The research note recommends a date-stamped reason and a note that units serve EU climate objectives
+only
 ([policy-references.md](../../research/policy-references.md#8-what-configpoliciesyaml-should-say-concrete-edits)).
 
 ### What this means for a farmer
 
-- **CarbonCreditBuy estimate is not a CRCF unit and cannot become one by itself.** A scheme recognized under the CRCF has to
+- **CarbonCreditBuy estimate is not a CRCF unit and cannot become one by itself.** A scheme recognized under the CRCF
+  has to
   certify your activity against a certification methodology, with a baseline, monitoring and verification.
-- **Ask which scheme, and when.** Because recognition follows entry into force, a scheme that accepts agroforestry may not
+- **Ask which scheme, and when.** Because recognition follows entry into force, a scheme that accepts agroforestry may
+  not
   exist yet where you farm. Ask your adviser or your forestry authority.
-- **Read critiques as critiques.** Civil-society groups criticized earlier drafts, for example for how a zero standardized
-  baseline treats existing trees ([Carbon Market Watch, March 2025](https://carbonmarketwatch.org/wp-content/uploads/2025/03/TREE-PLANTING.pdf);
+- **Read critiques as critiques.** Civil-society groups criticized earlier drafts, for example for how a zero
+  standardized
+  baseline treats existing trees ([Carbon Market Watch, March
+  2025](https://carbonmarketwatch.org/wp-content/uploads/2025/03/TREE-PLANTING.pdf);
   [Bellona, 25 February 2026](https://eu.bellona.org/2026/02/25/takeaways-from-the-carbon-farming-expert-group/)). They
   are not evidence of what the adopted text says.
 
@@ -101,12 +108,14 @@ no scheme could yet be recognized to issue units for them, so we found no scheme
 eco-schemes and investment support. They are incentives, not carbon credits
 ([Commission, CAP Strategic Plans](https://agriculture.ec.europa.eu/cap-my-country/cap-strategic-plans_en)).
 
-**What CarbonCreditBuy rule says.** Status `potentially_applicable` for tree plantation, agroforestry and cropland practice,
+**What CarbonCreditBuy rule says.** Status `potentially_applicable` for tree plantation, agroforestry and cropland
+practice,
 otherwise `not_applicable`. The reason: national plans include eco-schemes and investment support for agroforestry and
 afforestation. Requirements listed: active-farmer status and CAP registration in the member state; compliance with the
 national eco-scheme conditions.
 
-**What it does not say.** CarbonCreditBuy does not know your member state's plan, so it lists no national scheme, payment rate,
+**What it does not say.** CarbonCreditBuy does not know your member state's plan, so it lists no national scheme,
+payment rate,
 deadline or eligibility condition. These differ from one member state to the next. Ask your paying agency. TODO(verify):
 a per-country page for each member state, each with an official source, would close this gap; see
 [roadmap ideas](../../community/roadmap-ideas.md#regions-and-policy).
@@ -117,7 +126,8 @@ statutory requirements and rely on the incentive effect of certification (readin
 
 ## Voluntary standards and national labels
 
-**What CarbonCreditBuy rule says.** Status `requires_methodology_assessment` for tree plantation, agroforestry, soil carbon and
+**What CarbonCreditBuy rule says.** Status `requires_methodology_assessment` for tree plantation, agroforestry, soil
+carbon and
 cropland practice, otherwise `unknown`. Requirements listed: an approved methodology for the activity; a baseline,
 additionality, leakage and permanence assessment; third-party verification and registry issuance.
 
@@ -127,7 +137,8 @@ additionality, leakage and permanence assessment; third-party verification and r
 | Gold Standard, Land Use and Forests, afforestation and reforestation | The eligible area must not have met the definition of forest 10 years before the project start date (Activity Requirements v1.2.1, Section 2.1.1(b)), so credits are not issued for existing forests. The baseline is the tree and non-tree biomass present just before planting (methodology v2.1). A successor framework, STARR, was consulted on from 22 April to 22 May 2026; final publication was not confirmed | [Gold Standard Activity Requirements v1.2.1](https://globalgoals.goldstandard.org/standards/203_V1.2.1_AR_LUF-Activity-Requirements.pdf); [STARR consultation](https://www.goldstandard.org/consultations/sustainable-transformation-afforestation-reforestation-revegetation-starr) |
 | Label Bas-Carbone (France) | A French national label, named in CarbonCreditBuy rule. TODO(verify): its approved methods, eligibility and payment arrangements were not researched | [Ministry of Ecological Transition](https://www.ecologie.gouv.fr/label-bas-carbone) |
 
-Other national labels and schemes exist or may exist in other member states. None has been researched, and CarbonCreditBuy
+Other national labels and schemes exist or may exist in other member states. None has been researched, and
+CarbonCreditBuy
 names only the French label.
 
 ## Rules by tree age
@@ -153,7 +164,8 @@ standards. None states an amount, and none sets an age threshold. The research a
 How to read it. The engine filters by place, then by setting (farm, town or city, forest), then by age. A member-state
 code such as `DE` returns the EU rules, and the Berlin example applies only when the state is Berlin (`DE-BE`) and the
 trees are urban. The credit outlook for existing trees reads "conditional" because of the CRCF Regulation, which sets
-conditions rather than a yes or no. The research reads the net-benefit formula as treating the carbon that standing trees
+conditions rather than a yes or no. The research reads the net-benefit formula as treating the carbon that standing
+trees
 already hold as part of the baseline, but the Regulation does not address existing stocks explicitly, so confirm the
 reading from the text. The outlook never says "eligible", an estimate is never automatically certifiable, and the
 sentence on every result stays the same: screening information, not legal advice.

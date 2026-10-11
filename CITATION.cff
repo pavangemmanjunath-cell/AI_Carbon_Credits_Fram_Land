@@ -1,33 +1,53 @@
 cff-version: 1.2.0
-message: >-
-  If you use CarbonCreditBuy in research, teaching or a report, please cite
-  it using the metadata below. Estimates produced with the software are
-  scenario estimates, not certified carbon credits; please keep that
-  distinction in any publication.
-type: software
+message: "If you use this software in your research, please cite it."
 title: "CarbonCreditBuy: An Open, Explainable Platform for Estimating Tree-Based Carbon Removal and Its Indicative Credit Value on Farmland"
-abstract: >-
-  An open-source geospatial platform that helps farmers, landowners and
-  researchers understand tree cover, agricultural conditions and potential
-  carbon benefits, and what evidence they still need for a recognised
-  carbon or environmental programme. It combines Earth-observation data
-  (ESA WorldCover, Copernicus Sentinel-2), deterministic carbon models
-  (IPCC 2006 Tier 1 gain-loss, Chave 2014 allometry) and configuration-driven
-  regional policy screening for India, the United States and the European
-  Union, with privacy-preserving handling of farm geometry.
+type: software
 authors:
-  - family-names: Manjunath
-    given-names: Pavan
+  - family-names: "Manjunath"
+    given-names: "Pavan"
     orcid: "https://orcid.org/0000-0002-2694-8807"
-    affiliation: Independent / CarbonCreditBuy project
-license: Apache-2.0
-repository-code: https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land
-url: https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land
-version: 0.2.0
-date-released: "2026-10-05"
+  # Co-author. Family name, ORCID and affiliation to be added when provided.
+  - given-names: "Thomas"
+version: "1.1"
+date-released: "2026-10-11"
+doi: "10.5281/zenodo.23298049"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.23298049"
+    description: "Zenodo archive of release V_1.1 (this version)"
+  - type: doi
+    value: "10.5281/zenodo.23298048"
+    description: "Zenodo concept DOI (all versions; resolves to the latest)"
+  - type: url
+    value: "https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/releases/tag/V_1.1"
+    description: "GitHub release archived by Zenodo"
+repository-code: "https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land"
+url: "https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land"
+license: "Apache-2.0"
+abstract: >-
+  CarbonCreditBuy is an open-source, self-hostable geospatial platform that
+  helps farmers, landowners, advisors and researchers estimate how much carbon
+  the trees on one piece of land may remove, and what evidence is still
+  missing before a recognised carbon or environmental programme could issue
+  any credit. Users mark land on a map (boundary, freehand pen, rectangle,
+  circle, tree line, pin with area, typed coordinates, or imported
+  GeoJSON/KML/CSV/LAS/LAZ files). Deterministic engines combine
+  Earth-observation layers (ESA WorldCover land cover, Copernicus Sentinel-2
+  NDVI/NDMI) with configuration-driven parameters, each carrying a source and
+  a verification status, to compute IPCC 2006 Tier 1 gain-loss estimates
+  (Tier 2 with measured diameter using Chave et al. 2014) as low-central-high
+  ranges with a confidence grade and provenance. A policy engine screens
+  programmes and tree-age rules for India, the United States and the European
+  Union. A team of nine deterministic agents explains results under six
+  guardrails; an optional OpenAI-compatible language model may only rephrase
+  redacted text. Explanations use one-at-a-time sensitivity re-runs of the
+  engine rather than a learned model. Every output is a scenario estimate,
+  not a carbon credit (certified: false). Demo mode uses synthetic data;
+  agreement with field measurements has not yet been evaluated.
 keywords:
   - carbon farming
   - agroforestry
+  - carbon removal estimation
   - MRV
   - Earth observation
   - Sentinel-2
@@ -35,13 +55,13 @@ keywords:
   - NDVI
   - IPCC Tier 1
   - allometry
-  - carbon credit
+  - explainable AI
+  - sensitivity analysis
+  - multi-agent system
   - Green Credit Programme
   - CCTS
   - CRCF
   - geospatial
-  - MapLibre
-  - PMTiles
   - open source
 references:
   - type: report

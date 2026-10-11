@@ -123,7 +123,8 @@ A `POST /plots/{id}/carbon-estimate` call passes through these stages:
 Read endpoints follow the same path without the write. Calls to other servers have a 20-second timeout and one retry on
 a 5xx answer or a transport error, and their results are cached in memory for an hour by default (per process). When an
 adapter fails, `POST /plots/{id}/analyze` still answers 200 and omits that block with an explanation in
-`data_quality.warnings`; `GET /geocode`, `GET /reverse-geocode` and the vegetation cube answer 502 `upstream-unavailable`.
+`data_quality.warnings`; `GET /geocode`, `GET /reverse-geocode` and the vegetation cube answer 502
+`upstream-unavailable`.
 
 ## How a feature plugs in
 
@@ -133,7 +134,8 @@ version 0.2 features add no field to it. Each builds its service on first use wi
 goes through the repository's generic `save_record(kind, id, record, plot_id)`. The kinds in use are `import`,
 `detection` (the five newest per plot are kept) and `agent-run`. A record linked to a plot is deleted with the plot.
 
-The agent team follows the same rule. `AgentService` runs a plan with the orchestrator of `carboncreditbuy_agents`; each agent calls
+The agent team follows the same rule. `AgentService` runs a plan with the orchestrator of `carboncreditbuy_agents`; each
+agent calls
 tools that wrap the services above, writes its findings to a shared blackboard and says them through a reasoner. The
 default reasoner fills a template; with `ATLAS_AGENT_REASONER=llm` an OpenAI-compatible model may rephrase the redacted
 sentence, and its answer is discarded if it changes a number. Guardrails check the whole transcript before it is stored
@@ -165,7 +167,8 @@ the latest analysis, inventories, estimates, reports, the generic records and an
 for anything public. [`data/schemas/schema.sql`](../../data/schemas/schema.sql) creates them, and CI applies it twice
 to a real database. Deleting a plot deletes what was derived from it, as described in
 [data retention](../privacy/data-retention.md); the one exception is in the in-memory repository, where a plot's reports
-stay retrievable until the process restarts ([known limits](../../apps/api/README.md#known-limits)). The API does not use
+stay retrievable until the process restarts ([known limits](../../apps/api/README.md#known-limits)). The API does not
+use
 object storage in this release. `docker-compose.yml` provisions MinIO as an S3-compatible place to keep a PMTiles
 basemap, which the web app reads directly once `VITE_BASEMAP_PMTILES_URL` points at it. Uploaded files are never stored.
 

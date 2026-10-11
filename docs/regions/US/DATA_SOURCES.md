@@ -1,7 +1,8 @@
 # Data sources — United States
 
 Global datasets (ESA WorldCover, Sentinel-2, Open-Meteo, SoilGrids, OpenStreetMap) serve US plots exactly as they serve
-plots elsewhere. This page covers the US-specific sources: how to get access, what CarbonCreditBuy does with them today, and
+plots elsewhere. This page covers the US-specific sources: how to get access, what CarbonCreditBuy does with them today,
+and
 what it does not use. Licenses are consolidated in
 [`docs/licensing/DATA_LICENSES.md`](../../licensing/DATA_LICENSES.md), and every source's endpoint, key, cache and
 failure behavior is in [FREE_APIS.md](../../data-sources/FREE_APIS.md).
@@ -13,7 +14,8 @@ for a plot comes from reverse geocoding, not from the Census Geocoder
 
 ## USDA NASS Quick Stats: county crop statistics
 
-The National Agricultural Statistics Service publishes crop statistics through its Quick Stats API. CarbonCreditBuy would use
+The National Agricultural Statistics Service publishes crop statistics through its Quick Stats API. CarbonCreditBuy
+would use
 them for the "other farm income" context: area, production and yield for a county and a crop such as pecan, walnut or
 apple ([`config/regions/US.yaml`](../../../config/regions/US.yaml)).
 
@@ -71,9 +73,11 @@ and requires an identifying `User-Agent`; a deployment with heavy use should sel
 ## Imagery for the map
 
 The map's **Satellite** view loads raster tiles from a provider that the API recommends for the plot's country
-(`GET /api/v1/imagery/providers?country=US`, from [`config/imagery/providers.yaml`](../../../config/imagery/providers.yaml)).
+(`GET /api/v1/imagery/providers?country=US`, from
+[`config/imagery/providers.yaml`](../../../config/imagery/providers.yaml)).
 For the United States the recommended provider is USGS Imagery Only. A person can choose another one under **Settings**,
-**Map imagery**. Imagery is for viewing: CarbonCreditBuy does not analyze these tiles. The license, attribution and analysis
+**Map imagery**. Imagery is for viewing: CarbonCreditBuy does not analyze these tiles. The license, attribution and
+analysis
 rule of every provider are in [MAP_LICENSES.md](../../licensing/MAP_LICENSES.md), and the research is in
 [imagery-providers.md](../../research/imagery-providers.md).
 
@@ -97,7 +101,8 @@ Notes on the USGS layer, from the research of 2026-10-05:
   rely on newly acquired imagery.
 - Not confirmed: coverage in Alaska, Hawaii and the territories, and any rate limit or fair-use policy (none was found).
 - A web container behind the Docker image only loads tiles from hosts listed in `ATLAS_EXTRA_IMG_SRC`; the development
-  server has no such list ([troubleshooting](../../developer-guide/troubleshooting.md#a-basemap-or-imagery-works-with-npm-run-dev-but-not-in-docker)).
+  server has no such list
+  ([troubleshooting](../../developer-guide/troubleshooting.md#a-basemap-or-imagery-works-with-npm-run-dev-but-not-in-docker)).
 
 ## Candidates not integrated
 

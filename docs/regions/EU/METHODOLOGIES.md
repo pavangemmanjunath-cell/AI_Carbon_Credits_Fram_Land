@@ -1,6 +1,7 @@
 # Methodologies — European Union
 
-This page explains how CarbonCreditBuy estimates carbon for a plot in the European Union, where that estimate is weakest for
+This page explains how CarbonCreditBuy estimates carbon for a plot in the European Union, where that estimate is weakest
+for
 European trees, and how far it is from what a certification under the CRCF requires. CarbonCreditBuy **references**
 methodologies; it never **applies** one, and nothing here turns an estimate into a certified unit
 ([carbon credit vs estimate](../../concepts/carbon-credit-vs-estimate.md)).
@@ -14,13 +15,14 @@ in [policy-references.md](../../research/policy-references.md).
 | Question | Answer |
 | --- | --- |
 | What does CarbonCreditBuy calculate for an EU plot? | A scenario of the carbon the trees you describe remove each year, as a range, from the IPCC 2006 Tier 1 gain-loss method, or from a trunk-diameter equation when you give an average diameter |
-| Is that what the CRCF certifies? | No. The CRCF certifies a net benefit above a baseline, over an activity period of at least five years, with monitoring and verification by a recognized scheme. CarbonCreditBuy does none of these ([below](#the-crcf-compared-with-the-atlas-estimate)) |
+| Is that what the CRCF certifies? | No. The CRCF certifies a net benefit above a baseline, over an activity period of at least five years, with monitoring and verification by a recognized scheme. CarbonCreditBuy does none of these ([below](#the-crcf-compared-with-a-carboncreditbuy-estimate)) |
 | Is there a CRCF methodology for agroforestry? | The Commission adopted carbon-farming certification methodologies on 10 July 2026, including agriculture and agroforestry on mineral soils and afforestation. They were not confirmed in force as of 2026-10-05 ([Commission news](https://climate.ec.europa.eu/news-other-reads/news/commission-adopts-certification-methodologies-carbon-farming-under-crcf-regulation-2026-07-10_en)) |
 | What is the weak point for European trees? | The diameter equation was built for tropical trees, and the zone CarbonCreditBuy assumes without live climate data may not suit olive or eucalyptus ([below](#the-temperate-allometry-gap)) |
 
 ## What CarbonCreditBuy calculates
 
-The model is `tree-biomass` version 0.1 in [`packages/carbon-engine`](../../../packages/carbon-engine/README.md), the same
+The model is `tree-biomass` version 0.1 in [`packages/carbon-engine`](../../../packages/carbon-engine/README.md), the
+same
 for every region. Every number comes from [`config/`](../../../config/) with a source, a unit and a verification
 status.
 
@@ -30,7 +32,8 @@ status.
   with a root-to-shoot ratio, and converts carbon to carbon dioxide with the carbon fraction and 44/12. The headline is
   the **mean annual removal over the 30 years**, not this year's removal.
 - **With an average trunk diameter (Tier 2).** The model estimates one tree's biomass from diameter, height and wood
-  density with Chave et al. (2014) equation 4, multiplies by the surviving trees, adds roots and divides the stock by the
+  density with Chave et al. (2014) equation 4, multiplies by the surviving trees, adds roots and divides the stock by
+  the
   stand age.
 - **The range.** Low and high are the central value less and plus 30% (Tier 1) or 20% (Tier 2). These are project
   assumptions, not statistical confidence intervals.
@@ -40,7 +43,8 @@ status.
 
 ### Parameters that matter for the EU
 
-Values are the working values in `config/` version 0.1.0 at the time of writing; the files are authoritative. **Pending**
+Values are the working values in `config/` version 0.1.0 at the time of writing; the files are authoritative.
+**Pending**
 means copied from the cited source and not yet checked by a reviewer, so every estimate in version 0.1 is preliminary.
 
 | Parameter | Working value | Status | Source recorded in the config |
@@ -65,7 +69,8 @@ config) for the zones an EU plot is likely to be classified into:
 
 The server classifies a plot from mean annual temperature, annual precipitation and elevation with an approximation of
 the IPCC 2006 decision tree, marked as an assumption in the output
-([`zones.py`](../../../packages/geo-engine/geo_engine/climate/zones.py)). Without live normals the **Evidence chain** says
+([`zones.py`](../../../packages/geo-engine/geo_engine/climate/zones.py)). Without live normals the **Evidence chain**
+says
 "region-default" and the default zone is used for every EU plot. That zone is not on the suitable list for **olive** or
 **eucalyptus**, so their results then carry a note that the zone does not suit the species; oak, apple and poplar do
 list it.
@@ -119,7 +124,7 @@ oak, apple, olive and poplar. Stored carbon is not carbon a program would credit
 false`, and the rules in [PROGRAMS.md](PROGRAMS.md#rules-by-tree-age) show how programs treat trees that already
 stand.
 
-## The CRCF compared with CarbonCreditBuy estimate
+## The CRCF compared with a CarbonCreditBuy estimate
 
 The right-hand column comes from a research reading of Regulation (EU) 2024/3012. Article numbers can carry
 transcription errors, so open the text before you quote it ([EUR-Lex](https://eur-lex.europa.eu/eli/reg/2024/3012/oj)).
@@ -134,15 +139,18 @@ transcription errors, so open the text before you quote it ([EUR-Lex](https://eu
 
 Sources for the unit types and the registry are in [PROGRAMS.md](PROGRAMS.md#the-crcf). The Regulation's text does not
 address existing carbon stocks explicitly; treating them as part of the baseline follows from the net-benefit formula
-([research note](../../research/tree-age-carbon-rules.md#european-union)). CarbonCreditBuy's own wording is the sentence on
+([research note](../../research/tree-age-carbon-rules.md#european-union)). CarbonCreditBuy's own wording is the sentence
+on
 every EU result: an estimate is never automatically certifiable.
 
 ## Other methodologies a project could use
 
 See [PROGRAMS.md](PROGRAMS.md#voluntary-standards-and-national-labels) for Verra VM0047, the Gold Standard afforestation
-and reforestation requirements and the French Label Bas-Carbone. The Gold Standard requires that the planting area was not
+and reforestation requirements and the French Label Bas-Carbone. The Gold Standard requires that the planting area was
+not
 forest for 10 years before the project start, and the research found that standards credit new removals against a
-baseline, not the carbon existing trees already hold ([research note](../../research/tree-age-carbon-rules.md#key-finding)).
+baseline, not the carbon existing trees already hold ([research
+note](../../research/tree-age-carbon-rules.md#key-finding)).
 
 ## Measuring to improve the estimate
 

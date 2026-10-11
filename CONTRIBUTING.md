@@ -24,33 +24,67 @@ request and ask.
 
 ## Before you start
 
-1. Read [CLAUDE.md](CLAUDE.md). The thirteen core principles are not
-   negotiable; the most frequently missed ones are *no carbon values
-   hard-coded*, *every model cites a methodology* and *privacy by default*.
-2. Set up the project with
-   [docs/developer-guide/setup.md](docs/developer-guide/setup.md)
-   (`make install`, `make dev`).
-3. Search existing issues. If none matches, open one before investing in a
-   large change so that the scope and the data-licensing questions can be
-   settled first.
+Read [CLAUDE.md](CLAUDE.md). Its thirteen core principles are not negotiable; the most often missed are *no carbon
+values hard-coded*, *every model cites a methodology* and *privacy by default*. Search existing issues; for a large
+change, open an issue first so scope and data-licensing questions are settled before you invest time.
 
 ## Development workflow
 
-1. Fork the repository and create a branch named after the change
-   (`feat/usda-nass-adapter`, `fix/ndvi-cloud-mask`, `docs/crcf-update`).
-2. Make the change. Keep pull requests focused: one adapter, one rule, one
-   fix. A pull request that touches `config/`, an engine and the UI at once
-   is hard to review and harder to revert.
-3. Add or update tests. Every calculation needs a pytest or Vitest test
-   ([docs/developer-guide/testing.md](docs/developer-guide/testing.md)). A
-   parameter with `verification_status: pending` must be exercised by a
-   data-quality test that fails in production mode.
-4. Run `make lint` and `make test` locally. CI runs the same commands plus
-   CodeQL, dependency and secret scanning, a Docker build and a docs link
-   check.
-5. Fill in **every** section of the pull request template: why · inputs ·
-   outputs · data source · licensing impact · privacy impact · testing. "N/A"
-   is an acceptable answer only when it is true; a reviewer will ask.
+1. **Fork** the repository on GitHub and **clone** your fork:
+
+   ```bash
+   git clone https://github.com/<your-account>/AI_Carbon_Credits_Fram_Land.git
+   cd AI_Carbon_Credits_Fram_Land
+   ```
+
+2. **Set up the environment** (Python 3.12+, Node.js 22+). Full details:
+   [docs/developer-guide/setup.md](docs/developer-guide/setup.md).
+
+   ```bash
+   python -m venv .venv && . .venv/bin/activate     # Windows: .venv\Scripts\activate
+   make install                                     # Python packages (editable) + web dependencies
+   make test                                        # must pass before you change anything
+   ```
+
+   On Windows without `make`, `run_all.bat` installs and runs the tests, and `START.bat` starts the app.
+
+3. **Create a branch** named after the kind of change:
+
+   | Prefix | Use for | Example |
+   |---|---|---|
+   | `feature/` | New functionality | `feature/usda-nass-adapter` |
+   | `fix/` | Bug fixes | `fix/ndvi-cloud-mask` |
+   | `docs/` | Documentation only | `docs/crcf-update` |
+   | `research/` | Validation, parameter verification, benchmarks | `research/teak-wood-density-check` |
+
+4. **Follow the coding conventions.** Python: `ruff` (lint and format, line length 100) and `mypy`. TypeScript:
+   ESLint and Prettier (`apps/web/.prettierrc`). Engines calculate, adapters fetch, components render. Keep pull
+   requests focused: one adapter, one rule or one fix.
+5. **Add or update tests.** Every calculation needs a pytest or Vitest test
+   ([docs/developer-guide/testing.md](docs/developer-guide/testing.md)). A parameter with
+   `verification_status: pending` must be exercised by a data-quality test that fails in production mode.
+6. **Update the documentation** that describes the behaviour you changed, and add a line to
+   [CHANGELOG.md](CHANGELOG.md) under *Unreleased*.
+7. **Run the checks locally:** `make lint` and `make test`. CI runs the same commands plus CodeQL, dependency and
+   secret scanning, a Docker build and a documentation link check.
+8. **Open a pull request** and fill in every section of the template: why · inputs · outputs · data source ·
+   licensing impact · privacy impact · testing. "N/A" is acceptable only when it is true.
+
+## Research contributions
+
+Independent researchers are especially welcome to test the project's claims:
+
+- **Reproduce** the implementation checks: `python benchmarks/run_experiments.py` (see
+  [docs/reproducibility.md](docs/reproducibility.md)) and report any difference in the result files.
+- **Validate** against field data or reference tools. This is validation levels 2 and 3 in
+  [research/validation/](research/validation/README.md), which have not been performed yet. Use a `research/`
+  branch and include the data's licence.
+- **Verify parameters.** Many parameters are `pending` or `assumption`. Replacing one with a value from a primary
+  source (with `source`, `source_table` and the reviewer) is one of the most valuable contributions.
+- **Benchmark** against other tools on the same synthetic or open inputs, and report both agreement and disagreement.
+
+Independent reuse, citations and validations are recorded in [docs/research-impact.md](docs/research-impact.md)
+with links to the evidence.
 
 ## What reviewers look for
 

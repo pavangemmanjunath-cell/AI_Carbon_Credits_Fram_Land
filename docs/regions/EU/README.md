@@ -1,12 +1,14 @@
 # European Union (EU)
 
-This page summarizes how CarbonCreditBuy behaves for plots in the European Union and what a farmer, adviser or researcher in
+This page summarizes how CarbonCreditBuy behaves for plots in the European Union and what a farmer, adviser or
+researcher in
 a member state should expect from it. Configuration lives in
 [`config/regions/EU.yaml`](../../../config/regions/EU.yaml) and
 [`config/policies/EU.yaml`](../../../config/policies/EU.yaml). The sister regions are [India](../IN/README.md) and the
 [United States](../US/README.md).
 
-The EU is a bloc, not a country. CarbonCreditBuy keeps one set of rules for the bloc and maps each member state to it, so a
+The EU is a bloc, not a country. CarbonCreditBuy keeps one set of rules for the bloc and maps each member state to it,
+so a
 farmer in Germany and one in Spain see the same EU programs. National rules, such as a member state's Common
 Agricultural Policy (CAP) plan, are not screened.
 
@@ -30,18 +32,21 @@ country, and it starts after three characters. Results may therefore include pla
 ## Data sources used for EU plots
 
 ESA WorldCover for land cover, Copernicus Sentinel-2 for vegetation indices, Open-Meteo for climate normals, ISRIC
-SoilGrids for soil organic carbon and Nominatim for place search. The region file names no source of crop statistics, and
+SoilGrids for soil organic carbon and Nominatim for place search. The region file names no source of crop statistics,
+and
 no adapter exists for one, so the "other farm income" context is empty. Eurostat is a candidate. Details, licenses and
 access notes are in [DATA_SOURCES.md](DATA_SOURCES.md) and
 [`docs/licensing/DATA_LICENSES.md`](../../licensing/DATA_LICENSES.md).
 
 ## Map imagery
 
-The map's **Satellite** view starts with a national open orthophoto where CarbonCreditBuy has a verified one: France (IGN
+The map's **Satellite** view starts with a national open orthophoto where CarbonCreditBuy has a verified one: France
+(IGN
 BD ORTHO, 20 cm), Spain (IGN PNOA, 25 to 50 cm) and the Netherlands (PDOK, 8 cm). For every other member state it starts
 with the global Sentinel-2 mosaic from EOX, which has 10 m pixels and shows 2016: a village or a large field is visible,
 individual trees are not. A deployer who holds an Esri license can add Esri World Imagery, for viewing only. A person
-can pick another provider under **Settings**, **Map imagery**. Imagery is for viewing: CarbonCreditBuy's own analysis uses
+can pick another provider under **Settings**, **Map imagery**. Imagery is for viewing: CarbonCreditBuy's own analysis
+uses
 Sentinel-2 scenes and WorldCover, not map tiles. Licenses, attribution texts and zoom limits are in
 [MAP_LICENSES.md](../../licensing/MAP_LICENSES.md) and
 [`config/imagery/providers.yaml`](../../../config/imagery/providers.yaml). The EU details, and what is still
@@ -59,11 +64,13 @@ Each program is described, with its sources and open questions, in [PROGRAMS.md]
 result carries the sentence "Initial screening only — not an eligibility determination. Under the CRCF a calculated
 estimate is never automatically certifiable; certification by a recognised scheme is required."
 
-**A CarbonCreditBuy estimate is never automatically certifiable under the CRCF.** CarbonCreditBuy does no baseline, no monitoring, no
+**A CarbonCreditBuy estimate is never automatically certifiable under the CRCF.** CarbonCreditBuy does no baseline, no
+monitoring, no
 verification and no certification, and it is not a recognized certification scheme. A CRCF unit exists only after a
 recognized scheme certifies an activity. As of the research date, 2026-10-05, the Commission had adopted the
 carbon-farming certification methodologies on 10 July 2026 and they were not confirmed in force; certification schemes
-can apply for recognition only after that ([Commission news](https://climate.ec.europa.eu/news-other-reads/news/commission-adopts-certification-methodologies-carbon-farming-under-crcf-regulation-2026-07-10_en)).
+can apply for recognition only after that ([Commission
+news](https://climate.ec.europa.eu/news-other-reads/news/commission-adopts-certification-methodologies-carbon-farming-under-crcf-regulation-2026-07-10_en)).
 See [PROGRAMS.md](PROGRAMS.md#the-crcf).
 
 ## Trees of different ages
@@ -107,7 +114,8 @@ estimate is never automatically certifiable. The full list, with sources and the
 - **Your location.** The design keeps the exact boundary out of public views and uses a point rounded to roughly 5 km
   ([farmer data](../../privacy/farmer-data.md)). Version 0.1 has no sign-in, so read
   [Privacy and your data](../../user-guide/faq.md#privacy-and-your-data) before you enter a real boundary on a shared
-  server. An organization that operates CarbonCreditBuy in the EU is responsible for its own data-protection obligations;
+  server. An organization that operates CarbonCreditBuy in the EU is responsible for its own data-protection
+  obligations;
   the privacy pages are not legal advice.
 - **A caution for temperate trees.** The growth values are broad Tier 1 working values, and the equation used when you
   enter a trunk diameter was built for tropical trees. See [METHODOLOGIES.md](METHODOLOGIES.md).

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "carboncreditbuy-policy-engine"
-version = "0.2.0"
+version = "1.1.1"
 description = "Programme screening rules (config/policies) for CarbonCreditBuy — screening, never eligibility"
 readme = "README.md"
 requires-python = ">=3.12"

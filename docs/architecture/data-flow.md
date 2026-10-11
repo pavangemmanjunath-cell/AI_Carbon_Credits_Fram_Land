@@ -7,7 +7,8 @@ receive coordinates**. Field names match the [API contract](api-contract.md).
 
 ## One session
 
-The sequence below is the path of the main workflow. A plot can also start from a pin and a size, a drawn tree line, typed
+The sequence below is the path of the main workflow. A plot can also start from a pin and a size, a drawn tree line,
+typed
 coordinates or an imported file; those steps are in the next section.
 
 ```mermaid
@@ -140,7 +141,8 @@ sequenceDiagram
 
 Three details matter for what is stored and what moves:
 
-- **Imports.** The file is read in memory and dropped. The record keeps the derived boundary, tree points, crowns or tree
+- **Imports.** The file is read in memory and dropped. The record keeps the derived boundary, tree points, crowns or
+  tree
   tops, the counts and a map preview, linked to a plot when the request names one. A point cloud is never sent anywhere.
 - **Detection.** The detection runs on the 30 m NDVI cube that the map's NDVI cells also use. In live mode the cube is
   built from Sentinel-2 for the plot's bounding box each time (a STAC search and COG window reads that are not cached),
@@ -169,8 +171,10 @@ Three details matter for what is stored and what moves:
 
 An agent run that has to analyse a plot first makes the same adapter requests as `POST /plots/{id}/analyze`, because its
 tools call the same services. The statistics adapters (USDA NASS, data.gov.in, the Census geocoder) are built by the
-API but no service calls them yet, so nothing is sent to them. The [QGIS plugin](../../integrations/qgis-plugin/README.md)
-is one more client: it posts the selected polygon to your own CarbonCreditBuy server, and the flow from there is the one above.
+API but no service calls them yet, so nothing is sent to them. The [QGIS
+plugin](../../integrations/qgis-plugin/README.md)
+is one more client: it posts the selected polygon to your own CarbonCreditBuy server, and the flow from there is the one
+above.
 
 ## The privacy boundary
 
@@ -178,7 +182,8 @@ The diagram shows where exact geometry exists and where it stops. Coordinates ne
 and climate providers, because that is how a pixel is looked up, and, in live mode, the geocoder once per plot to name
 the state. Those requests are bounding boxes or centroids sent from the API with no user identity attached, and the
 adapters cache their results in memory so that a repeated analysis does not repeat the disclosure. The tile hosts see
-which map tiles a browser asks for, an approximate area and never a plot boundary, because the browser draws the outline.
+which map tiles a browser asks for, an approximate area and never a plot boundary, because the browser draws the
+outline.
 
 ```mermaid
 flowchart LR
@@ -240,7 +245,8 @@ a farm within a district but not on a parcel. Details and the reasoning behind t
 ## Caching and idempotence
 
 Adapter results are cached in memory, per process, for an hour by default and for 24 hours for the geocoder. The key is
-a hash of the dataset, its version and the request (a bounding box or polygon, or a centroid), so the same request is not
+a hash of the dataset, its version and the request (a bounding box or polygon, or a centroid), so the same request is
+not
 sent twice while the process runs, and the cache is empty after a restart. The live vegetation cube is the exception: it
 is built again for every cube request and every detection. Carbon estimates are pure functions of their
 inputs, the configuration versions and the current year (the age of the trees counts to it): the same inventory and
@@ -250,9 +256,11 @@ is deterministic too, apart from ids and times.
 
 ## Failure behaviour
 
-Each adapter has a 20-second timeout and one retry, after a short pause, on a 5xx answer or a transport error. Its errors
+Each adapter has a 20-second timeout and one retry, after a short pause, on a 5xx answer or a transport error. Its
+errors
 name the host and the status, never the request. A failing adapter degrades the analysis rather than failing it: the
-block is omitted and `data_quality.warnings` says why (for example "satellite vegetation unavailable"). A carbon estimate
+block is omitted and `data_quality.warnings` says why (for example "satellite vegetation unavailable"). A carbon
+estimate
 without an analysis uses the region's default climate zone and records `zone_source: region-default` in
 `provenance.climate_zone`. The geocoder and the vegetation cube answer 502 `upstream-unavailable` when their provider
 fails, and the Nominatim adapter waits to keep to one request a second (`GEOCODER_MIN_INTERVAL_SECONDS`).

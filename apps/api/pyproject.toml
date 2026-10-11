@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "carboncreditbuy-api"
-version = "0.2.0"
+version = "1.1.1"
 description = "CarbonCreditBuy — FastAPI back end (scenario estimates, never credits)"
 readme = "README.md"
 requires-python = ">=3.12"

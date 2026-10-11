@@ -1,6 +1,8 @@
 # Roadmap
 
-Where CarbonCreditBuy stands and what comes next. **Version 0.2.0 was delivered on 2026-10-05.** The steps after it have
+Where CarbonCreditBuy stands and what comes next. **The first published release, V_1.1, was archived on 2026-10-11**
+(DOI [10.5281/zenodo.23298049](https://doi.org/10.5281/zenodo.23298049)); 0.2.0 was the development milestone
+before it. The steps after it have
 no dates: each one waits for a source to be read, a reviewer to agree or a decision to be written down, and a date would
 be a promise nobody can keep. What changed in each release is in the [changelog](CHANGELOG.md). The larger ideas, with
 what is open today and the first step for each, are in [roadmap ideas](docs/community/roadmap-ideas.md).

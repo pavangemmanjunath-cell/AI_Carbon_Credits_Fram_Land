@@ -2,18 +2,18 @@
 #
 # Blank issues stay disabled so that every report arrives with the fields a maintainer
 # needs (the forms in this directory). The links below assume the repository lives at
-# github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land; change the owner if you host a fork.
+# github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land; change the owner if you host a fork.
 blank_issues_enabled: false
 contact_links:
   - name: Security or privacy problem (private report)
-    url: https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land/blob/main/SECURITY.md
+    url: https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/blob/main/SECURITY.md
     about: Leaked farm geometry, authentication bypass, vulnerable dependencies. Never in a public issue. SECURITY.md explains how to report privately.
   - name: Question or discussion
-    url: https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land/discussions
+    url: https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/discussions
     about: Ask how something works, propose an idea before writing code, or share how you use CarbonCreditBuy.
-- name: User guide and FAQ
-    url: https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land/blob/main/docs/user-guide/faq.md
+  - name: User guide and FAQ
+    url: https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/blob/main/docs/user-guide/faq.md
     about: Many questions about ranges, confidence, readiness and why an estimate is not a credit are answered there.
   - name: Documentation index
-    url: https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land/blob/main/docs/README.md
+    url: https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/blob/main/docs/README.md
     about: User guide, developer guide, region notes, data sources and licensing.

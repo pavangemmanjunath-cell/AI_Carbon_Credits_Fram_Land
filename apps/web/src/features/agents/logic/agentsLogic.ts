@@ -17,7 +17,7 @@ import type {
 export const MAX_QUESTION_LENGTH = 500;
 export const DEFAULT_PLAN_ID = 'full-assessment';
 export const AGENTS_DOCS_URL =
-  'https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land/blob/main/docs/agents/README.md';
+  'https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/blob/main/docs/agents/README.md';
 
 export const SUGGESTED_QUESTION_KEYS = ['carbon', 'programmes', 'plant', 'old'] as const;
 export type SuggestionKey = (typeof SUGGESTED_QUESTION_KEYS)[number];

@@ -1,9 +1,0 @@
-{
-  "title": "CarbonCreditBuy: An Open, Explainable Platform for Estimating Tree-Based Carbon Removal and Its Indicative Credit Value on Farmland",
-  "description": "Open-source geospatial platform combining IPCC Tier 1 and allometric carbon estimates with ranges and provenance, Earth-observation context, region-aware programme screening (India, US, EU) and guard-railed explanation agents. Estimates are not carbon credits.",
-  "upload_type": "software",
-  "license": "Apache-2.0",
-  "creators": [{"name": "Manjunath, Pavan", "orcid": "0000-0002-2694-8807"}],
-  "keywords": ["carbon farming", "agroforestry", "MRV", "IPCC", "Sentinel-2", "geospatial", "open source"],
-  "access_right": "open"
-}

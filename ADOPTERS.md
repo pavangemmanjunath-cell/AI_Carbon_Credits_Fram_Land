@@ -24,7 +24,7 @@ the platform has been certified.
 
 Open a pull request that adds one row to the table below. Keep the
 description factual (what you use it for, which regions) and link to the
-evidence or state "permission given by <role>, <date>".
+evidence or state "permission given by `role`, `date`".
 
 ## Adopters
 

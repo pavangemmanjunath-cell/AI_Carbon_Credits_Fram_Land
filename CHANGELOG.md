@@ -4,8 +4,8 @@ All notable changes to CarbonCreditBuy are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-Until 1.0.0 the public API (`/api/v1`) may change between minor versions;
-every change is recorded under **Changed** with a migration note.
+The public API (`/api/v1`) is versioned; every breaking change is recorded
+under **Changed** with a migration note.
 
 Entries that alter a carbon parameter, an allometric equation or a policy
 rule name the configuration file, the source document and the reviewer who
@@ -13,9 +13,72 @@ set `verification_status: verified`.
 
 ## [Unreleased]
 
-Nothing yet.
+Prepared for the next release (proposed `v1.1.1`). No change to carbon parameters, equations, policy rules or
+results.
 
-## [0.2.0] — 2026-10-05
+### Changed
+
+- Version numbers of the application and the repository's packages set to 1.1.1. Scientific component versions
+  (carbon engine 0.1.0, detection model 0.1.0, agent framework 0.1.0) and the database schema revision (0.2.0) are
+  unchanged because their behaviour is unchanged.
+- `CITATION.cff` rewritten: the Zenodo DOI of release V_1.1, the concept DOI, co-author Thomas (details to be
+  completed), an abstract and keywords that match the implementation. Validated with `cffconvert`.
+- Repository links point to `AI_Carbon_Credits_Fram_Land`.
+- `apps/web` formatted with the repository's Prettier configuration (formatting only).
+- README restructured (overview, problem, methodology, reproducibility, citation, research impact).
+
+### Added
+
+- `docs/reproducibility.md` (exact commands, verified results, release checklist) and `docs/research-impact.md`
+  (verifiable reuse only; none recorded yet).
+- Expanded `docs/architecture.md` (Mermaid diagram), `docs/methodology.md` (AI and decision components),
+  `docs/novelty.md` (existing approaches, limitations, hypothesis).
+
+### Fixed
+
+- CI: mypy errors (enabled the `pydantic.mypy` plugin, typed two call sites), ruff errors in
+  `benchmarks/run_experiments.py`, Prettier check failures in `apps/web`.
+- Two GitHub issue forms (`config.yml`, `data_source.yml`) whose indentation had been broken; markdownlint findings
+  and two broken documentation anchors.
+- `SECURITY.md` listed a placeholder e-mail address; reports now go through GitHub private vulnerability reporting.
+
+### Removed
+
+- `.zenodo.json`: `CITATION.cff` is now the single metadata source (Zenodo prefers `.zenodo.json` when both exist).
+
+## [1.1] — 2026-10-11
+
+Release `V_1.1`, archived on Zenodo as [10.5281/zenodo.23298049](https://doi.org/10.5281/zenodo.23298049). The first
+published release. Every carbon figure is a scenario estimate with `certified: false`; demo mode uses synthetic data.
+
+### Added
+
+- **Land input:** boundary, freehand pen, rectangle and circle drawing on an OpenStreetMap basemap (OpenFreeMap), tree
+  line, pin with area, typed coordinates (decimal or DMS), and imports of GeoJSON, KML/KMZ, CSV and LAS/LAZ.
+- **Locked land card:** the saved boundary's corner coordinates, area, perimeter and the number of trees that fit at
+  the species' configured reference density.
+- **Earth observation:** ESA WorldCover land-cover shares, Sentinel-2 NDVI/NDMI vegetation cube, climate zone from
+  Open-Meteo normals, SoilGrids soil organic carbon (synthetic twins in demo mode).
+- **Carbon engine:** IPCC 2006 Tier 1 gain-loss, Tier 2 with measured diameter (Chave et al. 2014), uncertainty
+  ranges, confidence, evidence readiness, carbon by tree age, and a cost scenario from user-entered costs.
+- **Policy engine:** programme screening for India, the United States and the European Union, and 22 sourced
+  tree-age rules.
+- **Simulation:** what-if scenarios, a 3D land view (three.js / React Three Fiber) with trees sized from species
+  configuration, the generic credit pathway, and "Why this number?" (one-at-a-time sensitivity).
+- **Agents:** nine deterministic agents, three plans, six guardrails, a deterministic intent router, and an optional
+  OpenAI-compatible language model limited to rewording redacted text.
+- **Tree detection:** NDVI threshold tree-cover patches with confidence; canopy-height local maxima from point clouds.
+- **Reports:** HTML, Markdown and JSON.
+- **QGIS plugin** (GPL-2.0-or-later) that calls the API.
+- **Six languages** in the web app: English, Hindi, Kannada, German, French, Spanish.
+- **Windows launcher** (`START.bat`, `STOP.bat`, `STATUS.bat`) and DPAPI-encrypted key storage (`API-KEYS.bat`).
+- **Implementation checks** in `benchmarks/` and about 2,200 Python and 480 web tests.
+
+## Development history before 1.1 (not released)
+
+These milestones were developed in the repository but never published as releases or tagged.
+
+### 0.2.0 — 2026-10-05 (development milestone)
 
 A development release, not a production release. Version 0.2.0 adds an AI agent team, simpler ways to mark land,
 imports with tree detection, tree age, imagery providers for the Satellite view and a QGIS plugin, and it removes every
@@ -31,7 +94,7 @@ estimate that uses a `pending` parameter. Pending in this release:
 - [`config/tree-age/rules.yaml`](config/tree-age/rules.yaml): three rules, which production mode withholds:
   `in-hr-pran-vayu-devta-pension`, `in-mh-heritage-tree` and `eu-crcf-carbon-farming-delegated-act-2026`.
 
-### Added
+#### Added
 
 - **AI agent team.** A small in-house framework, `packages/agent-framework` (`carboncreditbuy_agents`), and nine agents in
   `apps/api/app/agents`: `coordinator`, `land`, `imagery`, `trees`, `carbon`, `policy`, `market`, `review` and
@@ -84,7 +147,7 @@ estimate that uses a `pending` parameter. Pending in this release:
   [free APIs](docs/data-sources/FREE_APIS.md) page, ADR-0006, new developer-guide pages, READMEs for the apps, packages,
   integrations and tests, and a rewritten [documentation index](docs/README.md).
 
-### Changed
+#### Changed
 
 - **The web app is flat 2D and simpler.** The left navigation is My land, Data, AI agents, Tree age, Simulation, Reports
   and Settings. The plot list moved to the Data page. The Satellite view is a Map | Satellite switch that uses the
@@ -107,14 +170,14 @@ estimate that uses a `pending` parameter. Pending in this release:
   `LLM_TIMEOUT_SECONDS` and `ESRI_API_KEY`, all in [`.env.example`](.env.example). `VITE_TERRAIN_TILES_URL` is no longer
   read.
 
-### Removed
+#### Removed
 
 - All 3D views: three.js, `@react-three/fiber`, `@react-three/drei` and `@deck.gl/*` are gone from `apps/web`, together
   with the 4D cube view, the 3D columns toggle, and the map tilt and terrain control. The map is flat and north-up.
 - In-browser SQL. An early design proposed DuckDB-WASM, and it was never added: the cube stays plain JSON
   ([ADR-0002](docs/architecture/adr/0002-json-cube-no-duckdb.md)).
 
-### Security
+#### Security
 
 - **Uploads.** The size limit is enforced three times: before the body is read, while the multipart stream is counted,
   and while the file is read in chunks. Only listed extensions are accepted, and the first bytes must fit the
@@ -132,11 +195,11 @@ estimate that uses a `pending` parameter. Pending in this release:
   unavailable and returned without a URL. The application's other secrets, such as `LLM_API_KEY`, cannot be filled into
   a tile URL. The Esri key reaches the browser inside the tile URL, so use a referrer-restricted, basemap-only key.
 
-## 0.1.0 — not released on its own
+### 0.1.0 — scaffold (development milestone)
 
 The first scaffold of the repository, the base that 0.2.0 builds on. It was not published as a release of its own.
 
-### Added
+#### Added
 
 - Repository scaffold: `apps/api` (FastAPI), `apps/web` (Vite + React 19 +
   TypeScript), `packages/{carbon-engine,geo-engine,policy-engine,report-engine}`,
@@ -154,11 +217,11 @@ The first scaffold of the repository, the base that 0.2.0 builds on. It was not 
   GitHub workflows and issue templates, Docker images, example requests for
   three synthetic farms, research and validation plans.
 
-### Security
+#### Security
 
 - Content Security Policy and security headers in the web image
   ([infra/docker/nginx.conf](infra/docker/nginx.conf)); non-root API
   container; CodeQL, `pip-audit`, `npm audit` and gitleaks in CI.
 
-[Unreleased]: https://github.com/<org>/carboncreditbuy/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/<org>/carboncreditbuy/releases/tag/v0.2.0
+[Unreleased]: https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/compare/V_1.1...HEAD
+[1.1]: https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/releases/tag/V_1.1

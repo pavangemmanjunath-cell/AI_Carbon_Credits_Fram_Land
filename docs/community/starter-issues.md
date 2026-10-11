@@ -36,7 +36,8 @@ each EU member state's CAP plan are all listed there, because each needs a decis
    `integrations/`, `config/imagery/`, `docs/licensing/` and `.github/`. Those pull requests take longer.
 
 A privacy or security problem is never a public issue ([SECURITY.md](../../SECURITY.md)). The two gaps in issues 10 and
-11 are already described in the [architecture overview](../developer-guide/architecture-overview.md#the-privacy-boundary).
+11 are already described in the [architecture
+overview](../developer-guide/architecture-overview.md#the-privacy-boundary).
 Anything else you find goes through the private route.
 
 ## At a glance
@@ -60,7 +61,7 @@ means a long list that you can split into several pull requests.
 | 12 | [Handle 29 February in the scene search](#12-handle-29-february-in-the-scene-search) | Adapters | Small | Python |
 | 13 | [Test the geocoder adapters](#13-test-the-geocoder-adapters) | Adapters, tests | Medium | Python, pytest |
 | 14 | [Write the README for one adapter](#14-write-the-readme-for-one-adapter) | Adapters, docs | Small | Reading Python |
-| 15 | [Repair the dangling documentation links](#15-repair-the-dangling-documentation-links) | Docs | Medium | Markdown |
+| 15 | [Plan translations for the agents' sentences](#15-plan-translations-for-the-agents-sentences) | Agents, translations | Medium | Python, i18n |
 
 ## Check the data against its sources
 
@@ -109,7 +110,8 @@ key `rules[id=<the rule id>]`. The sources already cited in the rule are the pla
 **Why.** All eleven species in [`config/species/species.yaml`](../../config/species/species.yaml) carry a wood density
 marked `pending`, recorded as a working value from the Global Wood Density Database
 ([Zanne et al. 2009](https://doi.org/10.5061/dryad.234)). Production mode refuses estimates that use a pending
-parameter ([what production does with pending](../developer-guide/adding-a-species-or-parameter.md#what-production-does-with-pending)),
+parameter ([what production does with
+pending](../developer-guide/adding-a-species-or-parameter.md#what-production-does-with-pending)),
 so each one blocks a production release.
 
 **Where.** Pick one species id (`mango`, `teak`, `neem`, `eucalyptus`, `mixed_native_tropical`, `black_walnut`,
@@ -206,7 +208,8 @@ For any other language, open a discussion first: name the region that would list
 - The shared file has exactly the keys of `en.json` (plus any plural keys the language needs), and every string keeps
   the same `{{placeholders}}`. Names, codes and strings made only of placeholders may stay as in English, as they do in
   the existing files.
-- The disclaimers keep their meaning: `cards.notCredit`, `results.pill` and `landing.indicativeValueText` say an estimate
+- The disclaimers keep their meaning: `cards.notCredit`, `results.pill` and `landing.indicativeValueText` say an
+  estimate
   is not an issued credit, and `results.policyDisclaimer` says a screening is not an eligibility determination.
 - You have looked at how numbers appear. In a browser, Marathi and Bengali use their own digits by default
   (`new Intl.NumberFormat('mr-IN')`), while Hindi and Kannada show Latin digits in the app today. Describe what you see
@@ -220,7 +223,8 @@ For any other language, open a discussion first: name the region that would list
 - If a machine translation tool gave you a first draft, the pull request says so and a fluent speaker has read the
   result.
 
-The agents' question router has keyword lists per language in `packages/agent-framework/carboncreditbuy_agents/intents.py`. A new
+The agents' question router has keyword lists per language in
+`packages/agent-framework/carboncreditbuy_agents/intents.py`. A new
 language works without them, because every language is searched for every question, but a few words in yours would
 help. Do that in a separate pull request: it changes behavior and needs tests.
 
@@ -284,7 +288,8 @@ placeholders and tags.
 
 **Why.** The API records notes about missing or substituted data in `data_quality.warnings` of the analysis, for example
 `land cover unavailable: <error name>`, `climate normals unavailable: <error name>; using region default` and, in demo
-mode, `demo mode: synthetic observations`. The HTML report prints them under "Data quality". The web app has the field in
+mode, `demo mode: synthetic observations`. The HTML report prints them under "Data quality". The web app has the field
+in
 its types and shows it nowhere, so a user can read a number that rests on a region default without being told
 ([what a failure looks like](../data-sources/FREE_APIS.md#what-a-failure-looks-like)). The offline fallback adds its own
 note to the same list ("Offline demo fixture: values are not recomputed for your inputs"), so the change shows it too.
@@ -352,7 +357,8 @@ attribution bar credits the basemap, not the search.
   sent it. The string is not translated ([attribution strings](../licensing/ATTRIBUTION.md#localization)).
 - Nothing is shown when there are no results, and the line does not take focus away from the results or hide one.
 - A Vitest test renders the search with a stubbed response and finds the string.
-- The pull request notes that [ATTRIBUTION.md](../licensing/ATTRIBUTION.md#shown-when-the-corresponding-layer-or-value-is-displayed)
+- The pull request notes that
+  [ATTRIBUTION.md](../licensing/ATTRIBUTION.md#shown-when-the-corresponding-layer-or-value-is-displayed)
   lists a longer string for the geocoders ("Search by Nominatim · © OpenStreetMap contributors"). Do not decide which
   text wins: say what you showed and let the maintainers choose.
 
@@ -392,7 +398,8 @@ it in the pull request and leave it unchanged.
 **Labels:** `type/bug`, `area/api`, `privacy`, `good first issue`
 
 **Why.** [Data retention](../privacy/data-retention.md#deletion) lists report files among the things a deletion removes.
-The PostgreSQL schema does it (`reports.plot_id` has `ON DELETE CASCADE`). The in-memory repository, used in demo mode and
+The PostgreSQL schema does it (`reports.plot_id` has `ON DELETE CASCADE`). The in-memory repository, used in demo mode
+and
 in tests, removes the plot, its analysis, inventories, estimates and records, but not its reports, so a deleted plot's
 report can still be fetched by its id until the server restarts. The
 [FAQ](../user-guide/faq.md#what-happens-when-i-delete-a-plot) already tells users about this gap.
@@ -402,7 +409,8 @@ report id, and `meta["plot_id"]` names the plot.
 
 **Done when.**
 
-- After `DELETE /api/v1/plots/{plot_id}`, `GET /api/v1/reports/{report_id}` answers 404 for each report of that plot, and
+- After `DELETE /api/v1/plots/{plot_id}`, `GET /api/v1/reports/{report_id}` answers 404 for each report of that plot,
+  and
   `report_ids()` no longer lists them. Reports of other plots are untouched.
 - A test in `apps/api/tests/` creates a plot, an inventory, an estimate and a report, deletes the plot, and checks both
   of the above.
@@ -468,10 +476,12 @@ synthetic demo coordinates (the demo plot near Doddaballapura), never the locati
 **Labels:** `type/docs`, `area/integrations`, `data-licensing`, `good first issue`
 
 **Why.** CLAUDE.md principle 6 asks every adapter to ship a README with its source, license, attribution, rate limits,
-caching and failure handling. None of the ten adapter folders has one. The [integrations README](../../integrations/README.md)
+caching and failure handling. None of the ten adapter folders has one. The [integrations
+README](../../integrations/README.md)
 and [FREE_APIS.md](../data-sources/FREE_APIS.md) stand in ([known gaps](../data-sources/FREE_APIS.md#known-gaps)).
 
-**Where.** `integrations/carboncreditbuy_integrations/<adapter>/README.md` for one of `open_meteo`, `soilgrids`, `nominatim`,
+**Where.** `integrations/carboncreditbuy_integrations/<adapter>/README.md` for one of `open_meteo`, `soilgrids`,
+`nominatim`,
 `photon`, `esa_worldcover`, `earth_search`, `copernicus`, `usda_nass`, `census_geocoder` or `data_gov_in`.
 
 **Done when.**
@@ -499,7 +509,8 @@ accept a `locale`, so the plumbing exists; what is missing is a plan for the wor
   range and the confidence grade). Numbers stay numbers: only the words around them are translated.
 - Propose a format (one YAML file per language under `config/agents/`, keyed by template name) and how a missing
   translation falls back to English.
-- Translate the templates for one language you know well, and ask a second speaker to review the wording with a farmer in
+- Translate the templates for one language you know well, and ask a second speaker to review the wording with a farmer
+  in
   mind.
 
 **Done when.**

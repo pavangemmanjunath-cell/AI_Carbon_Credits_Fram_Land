@@ -53,7 +53,7 @@ body:
       label: Version or commit
       description: Paste the JSON from `GET /api/v1/health` (it shows `version`, `mode` and `repository`) or the commit hash.
       render: json
-      placeholder: '{"status": "ok", "version": "0.1.0", "mode": "demo", "repository": "memory", "time": "2026-10-05T09:00:00Z"}'
+      placeholder: '{"status": "ok", "version": "1.1.1", "mode": "demo", "repository": "memory", "time": "2026-10-05T09:00:00Z"}'
     validations:
       required: true
   - type: textarea

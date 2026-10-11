@@ -9,11 +9,10 @@ leak of private geometry with the same seriousness as remote code execution.
 
 Please **do not** open a public issue for security or privacy problems.
 
-Use GitHub's private vulnerability reporting on the repository
-(*Security → Report a vulnerability*) or e-mail
-**security@example.org** (replace with the project's address once the
-organization is created). If you prefer encryption, ask for the current PGP
-key in your first message.
+Use GitHub's private vulnerability reporting on the repository:
+<https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land/security/advisories/new>
+(*Security → Report a vulnerability*). This is the only reporting channel; the
+project does not publish a security e-mail address.
 
 Include, as far as you can:
 
@@ -95,3 +94,18 @@ gitleaks on every push and weekly ([.github/workflows/security.yml](.github/work
 Dependabot opens weekly update pull requests. If you accidentally commit a
 secret, rotate it first and then tell us; removing it from history alone is
 not enough.
+
+## Repository security review
+
+Before each release the maintainers check the current tree **and the full git history** for API keys, tokens,
+passwords, private keys, private URLs and personal data (the CI also runs gitleaks, CodeQL, `pip-audit` and
+`npm audit`). Review of 2026-10-11:
+
+- No credentials in the tree or history. The only matches were the dummy value `"topsecret"` in two QGIS plugin
+  tests.
+- No personal data in the tree. E-mail addresses found are an npm maintainer address inside `package-lock.json` and a
+  fake address in a redaction test. Git commit metadata records the author's name and e-mail, as all git history
+  does.
+- No machine-specific paths. Secrets belong in the git-ignored `.env` (see `.env.example`) or, on Windows, the
+  DPAPI-encrypted store written by `API-KEYS.bat`, which lives outside the repository.
+- All sample and demo data is synthetic.

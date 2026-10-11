@@ -24,7 +24,7 @@ DEFAULT_TIMEOUT_S = 20.0
 DEFAULT_RETRIES = 1
 DEFAULT_CACHE_TTL_S = 3600.0
 USER_AGENT = (
-    "carboncreditbuy/0.1 (+https://github.com/pavangemmanjunath-cell/Carbon_Credits_Fram_Land)"
+    "carboncreditbuy/0.1 (+https://github.com/pavangemmanjunath-cell/AI_Carbon_Credits_Fram_Land)"
 )
 
 

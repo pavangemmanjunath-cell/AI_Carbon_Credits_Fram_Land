@@ -2,12 +2,14 @@
 
 State governments in India run schemes that pay farmers to plant and keep trees, or sell them seedlings at a low
 price. They are **incentives**: payments or subsidies, not carbon credits. They carry no tonnes of CO₂e, they are not
-issued by a registry, and CarbonCreditBuy treats them as part of **other farm income**, never added to the carbon figures
+issued by a registry, and CarbonCreditBuy treats them as part of **other farm income**, never added to the carbon
+figures
 ([results explained](../../user-guide/results-explained.md#why-the-three-values-are-never-added)). They are also
 separate from the Green Credit Programme ([GREEN_CREDIT.md](GREEN_CREDIT.md)) and from the carbon-credit scheme
 ([CCTS.md](CCTS.md)).
 
-This page says what CarbonCreditBuy shows for them, what is known about two named schemes, and what to ask the office before
+This page says what CarbonCreditBuy shows for them, what is known about two named schemes, and what to ask the office
+before
 you apply. Facts that came from news reports or secondary pages, or that we could not read on an official page, are
 marked *(unverified)*. Amounts change: verify every number against the current scheme order with the responsible
 department. The research behind this page is in [policy-references.md](../../research/policy-references.md) and
@@ -38,10 +40,12 @@ Three things to keep in mind:
 
 ## Karnataka: Krushi Aranya Protsaha Yojane (KAPY)
 
-KAPY is a Karnataka Forest Department scheme for farmers who plant trees on their own land. CarbonCreditBuy configuration
+KAPY is a Karnataka Forest Department scheme for farmers who plant trees on their own land. CarbonCreditBuy
+configuration
 spells the name "Krishi"; other sources write "Krushi". Neither official page could be read in the research: the
 Forest Department page was blocked to the fetch tool and the myScheme page held no scheme text
-([research note](../../research/tree-age-carbon-rules.md#karnataka-preservation-of-trees-act-1976-and-an-incentive-scheme)).
+([research
+note](../../research/tree-age-carbon-rules.md#karnataka-preservation-of-trees-act-1976-and-an-incentive-scheme)).
 Everything below is therefore *(unverified)*. Do not plan around these numbers; ask the Range Forest Office.
 
 | Item | What is reported | Source |
@@ -54,8 +58,10 @@ Everything below is therefore *(unverified)*. Do not plan around these numbers; 
 | Limit | Up to 400 trees per hectare *(unverified)* | [bhoomiforrtc.in](https://bhoomiforrtc.in/krushi-aranya-protsaha-yojane-kapy/) |
 | Species left out | Eucalyptus, acacia and grafted mango are reported as excluded *(unverified)* | [bhoomiforrtc.in](https://bhoomiforrtc.in/krushi-aranya-protsaha-yojane-kapy/) |
 
-The last row matters for CarbonCreditBuy users: eucalyptus and mango are both in CarbonCreditBuy species table for India, but a species
-CarbonCreditBuy can estimate is not necessarily one a scheme pays for. Ask which species and which planting material count.
+The last row matters for CarbonCreditBuy users: eucalyptus and mango are both in CarbonCreditBuy species table for
+India, but a species
+CarbonCreditBuy can estimate is not necessarily one a scheme pays for. Ask which species and which planting material
+count.
 
 KAPY is not in the age-based rule file ([`config/tree-age/rules.yaml`](../../../config/tree-age/rules.yaml))
 because its amounts are unconfirmed. The research note recommends recording the ₹35, ₹40 and ₹50 schedule as a
@@ -111,7 +117,8 @@ Open a "Policy rule proposal" issue
 ([`region_rule.yml`](../../../.github/ISSUE_TEMPLATE/region_rule.yml)) with the official scheme page or order, the
 department, who is eligible, the amounts with their date, and what you could not confirm. The policy engine has no
 state input in version 0.1, so a state-specific rule would apply to every plot in India. Until that is added, state
-schemes are described on this page rather than as separate rules ([adding a region](../../developer-guide/adding-a-region.md)).
+schemes are described on this page rather than as separate rules ([adding a
+region](../../developer-guide/adding-a-region.md)).
 
 ## Related pages
 

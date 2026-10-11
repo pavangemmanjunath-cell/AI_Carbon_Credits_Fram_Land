@@ -9,7 +9,8 @@ change, and the responsible authority has the last word. The rule file holds 22 
 ## Key finding
 
 **Carbon-credit standards reward new, additional removals or avoided loss. They do not pay for the carbon that old
-trees already hold.** A 60-year-old or 100-year-old tree stores a great deal of carbon, but in the methodologies reviewed
+trees already hold.** A 60-year-old or 100-year-old tree stores a great deal of carbon, but in the methodologies
+reviewed
 that stock is the starting point (the baseline), not a creditable removal. The one clear exception is avoided-loss
 credit for an existing urban stand that is at risk of being cleared (City Forest Credits, Preservation protocol), which
 needs a 40-year preservation commitment. Existing trees are protected or rewarded mainly through other instruments:
@@ -57,24 +58,28 @@ more without disturbance; CarbonCreditBuy does not add a 100-year class.
 ### ICVCM Core Carbon Principles
 
 The Integrity Council's principle 5 (additionality) says removals "shall be additional, i.e., they would not have
-occurred in the absence of the incentive created by carbon credit revenues". Principle 6 (permanence) requires them to be
+occurred in the absence of the incentive created by carbon credit revenues". Principle 6 (permanence) requires them to
+be
 "permanent or, where there is a risk of reversal, there shall be measures in place to address those risks and compensate
 reversals", and principle 7 requires them to be "robustly quantified, based on conservative approaches, completeness and
-scientific methods". Reading these for existing trees is CarbonCreditBuy's interpretation, not ICVCM text: growth that trees
+scientific methods". Reading these for existing trees is CarbonCreditBuy's interpretation, not ICVCM text: growth that
+trees
 would make anyway is not additional, which is why every methodology below works against a baseline. See
 [../concepts/additionality.md](../concepts/additionality.md).
 
 ### Verra VM0047, Afforestation, Reforestation and Revegetation, v1.1 (effective 14 May 2025)
 
 - Area-based approach: the project land must not have met the definition of managed forest at any point in the 10 years
-  before the project start date, although v1.1 also allows enhancing forest carbon stocks where existing forest cover has
+  before the project start date, although v1.1 also allows enhancing forest carbon stocks where existing forest cover
+  has
   not been managed for wood products in the past ten years.
 - A t = 0 carbon-stock estimate is required for pre-existing woody biomass, and removing that biomass is allowed only
   where it is treated as a waste product with no commercial value.
 - Census-based approach, for dispersed planting such as agroforestry: no more than 50 planting units per hectare, direct
   planting only, the pre-project land use maintained, and less than 10 percent pre-existing woody biomass cover (or
   continuous cropping, "settlements" or "other lands").
-- So a farm with scattered old trees can sit inside a VM0047 project, but only trees the project plants earn credits. How
+- So a farm with scattered old trees can sit inside a VM0047 project, but only trees the project plants earn credits.
+  How
   the later growth of pre-existing trees is treated was not checked in this research.
 - Section references were read through a page-summarising tool and cross-checked against the Verra page and an
   independent summary; quote from the PDF before external publication.
@@ -92,51 +97,65 @@ would make anyway is not additional, which is why every methodology below works 
 
 ### Plan Vivo (PV Climate), note only
 
-The public PV Climate page lists four categories (restoration, agroforestry, protection and improved management) and says
-a project "must have a strong additionality argument for any historic activities that it wishes to accredit". It does not
+The public PV Climate page lists four categories (restoration, agroforestry, protection and improved management) and
+says
+a project "must have a strong additionality argument for any historic activities that it wishes to accredit". It does
+not
 say how existing trees are treated, so no rule was written for it.
 
 ## India
 
 ### Green Credits and carbon credits are separate mechanisms
 
-- **Green Credit Programme (GCP), tree plantation.** Eligible land is "Degraded forest land parcels under the control and
+- **Green Credit Programme (GCP), tree plantation.** Eligible land is "Degraded forest land parcels under the control
+  and
   management of the State/UT Forest Department", each a compact area of at least 5 hectares free from encumbrances;
   wildlife sanctuaries, national parks and tiger reserves are excluded. Credit claims are possible "After 5 years of
   restoration work and when canopy density reaches at least 40 percent". Green Credits for tree plantation "shall be
-  non-tradable" and are non-transferable except between a holding company and its subsidiaries. The methodology was first
+  non-tradable" and are non-transferable except between a holding company and its subsidiaries. The methodology was
+  first
   notified on 22 February 2024 and revised on 29 August 2025 (recorded in
   [policy-references.md](policy-references.md) as G.S.R. 592(E); the gazette text was not opened). Secondary reports add
   one credit per surviving tree aged five years or more; that detail is not in the rule file. Green Credits are a
-  government recognition scheme, not carbon credits and not a cash payment. For a farmer's own land or for existing trees
+  government recognition scheme, not carbon credits and not a cash payment. For a farmer's own land or for existing
+  trees
   the screening answer is "not a GCP route".
 - **Carbon Credit Trading Scheme (CCTS), offset mechanism.** BM FR05.002, "Afforestation and reforestation of lands
   except wetlands", Version 1.0 of 8 September 2025, is adopted from the UNFCCC CDM methodology AR-ACM0003. Baseline net
   removals include the "Change in carbon stock in baseline tree biomass" and baseline shrub biomass (Section 4.4,
-  Equation 1), so pre-existing tree biomass sits in the baseline. Applicability (Section 3.2) excludes wetlands and limits
-  soil disturbance to 10 per cent of the area of organic-soil land or of land with baseline management practices. Credits
+  Equation 1), so pre-existing tree biomass sits in the baseline. Applicability (Section 3.2) excludes wetlands and
+  limits
+  soil disturbance to 10 per cent of the area of organic-soil land or of land with baseline management practices.
+  Credits
   are issued as temporary (tCCC) or long-term (lCCC) Carbon Credit Certificates (Section 4.8). The applicability text is
   silent on agroforestry and cropland, so neither should be assumed eligible; ask the Bureau of Energy Efficiency. No
   Carbon Credit Certificate trade or price signal was confirmed.
-- The official line, as quoted in [policy-references.md](policy-references.md), is that the generation of Green Credit "is
+- The official line, as quoted in [policy-references.md](policy-references.md), is that the generation of Green Credit
+  "is
   independent of the carbon credit under Carbon Credit Trading Scheme 2023". CarbonCreditBuy never mixes the two.
 
 ### Haryana: Pran Vayu Devta Pension Scheme (pending)
 
-- **What the press reports.** A pension for trees "older than 75 years" (June 2023; later reports say 75 years or older).
-  Fallen, hollow, dead, dry or diseased trees and trees on forest land are excluded, and a grove grown from one seed (for
-  example a banyan) counts as one tree. Later reports add that the tree must be one of 40 designated native species, that
+- **What the press reports.** A pension for trees "older than 75 years" (June 2023; later reports say 75 years or
+  older).
+  Fallen, hollow, dead, dry or diseased trees and trees on forest land are excluded, and a grove grown from one seed
+  (for
+  example a banyan) counts as one tree. Later reports add that the tree must be one of 40 designated native species,
+  that
   applicants apply to the district forest department (21-column proforma), and that a five-member district committee
   approves, with the pension paid to the custodian's bank account.
 - **Amount history (press only).** Rs 2,500 per tree per year (June 2023), Rs 2,750 (July 2024) and Rs 3,000 (June to
   September 2025, and again on 13 July 2026), meant to rise each year in line with the Old Age Samman pension. The rule
-  file records Rs 3,000 per tree per year with `as_of: "2026-07"`, the latest report, in which a Faridabad forest officer
+  file records Rs 3,000 per tree per year with `as_of: "2026-07"`, the latest report, in which a Faridabad forest
+  officer
   is quoted. A cap of 4,000 trees until a five-year review was reported in 2023, and 3,876 trees in 22 districts in
   September 2025.
 - **What is missing.** The only official page found (Haryana Forest Department, message from the PCCF's desk) names the
-  scheme but gives no age or amount; the haryana.gov.in scheme page returned 404 and the Chief Minister's Office page was
+  scheme but gives no age or amount; the haryana.gov.in scheme page returned 404 and the Chief Minister's Office page
+  was
   blocked to the fetch tool. The official notification or guidelines are needed to confirm the age wording (above or at
-  least 75), the species list, the exclusions and the current amount. Until then the rule is `pending` and the pension is
+  least 75), the species list, the exclusions and the current amount. Until then the rule is `pending` and the pension
+  is
   other farm income, shown with its date and never added to any carbon figure.
 
 ### Maharashtra: Urban Areas Protection and Preservation of Trees Act, 1975, amended 2021
@@ -145,14 +164,19 @@ say how existing trees are treated, so no rule was written for it.
   Authority, in accordance with the norms as may be notified by the Government" and sends a proposal to fell one to the
   Maharashtra State Tree Authority (Section 2 and the proviso to Section 8(3)). The Bill and Act text opened state no
   age. News reports of the June 2021 Cabinet decision say "any tree with an estimated age of 50 years or above" would be
-  classified as a heritage tree (The Tribune, Mumbai Live). The Tree Officer determines a tree's age "as per the criteria
-  and method as may be notified by the Government" (Section 8(5)(b)). The notified norms, or the consolidated Act on India
+  classified as a heritage tree (The Tribune, Mumbai Live). The Tree Officer determines a tree's age "as per the
+  criteria
+  and method as may be notified by the Government" (Section 8(5)(b)). The notified norms, or the consolidated Act on
+  India
   Code (blocked to the fetch tool), are still needed.
 - **Compensatory planting equal to estimated age (verified).** Section 8(5), as amended in 2021: the applicant "shall
-  plant such number of trees equal to the estimated age of the tree being felled and such trees to be planted shall be of
+  plant such number of trees equal to the estimated age of the tree being felled and such trees to be planted shall be
+  of
   atleast six feet height". A 60-year-old tree therefore means 60 new trees. The Bill text also requires the planted
-  trees to survive at least seven years (Section 8(5A)) and offers a deposit of not less than the valuation of the felled
-  trees as an alternative; check the enacted text. The penalty under Section 21 is the valuation of the tree, but not more
+  trees to survive at least seven years (Section 8(5A)) and offers a deposit of not less than the valuation of the
+  felled
+  trees as an alternative; check the enacted text. The penalty under Section 21 is the valuation of the tree, but not
+  more
   than one lakh rupees, and applications covering more than two hundred trees of age five years or more go to the State
   Tree Authority. The Act covers urban areas, not farmland outside them.
 
@@ -169,9 +193,11 @@ say how existing trees are treated, so no rule was written for it.
   gives a penalty of up to three months' imprisonment or a fine up to Rs 1,000, or both (Section 22). Later amendments,
   the notified areas and the current penalty were not checked, and the India Code copy is blocked to the fetch tool; the
   text used is the PRS India copy.
-- **Krushi Aranya Protsaha Yojane (KAPY), pending and not in the rule file.** A new-planting incentive, not age-based. An
+- **Krushi Aranya Protsaha Yojane (KAPY), pending and not in the rule file.** A new-planting incentive, not age-based.
+  An
   undated Karnataka government document ("Karnataka Welfare Schemes on Poverty Alleviation") says Rs 35 per surviving
-  seedling is paid in the first year, Rs 40 in the second and Rs 50 in the third, to Karnataka farmers who own land, under
+  seedling is paid in the first year, Rs 40 in the second and Rs 50 in the third, to Karnataka farmers who own land,
+  under
   a scheme launched in 2011 and run by the Forest Department. The official Forest Department page (aranya.gov.in) was
   blocked and the myScheme page held no scheme text, so the amounts stay unconfirmed.
 
@@ -183,7 +209,8 @@ say how existing trees are treated, so no rule was written for it.
   9(2) lists cases where permission cannot be refused, including dead, diseased or wind-fallen trees, silviculturally
   mature trees (except on steep slopes) and trees that endanger life, property or traffic. The Tree Officer must decide
   within 60 days (otherwise permission is deemed granted) and applicants state the girth at 1.85 m above ground (Section
-  9(1)). A person given permission must plant the number and kind of trees the Tree Officer directs in the area where the
+  9(1)). A person given permission must plant the number and kind of trees the Tree Officer directs in the area where
+  the
   tree was felled (Section 10). The Act text read has no age or heritage-tree provision. Its penalty (Section 24) is
   up to one year's imprisonment or a fine up to Rs 1,000, or both; amendments and the consolidated text were not
   checked.
@@ -214,8 +241,10 @@ not reviewed, so the file is not a national survey.
   the USFS tables method, one standard error with inventory methods). A 100-year version (v14.100) is listed but was not
   opened.
 - **Afforestation and Reforestation protocol v12 (26-year).** Covers urban tree planting for conservation, not harvest.
-  Section 1.9: "Proposed projects that convert a forested land use or that cut down healthy, non-invasive trees and plant
-  project trees for crediting are not eligible." Section 1.8: "Trees required to be planted by a law or ordinance are not
+  Section 1.9: "Proposed projects that convert a forested land use or that cut down healthy, non-invasive trees and
+  plant
+  project trees for crediting are not eligible." Section 1.8: "Trees required to be planted by a law or ordinance are
+  not
   eligible for crediting, unless they are replacement trees" for trees removed for reasons such as poor health, safety
   hazards, disease, age, invasive species or best management practices. Duration is 26 years from the date the last
   project tree is planted (Section 2.2), with ex ante credits at five milestones (Section 6.1). Interpretation, not
@@ -224,7 +253,8 @@ not reviewed, so the file is not a national survey.
 
 ### Improved forest management of existing forests
 
-- **Climate Action Reserve U.S. Forest Protocol v5.1** (July 2023 file). Project types are reforestation, improved forest
+- **Climate Action Reserve U.S. Forest Protocol v5.1** (July 2023 file). Project types are reforestation, improved
+  forest
   management ("maintain or increase carbon stocks on forested land relative to baseline levels") and avoided conversion
   (Section 2.1); IFM needs more than ten percent tree canopy cover and natural forest management practices. Credits are
   actual onsite stocks minus baseline estimates (Section 6), so existing standing carbon is not credited in itself, and
@@ -232,9 +262,11 @@ not reviewed, so the file is not a national survey.
   issuance of any credit, the baseline is assumed valid for 100 years and a buffer pool covers reversals.
 - **ACR Improved Forest Management on Non-Federal U.S. Forestlands v2.1** (July 2024). Emission Reduction Tons come from
   forgone baseline harvests and from retained with-project growth against a project-specific harvesting baseline. The
-  project must show "an increase in with-project live biomass carbon and dead wood pools, in sum, relative to those pools
+  project must show "an increase in with-project live biomass carbon and dead wood pools, in sum, relative to those
+  pools
   in the baseline scenario by the end of the Crediting Period" (Section 1.2). No explicit stand-age requirement appears
-  in the eligibility text, but the baseline uses "financially mature timber (i.e., at least as old as the optimal rotation
+  in the eligibility text, but the baseline uses "financially mature timber (i.e., at least as old as the optimal
+  rotation
   age)" (Section 4.1.4). Minimum project term 40 years, crediting period 20 years.
 - **Family Forest Carbon Program with Verra VM0045.** Owners need "30 or more acres of non-planted, naturally
   regenerating trees", the legal right to harvest, and a listed state, with a 20-year commitment and practices such as
@@ -249,18 +281,21 @@ not reviewed, so the file is not a national survey.
 - **Portland City Code 11.20.060, Heritage Trees.** Heritage Trees are "Trees that because of their age, size, type,
   historical association or horticultural value, are of special importance to the City". The Urban Forestry Commission
   recommends and Council may designate once an arborist certifies the tree's health; designation on private property
-  needs the owner's consent and is recorded on the deed; "Heritage Trees may be removed only with the consent of the UFC".
+  needs the owner's consent and is recorded on the deed; "Heritage Trees may be removed only with the consent of the
+  UFC".
   The code sets no minimum age.
 - **Los Angeles, Protected Tree and Shrub regulations (Ordinance 186873).** Native oaks (excluding scrub oak), Southern
   California black walnut, Western sycamore and California bay, plus the shrubs Mexican elderberry and toyon, measuring
-  "four inches or more in cumulative diameter, four and one-half feet above the ground level" are protected, and a permit
+  "four inches or more in cumulative diameter, four and one-half feet above the ground level" are protected, and a
+  permit
   from the Board of Public Works is needed to remove, trim or relocate them. The ordinance was adopted on 15 December
   2020 and took effect on 4 February 2021; the city's summary says the replacement ratio changed to 4:1. The test is
   species and size, not age.
 
 ### USDA tools and programmes
 
-No age-based USDA rule was verified. [policy-references.md](policy-references.md) records that COMET-Planner v4.0 estimates
+No age-based USDA rule was verified. [policy-references.md](policy-references.md) records that COMET-Planner v4.0
+estimates
 tree carbon from age-based diameter models by taxon group and region for new plantings, and that EQIP and CSP are
 cost-share and stewardship payments, not carbon credits. Those entries were not re-opened here.
 
@@ -273,10 +308,12 @@ years, related to the management of a terrestrial or coastal environment" that r
 emissions. Article 4 calculates the net carbon-farming benefit by subtracting baseline removals and associated emissions
 from total removals, preferring standardised baselines "highly representative of the standard performance of comparable
 practices". Article 5(1) requires that the activity goes "beyond Union and national statutory requirements at the level
-of an individual operator" and needs "the incentive effect of the certification" to be financially viable, and Article 5(2)
+of an individual operator" and needs "the incentive effect of the certification" to be financially viable, and Article
+5(2)
 presumes additionality when a standardised baseline is used. Article 6 requires monitoring for at least the activity
 period, with operators liable for releases during monitoring. The text read does not address existing carbon stocks
-explicitly; treating them as part of the baseline follows from Article 4's net-benefit formula. **A CarbonCreditBuy estimate is
+explicitly; treating them as part of the baseline follows from Article 4's net-benefit formula. **A CarbonCreditBuy
+estimate is
 never automatically CRCF-certifiable**: certification by a recognised scheme is required.
 
 ### Carbon-farming delegated act, adopted 10 July 2026 (pending)
@@ -286,7 +323,8 @@ mineral soils, rewetting and restoration of peatlands and other organic soils, a
 Delegated Regulation enters in force, certification schemes will be able to apply for recognition" under Implementing
 Regulation (EU) 2025/2358. The news item and the methodologies page do not state the methodologies' rules on existing
 trees, baselines, additionality or monitoring period, and entry into force after Parliament and Council scrutiny was not
-confirmed as of 2026-10-05. Third-party critiques of earlier drafts (Carbon Market Watch, March 2025: a zero standardised
+confirmed as of 2026-10-05. Third-party critiques of earlier drafts (Carbon Market Watch, March 2025: a zero
+standardised
 baseline with sparse existing trees on up to 10 percent of the area ignored; Bellona, 25 February 2026: pre-existing
 vegetation ignored with a zero baseline) are not evidence of the adopted text. The rule is `proposed` and `pending`.
 
@@ -297,7 +335,8 @@ stand or area consisting of native tree species that have developed, predominant
 and dynamics normally associated with late-seral developmental phases in primary or undisturbed forests of the same
 type". Section 3.2 lists seven indicators (three main, four complementary); the main ones include native species
 composition, a high proportion and diversity of standing and lying deadwood, and the "presence of old or large trees,
-some of which may reach the maximum age known for the species". The guidelines contain no numerical age threshold and are
+some of which may reach the maximum age known for the species". The guidelines contain no numerical age threshold and
+are
 "voluntary and not prescriptive". The full text was read from a third-party copy because the Commission link redirected
 to the documents register; protection depends on Member State mapping and national law.
 
@@ -322,7 +361,8 @@ Two statements can both be true and the dashboard should keep them apart: an ind
 than a small one, and a forest stand's growth per hectare falls as the stand ages.
 
 - **Individual trees: bigger trees add more carbon.** Stephenson et al. (2014), *Nature* 507: 90-93,
-  DOI [10.1038/nature12914](https://doi.org/10.1038/nature12914). The abstract reports "a global analysis of 403 tropical
+  DOI [10.1038/nature12914](https://doi.org/10.1038/nature12914). The abstract reports "a global analysis of 403
+  tropical
   and temperate tree species, showing that for most species mass growth rate increases continuously with tree size", so
   that "large, old trees do not act simply as senescent carbon reservoirs but actively fix large amounts of carbon
   compared to smaller trees; at the extreme, a single big tree can add the same amount of carbon to the forest within a
@@ -336,7 +376,8 @@ than a small one, and a forest stand's growth per hectare falls as the stand age
   net primary and ecosystem productivity in intermediate-aged forests (30 to 120 years), older forests generally less
   productive, and carbon pool sizes generally increasing with age across all biomes.
 - **IPCC age classes.** Requena Suarez et al. (2019), *Global Change Biology* 25(11): 3609-3624,
-  DOI [10.1111/gcb.14767](https://doi.org/10.1111/gcb.14767): refined growth rates for younger secondary (up to 20 years),
+  DOI [10.1111/gcb.14767](https://doi.org/10.1111/gcb.14767): refined growth rates for younger secondary (up to 20
+  years),
   older secondary and old-growth tropical and subtropical forest. Values and caveats are in
   [ipcc-age-class-growth.md](ipcc-age-class-growth.md).
 - **Further reading, not used for any statement above.** Luyssaert et al. (2008), "Old-growth forests as global carbon
@@ -350,36 +391,44 @@ earn credits.
 ## How the app uses this
 
 `config/tree-age/rules.yaml` is data. The engine reads it; components render the result and contain no rule
-logic (CLAUDE.md principle 2). The programme-level screening files `config/policies/IN.yaml`, `US.yaml` and `EU.yaml` stay
+logic (CLAUDE.md principle 2). The programme-level screening files `config/policies/IN.yaml`, `US.yaml` and `EU.yaml`
+stay
 as they are; this file adds an age-focused layer.
 
 Proposed matching, to be implemented and tested in the policy engine (it is not implemented by this research):
 
-1. **Geography, a hard filter.** `GLOBAL` rules always apply. `EU` rules apply to EU member states (the file's Berlin rule
+1. **Geography, a hard filter.** `GLOBAL` rules always apply. `EU` rules apply to EU member states (the file's Berlin
+   rule
    is `scope: EU` with `country: DE`). `IN` and `US` rules apply to the matching country. A rule with a `subdivision`
    applies only inside it (Haryana `IN-HR`, Maharashtra `IN-MH`, Karnataka `IN-KA`, Delhi `IN-DL`, and the US and German
    municipal examples).
 2. **Age, a hard filter.** A rule applies when the entered age is within `min_age_years` and `max_age_years`, where
    `null` means no bound. Only two rules carry a bound: Haryana (75 and over) and Maharashtra heritage trees (50 and
    over), and both are `pending`.
-3. **Tree status and setting, soft filters.** `applies_to.trees` and `applies_to.setting` describe what a rule regulates.
-   A rule written for new plantings (VM0047, Gold Standard, the Green Credit Programme) is still the answer to "can my old
+3. **Tree status and setting, soft filters.** `applies_to.trees` and `applies_to.setting` describe what a rule
+   regulates.
+   A rule written for new plantings (VM0047, Gold Standard, the Green Credit Programme) is still the answer to "can my
+   old
    trees earn credits here", so it should be shown to a user with existing trees, in a group such as "does not apply to
    your trees", rather than hidden.
 4. **Output.** For existing trees the headline is `outcome_for_existing_trees`: `not-eligible`, `eligible`,
-   `conditional`, `protected`, `payment` or `not-applicable`, with the `summary` and `details` text, the `sources` and the
+   `conditional`, `protected`, `payment` or `not-applicable`, with the `summary` and `details` text, the `sources` and
+   the
    `accessed` date.
 5. **Verification badge.** `pending` rules are labelled "not confirmed from a primary source" with the `notes` text.
    Under CLAUDE.md principle 10 a pending parameter must fail a production-mode data-quality test, so the three pending
    rules (Haryana, Maharashtra heritage age, the EU delegated act) must be confirmed against primary sources or excluded
    before a production release.
 6. **`status`.** Show `proposed`, `superseded` and `unknown` rules with that label; the EU delegated act is `proposed`.
-7. **`is_example`.** A municipal example stands for "check your own local ordinance". Label it as an example, and show it
+7. **`is_example`.** A municipal example stands for "check your own local ordinance". Label it as an example, and show
+   it
    only as such unless the user's city matches `locality`.
-8. **`amount`.** Show an amount only when the field is present, with its currency, unit and `as_of` date, and say when it
+8. **`amount`.** Show an amount only when the field is present, with its currency, unit and `as_of` date, and say when
+   it
    comes from press reports. A payment such as the Haryana pension is "other farm income". The app shows three separate
    values (environmental benefit, indicative carbon value as a scenario, other farm income) and never sums them.
-9. **Never a credit.** No rule here turns a tree into a credit. India's Green Credits (GCP) and carbon credits (CCTS) are
+9. **Never a credit.** No rule here turns a tree into a credit. India's Green Credits (GCP) and carbon credits (CCTS)
+   are
    separate mechanisms, and in the EU an estimate is never automatically CRCF-certifiable.
 10. **Disclaimer.** Show the file's `disclaimer` text with every result: screening information only, not legal advice.
 
@@ -448,7 +497,8 @@ All pages were accessed on 2026-10-05 through a page-summarising fetch tool, so 
 numbers can carry transcription errors; open the cited page before quoting. "Verified" in the rule file means the source
 was opened and states the condition. Pages that could not be read: India Code PDFs, aranya.gov.in and the Haryana Chief
 Minister's Office page (blocked by robots.txt); haryana.gov.in scheme page (404); myScheme KAPY page (no scheme text);
-umwelt-online.de Berlin ordinance (unreadable); the Wiley copy of Requena Suarez et al. (403). The IPCC Table 4.9 PDF text
+umwelt-online.de Berlin ordinance (unreadable); the Wiley copy of Requena Suarez et al. (403). The IPCC Table 4.9 PDF
+text
 was truncated by the tool.
 
 ### Sources cited in the rule file

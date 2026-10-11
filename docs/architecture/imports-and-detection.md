@@ -190,7 +190,8 @@ the default deployment.
 
 ## 3. Detection ("AI detected tree cover" from satellite data)
 
-The input is the vegetation cube that also feeds the map's NDVI cells and the change-over-time chart (`GET /plots/{id}/cube`, NDVI, the last 36
+The input is the vegetation cube that also feeds the map's NDVI cells and the change-over-time chart
+(`GET /plots/{id}/cube`, NDVI, the last 36
 months); in demo mode that cube is **synthetic**, and the result says so in its `limitations`.
 
 1. **Composite.** Per cell, the median of the last `composite_slices` (3) monthly NDVI slices,

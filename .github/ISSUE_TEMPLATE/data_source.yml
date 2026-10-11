@@ -33,7 +33,7 @@ body:
     id: purpose
     attributes:
       label: Purpose in CarbonCreditBuy
-description: Which analysis block or feature it would feed (landcover, vegetation, climate, soil, terrain, crop statistics, geocoding, basemap).
+      description: Which analysis block or feature it would feed (landcover, vegetation, climate, soil, terrain, crop statistics, geocoding, basemap).
     validations:
       required: true
   - type: input

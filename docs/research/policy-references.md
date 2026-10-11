@@ -1,6 +1,9 @@
 # Policy references — verified facts for the IN / US / EU policy engine
 
-Scope: facts the policy-screening rules in `config/policies/*.yaml` and `config/methodologies/registry.yaml` rely on. Every row carries a source URL. Items I could not confirm from an official or primary source are marked **(unverified)**. Nothing here is legal advice; the engine must keep emitting *screenings*, never eligibility determinations.
+Scope: facts the policy-screening rules in `config/policies/*.yaml` and `config/methodologies/registry.yaml` rely on.
+Every row carries a source URL. Items I could not confirm from an official or primary source are marked
+**(unverified)**. Nothing here is legal advice; the engine must keep emitting *screenings*, never eligibility
+determinations.
 
 ## 1. India — Green Credit Programme (GCP)
 
@@ -19,7 +22,11 @@ Scope: facts the policy-screening rules in `config/policies/*.yaml` and `config/
 | GCP FAQ on carbon credits | "Carbon Credit focuses only on reducing or removing greenhouse gas emissions (mainly CO₂), while Green Credit covers a broader range of environmental activities"; "The Green Credits issued for tree plantation under GCP shall be non-tradable." | [GCP FAQ](https://www.moefcc-gcp.in/faq) |
 | Criticisms | Original 1,100 trees/ha lacked scientific basis; risk of afforesting open natural ecosystems; double-counting concern between Green Credits and CCTS certificates for the same tree | [SCC Online, 11 Feb 2026](https://www.scconline.com/blog/post/2026/02/11/ecological-concerns-green-credit-programme-india-analysis/); [Mongabay, Mar 2024](https://india.mongabay.com/2024/03/green-credit-schemes-methodology-doesnt-inspire-confidence-among-experts/) |
 
-**Implication for `config/policies/IN.yaml`:** private farmland is *not* a GCP tree-plantation pathway; the only eligible land is forest-department degraded land ≥5 ha. The screening status for `tree_plantation` and `agroforestry` on a farmer's own plot should be `not_applicable` (with an explanatory reason), not `requires_assessment`. The requirements list must drop "tree survival per the notified methodology" and say: ≥5 years, ≥40 % canopy density, non-tradable, one-time exchange. See §8.
+**Implication for `config/policies/IN.yaml`:** private farmland is *not* a GCP tree-plantation pathway; the only
+eligible land is forest-department degraded land ≥5 ha. The screening status for `tree_plantation` and `agroforestry` on
+a farmer's own plot should be `not_applicable` (with an explanatory reason), not `requires_assessment`. The requirements
+list must drop "tree survival per the notified methodology" and say: ≥5 years, ≥40 % canopy density, non-tradable,
+one-time exchange. See §8.
 
 ## 2. India — Carbon Credit Trading Scheme (CCTS)
 
@@ -34,7 +41,9 @@ Scope: facts the policy-screening rules in `config/policies/*.yaml` and `config/
 | Accredited Carbon Verification Agencies | BEE register lists ACVAs with sectoral scopes that include "Agriculture" and "Forestry" for the offset mechanism (e.g. VKU Certification, provisional, 25 Feb 2026); register shows 15 agencies as of mid-2026 | [BEE ACVA register](https://beeindia.gov.in/view_content.php?lid=568&lang=1); [BEE list PDF](https://beeindia.gov.in/sites/default/files/list_ccts_agency.pdf) |
 | Price signals | None yet: no CCC trade has occurred; no floor/ceiling announced; "price stability mechanism is under consideration" | [IETA brief](https://www.ieta.org/uploads/wp-content/Resources/Busines-briefs/2025/IETA_Business_Brief-India_July_final-one.pdf) |
 
-**Implication:** the IN rule for CCTS can now cite an actual approved A/R methodology (BM FR05.002) instead of "BEE lists agriculture and forestry among sectors". Agroforestry on cropland is not explicitly addressed in FR05.002's applicability text; keep `requires_methodology_assessment`.
+**Implication:** the IN rule for CCTS can now cite an actual approved A/R methodology (BM FR05.002) instead of "BEE
+lists agriculture and forestry among sectors". Agroforestry on cropland is not explicitly addressed in FR05.002's
+applicability text; keep `requires_methodology_assessment`.
 
 ## 3. EU — Carbon Removals and Carbon Farming Certification Framework (CRCF)
 
@@ -74,7 +83,13 @@ Scope: facts the policy-screening rules in `config/policies/*.yaml` and `config/
 
 ## 6. Karnataka — Krushi Aranya Protsaha Yojane (KAPY)
 
-Official page [aranya.gov.in](https://aranya.gov.in/aranyacms/English/IndividualScheme.aspx?HkxuiBwcRAlH/nwkzKruPQ=%3D) and [myscheme.gov.in/schemes/kapy](https://www.myscheme.gov.in/schemes/kapy) could not be fetched; values below are from secondary sources and are **(unverified)**: launched 2011; farmers with land records (RTC/pahani); seedlings at Rs 1 / 3 / 5 by bag size; incentive per surviving seedling **Rs 35 (year 1), Rs 40 (year 2), Rs 50 (year 3) = Rs 125**; apply at the Range Forest Office before end of May with Rs 10 fee; up to 400 trees/ha; excluded species include eucalyptus, acacia and grafted mango ([govtschemes.in](https://www.govtschemes.in/karnataka-krushi-aranya-protsaha-yojane); [bhoomiforrtc.in](https://bhoomiforrtc.in/krushi-aranya-protsaha-yojane-kapy/)).
+Official page [aranya.gov.in](https://aranya.gov.in/aranyacms/English/IndividualScheme.aspx?HkxuiBwcRAlH/nwkzKruPQ=%3D)
+and [myscheme.gov.in/schemes/kapy](https://www.myscheme.gov.in/schemes/kapy) could not be fetched; values below are from
+secondary sources and are **(unverified)**: launched 2011; farmers with land records (RTC/pahani); seedlings at Rs 1 / 3
+/ 5 by bag size; incentive per surviving seedling **Rs 35 (year 1), Rs 40 (year 2), Rs 50 (year 3) = Rs 125**; apply at
+the Range Forest Office before end of May with Rs 10 fee; up to 400 trees/ha; excluded species include eucalyptus,
+acacia and grafted mango ([govtschemes.in](https://www.govtschemes.in/karnataka-krushi-aranya-protsaha-yojane);
+[bhoomiforrtc.in](https://bhoomiforrtc.in/krushi-aranya-protsaha-yojane-kapy/)).
 
 ## 7. Carbon-credit vs. incentive taxonomy the engine should use
 
@@ -90,17 +105,35 @@ Official page [aranya.gov.in](https://aranya.gov.in/aranyacms/English/Individual
 
 ## 8. What `config/policies/*.yaml` should say (concrete edits)
 
-1. **IN.yaml / in-gcp.** Change both rules to `status: not_applicable` for private farmland with reason: "GCP tree plantation is restricted to degraded forest land (≥5 ha) under state forest departments; since G.S.R. 592(E) of 29 Aug 2025 credits are issued only after 5 years at ≥40 % canopy density and are non-tradable." Add a third rule `when: {land_tenure: state_forest_department}` → `requires_assessment`. Replace the requirements list accordingly and add the PIB quotation ("independent of the carbon credit under CCTS") to `disclaimer`. Replace the generic `moef.gov.in` reference with the GCP portal and FAQ URLs above.
-2. **IN.yaml / in-ccts.** Reason text should cite BM FR05.002 (A/R, 8 Sep 2025) and BM FR05.001 (mangroves); requirements should add "temporary vs long-term CCC choice and reversal replacement" and "verification by an ACVA accredited for Forestry/Agriculture". Keep `soil_carbon` as `unknown` (no approved soil methodology found).
-3. **IN.yaml / in-state-agroforestry.** Replace `https://aranya.gov.in/` with the KAPY scheme page and myscheme URL; state the Rs 35/40/50 schedule as `verification_status: pending`.
-4. **registry.yaml.** VM0047 entry: version `v1.1`, URL `…-v1-1/`, note the ≤50 trees/ha census rule. VM0042 entry: `v2.2` and a `ccp_approved: 2025-10-30` field. in-gcp-tree-plantation: status `active` but add `private_farmland_eligible: false` and notification ids. in-ccts-offset: list `BM FR05.002`, `BM FR05.001`. eu-crcf: methodologies adopted 10 Jul 2026 (agriculture & agroforestry on mineral soils, peatland, afforestation) pending entry into force.
-5. **EU.yaml.** Reason text currently says methodologies are "addressed by Commission certification methodologies" — make it date-stamped: "delegated act adopted 10 Jul 2026; not yet in force; no recognised scheme can issue CRCF units for agroforestry until recognition under Implementing Regulation (EU) 2025/2358." Add that units are for EU/NDC objectives only.
-6. **US.yaml.** us-voluntary-arr references point to VM0047 v1.0 and VM0042 v2.0 — update to v1.1 and v2.2 and add the census-based ≤50 trees/ha condition to the reason. Add COMET-Planner v4.0 practice codes to us-comet-farm requirements.
+1. **IN.yaml / in-gcp.** Change both rules to `status: not_applicable` for private farmland with reason: "GCP tree
+   plantation is restricted to degraded forest land (≥5 ha) under state forest departments; since G.S.R. 592(E) of 29
+   Aug 2025 credits are issued only after 5 years at ≥40 % canopy density and are non-tradable." Add a third rule
+   `when: {land_tenure: state_forest_department}` → `requires_assessment`. Replace the requirements list accordingly and
+   add the PIB quotation ("independent of the carbon credit under CCTS") to `disclaimer`. Replace the generic
+   `moef.gov.in` reference with the GCP portal and FAQ URLs above.
+2. **IN.yaml / in-ccts.** Reason text should cite BM FR05.002 (A/R, 8 Sep 2025) and BM FR05.001 (mangroves);
+   requirements should add "temporary vs long-term CCC choice and reversal replacement" and "verification by an ACVA
+   accredited for Forestry/Agriculture". Keep `soil_carbon` as `unknown` (no approved soil methodology found).
+3. **IN.yaml / in-state-agroforestry.** Replace `https://aranya.gov.in/` with the KAPY scheme page and myscheme URL;
+   state the Rs 35/40/50 schedule as `verification_status: pending`.
+4. **registry.yaml.** VM0047 entry: version `v1.1`, URL `…-v1-1/`, note the ≤50 trees/ha census rule. VM0042 entry:
+   `v2.2` and a `ccp_approved: 2025-10-30` field. in-gcp-tree-plantation: status `active` but add
+   `private_farmland_eligible: false` and notification ids. in-ccts-offset: list `BM FR05.002`, `BM FR05.001`. eu-crcf:
+   methodologies adopted 10 Jul 2026 (agriculture & agroforestry on mineral soils, peatland, afforestation) pending
+   entry into force.
+5. **EU.yaml.** Reason text currently says methodologies are "addressed by Commission certification methodologies" —
+   make it date-stamped: "delegated act adopted 10 Jul 2026; not yet in force; no recognised scheme can issue CRCF units
+   for agroforestry until recognition under Implementing Regulation (EU) 2025/2358." Add that units are for EU/NDC
+   objectives only.
+6. **US.yaml.** us-voluntary-arr references point to VM0047 v1.0 and VM0042 v2.0 — update to v1.1 and v2.2 and add the
+   census-based ≤50 trees/ha condition to the reason. Add COMET-Planner v4.0 practice codes to us-comet-farm
+   requirements.
 
 ## Open questions
 
 - Exact wording of Rule(s) in S.O. 4458(E) and G.S.R. 592(E) (egazette fetch failed on TLS); obtain the gazette PDFs.
-- Whether BM FR05.002 permits trees on cropland (agroforestry) — the applicability text is silent; ask BEE or review BM-T-AR-001.
+- Whether BM FR05.002 permits trees on cropland (agroforestry) — the applicability text is silent; ask BEE or review
+  BM-T-AR-001.
 - CRCF: confirm the Article 6 minimum monitoring period and liability text from EUR-Lex.
 - KAPY current rates from an official Karnataka source.
 - Gold Standard STARR final publication date and agroforestry eligibility.
