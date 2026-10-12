@@ -3,7 +3,7 @@
 # Python 3.12+ required.
 
 # --- API ---------------------------------------------------------------------
-fastapi==0.142.2
+fastapi==0.143.0
 uvicorn[standard]==0.54.0
 pydantic>=2.9,<3
 pydantic-settings==2.15.0
@@ -11,7 +11,7 @@ python-multipart==0.0.32
 slowapi==0.1.10
 
 # --- Geospatial / numeric (demo mode needs only these) -----------------------
-shapely==2.1.2
+shapely==2.2.0
 pyproj==3.8.0
 numpy==2.5.3
 
